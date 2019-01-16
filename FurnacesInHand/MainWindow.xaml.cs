@@ -5,15 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data.Common;
+using System.Data.Entity;
+using System.Collections.ObjectModel;
+using System.Collections;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Npgsql;
 
 namespace FurnacesInHand
 {
@@ -23,16 +19,23 @@ namespace FurnacesInHand
     public partial class MainWindow : Window
     {
         DbConnection conn;
+        public ObservableCollection<vdp03> inList;
         public MainWindow()
         {
             InitializeComponent();
-            using (var context = new FurnacesModel())
+            using (var context = new FurnacesModel()) //создали контекст взаимодействия с базой данных
             {
-                conn = context.Database.Connection;
-                conn.Open();
+                //var pars = context.vdp03.ToArray();
+                conn = context.Database.Connection; //извлекли объект для соединения с БД
+                conn.Open(); //открыли соединение
                 MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                //  var cars = context.Cars.ToArray();
-                //  Console.WriteLine($"We have {cars.Length} car(s).");
+                //MessageBox.Show($"We have {pars.Length} par(s).");
+                //for (int i = 0; i < 10; i++)
+                //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
+                context.vdp03.Load();
+                inList = context.vdp03.Local;
+                Binding b = new Binding();
+                parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
             }
         }
     }

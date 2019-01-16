@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <ListBox x:Name="parameterValues" HorizontalAlignment="Left" Height="286" Margin="222,49,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Печь №3" Margin="105,168,614,217" RenderTransformOrigin="4.239,2.37" />
+        <Label Content="Напряжение" Margin="97,193,600,192" RenderTransformOrigin="4.239,2.37" />
+
     </Grid>
 </Window>
