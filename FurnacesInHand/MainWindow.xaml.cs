@@ -19,10 +19,12 @@ namespace FurnacesInHand
     public partial class MainWindow : Window
     {
         DbConnection conn;
-        public ObservableCollection<vdp03> inList;
+        //public ObservableCollection<vdp03> inList;
+        public ObservableCollection<string> inList;
         public MainWindow()
         {
             InitializeComponent();
+
             using (var context = new FurnacesModel()) //создали контекст взаимодействия с базой данных
             {
                 //var pars = context.vdp03.ToArray();
@@ -32,11 +34,26 @@ namespace FurnacesInHand
                 //MessageBox.Show($"We have {pars.Length} par(s).");
                 //for (int i = 0; i < 10; i++)
                 //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
-                context.vdp03.Load();
-                inList = context.vdp03.Local;
-                Binding b = new Binding();
+                //context.vdp03.Load();
+                //inList = context.vdp03.Local;
+                inList = new MyData();
+                Binding b = new Binding(nameof(inList));
+                b.Source = inList;
                 parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+   
+
+
             }
+
+        }
+    }
+    public class MyData : ObservableCollection<string>
+    {
+        public MyData()
+        {
+            Add("Item 1");
+            Add("Item 2");
+            Add("Item 3");
         }
     }
 }
