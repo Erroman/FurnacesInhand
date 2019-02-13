@@ -5,20 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurnacesInHand"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="MainWindow_Loaded">
+        Title="MainWindow" Height="450" Width="800" Loaded="MainWindow_Loaded" Closing="MainWindow_Closing">
     <Grid>
         <ListBox x:Name="parameterValues" HorizontalAlignment="Left" Height="286" Margin="222,49,0,0" VerticalAlignment="Top" Width="100">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                       
-                        
+
+
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Label Content="Печь №3" Margin="105,168,614,217" RenderTransformOrigin="4.239,2.37" />
         <Label Content="Напряжение" Margin="97,193,600,192" RenderTransformOrigin="4.239,2.37" />
+        <RadioButton Name ="firstDataBase" Content="Локальная база 1" HorizontalAlignment="Left" Margin="528,48,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <RadioButton Name="secondDataBase" Content="Локальная база 2" HorizontalAlignment="Left" Margin="528,68,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <TextBox Name ="txtb" HorizontalAlignment="Left" Height="44" Margin="528,291,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

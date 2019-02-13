@@ -81,6 +81,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FurnaceModelLocalNext.cs" />
+    <Compile Include="FurnacesModelLocal.cs" />
     <Compile Include="vdp01.cs" />
     <Compile Include="vdp02.cs" />
     <Compile Include="vdp03.cs" />

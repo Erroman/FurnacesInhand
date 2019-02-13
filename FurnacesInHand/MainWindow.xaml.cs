@@ -24,14 +24,16 @@ namespace FurnacesInHand
         public MainWindow()
         {
             InitializeComponent();
-
-            using (var context = new FurnacesModel()) //создали контекст взаимодействия с базой данных
+            firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
+            secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
+            Base_Chosen();
+            using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             {
                 var pars = context.vdp03.ToArray();
                 conn = context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-            //MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                MessageBox.Show($"We have {pars.Length} par(s).");
+                //MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
+                //MessageBox.Show($"We have {pars.Length} par(s).");
                 //for (int i = 0; i < 10; i++)
                 //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
                 //context.vdp03.Load();
@@ -61,6 +63,26 @@ namespace FurnacesInHand
             //be.UpdateSource();
 
             //parameterValues.ItemsSource = inList;
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton li = (sender as RadioButton);
+            Base_Chosen();
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default.firstDatabase = firstDataBase.IsChecked;
+            Properties.Settings.Default.secondDatabase = secondDataBase.IsChecked;
+            Properties.Settings.Default.Save();
+        }
+        private void Base_Chosen()
+        {
+            txtb.Text = "Выбрана ";
+            if ((bool)firstDataBase.IsChecked) txtb.Text += (string)firstDataBase.Content;
+            else if ((bool)secondDataBase.IsChecked) txtb.Text += (string)secondDataBase.Content;
+            else txtb.Text = "Произведите выбор базы данных!";
         }
     }
     public class MyData : ObservableCollection<string>
