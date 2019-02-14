@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurnacesInHand"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="MainWindow_Loaded" Closing="MainWindow_Closing">
-    <Grid>
+        Title="MainWindow" Height="450" Width="900" Loaded="MainWindow_Loaded" Closing="MainWindow_Closing">
+    <Grid Margin="0,0,0,0" HorizontalAlignment="Left" Width="890">
         <ListBox x:Name="parameterValues" HorizontalAlignment="Left" Height="286" Margin="222,49,0,0" VerticalAlignment="Top" Width="100">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -19,9 +19,18 @@
         </ListBox>
         <Label Content="Печь №3" Margin="105,168,614,217" RenderTransformOrigin="4.239,2.37" />
         <Label Content="Напряжение" Margin="97,193,600,192" RenderTransformOrigin="4.239,2.37" />
-        <RadioButton Name ="firstDataBase" Content="Локальная база 1" HorizontalAlignment="Left" Margin="528,48,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
-        <RadioButton Name="secondDataBase" Content="Локальная база 2" HorizontalAlignment="Left" Margin="528,68,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <RadioButton Name ="firstDataBase" Content="Удалённая база" HorizontalAlignment="Left" Margin="520,49,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <RadioButton Name="secondDataBase" Content="Локальная база" HorizontalAlignment="Left" Margin="520,69,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
         <TextBox Name ="txtb" HorizontalAlignment="Left" Height="44" Margin="528,291,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button HorizontalAlignment="Left" Margin="638,49,0,0" VerticalAlignment="Top" Width="175" Height="35" RenderTransformOrigin="0.788,0.351">
+            <Button.Content>
+                <TextBlock Width="175" TextWrapping="Wrap" RenderTransformOrigin="0.615,0.569">
+                    <Run Text="Копируем"/>
+                    <LineBreak/>
+                    удалённую базу в локальную
+                </TextBlock>
+            </Button.Content>
+        </Button>
 
     </Grid>
 </Window>

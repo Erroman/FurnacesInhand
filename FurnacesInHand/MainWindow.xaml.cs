@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Collections;
 using System.Windows.Controls;
 using System.Windows.Data;
+using static FurnacesInHand.ServiceFunctions;
 
 namespace FurnacesInHand
 {
@@ -27,28 +28,7 @@ namespace FurnacesInHand
             firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
             secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
             Base_Chosen();
-            using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
-            {
-                var pars = context.vdp03.ToArray();
-                conn = context.Database.Connection; //извлекли объект для соединения с БД
-                conn.Open(); //открыли соединение
-                //MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                //MessageBox.Show($"We have {pars.Length} par(s).");
-                //for (int i = 0; i < 10; i++)
-                //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
-                //context.vdp03.Load();
-                //inList = context.vdp03.Local;
-                   Binding b = new Binding();
-                 //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
-                 //b.Source = new MyData();
-                   b.Source =pars;
-
-                 parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
-      
-
-
-
-            }
+   
 
         }
 
@@ -80,9 +60,59 @@ namespace FurnacesInHand
         private void Base_Chosen()
         {
             txtb.Text = "Выбрана ";
-            if ((bool)firstDataBase.IsChecked) txtb.Text += (string)firstDataBase.Content;
-            else if ((bool)secondDataBase.IsChecked) txtb.Text += (string)secondDataBase.Content;
+            if ((bool)firstDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)firstDataBase.Content); MapTheRemoteBase(); }
+            else if ((bool)secondDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)secondDataBase.Content); MapTheLocalBase();}
             else txtb.Text = "Произведите выбор базы данных!";
+        }
+        private void MapTheLocalBase()
+        {
+            using (var context = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
+            {
+                var pars = context.vdp03.ToArray();
+                conn = context.Database.Connection; //извлекли объект для соединения с БД
+                conn.Open(); //открыли соединение
+                             //MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
+                             //MessageBox.Show($"We have {pars.Length} par(s).");
+                             //for (int i = 0; i < 10; i++)
+                             //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
+                             //context.vdp03.Load();
+                             //inList = context.vdp03.Local;
+                Binding b = new Binding();
+                //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
+                //b.Source = new MyData();
+                b.Source = pars;
+
+                parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+
+
+
+
+            }
+        }
+        private void MapTheRemoteBase()
+        {
+            using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
+            {
+                var pars = context.vdp03.ToArray();
+                conn = context.Database.Connection; //извлекли объект для соединения с БД
+                conn.Open(); //открыли соединение
+                             //MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
+                             //MessageBox.Show($"We have {pars.Length} par(s).");
+                             //for (int i = 0; i < 10; i++)
+                             //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
+                             //context.vdp03.Load();
+                             //inList = context.vdp03.Local;
+                Binding b = new Binding();
+                //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
+                //b.Source = new MyData();
+                b.Source = pars;
+
+                parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+
+
+
+
+            }
         }
     }
     public class MyData : ObservableCollection<string>
