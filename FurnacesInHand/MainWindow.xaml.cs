@@ -19,27 +19,28 @@ namespace FurnacesInHand
     public partial class MainWindow : Window
     {
         DbConnection conn;
-        //public ObservableCollection<vdp03> inList;
-        public ObservableCollection<string> inList;
+        public ObservableCollection<vdp03> inList;
+        //public ObservableCollection<string> inList;
         public MainWindow()
         {
             InitializeComponent();
 
             using (var context = new FurnacesModel()) //создали контекст взаимодействия с базой данных
             {
-                //var pars = context.vdp03.ToArray();
+                var pars = context.vdp03.ToArray();
                 conn = context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
                 MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                //MessageBox.Show($"We have {pars.Length} par(s).");
+                MessageBox.Show($"We have {pars.Length} par(s).");
                 //for (int i = 0; i < 10; i++)
                 //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
                 //context.vdp03.Load();
                 //inList = context.vdp03.Local;
-                inList = new MyData();
-                Binding b = new Binding(nameof(inList));
-                b.Source = inList;
-                parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+                //inList = new MyData();
+               // Binding b = new Binding(nameof(inList));
+               // b.Source = inList;
+               // parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+                parameterValues.ItemsSource = inList;
    
 
 
