@@ -6,9 +6,20 @@
         xmlns:local="clr-namespace:FurnacesInHand"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="900" Loaded="MainWindow_Loaded" Closing="MainWindow_Closing">
-    <Grid Margin="0,0,0,0" HorizontalAlignment="Left" Width="890">
-        <ListBox x:Name="parameterValues" HorizontalAlignment="Left" Height="286" Margin="222,49,0,0" VerticalAlignment="Top" Width="100">
-     
+    <Window.Resources>
+        <local:vdp03 x:Key="fTemplate"/>
+    </Window.Resources>
+    <Grid Margin="0,0,0,0" HorizontalAlignment="Left" Width="890" DataContext="fTemplate">
+        <ListBox x:Name="parameterValues" HorizontalAlignment="Left" Height="286" Margin="222,49,0,0" VerticalAlignment="Top" Width="212">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding tagname}"/>
+                        <TextBlock Text=" = "/>
+                        <TextBlock Text="{Binding val}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
         <Label Content="Печь №3" Margin="105,168,614,217" RenderTransformOrigin="4.239,2.37" />
         <Label Content="Напряжение" Margin="97,193,600,192" RenderTransformOrigin="4.239,2.37" />
