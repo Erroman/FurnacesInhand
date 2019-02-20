@@ -77,12 +77,13 @@ namespace FurnacesInHand
                              //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
                              //context.vdp03.Load();
                              //inList = context.vdp03.Local;
-                Binding b = new Binding();
-                //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
-                //b.Source = new MyData();
-                b.Source = pars;
+                             //Binding b = new Binding();
+                             //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
+                             //b.Source = new MyData();
+                             //b.Source = pars;
 
-                parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+                //parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+                parameterValues.ItemsSource = pars;
 
 
 
@@ -91,7 +92,7 @@ namespace FurnacesInHand
         }
         private void MapTheRemoteBase()
         {
-            using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
+            using (var context = new FurnacesModel()) //создали контекст взаимодействия с базой данных
             {
                 var pars = context.vdp03.ToArray();
                 conn = context.Database.Connection; //извлекли объект для соединения с БД
@@ -102,12 +103,12 @@ namespace FurnacesInHand
                              //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
                              //context.vdp03.Load();
                              //inList = context.vdp03.Local;
-                Binding b = new Binding();
-                //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
-                //b.Source = new MyData();
-                b.Source = pars;
+                             //Binding b = new Binding();
+                             //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
+                             //b.Source = new MyData();
+                             //b.Source = pars;
 
-                parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+                parameterValues.ItemsSource = pars;
 
 
 
