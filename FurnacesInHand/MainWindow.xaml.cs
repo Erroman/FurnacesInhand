@@ -20,32 +20,49 @@ namespace FurnacesInHand
     {
         DbConnection conn;
         public ObservableCollection<vdp03> inList;
-        //public ObservableCollection<string> inList;
+        public ObservableCollection<string> inListString;
         public MainWindow()
         {
             InitializeComponent();
 
             using (var context = new FurnacesModel()) //создали контекст взаимодействия с базой данных
             {
-                var pars = context.vdp03.ToArray();
+                
                 conn = context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-                MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                MessageBox.Show($"We have {pars.Length} par(s).");
+                             //MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
+
                 //for (int i = 0; i < 10; i++)
                 //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
                 //context.vdp03.Load();
                 //inList = context.vdp03.Local;
-                //inList = new MyData();
-               // Binding b = new Binding(nameof(inList));
-               // b.Source = inList;
-               // parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
-                parameterValues.ItemsSource = inList;
-   
+                //Binding b = new Binding();
+                //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
+                //b.Source = new MyData();
+                //b.Source =pars;
+
+                //parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+                var pars = context.vdp03.ToArray();
+                parameterValues.ItemsSource = pars;
+                //MessageBox.Show($"We have {pars.Length} par(s).");
+
 
 
             }
 
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //inList = new MyData();
+            //Binding b = new Binding();
+            //b.Source = inList;
+            //parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+            //var be = parameterValues.GetBindingExpression(ListBox.ItemsSourceProperty);
+            //be.UpdateTarget();
+            //be.UpdateSource();
+
+            //parameterValues.ItemsSource = inList;
         }
     }
     public class MyData : ObservableCollection<string>
@@ -57,4 +74,5 @@ namespace FurnacesInHand
             Add("Item 3");
         }
     }
+
 }
