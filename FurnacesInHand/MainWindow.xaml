@@ -26,9 +26,9 @@
         <RadioButton Name ="firstDataBase" Content="Удалённая база" HorizontalAlignment="Left" Margin="520,49,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
         <RadioButton Name="secondDataBase" Content="Локальная база" HorizontalAlignment="Left" Margin="520,69,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
         <TextBox Name ="txtb" HorizontalAlignment="Left" Height="44" Margin="528,291,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button HorizontalAlignment="Left" Margin="638,49,0,0" VerticalAlignment="Top" Width="175" Height="35" RenderTransformOrigin="0.788,0.351">
+        <Button HorizontalAlignment="Left" Margin="638,49,0,0" VerticalAlignment="Top" Width="175" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click">
             <Button.Content>
-                <TextBlock Width="175" TextWrapping="Wrap" RenderTransformOrigin="0.615,0.569">
+                <TextBlock Width="175" TextWrapping="Wrap">
                     <Run Text="Копируем"/>
                     <LineBreak/>
                     удалённую базу в локальную

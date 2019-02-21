@@ -115,6 +115,19 @@ namespace FurnacesInHand
 
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (var contextToWhich = new FurnacesModel()) //создали контекст взаимодействия с базой данных
+            {
+                using (var contextFromWhich = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
+                {
+
+                }
+
+            }
+
+        }
     }
     public class MyData : ObservableCollection<string>
     {
