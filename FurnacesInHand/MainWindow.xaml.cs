@@ -71,8 +71,8 @@ namespace FurnacesInHand
                 var pars = context.vdp03.ToArray();
                 conn = context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-                             //MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                             //MessageBox.Show($"We have {pars.Length} par(s).");
+                             MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
+                             MessageBox.Show($"We have {pars.Length} par(s).");
                              //for (int i = 0; i < 10; i++)
                              //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
                              //context.vdp03.Load();
@@ -94,11 +94,11 @@ namespace FurnacesInHand
         {
             using (var context = new FurnacesModel()) //создали контекст взаимодействия с базой данных
             {
-                var pars = context.vdp03.ToArray();
+                var pars = context.vdp03.ToArray<vdp03>();
                 conn = context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-                             //MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                             //MessageBox.Show($"We have {pars.Length} par(s).");
+                             MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
+                             MessageBox.Show($"We have {pars.Length} par(s).");
                              //for (int i = 0; i < 10; i++)
                              //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
                              //context.vdp03.Load();
@@ -118,10 +118,16 @@ namespace FurnacesInHand
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var contextToWhich = new FurnacesModel()) //создали контекст взаимодействия с базой данных
+            using (var contextToWhich = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
             {
-                using (var contextFromWhich = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
+                using (var contextFromWhich = new FurnacesModel()) //создали контекст взаимодействия с базой данных
                 {
+                    var inMemory = from x in contextFromWhich.vdp03 select x ;
+                    contextToWhich.vdp03.RemoveRange(from x in contextToWhich.vdp03 select x);
+                    //contextToWhich.vdp03.AddRange(inMemory.Take<vdp03>(100));
+                    contextToWhich.SaveChanges();
+                    MessageBox.Show("Done!");
+
 
                 }
 
