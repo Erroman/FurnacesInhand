@@ -71,8 +71,8 @@ namespace FurnacesInHand
                 var pars = context.vdp03.ToArray();
                 conn = context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-                             MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                             MessageBox.Show($"We have {pars.Length} par(s).");
+                MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
+                MessageBox.Show($"We have {pars.Length} par(s).");
                              //for (int i = 0; i < 10; i++)
                              //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
                              //context.vdp03.Load();
@@ -82,7 +82,7 @@ namespace FurnacesInHand
                              //b.Source = new MyData();
                              //b.Source = pars;
 
-                //parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
+                             //parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
                 parameterValues.ItemsSource = pars;
 
 
@@ -118,15 +118,20 @@ namespace FurnacesInHand
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var contextToWhich = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
+            using (var contextToWhich = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             {
-                using (var contextFromWhich = new FurnacesModel()) //создали контекст взаимодействия с базой данных
+                using (var contextFromWhich = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
                 {
-                    var inMemory = from x in contextFromWhich.vdp03 select x ;
-                    contextToWhich.vdp03.RemoveRange(from x in contextToWhich.vdp03 select x);
-                    //contextToWhich.vdp03.AddRange(inMemory.Take<vdp03>(100));
+                    IQueryable<vdp03> inMemory = from x in contextFromWhich.vdp03 select x ;
+                    int chunkSize = 100000;
+                    //contextToWhich.vdp03.RemoveRange(from x in contextToWhich.vdp03 select x);
+                    //contextToWhich.vdp03.AddRange(inMemory.Take<vdp03>(200000));
+                    IQueryable<vdp03> restOfTheElements = inMemory;
+                    while(restOfTheElements.Count<vdp03>()>0)
+                    contextToWhich.vdp03.AddRange(restOfTheElements.Take<vdp03>(chunkSize);
+                    restOfTheElements = restOfTheElements.Skip<vdp03>(chunkSize);
                     contextToWhich.SaveChanges();
-                    MessageBox.Show("Done!");
+                    MessageBox.Show(String.Format("Number of entries {0}",inMemory.Count<vdp03>()));
 
 
                 }
