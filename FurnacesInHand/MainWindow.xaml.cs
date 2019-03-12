@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Collections;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using static FurnacesInHand.ServiceFunctions;
 
 namespace FurnacesInHand
@@ -147,6 +148,30 @@ namespace FurnacesInHand
             }
 
         }
+
+        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            TreeViewItem item = ListOfFurnaces.SelectedItem as TreeViewItem;
+            if(item.Parent is TreeViewItem)
+            {
+                
+                string pech = item.Header.ToString();
+                int pechNumber = Int32.Parse(pech.Substring(pech.IndexOf("№")+1));
+                MessageBox.Show($"A furnace # {pechNumber} is chosen!");
+            }
+                
+        }
+        public ItemsControl GetSelectedTreeViewItemParent(TreeViewItem item)
+        {
+            DependencyObject parent = VisualTreeHelper.GetParent(item);
+            while (!(parent is TreeViewItem || parent is TreeView))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            return parent as ItemsControl;
+        }
+
     }
     public class MyData : ObservableCollection<string>
     {
