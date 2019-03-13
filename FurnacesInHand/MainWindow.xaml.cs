@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace FurnacesInHand
     public partial class MainWindow : Window
     {
         DbConnection conn;
+        Int32 numberOfFurnace;
         public ObservableCollection<vdp03> inList;
         public ObservableCollection<string> inListString;
         public MainWindow()
@@ -28,8 +30,6 @@ namespace FurnacesInHand
             InitializeComponent();
             firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
             secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
-            Base_Chosen();
-   
 
         }
 
@@ -156,8 +156,9 @@ namespace FurnacesInHand
             {
                 
                 string pech = item.Header.ToString();
-                int pechNumber = Int32.Parse(pech.Substring(pech.IndexOf("№")+1));
-                MessageBox.Show($"A furnace # {pechNumber} is chosen!");
+                numberOfFurnace = Int32.Parse(pech.Substring(pech.IndexOf("№")+1));
+                MessageBox.Show($"A furnace # {numberOfFurnace} is chosen!");
+                //выбор контекста
             }
                 
         }
