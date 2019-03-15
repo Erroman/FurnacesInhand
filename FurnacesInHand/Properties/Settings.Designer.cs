@@ -26,9 +26,9 @@ namespace FurnacesInHand.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool? firstDatabase {
+        public bool firstDatabase {
             get {
-                return ((bool?)(this["firstDatabase"]));
+                return ((bool)(this["firstDatabase"]));
             }
             set {
                 this["firstDatabase"] = value;
@@ -38,12 +38,24 @@ namespace FurnacesInHand.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool? secondDatabase {
+        public bool secondDatabase {
             get {
-                return ((bool?)(this["secondDatabase"]));
+                return ((bool)(this["secondDatabase"]));
             }
             set {
                 this["secondDatabase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int numberOfFurnace {
+            get {
+                return ((int)(this["numberOfFurnace"]));
+            }
+            set {
+                this["numberOfFurnace"] = value;
             }
         }
     }

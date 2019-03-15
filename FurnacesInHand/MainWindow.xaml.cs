@@ -30,6 +30,8 @@ namespace FurnacesInHand
             InitializeComponent();
             firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
             secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
+            this.numberOfFurnace = Properties.Settings.Default.numberOfFurnace;
+            ChooseTheItemInTheTreeForTheFurnace(this.numberOfFurnace);
 
         }
 
@@ -54,8 +56,9 @@ namespace FurnacesInHand
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Properties.Settings.Default.firstDatabase = firstDataBase.IsChecked;
-            Properties.Settings.Default.secondDatabase = secondDataBase.IsChecked;
+            Properties.Settings.Default.firstDatabase = (bool)firstDataBase.IsChecked;
+            Properties.Settings.Default.secondDatabase = (bool)secondDataBase.IsChecked;
+            Properties.Settings.Default.numberOfFurnace = this.numberOfFurnace;
             Properties.Settings.Default.Save();
         }
         private void Base_Chosen()
@@ -162,15 +165,10 @@ namespace FurnacesInHand
             }
                 
         }
-        public ItemsControl GetSelectedTreeViewItemParent(TreeViewItem item)
+        private void ChooseTheItemInTheTreeForTheFurnace(int numberOfFurnace)
         {
-            DependencyObject parent = VisualTreeHelper.GetParent(item);
-            while (!(parent is TreeViewItem || parent is TreeView))
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-            }
-
-            return parent as ItemsControl;
+            ListOfFurnaces.Items.
+            MessageBox.Show($"This {numberOfFurnace} item in the list was remembered!");
         }
 
     }
