@@ -157,9 +157,8 @@ namespace FurnacesInHand
             TreeViewItem item = ListOfFurnaces.SelectedItem as TreeViewItem;
             if(item.Parent is TreeViewItem)
             {
-                
-                string pech = item.Header.ToString();
-                numberOfFurnace = Int32.Parse(pech.Substring(pech.IndexOf("№")+1));
+
+                numberOfFurnace = extractNumberOfFurnaceFromItsName(item.Header.ToString());
                 MessageBox.Show($"A furnace # {numberOfFurnace} is chosen!");
                 //выбор контекста
             }
@@ -167,8 +166,26 @@ namespace FurnacesInHand
         }
         private void ChooseTheItemInTheTreeForTheFurnace(int numberOfFurnace)
         {
-            ListOfFurnaces.Items.
-            MessageBox.Show($"This {numberOfFurnace} item in the list was remembered!");
+            ListOfFurnaces.Items.MoveCurrentToFirst();
+            ItemCollection listOfFurnaces = ((TreeViewItem)ListOfFurnaces.Items.CurrentItem).Items;
+            while (listOfFurnaces.MoveCurrentToNext())
+            {
+
+                if (extractNumberOfFurnaceFromItsName((listOfFurnaces.CurrentItem as TreeViewItem).Header.ToString()) == this.numberOfFurnace)
+                {
+                    (listOfFurnaces.CurrentItem as TreeViewItem).IsSelected = true;
+                    MessageBox.Show($"{(listOfFurnaces.CurrentItem as TreeViewItem).Header.ToString()} in the list was remembered!");
+                }
+                    
+
+            }
+
+            
+            
+        }
+        private Int32 extractNumberOfFurnaceFromItsName(string nameOfFurnace)
+        {
+            return Int32.Parse(nameOfFurnace.Substring(nameOfFurnace.IndexOf("№") + 1));
         }
 
     }
