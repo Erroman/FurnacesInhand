@@ -39,4 +39,8 @@ namespace FurnacesInHand
         {
         }
     }
+    static class X<T>
+    {
+
+    }
 }

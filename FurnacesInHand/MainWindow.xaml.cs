@@ -21,6 +21,7 @@ namespace FurnacesInHand
     /// </summary>
     public partial class MainWindow : Window
     {
+        FurnacesModelLocal context;
         DbConnection conn;
         Int32 numberOfFurnace;
         public ObservableCollection<vdp03> inList;
@@ -28,9 +29,10 @@ namespace FurnacesInHand
         public MainWindow()
         {
             InitializeComponent();
+            this.numberOfFurnace = Properties.Settings.Default.numberOfFurnace;
             firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
             secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
-            this.numberOfFurnace = Properties.Settings.Default.numberOfFurnace;
+
             ChooseTheItemInTheTreeForTheFurnace(this.numberOfFurnace);
 
         }
@@ -70,14 +72,27 @@ namespace FurnacesInHand
         }
         private void MapTheLocalBase()
         {
-            using (var context = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
+            using (this.context = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
             {
                 //var pars = context.Database.SqlQuery(typeof(vdp03),"Select tagname,val from vdp03 order by id limit 10 offset 0");
                 //select * from vdp04 order by id limit 100 offset 19592897; -- this SQL string should be put into call
                 //select * from vdp06 order by id limit 10 offset 30348545;  -- or this one
-                conn = context.Database.Connection; //извлекли объект для соединения с БД
+                conn = this.context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-                var pars = context.vdp08.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                object furnacedata;
+                //extract the property <number-of-furnace> from the context of DbSet type.
+                Type contextType = typeof(FurnacesModelLocal);
+                foreach (PropertyInfo pi in contextType.GetProperties())
+                {
+                    //get the name of the property
+                    if (extractNumberOfFurnaceFromTheNameOfTheProperty(pi.Name) == this.numberOfFurnace)
+                    {
+                        furnacedata = pi.GetValue(this.context, null);
+                    }
+                }
+
+                //var pars = furnacedata.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                var pars = this.context.vdp08.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                 MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
                 MessageBox.Show($"We have {pars.Length} par(s).");
                 //for (int i = 0; i < 10; i++)
@@ -158,9 +173,10 @@ namespace FurnacesInHand
             if(item.Parent is TreeViewItem)
             {
 
-                numberOfFurnace = extractNumberOfFurnaceFromItsName(item.Header.ToString());
+                numberOfFurnace = extractNumberOfFurnaceFromItsNameInTheTreeMenu(item.Header.ToString());
                 MessageBox.Show($"A furnace # {numberOfFurnace} is chosen!");
-                //выбор контекста
+                //выбор адреса данных печи в контексте
+
             }
                 
         }
@@ -170,13 +186,18 @@ namespace FurnacesInHand
             ListOfFurnaces.Items.MoveCurrentToFirst();
             ItemCollection listOfFurnaces = ((TreeViewItem)ListOfFurnaces.Items.CurrentItem).Items;
             while (listOfFurnaces.MoveCurrentToNext())
-                if (extractNumberOfFurnaceFromItsName((listOfFurnaces.CurrentItem as TreeViewItem).Header.ToString()) == this.numberOfFurnace)
+                if (extractNumberOfFurnaceFromItsNameInTheTreeMenu((listOfFurnaces.CurrentItem as TreeViewItem).Header.ToString()) == this.numberOfFurnace)
                     (listOfFurnaces.CurrentItem as TreeViewItem).IsSelected = true;
         }
 
-        private Int32 extractNumberOfFurnaceFromItsName(string nameOfFurnace)
+        private Int32 extractNumberOfFurnaceFromItsNameInTheTreeMenu(string nameOfFurnace)
         {
             return Int32.Parse(nameOfFurnace.Substring(nameOfFurnace.IndexOf("№") + 1));
+        }
+  
+        private Int32 extractNumberOfFurnaceFromTheNameOfTheProperty(string nameOfProperty)
+        {
+            return nameOfProperty.Contains("vdp")?Int32.Parse(nameOfProperty.Substring(3)):-1;
         }
 
     }
