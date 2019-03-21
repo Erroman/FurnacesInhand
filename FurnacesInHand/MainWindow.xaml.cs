@@ -24,6 +24,7 @@ namespace FurnacesInHand
         FurnacesModelLocal context;
         DbConnection conn;
         Int32 numberOfFurnace;
+        Dictionary<int, object> ParameterData;
         public ObservableCollection<vdp03> inList;
         public ObservableCollection<string> inListString;
         public MainWindow()
@@ -79,7 +80,20 @@ namespace FurnacesInHand
                 //select * from vdp06 order by id limit 10 offset 30348545;  -- or this one
                 conn = this.context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-                object furnacedata;
+                ParameterData = new Dictionary<int, object>()
+                {
+                    [1] = this.context.vdp01,
+                    [2] = this.context.vdp02,
+                    [3] = this.context.vdp03,
+                    [4] = this.context.vdp04,
+                    [5] = this.context.vdp05,
+                    [6] = this.context.vdp06,
+                    [7] = this.context.vdp07,
+                    [8] = this.context.vdp08,
+
+                };
+                object furnacedata=null;
+                Type furnaceDataType=null;
                 //extract the property <number-of-furnace> from the context of DbSet type.
                 Type contextType = typeof(FurnacesModelLocal);
                 foreach (PropertyInfo pi in contextType.GetProperties())
@@ -88,13 +102,52 @@ namespace FurnacesInHand
                     if (extractNumberOfFurnaceFromTheNameOfTheProperty(pi.Name) == this.numberOfFurnace)
                     {
                         furnacedata = pi.GetValue(this.context, null);
+                        furnaceDataType = furnacedata.GetType();
+                        
                     }
                 }
-
+                var pech = Convert.ChangeType(furnacedata, furnaceDataType);
+                //var pars = pech.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                 //var pars = furnacedata.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
-                var pars = this.context.vdp08.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
-                MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                MessageBox.Show($"We have {pars.Length} par(s).");
+                //var pars = this.context.vdp08.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
+                switch (this.numberOfFurnace)
+                {
+                    case 1:
+                        var par1 = this.context.vdp01.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par1;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par1.Length} par(s).");
+                        break;
+                    case 2:
+                        var par2 = this.context.vdp02.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par2;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par2.Length} par(s).");
+                        break;
+                    case 7:
+                        var par7 = this.context.vdp07.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par7;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par7.Length} par(s).");
+                        break;
+                    case 8:
+                        var par8 = this.context.vdp08.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par8;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par8.Length} par(s).");
+                        break;
+
+                    case 9:
+                        var par9 = this.context.vdp09.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par9;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par9.Length} par(s).");
+                        break;
+                }
+                //var pars = ParameterData[8].Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+
+
                 //for (int i = 0; i < 10; i++)
                 //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
                 //context.vdp03.Load();
@@ -105,7 +158,7 @@ namespace FurnacesInHand
                 //b.Source = pars;
 
                 //parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
-                parameterValues.ItemsSource = pars;
+
 
 
 
@@ -189,7 +242,11 @@ namespace FurnacesInHand
                 if (extractNumberOfFurnaceFromItsNameInTheTreeMenu((listOfFurnaces.CurrentItem as TreeViewItem).Header.ToString()) == this.numberOfFurnace)
                     (listOfFurnaces.CurrentItem as TreeViewItem).IsSelected = true;
         }
-
+        //"Печь №3".Substring(0,"Печь №3".IndexOf("№"))
+        private string putNumberOfFurnaceIntoTheLabel(string labelText)
+        {
+            return labelText.Substring(0, labelText.IndexOf("№")+1) + this.numberOfFurnace;
+        }
         private Int32 extractNumberOfFurnaceFromItsNameInTheTreeMenu(string nameOfFurnace)
         {
             return Int32.Parse(nameOfFurnace.Substring(nameOfFurnace.IndexOf("№") + 1));

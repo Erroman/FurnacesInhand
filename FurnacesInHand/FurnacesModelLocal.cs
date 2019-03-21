@@ -39,4 +39,12 @@
         {
         }
     }
+    class MyModel : FurnacesModelLocal
+    {
+        public DbSet<vdp08> myNew;
+        public MyModel()
+        {
+            myNew = vdp08;
+        }
+    }
 }

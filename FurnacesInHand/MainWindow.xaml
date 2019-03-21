@@ -25,7 +25,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label Content="Печь №3" Margin="0,163,631,222" RenderTransformOrigin="4.239,2.37" HorizontalAlignment="Right" Width="65" Grid.Column="1" />
+        <Label x:Name="numberOfFurnaceLabel" Content="Печь №3" Margin="0,163,631,222" RenderTransformOrigin="4.239,2.37" HorizontalAlignment="Right" Width="65" Grid.Column="1" />
         <Label Content="Напряжение" Margin="9,197,598,188" RenderTransformOrigin="4.239,2.37" Grid.Column="1" />
         <RadioButton Name ="firstDataBase" Content="Удалённая база" HorizontalAlignment="Left" Margin="400,53,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" Grid.Column="1" Height="15" Width="105"/>
         <RadioButton Name="secondDataBase" Content="Локальная база" HorizontalAlignment="Left" Margin="400,73,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" Grid.Column="1" Height="15" Width="105"/>
