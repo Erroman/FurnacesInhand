@@ -27,14 +27,23 @@ namespace FurnacesInHand
         Dictionary<int, object> ParameterData;
         public ObservableCollection<vdp03> inList;
         public ObservableCollection<string> inListString;
+        public String parameter = "Arc_U";
+        public DateTime startTime;
+        public DateTime finishTime;
         public MainWindow()
         {
             InitializeComponent();
+
             this.numberOfFurnace = Properties.Settings.Default.numberOfFurnace;
+            ChooseTheItemInTheTreeForTheFurnace(this.numberOfFurnace);
+
+            startTime = DateTime.Parse(begTime.Text == "" ? "2000-01-01" : begTime.Text);
+            finishTime = DateTime.Parse(endTime.Text == "" ? "2050-01-01" : endTime.Text);
+            begTime.Text = Properties.Settings.Default.begTime;
+            endTime.Text = Properties.Settings.Default.endTime;
+
             firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
             secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
-
-            ChooseTheItemInTheTreeForTheFurnace(this.numberOfFurnace);
 
         }
 
@@ -62,6 +71,8 @@ namespace FurnacesInHand
             Properties.Settings.Default.firstDatabase = (bool)firstDataBase.IsChecked;
             Properties.Settings.Default.secondDatabase = (bool)secondDataBase.IsChecked;
             Properties.Settings.Default.numberOfFurnace = this.numberOfFurnace;
+            Properties.Settings.Default.begTime = begTime.Text;
+            Properties.Settings.Default.endTime = endTime.Text;
             Properties.Settings.Default.Save();
         }
         private void Base_Chosen()
@@ -90,6 +101,9 @@ namespace FurnacesInHand
                     [6] = this.context.vdp06,
                     [7] = this.context.vdp07,
                     [8] = this.context.vdp08,
+                    [9] = this.context.vdp09,
+                   [10] = this.context.vdp10,
+                   [15] = this.context.vdp15,
 
                 };
                 object furnacedata=null;
@@ -125,6 +139,12 @@ namespace FurnacesInHand
                         numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
                         MessageBox.Show($"We have {par2.Length} par(s).");
                         break;
+                    case 3:
+                        var par3 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime>=startTime && x.dateandtime<=finishTime).OrderBy(x => x.id).ToArray();
+                        parameterValues.ItemsSource = par3;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par3.Length} par(s).");
+                        break;
                     case 7:
                         var par7 = this.context.vdp07.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par7;
@@ -144,6 +164,20 @@ namespace FurnacesInHand
                         numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
                         MessageBox.Show($"We have {par9.Length} par(s).");
                         break;
+                    case 10:
+                        var par10 = this.context.vdp10.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par10;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par10.Length} par(s).");
+                        break;
+                    case 15:
+                        var par15 = this.context.vdp15.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par15;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par15.Length} par(s).");
+                        break;
+
+
                 }
                 //var pars = ParameterData[8].Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
 

@@ -83,6 +83,7 @@
     </ApplicationDefinition>
     <Compile Include="FurnaceModelLocalNext.cs" />
     <Compile Include="FurnacesModelLocal.cs" />
+    <Compile Include="inTime.cs" />
     <Compile Include="ServiceFunctions.cs" />
     <Compile Include="vdp01.cs" />
     <Compile Include="vdp02.cs" />

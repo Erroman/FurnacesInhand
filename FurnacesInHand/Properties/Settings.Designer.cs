@@ -58,5 +58,29 @@ namespace FurnacesInHand.Properties {
                 this["numberOfFurnace"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string begTime {
+            get {
+                return ((string)(this["begTime"]));
+            }
+            set {
+                this["begTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string endTime {
+            get {
+                return ((string)(this["endTime"]));
+            }
+            set {
+                this["endTime"] = value;
+            }
+        }
     }
 }
