@@ -82,5 +82,29 @@ namespace FurnacesInHand.Properties {
                 this["endTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string begTimeMin {
+            get {
+                return ((string)(this["begTimeMin"]));
+            }
+            set {
+                this["begTimeMin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string endTimeMin {
+            get {
+                return ((string)(this["endTimeMin"]));
+            }
+            set {
+                this["endTimeMin"] = value;
+            }
+        }
     }
 }

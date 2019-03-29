@@ -37,10 +37,21 @@ namespace FurnacesInHand
             this.numberOfFurnace = Properties.Settings.Default.numberOfFurnace;
             ChooseTheItemInTheTreeForTheFurnace(this.numberOfFurnace);
 
-            startTime = DateTime.Parse(begTime.Text == "" ? "2000-01-01" : begTime.Text);
-            finishTime = DateTime.Parse(endTime.Text == "" ? "2050-01-01" : endTime.Text);
             begTime.Text = Properties.Settings.Default.begTime;
             endTime.Text = Properties.Settings.Default.endTime;
+            begTimeMin.Text = Properties.Settings.Default.begTimeMin;
+            endTimeMin.Text = Properties.Settings.Default.endTimeMin;
+            startTime = DateTime.Parse(begTime.Text == "" ? "2000-01-01" : begTime.Text);
+            DateTime startTimeMin = DateTime.Parse(begTimeMin.Text);
+            startTime = startTime.AddHours(startTimeMin.Hour);
+            startTime = startTime.AddMinutes(startTimeMin.Minute);
+            MessageBox.Show($"Дата и время начала плавки: {startTime}");
+            finishTime = DateTime.Parse(endTime.Text == "" ? "2050-01-01" : endTime.Text);
+            DateTime finishTimeMin = DateTime.Parse(endTimeMin.Text);
+            finishTime = finishTime.AddHours(finishTimeMin.Hour);
+            finishTime = finishTime.AddMinutes(finishTimeMin.Minute);
+            MessageBox.Show($"Дата и время конца плавки: {finishTime}");
+            
 
             firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
             secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
@@ -73,6 +84,9 @@ namespace FurnacesInHand
             Properties.Settings.Default.numberOfFurnace = this.numberOfFurnace;
             Properties.Settings.Default.begTime = begTime.Text;
             Properties.Settings.Default.endTime = endTime.Text;
+            Properties.Settings.Default.begTimeMin = begTimeMin.Text;
+            Properties.Settings.Default.endTimeMin = endTimeMin.Text;
+
             Properties.Settings.Default.Save();
         }
         private void Base_Chosen()
