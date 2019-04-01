@@ -61,7 +61,7 @@
         <TextBlock TextWrapping="Wrap" RenderTransformOrigin="0.137,2.097" Grid.Column="1" Margin="568,118,-47,820"><Run Text="Копируем"/><LineBreak/><Run Text="удалённую базу в локальную"/></TextBlock>
         <DatePicker x:Name="begTime" Grid.Column="1" HorizontalAlignment="Left" Margin="116,11,0,0" VerticalAlignment="Top" Width="99"/>
         <DatePicker x:Name="endTime" Grid.Column="1" HorizontalAlignment="Left" Margin="116,47,0,0" VerticalAlignment="Top" Width="99"/>
-        <xctk:TimePicker x:Name="begTimeMin" Grid.Column="1" HorizontalAlignment="Left" Margin="228,11,0,0" VerticalAlignment="Top" Height="24" Width="88"/>
+        <xctk:TimePicker x:Name="begTimeMin"  Grid.Column="1" HorizontalAlignment="Left" Margin="228,11,0,0" VerticalAlignment="Top" Height="24" Width="88"/>
         <xctk:TimePicker x:Name="endTimeMin" Grid.Column="1" HorizontalAlignment="Left" Margin="228,47,0,0" VerticalAlignment="Top" Width="88" Height="24"/>
 
 
