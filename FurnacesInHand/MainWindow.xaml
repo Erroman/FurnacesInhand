@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FurnacesInHand"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" x:Name="mainWindow" x:Class="FurnacesInHand.MainWindow"
+        xmlns:ViewModel="clr-namespace:FurnacesInHand.MVVM;assembly=FurnacesInHand.MVVM"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Name="mainWindow" x:Class="FurnacesInHand.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="1000" Width="1900" Loaded="MainWindow_Loaded" Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.DataContext>
+        <ViewModel:TimePicker/>
+    </Window.DataContext>    
     <Grid Margin="0,0,0,0" HorizontalAlignment="Left">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="37*"/>

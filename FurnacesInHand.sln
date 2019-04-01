@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28714.193
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnacesInHand", "FurnacesInHand\FurnacesInHand.csproj", "{9F32C41D-CE20-45D7-8EE0-BCB73D917445}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnaceInHand.VVMM", "FurnaceInHand.VVMM\FurnaceInHand.VVMM.csproj", "{CFCE4CEC-0683-4625-BFA9-91E2CF905F19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnacesInHand.MVVM", "FurnaceInHand.VVMM\FurnacesInHand.MVVM.csproj", "{CFCE4CEC-0683-4625-BFA9-91E2CF905F19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

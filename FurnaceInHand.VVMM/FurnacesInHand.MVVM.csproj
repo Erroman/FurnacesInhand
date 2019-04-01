@@ -7,11 +7,12 @@
     <ProjectGuid>{CFCE4CEC-0683-4625-BFA9-91E2CF905F19}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FurnaceInHand.VVMM</RootNamespace>
-    <AssemblyName>FurnaceInHand.VVMM</AssemblyName>
+    <RootNamespace>FurnacesInHand.MVVM</RootNamespace>
+    <AssemblyName>FurnacesInHand.MVVM</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
