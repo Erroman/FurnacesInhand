@@ -31,7 +31,7 @@
         <RadioButton x:Name ="firstDataBase" Content="Удалённая база" HorizontalAlignment="Left" Margin="583,54,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" Grid.Column="1" Height="15" Width="105"/>
         <RadioButton x:Name="secondDataBase" Content="Локальная база" HorizontalAlignment="Left" Margin="583,74,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" Grid.Column="1" Height="15" Width="105"/>
         <TextBox x:Name ="txtb" HorizontalAlignment="Left" Height="44" Margin="591,296,-15,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <Button HorizontalAlignment="Left" Margin="701,54,-180,0" VerticalAlignment="Top" Width="175" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Grid.Column="1"/>
+        <Button HorizontalAlignment="Left" Margin="568,182,0,0" VerticalAlignment="Top" Width="175" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Grid.Column="1"/>
         <TreeView x:Name="ListOfFurnaces" Height="399" Margin="10,10,25,0" VerticalAlignment="Top" SelectedItemChanged="TreeView_SelectedItemChanged">
             <TreeViewItem Header ="Что на печах:" IsExpanded="True"  Margin="0,0,25,0">
                 <TreeViewItem Header="Печь №1" Margin="0,0,25,0"/>
@@ -62,7 +62,7 @@
         <Label Content="Конец плавки" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="9,47,0,0" VerticalAlignment="Top" Width="120"/>
         <ContentControl Content="ContentControl" Grid.Column="1" HorizontalAlignment="Left" Margin="484,-66,0,0" VerticalAlignment="Top"/>
         <TextBlock TextWrapping="Wrap" RenderTransformOrigin="0.137,2.097" Grid.Column="1" Margin="568,118,-47,820"><Run Text="Копируем"/><LineBreak/><Run Text="удалённую базу в локальную"/></TextBlock>
-        <DatePicker x:Name="begTime" Grid.Column="1" HorizontalAlignment="Left" Margin="116,11,0,0" VerticalAlignment="Top" Width="99"/>
+        <DatePicker x:Name="begTime" Text="{Binding Path=startTime}" Grid.Column="1" HorizontalAlignment="Left" Margin="116,11,0,0" VerticalAlignment="Top" Width="99"/>
         <DatePicker x:Name="endTime" Grid.Column="1" HorizontalAlignment="Left" Margin="116,47,0,0" VerticalAlignment="Top" Width="99"/>
         <xctk:TimePicker x:Name="begTimeMin"  Grid.Column="1" HorizontalAlignment="Left" Margin="228,11,0,0" VerticalAlignment="Top" Height="24" Width="88"/>
         <xctk:TimePicker x:Name="endTimeMin" Grid.Column="1" HorizontalAlignment="Left" Margin="228,47,0,0" VerticalAlignment="Top" Width="88" Height="24"/>
