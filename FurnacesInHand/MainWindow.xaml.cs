@@ -24,7 +24,6 @@ namespace FurnacesInHand
         FurnacesModelLocal context;
         DbConnection conn;
         Int32 numberOfFurnace;
-        Dictionary<int, object> ParameterData;
         public ObservableCollection<vdp03> inList;
         public ObservableCollection<string> inListString;
         public String parameter = "Arc_U";
@@ -39,38 +38,17 @@ namespace FurnacesInHand
 
             begTime.Text = Properties.Settings.Default.begTime;
             begTimeMin.Text = Properties.Settings.Default.begTimeMin;
-            startTime = DateTime.Parse(begTime.Text == "" ? "2000-01-01" : begTime.Text);
-            DateTime startTimeMin = DateTime.Parse(begTimeMin.Text);
-            startTime = startTime.AddHours(startTimeMin.Hour);
-            startTime = startTime.AddMinutes(startTimeMin.Minute);
-            MessageBox.Show($"Дата и время начала плавки: {startTime}");
-
             endTime.Text = Properties.Settings.Default.endTime;
             endTimeMin.Text = Properties.Settings.Default.endTimeMin;
-            finishTime = DateTime.Parse(endTime.Text == "" ? "2050-01-01" : endTime.Text);
-            DateTime finishTimeMin = DateTime.Parse(endTimeMin.Text);
-            finishTime = finishTime.AddHours(finishTimeMin.Hour);
-            finishTime = finishTime.AddMinutes(finishTimeMin.Minute);
-            MessageBox.Show($"Дата и время конца плавки: {finishTime}");
+
+            SetDigitalStartAndFinishTimes();
 
             firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
             secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
 
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            //inList = new MyData();
-            //Binding b = new Binding();
-            //b.Source = inList;
-            //parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
-            //var be = parameterValues.GetBindingExpression(ListBox.ItemsSourceProperty);
-            //be.UpdateTarget();
-            //be.UpdateSource();
-
-            //parameterValues.ItemsSource = inList;
-        }
-
+ 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton li = (sender as RadioButton);
@@ -100,45 +78,10 @@ namespace FurnacesInHand
         {
             using (this.context = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
             {
-                //var pars = context.Database.SqlQuery(typeof(vdp03),"Select tagname,val from vdp03 order by id limit 10 offset 0");
-                //select * from vdp04 order by id limit 100 offset 19592897; -- this SQL string should be put into call
-                //select * from vdp06 order by id limit 10 offset 30348545;  -- or this one
                 conn = this.context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-                ParameterData = new Dictionary<int, object>()
-                {
-                    [1] = this.context.vdp01,
-                    [2] = this.context.vdp02,
-                    [3] = this.context.vdp03,
-                    [4] = this.context.vdp04,
-                    [5] = this.context.vdp05,
-                    [6] = this.context.vdp06,
-                    [7] = this.context.vdp07,
-                    [8] = this.context.vdp08,
-                    [9] = this.context.vdp09,
-                   [10] = this.context.vdp10,
-                   [15] = this.context.vdp15,
-
-                };
-                object furnacedata=null;
-                Type furnaceDataType=null;
-                //extract the property <number-of-furnace> from the context of DbSet type.
-                Type contextType = typeof(FurnacesModelLocal);
-                foreach (PropertyInfo pi in contextType.GetProperties())
-                {
-                    //get the name of the property
-                    if (extractNumberOfFurnaceFromTheNameOfTheProperty(pi.Name) == this.numberOfFurnace)
-                    {
-                        furnacedata = pi.GetValue(this.context, null);
-                        furnaceDataType = furnacedata.GetType();
-                        
-                    }
-                }
-                var pech = Convert.ChangeType(furnacedata, furnaceDataType);
-                //var pars = pech.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
-                //var pars = furnacedata.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
-                //var pars = this.context.vdp08.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                 MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
+                SetDigitalStartAndFinishTimes();
                 switch (this.numberOfFurnace)
                 {
                     case 1:
@@ -190,28 +133,91 @@ namespace FurnacesInHand
                         numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
                         MessageBox.Show($"We have {par15.Length} par(s).");
                         break;
-
-
+                    case 16:
+                        var par16 = this.context.vdp16.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par16;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par16.Length} par(s).");
+                        break;
+                    case 17:
+                        var par17 = this.context.vdp17.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par17;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par17.Length} par(s).");
+                        break;
+                    case 18:
+                        var par18 = this.context.vdp18.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par18;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par18.Length} par(s).");
+                        break;
+                    case 19:
+                        var par19 = this.context.vdp19.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par19;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par19.Length} par(s).");
+                        break;
+                    case 20:
+                        var par20 = this.context.vdp20.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par20;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par20.Length} par(s).");
+                        break;
+                    case 29:
+                        var par29 = this.context.vdp29.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par29;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par29.Length} par(s).");
+                        break;
+                    case 30:
+                        var par30 = this.context.vdp30.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par30;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par30.Length} par(s).");
+                        break;
+                    case 31:
+                        var par31 = this.context.vdp31.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par31;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par31.Length} par(s).");
+                        break;
+                    case 32:
+                        var par32 = this.context.vdp32.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par32;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par32.Length} par(s).");
+                        break;
+                    case 33:
+                        var par33 = this.context.vdp33.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par33;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par33.Length} par(s).");
+                        break;
+                    case 44:
+                        var par44 = this.context.vdp44.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameterValues.ItemsSource = par44;
+                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+                        MessageBox.Show($"We have {par44.Length} par(s).");
+                        break;
                 }
-                //var pars = ParameterData[8].Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
-
-
-                //for (int i = 0; i < 10; i++)
-                //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
-                //context.vdp03.Load();
-                //inList = context.vdp03.Local;
-                //Binding b = new Binding();
-                //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
-                //b.Source = new MyData();
-                //b.Source = pars;
-
-                //parameterValues.SetBinding(ListBox.ItemsSourceProperty, b);
-
-
-
-
 
             }
+        }
+        private void SetDigitalStartAndFinishTimes()
+        {
+
+            startTime = DateTime.Parse(begTime.Text == "" ? "2000-01-01" : begTime.Text);
+            DateTime startTimeMin = DateTime.Parse(begTimeMin.Text);
+            startTime = startTime.AddHours(startTimeMin.Hour);
+            startTime = startTime.AddMinutes(startTimeMin.Minute);
+            MessageBox.Show($"Дата и время начала плавки: {startTime}");
+
+            finishTime = DateTime.Parse(endTime.Text == "" ? "2050-01-01" : endTime.Text);
+            DateTime finishTimeMin = DateTime.Parse(endTimeMin.Text);
+            finishTime = finishTime.AddHours(finishTimeMin.Hour);
+            finishTime = finishTime.AddMinutes(finishTimeMin.Minute);
+            MessageBox.Show($"Дата и время конца плавки: {finishTime}");
+
         }
         private void MapTheRemoteBase()
         {
@@ -241,31 +247,7 @@ namespace FurnacesInHand
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var contextToWhich = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
-            {
-                contextToWhich.Database.Delete();
-                contextToWhich.Database.Create();
-                using (var contextFromWhich = new FurnacesModel()) //создали контекст взаимодействия с базой данных
-                {
-                    var inMemory = from x in contextFromWhich.vdp03 select x ;
-                    int chunkSize = 100000;
-                    IQueryable<vdp03> restOfTheElements = inMemory;
-                    while (restOfTheElements.Count() > 0)
-                    {
-                        contextToWhich.vdp03.AddRange(restOfTheElements.Take(chunkSize));
-                        restOfTheElements = restOfTheElements.OrderBy(x=>x.id).Skip(chunkSize);
-                        
-
-                    }
-                    
-                    contextToWhich.SaveChanges();
-                    MessageBox.Show(String.Format("Number of entries {0}",inMemory.Count<vdp03>()));
-
-
-                }
-
-            }
-
+            MapTheLocalBase();
         }
 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -306,14 +288,6 @@ namespace FurnacesInHand
         }
 
     }
-    public class MyData : ObservableCollection<string>
-    {
-        public MyData()
-        {
-            Add("Item 1");
-            Add("Item 2");
-            Add("Item 3");
-        }
-    }
+ 
 
 }
