@@ -87,116 +87,116 @@ namespace FurnacesInHand
                     case 1:
                         var par1 = this.context.vdp01.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par1;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par1.Length} par(s).");
                         break;
                     case 2:
                         var par2 = this.context.vdp02.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par2;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par2.Length} par(s).");
                         break;
                     case 3:
                         var par3 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime>=startTime && x.dateandtime<=finishTime).OrderBy(x => x.id).ToArray();
                         parameterValues.ItemsSource = par3;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par3.Length} par(s).");
                         break;
                     case 7:
                         var par7 = this.context.vdp07.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par7;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par7.Length} par(s).");
                         break;
                     case 8:
                         var par8 = this.context.vdp08.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par8;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par8.Length} par(s).");
                         break;
 
                     case 9:
                         var par9 = this.context.vdp09.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par9;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par9.Length} par(s).");
                         break;
                     case 10:
                         var par10 = this.context.vdp10.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par10;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par10.Length} par(s).");
                         break;
                     case 15:
                         var par15 = this.context.vdp15.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par15;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par15.Length} par(s).");
                         break;
                     case 16:
                         var par16 = this.context.vdp16.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par16;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par16.Length} par(s).");
                         break;
                     case 17:
                         var par17 = this.context.vdp17.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par17;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par17.Length} par(s).");
                         break;
                     case 18:
                         var par18 = this.context.vdp18.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par18;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par18.Length} par(s).");
                         break;
                     case 19:
                         var par19 = this.context.vdp19.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par19;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par19.Length} par(s).");
                         break;
                     case 20:
                         var par20 = this.context.vdp20.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par20;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par20.Length} par(s).");
                         break;
                     case 29:
                         var par29 = this.context.vdp29.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par29;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par29.Length} par(s).");
                         break;
                     case 30:
                         var par30 = this.context.vdp30.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par30;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par30.Length} par(s).");
                         break;
                     case 31:
                         var par31 = this.context.vdp31.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par31;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par31.Length} par(s).");
                         break;
                     case 32:
                         var par32 = this.context.vdp32.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par32;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par32.Length} par(s).");
                         break;
                     case 33:
                         var par33 = this.context.vdp33.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par33;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par33.Length} par(s).");
                         break;
                     case 44:
                         var par44 = this.context.vdp44.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par44;
-                        numberOfFurnaceLabel.Content = putNumberOfFurnaceIntoTheLabel(numberOfFurnaceLabel.Content as string);
+
                         MessageBox.Show($"We have {par44.Length} par(s).");
                         break;
                 }
