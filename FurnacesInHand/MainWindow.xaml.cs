@@ -257,7 +257,7 @@ namespace FurnacesInHand
             {
 
                 numberOfFurnace = extractNumberOfFurnaceFromItsNameInTheTreeMenu(item.Header.ToString());
-                MessageBox.Show($"A furnace # {numberOfFurnace} is chosen!");
+                PutTheNumberOfTheFurnaceIntoTheTitle();
                 //выбор адреса данных печи в контексте
 
             }
@@ -276,6 +276,10 @@ namespace FurnacesInHand
         private string putNumberOfFurnaceIntoTheLabel(string labelText)
         {
             return labelText.Substring(0, labelText.IndexOf("№")+1) + this.numberOfFurnace;
+        }
+        private void PutTheNumberOfTheFurnaceIntoTheTitle()
+        {
+            this.Title = "Выбрана печь №"+ this.numberOfFurnace;
         }
         private Int32 extractNumberOfFurnaceFromItsNameInTheTreeMenu(string nameOfFurnace)
         {
