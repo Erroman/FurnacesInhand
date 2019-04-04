@@ -62,7 +62,7 @@
         <DatePicker x:Name="endTime" HorizontalAlignment="Left" Margin="-4,491,0,0" VerticalAlignment="Top" Width="99" Height="24"/>
         <xctk:TimePicker x:Name="begTimeMin" HorizontalAlignment="Left" Margin="95,441,0,0" VerticalAlignment="Top" Height="24" Width="88"/>
         <xctk:TimePicker x:Name="endTimeMin" HorizontalAlignment="Left" Margin="95,491,0,0" VerticalAlignment="Top" Width="88" Height="24"/>
-        <ListBox x:Name="parameterValues_Copy" HorizontalAlignment="Left" Height="197" Margin="0,207,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1">
+        <ListBox x:Name="currentValues" HorizontalAlignment="Left" Height="197" Margin="0,207,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -73,7 +73,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="parameterValues_Copy1" HorizontalAlignment="Left" Height="197" Margin="217,10,-217,0" VerticalAlignment="Top" Width="212" Grid.Column="1">
+        <ListBox x:Name="pressureValues" HorizontalAlignment="Left" Height="197" Margin="0,404,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -84,7 +84,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="parameterValues_Copy2" HorizontalAlignment="Left" Height="197" Margin="0,404,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1">
+        <ListBox x:Name="solVoltageValues" HorizontalAlignment="Left" Height="197" Margin="0,601,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -95,18 +95,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="parameterValues_Copy3" HorizontalAlignment="Left" Height="197" Margin="0,601,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding tagname}"/>
-                        <TextBlock Text=" = "/>
-                        <TextBlock Text="{Binding val}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox x:Name="parameterValues_Copy4" HorizontalAlignment="Left" Height="197" Margin="0,798,0,-26" VerticalAlignment="Top" Width="212" Grid.Column="1">
+        <ListBox x:Name="solCurrentValues" HorizontalAlignment="Left" Height="197" Margin="0,798,0,-26" VerticalAlignment="Top" Width="212" Grid.Column="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

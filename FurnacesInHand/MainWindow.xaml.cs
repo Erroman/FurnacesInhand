@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Collections.ObjectModel;
 using System.Data.Common;
 using System.Data.Entity;
-using System.Collections.ObjectModel;
-using System.Collections;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Media;
 using static FurnacesInHand.ServiceFunctions;
 
 namespace FurnacesInHand
@@ -48,7 +41,7 @@ namespace FurnacesInHand
 
         }
 
- 
+
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton li = (sender as RadioButton);
@@ -71,7 +64,7 @@ namespace FurnacesInHand
         {
             txtb.Text = "Выбрана ";
             if ((bool)firstDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)firstDataBase.Content); MapTheRemoteBase(); }
-            else if ((bool)secondDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)secondDataBase.Content); MapTheLocalBase();}
+            else if ((bool)secondDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)secondDataBase.Content); MapTheLocalBase(); }
             else txtb.Text = "Произведите выбор базы данных!";
         }
         private void MapTheLocalBase()
@@ -87,7 +80,6 @@ namespace FurnacesInHand
                     case 1:
                         var par1 = this.context.vdp01.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
                         parameterValues.ItemsSource = par1;
-
                         MessageBox.Show($"We have {par1.Length} par(s).");
                         break;
                     case 2:
@@ -97,10 +89,18 @@ namespace FurnacesInHand
                         MessageBox.Show($"We have {par2.Length} par(s).");
                         break;
                     case 3:
-                        var par3 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime>=startTime && x.dateandtime<=finishTime).OrderBy(x => x.id).ToArray();
+                        parameter = "Arc_U";
+                        var par3 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         parameterValues.ItemsSource = par3;
-
                         MessageBox.Show($"We have {par3.Length} par(s).");
+                        parameter = "Arc_I";
+                        currentValues.ItemsSource = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        parameter = "Pressure";
+                        pressureValues.ItemsSource = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        parameter = "Sol_U";
+                        solVoltageValues.ItemsSource = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        parameter = "Sol_I";
+                        solCurrentValues.ItemsSource = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         break;
                     case 7:
                         var par7 = this.context.vdp07.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
@@ -223,19 +223,19 @@ namespace FurnacesInHand
         {
             using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             {
-                var pars = context.vdp03.Where(x=>x.tagname=="Arc_U").OrderBy(x=>x.id).Take(9).ToArray<vdp03>();
+                var pars = context.vdp03.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Take(9).ToArray<vdp03>();
                 conn = context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-                             MessageBox.Show(String.Format("PostgreSQL version is {0}",conn.ServerVersion));
-                             MessageBox.Show($"We have {pars.Length} par(s).");
-                             //for (int i = 0; i < 10; i++)
-                             //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
-                             //context.vdp03.Load();
-                             //inList = context.vdp03.Local;
-                             //Binding b = new Binding();
-                             //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
-                             //b.Source = new MyData();
-                             //b.Source = pars;
+                MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
+                MessageBox.Show($"We have {pars.Length} par(s).");
+                //for (int i = 0; i < 10; i++)
+                //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
+                //context.vdp03.Load();
+                //inList = context.vdp03.Local;
+                //Binding b = new Binding();
+                //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
+                //b.Source = new MyData();
+                //b.Source = pars;
 
                 parameterValues.ItemsSource = pars;
 
@@ -253,7 +253,7 @@ namespace FurnacesInHand
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             TreeViewItem item = ListOfFurnaces.SelectedItem as TreeViewItem;
-            if(item.Parent is TreeViewItem)
+            if (item.Parent is TreeViewItem)
             {
 
                 numberOfFurnace = extractNumberOfFurnaceFromItsNameInTheTreeMenu(item.Header.ToString());
@@ -261,7 +261,7 @@ namespace FurnacesInHand
                 //выбор адреса данных печи в контексте
 
             }
-                
+
         }
 
         private void ChooseTheItemInTheTreeForTheFurnace(int numberOfFurnace)
@@ -275,23 +275,23 @@ namespace FurnacesInHand
         //"Печь №3".Substring(0,"Печь №3".IndexOf("№"))
         private string putNumberOfFurnaceIntoTheLabel(string labelText)
         {
-            return labelText.Substring(0, labelText.IndexOf("№")+1) + this.numberOfFurnace;
+            return labelText.Substring(0, labelText.IndexOf("№") + 1) + this.numberOfFurnace;
         }
         private void PutTheNumberOfTheFurnaceIntoTheTitle()
         {
-            this.Title = "Выбрана печь №"+ this.numberOfFurnace;
+            this.Title = "Выбрана печь №" + this.numberOfFurnace;
         }
         private Int32 extractNumberOfFurnaceFromItsNameInTheTreeMenu(string nameOfFurnace)
         {
             return Int32.Parse(nameOfFurnace.Substring(nameOfFurnace.IndexOf("№") + 1));
         }
-  
+
         private Int32 extractNumberOfFurnaceFromTheNameOfTheProperty(string nameOfProperty)
         {
-            return nameOfProperty.Contains("vdp")?Int32.Parse(nameOfProperty.Substring(3)):-1;
+            return nameOfProperty.Contains("vdp") ? Int32.Parse(nameOfProperty.Substring(3)) : -1;
         }
 
     }
- 
+
 
 }
