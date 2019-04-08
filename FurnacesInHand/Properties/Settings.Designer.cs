@@ -61,7 +61,7 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2000-01-01")]
         public string begTime {
             get {
                 return ((string)(this["begTime"]));
@@ -73,7 +73,7 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2000-01-01")]
         public string endTime {
             get {
                 return ((string)(this["endTime"]));
@@ -85,7 +85,7 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("00:00")]
         public string begTimeMin {
             get {
                 return ((string)(this["begTimeMin"]));
@@ -97,7 +97,7 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("23:59")]
         public string endTimeMin {
             get {
                 return ((string)(this["endTimeMin"]));
