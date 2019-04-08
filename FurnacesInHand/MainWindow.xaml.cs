@@ -73,7 +73,7 @@ namespace FurnacesInHand
             {
                 conn = this.context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
-                MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
+                //MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
                 SetDigitalStartAndFinishTimes();
                 switch (this.numberOfFurnace)
                 {
@@ -210,13 +210,11 @@ namespace FurnacesInHand
             DateTime startTimeMin = DateTime.Parse(begTimeMin.Text);
             startTime = startTime.AddHours(startTimeMin.Hour);
             startTime = startTime.AddMinutes(startTimeMin.Minute);
-            MessageBox.Show($"Дата и время начала плавки: {startTime}");
 
             finishTime = DateTime.Parse(endTime.Text == "" ? "2050-01-01" : endTime.Text);
             DateTime finishTimeMin = DateTime.Parse(endTimeMin.Text);
             finishTime = finishTime.AddHours(finishTimeMin.Hour);
             finishTime = finishTime.AddMinutes(finishTimeMin.Minute);
-            MessageBox.Show($"Дата и время конца плавки: {finishTime}");
 
         }
         private void MapTheRemoteBase()
