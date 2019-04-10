@@ -12,14 +12,15 @@ namespace FurnacesInHand
     {
         private readonly VisualCollection _children;
         // Provide a required override for the VisualChildrenCount property.
-        public VoltageGraph()
+  
+        public VoltageGraph(IEnumerable<TimeParameterPair> timeParameterPair)
         {
             _children = new VisualCollection(this)
             {
-                CreateDrawingVisualPlot()
+                CreateDrawingVisualPlot(timeParameterPair)
             };
         }
-        private DrawingVisual CreateDrawingVisualPlot()
+        private DrawingVisual CreateDrawingVisualPlot(IEnumerable<TimeParameterPair> timeParameterPair)
         {
             DrawingVisual drawingVisual = new DrawingVisual();
             DrawingContext drawingContext = drawingVisual.RenderOpen();

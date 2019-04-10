@@ -94,7 +94,7 @@ namespace FurnacesInHand
                         voltageValues.ItemsSource = par3;
                         var graph_pairs = from par in par3 select new TimeParameterPair (){ dt = par.dateandtime, parameter = par.val};
                         MessageBox.Show($"We have {par3.Length} par(s).");
-                        voltagePlot();
+                        voltagePlot(graph_pairs);
                         parameter = "Arc_I";
                         currentValues.ItemsSource = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         parameter = "Pressure";

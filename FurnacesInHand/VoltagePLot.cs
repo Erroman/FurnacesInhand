@@ -9,10 +9,11 @@ namespace FurnacesInHand
 {
     public partial class MainWindow
     {
-        void voltagePlot()
+        void voltagePlot(IEnumerable<TimeParameterPair> timeParameterPair)
         {
             VoltagePlot.Children?.Clear();
-            VoltagePlot.Children.Add(new VoltageGraph());
+            VoltagePlot.Children.Add(new VoltageGraph(timeParameterPair));
         }
+
     }
 }
