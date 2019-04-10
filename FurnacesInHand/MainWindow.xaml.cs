@@ -19,8 +19,8 @@ namespace FurnacesInHand
         Int32 numberOfFurnace;
         struct TimeParameterPair
         {
-            DateTime dt;
-            double parameter;
+            public DateTime? dt;
+            public double? parameter;
         }
         public ObservableCollection<vdp03> inList;
         public ObservableCollection<string> inListString;
@@ -96,7 +96,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var par3 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = par3;
-                        var graph_pairs = from par in par3 select new { par.dateandtime, par.val};
+                        var graph_pairs = from par in par3 select new TimeParameterPair (){ dt = par.dateandtime, parameter = par.val};
                         MessageBox.Show($"We have {par3.Length} par(s).");
                         voltagePlot();
                         parameter = "Arc_I";
