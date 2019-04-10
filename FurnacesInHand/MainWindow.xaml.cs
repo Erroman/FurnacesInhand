@@ -17,11 +17,7 @@ namespace FurnacesInHand
         FurnacesModelLocal context;
         DbConnection conn;
         Int32 numberOfFurnace;
-        struct TimeParameterPair
-        {
-            public DateTime? dt;
-            public double? parameter;
-        }
+ 
         public ObservableCollection<vdp03> inList;
         public ObservableCollection<string> inListString;
         public String parameter = "Arc_U";
