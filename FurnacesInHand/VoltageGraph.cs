@@ -25,26 +25,28 @@ namespace FurnacesInHand
                 CreateDrawingVisualPlot(timeParameterPair,rect)
             };
         }
-        private DrawingVisual CreateDrawingVisualPlot(IEnumerable<TimeParameterPair> timeParameterPair, Rect rect)
+        private DrawingVisual CreateDrawingVisualPlot(IEnumerable<TimeParameterPair> timeParameterPairs, Rect rect)
         {
             DrawingVisual drawingVisual = new DrawingVisual();
             DrawingContext drawingContext = drawingVisual.RenderOpen();
             Pen pen = new Pen(Brushes.Black, 1.0);
-            Point begPoint = new Point(rect.X, rect.Y);
-            Point endPoint = new Point(rect.Width, rect.Height);
             double LowerLimitForTimeOnXAxis = 0;
             double UpperLimitForTimeOnXAxis = 60000; //верхняя гравница
-            double LowerLimitForCurrentOnYAxis = 0;
-            double UpperLimitForCurrentOnYAxis = 0;
+            double LowerLimitForVoltageOnYAxis = 0;
+            double UpperLimitForVoltageOnYAxis = 50;
             double xmin = rect.X;
             double xmax = rect.X+rect.Width;
             double ymin = rect.Y;
             double ymax = rect.Y+rect.Height;
             PrepareTransformations(
                 LowerLimitForTimeOnXAxis, UpperLimitForTimeOnXAxis,
-                LowerLimitForCurrentOnYAxis, UpperLimitForCurrentOnYAxis,
+                LowerLimitForVoltageOnYAxis, UpperLimitForVoltageOnYAxis,
                 xmin, xmax,
                 ymin, ymax);
+
+            Point begPoint = WtoD(new Point(20000, 10)); // миллисекунды, вольты: тестовая точка
+            Point endPoint = WtoD(new Point(40000, 30)); // миллисекунды, вольты: тестовая точка
+
             drawingContext.DrawLine(pen, begPoint, endPoint);
             drawingContext.Close();
             return drawingVisual;

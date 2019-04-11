@@ -10,14 +10,14 @@ namespace FurnacesInHand
 {
     public partial class MainWindow
     {
-        void voltagePlot(IEnumerable<TimeParameterPair> timeParameterPair)
+        void voltagePlot(IEnumerable<TimeParameterPair> timeParameterPairs)
         {
 
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)
              {
                  VoltagePlot.Children?.Clear();
                  Rect rectangular = new Rect(0, 0, VoltagePlot.ActualWidth, VoltagePlot.ActualHeight);
-                 _ = VoltagePlot.Children.Add(new VoltageGraph(timeParameterPair, rect: rectangular,startTime:this.startTime,finishTime:this.finishTime));
+                 _ = VoltagePlot.Children.Add(new VoltageGraph(timeParameterPairs, rect: rectangular,startTime:this.startTime,finishTime:this.finishTime));
                  return null;
              }
              ), null);
