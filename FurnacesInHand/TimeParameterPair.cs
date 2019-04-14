@@ -8,7 +8,7 @@ namespace FurnacesInHand
 {
     struct TimeParameterPair
     {
-        public DateTime? dt;
-        public double? parameter;
+        public DateTime dt;
+        public double parameter;
     }
 }

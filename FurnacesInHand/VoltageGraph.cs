@@ -45,30 +45,27 @@ namespace FurnacesInHand
                 xmin, xmax,
                 ymin, ymax);
 
-            Point begPoint = WtoD(new Point(20000, 10)); // миллисекунды, вольты: тестовая точка
-            Point endPoint = WtoD(new Point(40000, 30)); // миллисекунды, вольты: тестовая точка
-            bool first_point = true;
+            Point WPoint = new Point(0,0); // миллисекунды, вольты
+            Point begDPoint = new Point(0, 0);
+            Point DPoint = new Point(0,0);
+
             foreach (var /*пара <время,значение параметра> */ time_parameter in timeParameterPairs)
             {
-                DateTime? currrent_moment = time_parameter.dt; //время
-                double?   parameter_value = time_parameter.parameter; //значение праметра
-                
-                
-                if(currrent_moment!=null && parameter_value != null)
+                //DateTime? currrent_moment = time_parameter.dt; //время
+                //double?   parameter_value = time_parameter.parameter; //значение праметра
+
+
+                 WPoint.X = MillisecondsSinceTheBeginning(time_parameter.dt);
+                 WPoint.Y = time_parameter.parameter;
+                 DPoint = WtoD(WPoint);
+                if (Math.Round(DPoint.X) != Math.Round(begDPoint.X))
                 {
-                    begPoint = endPoint;
-                    endPoint = WtoD(new Point(MillisecondsSinceTheBeginning((DateTime)currrent_moment), (double)time_parameter.parameter));
-                    if (first_point)
-                    {
-                        first_point = false;
-                        begPoint = endPoint;
-                    }
-                    drawingContext.DrawLine(pen, begPoint, endPoint);
+                    drawingContext.DrawLine(pen, begDPoint, DPoint);
+                    begDPoint = DPoint;
                 }
 
-                //begPoint = endPoint ?? time_parameter;
+
             }
-            
             drawingContext.Close();
             return drawingVisual;
         }
