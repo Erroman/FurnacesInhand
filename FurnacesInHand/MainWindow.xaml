@@ -8,10 +8,15 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Name="mainWindow" x:Class="FurnacesInHand.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="1021" Width="1900" Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized">
-    <Window.DataContext>
-        <ViewModel:TimePicker/>
-    </Window.DataContext>
-    
+    <Window.Resources>
+        <DataTemplate x:Key="ParametersList" DataType="{x:Type ListBox}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding dateandtime}"/>
+                <TextBlock Text="     "/>
+                <TextBlock Text="{Binding val}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
         <Grid HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -61,73 +66,20 @@
         <RadioButton Grid.RowSpan="5" x:Name="secondDataBase" Content="Локальная база" HorizontalAlignment="Left" Margin="48,865,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" Height="15" Width="105"/>
         <TextBox Grid.RowSpan="5" x:Name ="txtb" HorizontalAlignment="Left" Height="44" Margin="31,906,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Button Grid.RowSpan="5" HorizontalAlignment="Left" Margin="0,539,0,0" VerticalAlignment="Top" Width="183" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Content="Вывод значений"/>
-        <ListBox Grid.Row="0" x:Name="voltageValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding tagname}"/>
-                        <TextBlock Text=" = "/>
-                        <TextBlock Text="{Binding val}"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding dateandtime}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Grid.Row="1" x:Name="currentValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding tagname}"/>
-                        <TextBlock Text=" = "/>
-                        <TextBlock Text="{Binding val}"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding dateandtime}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Grid.Row="2" x:Name="pressureValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding tagname}"/>
-                        <TextBlock Text=" = "/>
-                        <TextBlock Text="{Binding val}"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding dateandtime}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Grid.Row="3" x:Name="solVoltageValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding tagname}"/>
-                        <TextBlock Text=" = "/>
-                        <TextBlock Text="{Binding val}"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding dateandtime}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Grid.Row="4" x:Name="solCurrentValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding tagname}"/>
-                        <TextBlock Text=" = "/>
-                        <TextBlock Text="{Binding val}"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding dateandtime}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        
+        <ListBox Grid.Row="0" x:Name="voltageValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
+
+        <ListBox Grid.Row="1" x:Name="currentValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
+
+        <ListBox Grid.Row="2" x:Name="pressureValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
+
+
+        <ListBox Grid.Row="3" x:Name="solVoltageValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
+
+        <ListBox Grid.Row="4" x:Name="solCurrentValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
+        
         <Canvas Name="VoltagePlot" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue"/>
-        <Canvas Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite"/>
+        <Canvas Name="CurrentPlot" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite"/>
         <Canvas Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Aqua"/>
         <Canvas Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Azure"/>
         <Canvas Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Blue"/>
