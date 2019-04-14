@@ -48,6 +48,7 @@ namespace FurnacesInHand
             Point WPoint = new Point(0,0); // миллисекунды, вольты
             Point begDPoint = new Point(0, 0);
             Point DPoint = new Point(0,0);
+            bool FirstDot = true;
 
             foreach (var /*пара <время,значение параметра> */ time_parameter in timeParameterPairs)
             {
@@ -58,8 +59,11 @@ namespace FurnacesInHand
                  WPoint.X = MillisecondsSinceTheBeginning(time_parameter.dt);
                  WPoint.Y = time_parameter.parameter;
                  DPoint = WtoD(WPoint);
+                if (FirstDot) { begDPoint = DPoint; FirstDot = false; }
+                else
                 if (Math.Round(DPoint.X) != Math.Round(begDPoint.X))
                 {
+
                     drawingContext.DrawLine(pen, begDPoint, DPoint);
                     begDPoint = DPoint;
                 }
