@@ -119,6 +119,7 @@
     <Compile Include="ServiceFunctions.cs" />
     <Compile Include="TimeParameterPair.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
+    <Compile Include="VacuumGraph.cs" />
     <Compile Include="vdp01.cs" />
     <Compile Include="vdp02.cs" />
     <Compile Include="vdp03.cs" />
