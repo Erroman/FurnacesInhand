@@ -45,34 +45,66 @@ namespace FurnacesInHand
                 xmin, xmax,
                 ymin, ymax);
 
-            Point WPoint = new Point(0,0); // миллисекунды, вольты
-            Point begDPoint = new Point(0, 0);
-            Point DPoint = new Point(0,0);
+            Point WPoint = new Point(0,0); // миллисекунды, мм рт.ст.
+            Point DPoint;                  // экранные координаты
+            Point previousDPoint = new Point(0, 0); //предыдущая точка на графике, с которой соединяемся отрезком
             bool FirstDot = true;
+            Point minDPoint = new Point(0, 0);
+            Point maxDPoint = new Point(0, 0);
+            bool Clashed = false;
 
             foreach (var /*пара <время,значение параметра> */ time_parameter in timeParameterPairs)
             {
-                //DateTime? currrent_moment = time_parameter.dt; //время
-                //double?   parameter_value = time_parameter.parameter; //значение праметра
-
-
                  WPoint.X = MillisecondsSinceTheBeginning(time_parameter.dt);
                  WPoint.Y = time_parameter.parameter;
                  DPoint = WtoD(WPoint);
-                if (FirstDot) { begDPoint = DPoint; FirstDot = false; }
+                if (FirstDot) { previousDPoint = DPoint; FirstDot = false; }
                 else
-                if (Math.Round(DPoint.X) != Math.Round(begDPoint.X))
+                if (Math.Round(DPoint.X) != Math.Round(previousDPoint.X)) //алгоритм сглаживания(разрежения)
                 {
+                    if (!Clashed)
+                    {
+                        drawingContext.DrawLine(pen, previousDPoint, DPoint);
+                        previousDPoint = DPoint;
+                    }
+                    else
+                    {
+                        Clashed = false;
+                        //Соединяем минимальную и максимальную точки,
+                        //из них последнюю по времени соединяем с текущей.
+                        drawingContext.DrawLine(pen, minDPoint, maxDPoint);
+                        previousDPoint = minDPoint.X <= maxDPoint.X ? maxDPoint : minDPoint;
+                        drawingContext.DrawLine(pen, previousDPoint, DPoint);
+                        previousDPoint = DPoint;
+                    }
 
-                    drawingContext.DrawLine(pen, begDPoint, DPoint);
-                    begDPoint = DPoint;
                 }
+                else
+                {
+                    if (!Clashed)
+                    {
+                        Clashed = true;
+                        //определяем максимальную и минимальную точки
+                        //на неразличимом временном отрезке
+                        minDPoint = LowerPoint(previousDPoint, DPoint);
+                        maxDPoint = UpperPoint(previousDPoint, DPoint);
+                    }
+                    else
+                    {
+                        minDPoint = LowerPoint(minDPoint, DPoint);
+                        maxDPoint = UpperPoint(maxDPoint,DPoint);
+                    }
 
 
+                }
+                if (Clashed)
+                    drawingContext.DrawLine(pen, minDPoint, maxDPoint);
             }
             drawingContext.Close();
             return drawingVisual;
         }
+        private Point LowerPoint(Point p1, Point p2) => p1.Y < p2.Y ? p1 : p2;
+        private Point UpperPoint(Point p1, Point p2) => p1.Y > p2.Y ? p1 : p2;
         private double MillisecondsSinceTheBeginning(DateTime dt)
         {
 
