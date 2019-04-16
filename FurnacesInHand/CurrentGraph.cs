@@ -34,7 +34,7 @@ namespace FurnacesInHand
             double LowerLimitForTimeOnXAxis = 0; //нижняя гравница временного интервала в миллисекундах
             double UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(this.finishTime); //верхняя гравница временного интервала в миллисекундах
             double LowerLimitForCurrentOnYAxis = 0;
-            double UpperLimitForCurrentOnYAxis = 50;
+            double UpperLimitForCurrentOnYAxis = 10;
             double xmin = rect.X;
             double xmax = rect.X + rect.Width;
             double ymin = rect.Y;
