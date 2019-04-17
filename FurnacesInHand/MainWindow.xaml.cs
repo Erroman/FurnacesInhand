@@ -112,7 +112,10 @@ namespace FurnacesInHand
                         graph_pairs = from par in par3 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
                         solenoidUPlot(graph_pairs);
                         parameter = "Sol_I";
-                        solCurrentValues.ItemsSource = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        par3 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        solCurrentValues.ItemsSource = par3;
+                        graph_pairs = from par in par3 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        solenoidIPlot(graph_pairs);
                         break;
                     case 7:
                         var par7 = this.context.vdp07.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();

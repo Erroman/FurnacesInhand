@@ -117,6 +117,8 @@
     <Compile Include="FurnacesModelLocal.cs" />
     <Compile Include="inTime.cs" />
     <Compile Include="ServiceFunctions.cs" />
+    <Compile Include="SolenoidIGraph.cs" />
+    <Compile Include="SolenoidIPlot.cs" />
     <Compile Include="SolenoidUGraph.cs" />
     <Compile Include="SolenoidUPlot.cs" />
     <Compile Include="TimeParameterPair.cs" />

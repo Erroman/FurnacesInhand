@@ -82,7 +82,7 @@
         <Canvas Name="CurrentPlot" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite"/>
         <Canvas Name ="VacuumPlot" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Aqua"/>
         <Canvas Name ="SolenoidUPlot" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Azure"/>
-        <Canvas Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Blue"/>
+        <Canvas Name ="SolenoidIPlot" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Blue"/>
     </Grid>
 
 </Window>
