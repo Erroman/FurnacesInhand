@@ -107,7 +107,10 @@ namespace FurnacesInHand
                         vacuumPlot(graph_pairs);
                         pressureValues.ItemsSource = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         parameter = "Sol_U";
-                        solVoltageValues.ItemsSource = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        par3 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        solVoltageValues.ItemsSource = par3;
+                        graph_pairs = from par in par3 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        solenoidUPlot(graph_pairs);
                         parameter = "Sol_I";
                         solCurrentValues.ItemsSource = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         break;
