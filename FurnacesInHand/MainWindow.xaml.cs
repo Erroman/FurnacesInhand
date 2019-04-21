@@ -167,10 +167,33 @@ namespace FurnacesInHand
                         MessageBox.Show($"We have {par18.Length} par(s).");
                         break;
                     case 19:
-                        var par19 = this.context.vdp19.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
+                        parameter = "Arc_U";
+                        var par19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = par19;
-
+                        graph_pairs = from par in par19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
                         MessageBox.Show($"We have {par19.Length} par(s).");
+                        voltagePlot(graph_pairs);
+                        parameter = "Arc_I";
+                        par19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        currentValues.ItemsSource = par19;
+                        graph_pairs = from par in par19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        currentPlot(graph_pairs);
+                        parameter = "Pressure";
+                        par19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        pressureValues.ItemsSource = par19;
+                        graph_pairs = from par in par19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        vacuumPlot(graph_pairs);
+                        pressureValues.ItemsSource = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        parameter = "Sol_U";
+                        par19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        solVoltageValues.ItemsSource = par19;
+                        graph_pairs = from par in par19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        solenoidUPlot(graph_pairs);
+                        parameter = "Sol_I";
+                        par19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
+                        solCurrentValues.ItemsSource = par19;
+                        graph_pairs = from par in par19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        solenoidIPlot(graph_pairs);
                         break;
                     case 20:
                         var par20 = this.context.vdp20.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Skip(1000000).Take(25).ToArray();
