@@ -23,6 +23,9 @@ namespace FurnacesInHand
         public String parameter = "Arc_U";
         public DateTime startTime;
         public DateTime finishTime;
+
+        enum Parameters
+        {Напряжение,Ток,Вакуум,Ток_соленоида, Напряжение_на_соленоиде}
         public MainWindow()
         {
             InitializeComponent();
