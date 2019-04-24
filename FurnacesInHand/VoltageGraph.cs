@@ -62,43 +62,43 @@ namespace FurnacesInHand
                 else
                 if (Math.Round(DPoint.X) != Math.Round(previousDPoint.X)) //алгоритм сглаживания(разрежения)
                 {
-                    if (!Clashed)
-                    {
-                        drawingContext.DrawLine(pen, previousDPoint, DPoint);
-                        previousDPoint = DPoint;
-                    }
-                    else
-                    {
-                        Clashed = false;
-                        //Соединяем минимальную и максимальную точки,
-                        //из них последнюю по времени соединяем с текущей.
-                        drawingContext.DrawLine(pen, minDPoint, maxDPoint);
-                        previousDPoint = minDPoint.X <= maxDPoint.X ? maxDPoint : minDPoint;
-                        drawingContext.DrawLine(pen, previousDPoint, DPoint);
-                        previousDPoint = DPoint;
-                    }
+                    //if (!Clashed)
+                    //{
+                    //    drawingContext.DrawLine(pen, previousDPoint, DPoint);
+                    //    previousDPoint = DPoint;
+                    //}
+                    //else
+                    //{
+                    //    Clashed = false;
+                    //    //Соединяем минимальную и максимальную точки,
+                    //    //из них последнюю по времени соединяем с текущей.
+                    //    drawingContext.DrawLine(pen, minDPoint, maxDPoint);
+                    //    previousDPoint = minDPoint.X <= maxDPoint.X ? maxDPoint : minDPoint;
+                    drawingContext.DrawLine(pen, previousDPoint, DPoint);
+                    previousDPoint = DPoint;
+                    //}
 
                 }
-                else
-                {
-                    if (!Clashed)
-                    {
-                        Clashed = true;
-                        //определяем максимальную и минимальную точки
-                        //на неразличимом временном отрезке
-                        minDPoint = LowerPoint(previousDPoint, DPoint);
-                        maxDPoint = UpperPoint(previousDPoint, DPoint);
-                    }
-                    else
-                    {
-                        minDPoint = LowerPoint(minDPoint, DPoint);
-                        maxDPoint = UpperPoint(maxDPoint,DPoint);
-                    }
+                //else
+                //{
+                //    if (!Clashed)
+                //    {
+                //        Clashed = true;
+                //        //определяем максимальную и минимальную точки
+                //        //на неразличимом временном отрезке
+                //        minDPoint = LowerPoint(previousDPoint, DPoint);
+                //        maxDPoint = UpperPoint(previousDPoint, DPoint);
+                //    }
+                //    else
+                //    {
+                //        minDPoint = LowerPoint(minDPoint, DPoint);
+                //        maxDPoint = UpperPoint(maxDPoint,DPoint);
+                //    }
 
 
-                }
-                if (Clashed)
-                    drawingContext.DrawLine(pen, minDPoint, maxDPoint);
+                //}
+                //if (Clashed)
+                //    drawingContext.DrawLine(pen, minDPoint, maxDPoint);
             }
             drawingContext.Close();
             return drawingVisual;
