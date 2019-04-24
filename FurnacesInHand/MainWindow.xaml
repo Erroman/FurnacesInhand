@@ -11,7 +11,7 @@
     <Window.Resources>
         <DataTemplate x:Key="ParametersList" DataType="{x:Type ListBox}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding dateandtime, StringFormat='{}{0: Today is dddd, MM.dd.yy, HH:mm:ss}'}"/>
+                <TextBlock Text="{Binding dateandtime, StringFormat= MM.dd.yy HH:mm:ss}"/>
                 <TextBlock Text="     "/>
                 <TextBlock Text="{Binding val}"/>
             </StackPanel>
