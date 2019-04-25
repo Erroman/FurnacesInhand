@@ -33,8 +33,8 @@ namespace FurnacesInHand
             Pen pen = new Pen(Brushes.Black, 1.0);
             double LowerLimitForTimeOnXAxis = 0; //нижняя гравница временного интервала в миллисекундах
             double UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(this.finishTime); //верхняя гравница временного интервала в миллисекундах
-            double LowerLimitForsolenoidUOnYAxis = 0;
-            double UpperLimitForsolenoidUOnYAxis = 20;
+            double LowerLimitForsolenoidUOnYAxis = -50;
+            double UpperLimitForsolenoidUOnYAxis = 50;
             double xmin = rect.X;
             double xmax = rect.X + rect.Width;
             double ymin = rect.Y;

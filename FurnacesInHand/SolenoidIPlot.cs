@@ -17,7 +17,7 @@ namespace FurnacesInHand
             {
                 SolenoidIPlot.Children?.Clear();
                 Rect rectangular = new Rect(0, 0, SolenoidIPlot.ActualWidth, SolenoidIPlot.ActualHeight);
-                _ = SolenoidIPlot.Children.Add(new SolenoidUGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime));
+                _ = SolenoidIPlot.Children.Add(new SolenoidIGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime));
                 return null;
             }
              ), null);
