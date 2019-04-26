@@ -802,11 +802,7 @@ namespace FurnacesInHand
         private void VoltagePlot_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
-            VoltagePlot.VerticalCursor(clickPoint);
-            CurrentPlot.VerticalCursor(clickPoint);
-            VacuumPlot.VerticalCursor(clickPoint);
-            SolenoidUPlot.VerticalCursor(clickPoint);
-            SolenoidIPlot.VerticalCursor(clickPoint);
+            PutTheCursor(clickPoint);
         }
 
         private void VoltagePlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -814,12 +810,74 @@ namespace FurnacesInHand
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 Point clickPoint = e.GetPosition((GraphCanvas)sender);
-                VoltagePlot.VerticalCursor(clickPoint);
-                CurrentPlot.VerticalCursor(clickPoint);
-                VacuumPlot.VerticalCursor(clickPoint);
-                SolenoidUPlot.VerticalCursor(clickPoint);
-                SolenoidIPlot.VerticalCursor(clickPoint);
+                PutTheCursor(clickPoint);
+            }
+        }
+        private void PutTheCursor(Point clickPoint)
+        {
+            VoltagePlot.VerticalCursor(clickPoint);
+            CurrentPlot.VerticalCursor(clickPoint);
+            VacuumPlot.VerticalCursor(clickPoint);
+            SolenoidUPlot.VerticalCursor(clickPoint);
+            SolenoidIPlot.VerticalCursor(clickPoint);
+        }
 
+        private void CurrentPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            PutTheCursor(clickPoint);
+        }
+        private void CurrentPlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point clickPoint = e.GetPosition((GraphCanvas)sender);
+                PutTheCursor(clickPoint);
+            }
+        }
+
+        private void VacuumPlot_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point clickPoint = e.GetPosition((GraphCanvas)sender);
+                PutTheCursor(clickPoint);
+            }
+        }
+
+        private void VacuumPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            PutTheCursor(clickPoint);
+        }
+
+        private void SolenoidUPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            PutTheCursor(clickPoint);
+        }
+
+        private void SolenoidUPlot_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point clickPoint = e.GetPosition((GraphCanvas)sender);
+                PutTheCursor(clickPoint);
+            }
+        }
+
+        private void SolenoidIPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            PutTheCursor(clickPoint);
+        }
+
+        private void SolenoidIPlot_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point clickPoint = e.GetPosition((GraphCanvas)sender);
+                PutTheCursor(clickPoint);
             }
         }
     }
