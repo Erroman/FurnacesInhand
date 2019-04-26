@@ -800,9 +800,12 @@ namespace FurnacesInHand
 
         private void VoltagePlot_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Canvas graphCanvas = (Canvas)sender;
-            Point clickPoint = e.GetPosition(graphCanvas);
-            VerticalCursor(graphCanvas, clickPoint);
+            Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            VoltagePlot.VerticalCursor(clickPoint);
+            CurrentPlot.VerticalCursor(clickPoint);
+            VacuumPlot.VerticalCursor(clickPoint);
+            SolenoidUPlot.VerticalCursor(clickPoint);
+            SolenoidIPlot.VerticalCursor(clickPoint);
         }
     }
 

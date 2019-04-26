@@ -115,6 +115,7 @@
     <Compile Include="CurrentPlot.cs" />
     <Compile Include="FurnaceModelLocalNext.cs" />
     <Compile Include="FurnacesModelLocal.cs" />
+    <Compile Include="GraphCanvas.cs" />
     <Compile Include="inTime.cs" />
     <Compile Include="ServiceFunctions.cs" />
     <Compile Include="SolenoidIGraph.cs" />
@@ -147,7 +148,6 @@
     <Compile Include="vdp32.cs" />
     <Compile Include="vdp33.cs" />
     <Compile Include="vdp44.cs" />
-    <Compile Include="VerticalCursor.cs" />
     <Compile Include="VoltageGraph.cs" />
     <Compile Include="VoltagePLot.cs" />
     <Page Include="MainWindow.xaml">
