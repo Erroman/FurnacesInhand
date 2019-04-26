@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Shapes;
 using static FurnacesInHand.ServiceFunctions;
 
 namespace FurnacesInHand
@@ -17,6 +18,8 @@ namespace FurnacesInHand
         FurnacesModelLocal context;
         DbConnection conn;
         Int32 numberOfFurnace;
+
+        Path verticalCursor;
  
         public ObservableCollection<vdp03> inList;
         public ObservableCollection<string> inListString;
@@ -795,6 +798,12 @@ namespace FurnacesInHand
             return nameOfProperty.Contains("vdp") ? Int32.Parse(nameOfProperty.Substring(3)) : -1;
         }
 
+        private void VoltagePlot_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Canvas graphCanvas = (Canvas)sender;
+            Point clickPoint = e.GetPosition(graphCanvas);
+            VerticalCursor(graphCanvas, clickPoint);
+        }
     }
 
 
