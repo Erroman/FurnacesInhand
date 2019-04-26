@@ -78,7 +78,7 @@
 
         <ListBox Grid.Row="4" x:Name="solCurrentValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
 
-        <local:GraphCanvas x:Name="VoltagePlot" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue" MouseLeftButtonDown="VoltagePlot_MouseLeftButtonDown"/>
+        <local:GraphCanvas x:Name="VoltagePlot" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue" MouseLeftButtonDown="VoltagePlot_MouseLeftButtonDown" MouseMove="VoltagePlot_MouseMove"/>
         <local:GraphCanvas x:Name="CurrentPlot" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite"/>
         <local:GraphCanvas x:Name ="VacuumPlot" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Aqua"/>
         <local:GraphCanvas x:Name ="SolenoidUPlot" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Azure"/>

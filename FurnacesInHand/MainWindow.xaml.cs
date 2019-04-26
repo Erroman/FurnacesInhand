@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
+using System.Windows.Input;
 using static FurnacesInHand.ServiceFunctions;
 
 namespace FurnacesInHand
@@ -806,6 +807,20 @@ namespace FurnacesInHand
             VacuumPlot.VerticalCursor(clickPoint);
             SolenoidUPlot.VerticalCursor(clickPoint);
             SolenoidIPlot.VerticalCursor(clickPoint);
+        }
+
+        private void VoltagePlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point clickPoint = e.GetPosition((GraphCanvas)sender);
+                VoltagePlot.VerticalCursor(clickPoint);
+                CurrentPlot.VerticalCursor(clickPoint);
+                VacuumPlot.VerticalCursor(clickPoint);
+                SolenoidUPlot.VerticalCursor(clickPoint);
+                SolenoidIPlot.VerticalCursor(clickPoint);
+
+            }
         }
     }
 
