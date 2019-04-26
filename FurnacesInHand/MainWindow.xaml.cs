@@ -835,7 +835,11 @@ namespace FurnacesInHand
                 PutTheCursor(clickPoint);
             }
         }
-
+        private void VacuumPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            PutTheCursor(clickPoint);
+        }
         private void VacuumPlot_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -845,12 +849,7 @@ namespace FurnacesInHand
             }
         }
 
-        private void VacuumPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Point clickPoint = e.GetPosition((GraphCanvas)sender);
-            PutTheCursor(clickPoint);
-        }
-
+ 
         private void SolenoidUPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
