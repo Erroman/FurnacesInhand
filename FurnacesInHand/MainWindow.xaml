@@ -90,6 +90,7 @@
         <local:GraphCanvas x:Name ="VacuumPlot" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Aqua" MouseMove="VacuumPlot_MouseMove" MouseLeftButtonDown="VacuumPlot_MouseLeftButtonDown"/>
         <local:GraphCanvas x:Name ="SolenoidUPlot" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Azure" MouseLeftButtonDown="SolenoidUPlot_MouseLeftButtonDown" MouseMove="SolenoidUPlot_MouseMove"/>
         <local:GraphCanvas x:Name ="SolenoidIPlot" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Blue" MouseLeftButtonDown="SolenoidIPlot_MouseLeftButtonDown" MouseMove="SolenoidIPlot_MouseMove"/>
+        <TextBox Name="VoltageValue" Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
     </Grid>
 
 </Window>
