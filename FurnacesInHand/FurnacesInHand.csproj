@@ -117,6 +117,7 @@
     <Compile Include="CurrentGraph.cs" />
     <Compile Include="CurrentPlot.cs" />
     <Compile Include="FurnaceModelLocalNext.cs" />
+    <Compile Include="FurnacesInHandViewModel.cs" />
     <Compile Include="FurnacesModelLocal.cs" />
     <Compile Include="GraphCanvas.cs" />
     <Compile Include="inTime.cs" />
@@ -194,12 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FurnaceInHand.VVMM\FurnacesInHand.MVVM.csproj">
-      <Project>{cfce4cec-0683-4625-bfa9-91e2cf905f19}</Project>
-      <Name>FurnacesInHand.MVVM</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
