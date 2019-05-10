@@ -120,6 +120,7 @@
     <Compile Include="FurnacesModelLocal.cs" />
     <Compile Include="GraphCanvas.cs" />
     <Compile Include="inTime.cs" />
+    <Compile Include="MouseBehaviour.cs" />
     <Compile Include="ServiceFunctions.cs" />
     <Compile Include="SolenoidIGraph.cs" />
     <Compile Include="SolenoidIPlot.cs" />
