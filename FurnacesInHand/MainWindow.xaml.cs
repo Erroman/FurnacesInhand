@@ -815,6 +815,7 @@ namespace FurnacesInHand
         }
         private void PutTheCursor(Point clickPoint)
         {
+            //Show the nearest values in ListBoxes(TrxtBoxes)! 
             VoltagePlot.VerticalCursor(clickPoint);
             CurrentPlot.VerticalCursor(clickPoint);
             VacuumPlot.VerticalCursor(clickPoint);
