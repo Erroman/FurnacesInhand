@@ -16,6 +16,7 @@
                 <TextBlock Text="{Binding val}"/>
             </StackPanel>
         </DataTemplate>
+        <local:FurnacesInHandViewModel x:Key="VoltageViewModel" />
     </Window.Resources>
     <Window.DataContext>
         <local:FurnacesInHandViewModel/>
@@ -86,7 +87,7 @@
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
         </local:GraphCanvas>
-        <local:GraphCanvas x:Name="CurrentPlot" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite" MouseLeftButtonDown="CurrentPlot_MouseLeftButtonDown" MouseMove="CurrentPlot_MouseMove">
+        <local:GraphCanvas x:Name="CurrentPlot"  Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite" MouseLeftButtonDown="CurrentPlot_MouseLeftButtonDown" MouseMove="CurrentPlot_MouseMove">
             <i:Interaction.Behaviors>
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
@@ -106,11 +107,11 @@
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
         </local:GraphCanvas>
-        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
-        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="1"/>
-        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="2"/>
-        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="3"/>
-        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="4"/>
+        <TextBox Text="{Binding CanvasX}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
+        <TextBox Text="{Binding CanvasX}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="1"/>
+        <TextBox Text="{Binding CanvasX}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="2"/>
+        <TextBox Text="{Binding CanvasX}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="3"/>
+        <TextBox Text="{Binding CanvasX}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="4"/>
     </Grid>
 
 </Window>
