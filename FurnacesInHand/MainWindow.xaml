@@ -72,25 +72,45 @@
 
         <ListBox Grid.Row="0" x:Name="voltageValues" HorizontalAlignment="Left" Margin="0,10,0,66" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
 
-        <ListBox Grid.Row="1" x:Name="currentValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
+        <ListBox Grid.Row="1" x:Name="currentValues" HorizontalAlignment="Left" Margin="0,10,0,68" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
 
-        <ListBox Grid.Row="2" x:Name="pressureValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
+        <ListBox Grid.Row="2" x:Name="pressureValues" HorizontalAlignment="Left" Height="128" Margin="0,10,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
 
 
-        <ListBox Grid.Row="3" x:Name="solVoltageValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
+        <ListBox Grid.Row="3" x:Name="solVoltageValues" HorizontalAlignment="Left" Height="126" Margin="0,10,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
 
-        <ListBox Grid.Row="4" x:Name="solCurrentValues" HorizontalAlignment="Left" Height="197" Margin="0,10,0,10" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
+        <ListBox Grid.Row="4" x:Name="solCurrentValues" HorizontalAlignment="Left" Height="132" Margin="0,10,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1" ItemTemplate="{StaticResource ParametersList}"/>
 
         <local:GraphCanvas x:Name="VoltagePlot" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue" MouseLeftButtonDown="VoltagePlot_MouseLeftButtonDown" MouseMove="VoltagePlot_MouseMove">
             <i:Interaction.Behaviors>
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
         </local:GraphCanvas>
-        <local:GraphCanvas x:Name="CurrentPlot" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite" MouseLeftButtonDown="CurrentPlot_MouseLeftButtonDown" MouseMove="CurrentPlot_MouseMove"/>
-        <local:GraphCanvas x:Name ="VacuumPlot" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Aqua" MouseMove="VacuumPlot_MouseMove" MouseLeftButtonDown="VacuumPlot_MouseLeftButtonDown"/>
-        <local:GraphCanvas x:Name ="SolenoidUPlot" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Azure" MouseLeftButtonDown="SolenoidUPlot_MouseLeftButtonDown" MouseMove="SolenoidUPlot_MouseMove"/>
-        <local:GraphCanvas x:Name ="SolenoidIPlot" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Blue" MouseLeftButtonDown="SolenoidIPlot_MouseLeftButtonDown" MouseMove="SolenoidIPlot_MouseMove"/>
-        <TextBox Name="VoltageValue" Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
+        <local:GraphCanvas x:Name="CurrentPlot" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite" MouseLeftButtonDown="CurrentPlot_MouseLeftButtonDown" MouseMove="CurrentPlot_MouseMove">
+            <i:Interaction.Behaviors>
+                <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
+            </i:Interaction.Behaviors>
+        </local:GraphCanvas>
+        <local:GraphCanvas x:Name ="VacuumPlot" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Aqua" MouseMove="VacuumPlot_MouseMove" MouseLeftButtonDown="VacuumPlot_MouseLeftButtonDown">
+            <i:Interaction.Behaviors>
+                <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
+            </i:Interaction.Behaviors>
+        </local:GraphCanvas>
+        <local:GraphCanvas x:Name ="SolenoidUPlot" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Azure" MouseLeftButtonDown="SolenoidUPlot_MouseLeftButtonDown" MouseMove="SolenoidUPlot_MouseMove">
+            <i:Interaction.Behaviors>
+                <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
+            </i:Interaction.Behaviors>
+        </local:GraphCanvas>
+        <local:GraphCanvas x:Name ="SolenoidIPlot" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Blue" MouseLeftButtonDown="SolenoidIPlot_MouseLeftButtonDown" MouseMove="SolenoidIPlot_MouseMove">
+            <i:Interaction.Behaviors>
+                <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
+            </i:Interaction.Behaviors>
+        </local:GraphCanvas>
+        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
+        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="1"/>
+        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="2"/>
+        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="3"/>
+        <TextBox Text="{Binding CanvasY}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="4"/>
     </Grid>
 
 </Window>
