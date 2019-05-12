@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FurnacesInHand
 {
-    struct TimeParameterPair
+public struct TimeParameterPair
     {
         public DateTime dt;
         public double parameter;
