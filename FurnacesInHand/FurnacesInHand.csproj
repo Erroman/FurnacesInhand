@@ -114,6 +114,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CanvasPlot.cs" />
+    <Compile Include="CurrentConverter.cs" />
     <Compile Include="CurrentGraph.cs" />
     <Compile Include="CurrentPlot.cs" />
     <Compile Include="FurnaceModelLocalNext.cs" />
@@ -123,12 +124,15 @@
     <Compile Include="inTime.cs" />
     <Compile Include="MouseBehaviour.cs" />
     <Compile Include="ServiceFunctions.cs" />
+    <Compile Include="SolenoidIConverter.cs" />
     <Compile Include="SolenoidIGraph.cs" />
     <Compile Include="SolenoidIPlot.cs" />
+    <Compile Include="SolenoidUConverter.cs" />
     <Compile Include="SolenoidUGraph.cs" />
     <Compile Include="SolenoidUPlot.cs" />
     <Compile Include="TimeParameterPair.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
+    <Compile Include="VacuumConverter.cs" />
     <Compile Include="VacuumGraph.cs" />
     <Compile Include="VacuumPlot.cs" />
     <Compile Include="vdp01.cs" />

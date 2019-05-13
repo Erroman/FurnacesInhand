@@ -18,6 +18,10 @@
         </DataTemplate>
         <local:FurnacesInHandViewModel x:Key="VoltageViewModel" />
         <local:VoltageConverter x:Key="VoltageConverter"/>
+        <local:CurrentConverter x:Key="CurrentConverter"/>
+        <local:VacuumConverter x:Key="VacuumConverter"/>
+        <local:SolenoidUConverter x:Key="SolenoidUConverter"/>
+        <local:SolenoidIConverter x:Key="SolenoidIConverter"/>
     </Window.Resources>
     <Window.DataContext>
         <local:FurnacesInHandViewModel/>
@@ -114,11 +118,11 @@
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
         </local:GraphCanvas>
-        <TextBox Text="{Binding CanvasX,Converter={StaticResource VoltageConverter},ConverterParameter=64}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
-        <TextBox Text="{Binding CanvasX}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="1"/>
-        <TextBox Text="{Binding CanvasX}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="2"/>
-        <TextBox Text="{Binding CanvasX}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="3"/>
-        <TextBox Text="{Binding CanvasX}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="4"/>
+        <TextBox Text="{Binding CanvasX,Converter={StaticResource VoltageConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"/>
+        <TextBox Text="{Binding CanvasX,Converter={StaticResource CurrentConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="1"/>
+        <TextBox Text="{Binding CanvasX,Converter={StaticResource VacuumConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="2"/>
+        <TextBox Text="{Binding CanvasX,Converter={StaticResource SolenoidUConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="3"/>
+        <TextBox Text="{Binding CanvasX,Converter={StaticResource SolenoidIConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="36" Margin="38,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Row="4"/>
     </Grid>
 
 </Window>
