@@ -12,15 +12,14 @@ namespace FurnacesInHand
 {
     class VoltageConverter:IValueConverter
     {
+        private double _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             ///Check the state of the left mouse button! And if not pressed, pass back the same value of the voltage,
             ///else transform the X-coordinate coming in argument 'value'  to the voltage value corresponding to it
             if (Mouse.LeftButton == MouseButtonState.Pressed)
-            {
-                return value;
-            }
-            return parameter; //presumably get it from the parameter argument
+                _lastMeasuredValue = (double)value;
+            return _lastMeasuredValue; //presumably get it from the parameter argument
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
