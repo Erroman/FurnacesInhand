@@ -20,7 +20,7 @@ namespace FurnacesInHand
             {
                 return value;
             }
-            return "the old value is kept";
+            return parameter; //presumably get it from the parameter argument
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
