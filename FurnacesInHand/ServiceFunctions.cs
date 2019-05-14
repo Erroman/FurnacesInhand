@@ -19,4 +19,14 @@ namespace FurnacesInHand
             return new string(a);
         }
     }
+   // a collection of extra extension methods off IEnumerable<T>
+   public static class EnumerableExtensions
+   {
+       // Finds an item in the collection, similar to List<T>.FindIndex()
+       public static int FindIndex<T>(this IEnumerable<T> list, Predicate<T> finder)
+       {
+           // note if item not found, result is length and not -1!
+           return list.TakeWhile(i => !finder(i)).Count();
+       }
+   }
 }
