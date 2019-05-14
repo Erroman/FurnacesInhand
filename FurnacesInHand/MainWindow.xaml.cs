@@ -6,7 +6,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Shapes;
 using System.Windows.Input;
 using static FurnacesInHand.ServiceFunctions;
 
@@ -19,16 +18,13 @@ namespace FurnacesInHand
     {
         FurnacesModelLocal context;
         DbConnection conn;
-        Int32 numberOfFurnace;
+        public Int32 numberOfFurnace;
         public IEnumerable<TimeParameterPair> Voltage_graph_pairs;
         public IEnumerable<TimeParameterPair> Current_graph_pairs;
         public IEnumerable<TimeParameterPair> Vacuum_graph_pairs;
         public IEnumerable<TimeParameterPair> SolenoidU_graph_pairs;
         public IEnumerable<TimeParameterPair> SolenoidI_graph_pairs;
-        Path verticalCursor;
  
-        public ObservableCollection<vdp03> inList;
-        public ObservableCollection<string> inListString;
         public String parameter;
         public DateTime startTime;
         public DateTime finishTime;

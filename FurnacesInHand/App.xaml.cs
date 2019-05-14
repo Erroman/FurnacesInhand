@@ -13,10 +13,9 @@ namespace FurnacesInHand
     /// </summary>
     public partial class App : Application
     {
-          App()
+        App()
         {
   
         }
-
     }
 }

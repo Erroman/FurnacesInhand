@@ -11,13 +11,13 @@
     <Window.Resources>
         <DataTemplate x:Key="ParametersList" DataType="{x:Type ListBox}">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding dateandtime, StringFormat= MM.dd.yy HH:mm:ss}"/>
+                <TextBlock Text="{Binding dateandtime, StringFormat= MM.dd.yy HH:mm:ss.fff}"/>
                 <TextBlock Text="     "/>
                 <TextBlock Text="{Binding val}"/>
             </StackPanel>
         </DataTemplate>
-        <local:FurnacesInHandViewModel x:Key="VoltageViewModel" />
-        <local:VoltageConverter x:Key="VoltageConverter"/>
+        <local:FurnacesInHandViewModel x:Key="VoltageViewModel"/>
+        <local:VoltageConverter x:Key="VoltageConverter" />
         <local:CurrentConverter x:Key="CurrentConverter"/>
         <local:VacuumConverter x:Key="VacuumConverter"/>
         <local:SolenoidUConverter x:Key="SolenoidUConverter"/>
