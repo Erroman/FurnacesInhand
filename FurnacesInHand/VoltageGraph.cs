@@ -51,7 +51,7 @@ namespace FurnacesInHand
             bool FirstDot = true;
             Point minDPoint = new Point(0, 0);
             Point maxDPoint = new Point(0, 0);
-            bool Clashed = false;
+            //bool Clashed = false;
 
             TimeParameterPair time_parameter_pair;
             TimeParameterPair time_parameter_pair_with_coordinates;
