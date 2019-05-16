@@ -24,11 +24,11 @@ namespace FurnacesInHand
         private double _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            DateTime dt = new DateTime(1956, 1, 1);
+            DateTime dt = new DateTime(2019, 3, 1);
             //При помощи массива значений параметров находим ближайший по времени
             if (_window.Voltage_graph_pairs != null)
             {
-                TimeParameterPair tpp = _window.Voltage_graph_pairs.Where(x => x.dt > dt).Select(x => x).First();
+                TimeParameterPair tpp = _window.Voltage_graph_pairs.Where(x => x.dt > dt).Select(x => x).FirstOrDefault();
 
             }
              ///Check the state of the left mouse button! And if not pressed, pass back the same value of the voltage,

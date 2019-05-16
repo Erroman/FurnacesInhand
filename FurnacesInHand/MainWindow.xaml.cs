@@ -19,7 +19,7 @@ namespace FurnacesInHand
         FurnacesModelLocal context;
         DbConnection conn;
         public Int32 numberOfFurnace;
-        public IEnumerable<TimeParameterPair> Voltage_graph_pairs;
+        public List<TimeParameterPair> Voltage_graph_pairs;
         public IEnumerable<TimeParameterPair> Current_graph_pairs;
         public IEnumerable<TimeParameterPair> Vacuum_graph_pairs;
         public IEnumerable<TimeParameterPair> SolenoidU_graph_pairs;
@@ -90,7 +90,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp01 = this.context.vdp01.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp01;
-                        Voltage_graph_pairs = from par in read_parameters_vdp01 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp01 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp01 = this.context.vdp01.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -118,7 +118,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp02 = this.context.vdp02.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp02;
-                        Voltage_graph_pairs = from par in read_parameters_vdp02 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp02 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp02 = this.context.vdp02.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -145,7 +145,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp03 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp03;
-                        Voltage_graph_pairs = from par in read_parameters_vdp03 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp03 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp03 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -173,7 +173,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp04 = this.context.vdp04.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp04;
-                        Voltage_graph_pairs = from par in read_parameters_vdp04 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp04 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp04 = this.context.vdp04.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -201,7 +201,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp05 = this.context.vdp05.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp05;
-                        Voltage_graph_pairs = from par in read_parameters_vdp05 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp05 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp05 = this.context.vdp05.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -229,7 +229,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp06 = this.context.vdp06.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp06;
-                        Voltage_graph_pairs = from par in read_parameters_vdp06 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp06 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp06 = this.context.vdp06.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -257,7 +257,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp07 = this.context.vdp07.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp07;
-                        Voltage_graph_pairs = from par in read_parameters_vdp07 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp07 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp07 = this.context.vdp07.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -285,7 +285,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp08 = this.context.vdp08.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp08;
-                        Voltage_graph_pairs = from par in read_parameters_vdp08 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp08 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp08 = this.context.vdp08.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -313,7 +313,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp09 = this.context.vdp09.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp09;
-                        Voltage_graph_pairs = from par in read_parameters_vdp09 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp09 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp09 = this.context.vdp09.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -341,7 +341,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp10 = this.context.vdp10.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp10;
-                        Voltage_graph_pairs = from par in read_parameters_vdp10 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp10 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp10 = this.context.vdp10.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -369,7 +369,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp15 = this.context.vdp15.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp15;
-                        Voltage_graph_pairs = from par in read_parameters_vdp15 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp15 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp15 = this.context.vdp15.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -397,7 +397,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp16 = this.context.vdp16.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp16;
-                        Voltage_graph_pairs = from par in read_parameters_vdp16 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp16 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp16 = this.context.vdp16.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -425,7 +425,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp17 = this.context.vdp17.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp17;
-                        Voltage_graph_pairs = from par in read_parameters_vdp17 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp17 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp17 = this.context.vdp17.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -453,7 +453,7 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp18 = this.context.vdp18.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         voltageValues.ItemsSource = read_parameters_vdp18;
-                        Voltage_graph_pairs = from par in read_parameters_vdp18 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp18 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp18 = this.context.vdp18.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -482,7 +482,7 @@ namespace FurnacesInHand
                         var read_parameters_vdp19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         MessageBox.Show($"We have {read_parameters_vdp19.Length} par(s).");
                         voltageValues.ItemsSource = read_parameters_vdp19;
-                        Voltage_graph_pairs = from par in read_parameters_vdp19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -511,7 +511,7 @@ namespace FurnacesInHand
                         var read_parameters_vdp20 = this.context.vdp20.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         MessageBox.Show($"We have {read_parameters_vdp20.Length} par(s).");
                         voltageValues.ItemsSource = read_parameters_vdp20;
-                        Voltage_graph_pairs = from par in read_parameters_vdp20 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp20 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp20 = this.context.vdp20.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -540,7 +540,7 @@ namespace FurnacesInHand
                         var read_parameters_vdp29 = this.context.vdp29.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         MessageBox.Show($"We have {read_parameters_vdp29.Length} par(s).");
                         voltageValues.ItemsSource = read_parameters_vdp29;
-                        Voltage_graph_pairs = from par in read_parameters_vdp29 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp29 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp29 = this.context.vdp29.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -569,7 +569,7 @@ namespace FurnacesInHand
                         var read_parameters_vdp30 = this.context.vdp30.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         MessageBox.Show($"We have {read_parameters_vdp30.Length} par(s).");
                         voltageValues.ItemsSource = read_parameters_vdp30;
-                        Voltage_graph_pairs = from par in read_parameters_vdp30 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp30 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp30 = this.context.vdp30.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -598,7 +598,7 @@ namespace FurnacesInHand
                         var read_parameters_vdp31 = this.context.vdp31.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         MessageBox.Show($"We have {read_parameters_vdp31.Length} par(s).");
                         voltageValues.ItemsSource = read_parameters_vdp31;
-                        Voltage_graph_pairs = from par in read_parameters_vdp31 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp31 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp31 = this.context.vdp31.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -627,7 +627,7 @@ namespace FurnacesInHand
                         var read_parameters_vdp32 = this.context.vdp32.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         MessageBox.Show($"We have {read_parameters_vdp32.Length} par(s).");
                         voltageValues.ItemsSource = read_parameters_vdp32;
-                        Voltage_graph_pairs = from par in read_parameters_vdp32 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp32 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp32 = this.context.vdp32.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -656,7 +656,7 @@ namespace FurnacesInHand
                         var read_parameters_vdp33 = this.context.vdp33.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         MessageBox.Show($"We have {read_parameters_vdp33.Length} par(s).");
                         voltageValues.ItemsSource = read_parameters_vdp33;
-                        Voltage_graph_pairs = from par in read_parameters_vdp33 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp33 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp33 = this.context.vdp33.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -685,7 +685,7 @@ namespace FurnacesInHand
                         var read_parameters_vdp44 = this.context.vdp44.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         MessageBox.Show($"We have {read_parameters_vdp44.Length} par(s).");
                         voltageValues.ItemsSource = read_parameters_vdp44;
-                        Voltage_graph_pairs = from par in read_parameters_vdp44 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Voltage_graph_pairs = (from par in read_parameters_vdp44 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp44 = this.context.vdp44.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
