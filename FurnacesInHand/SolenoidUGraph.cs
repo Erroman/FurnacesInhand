@@ -51,7 +51,7 @@ namespace FurnacesInHand
             bool FirstDot = true;
             Point minDPoint = new Point(0, 0);
             Point maxDPoint = new Point(0, 0);
-            bool Clashed = false;
+            //bool Clashed = false;
 
             foreach (var /*пара <время,значение параметра> */ time_parameter in timeParameterPairs)
             {

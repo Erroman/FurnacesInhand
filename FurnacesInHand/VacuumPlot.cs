@@ -10,7 +10,7 @@ namespace FurnacesInHand
 {
     public partial class MainWindow
     {
-        void vacuumPlot(IEnumerable<TimeParameterPair> timeParameterPairs)
+        void vacuumPlot(List<TimeParameterPair> timeParameterPairs)
         {
 
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)
