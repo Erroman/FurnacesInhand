@@ -10,7 +10,7 @@ namespace FurnacesInHand
 {
     public partial class MainWindow
     {
-        void currentPlot(IEnumerable<TimeParameterPair> timeParameterPairs)
+        void currentPlot(List<TimeParameterPair> timeParameterPairs)
         {
 
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)

@@ -20,7 +20,7 @@ namespace FurnacesInHand
         DbConnection conn;
         public Int32 numberOfFurnace;
         public List<TimeParameterPair> Voltage_graph_pairs;
-        public IEnumerable<TimeParameterPair> Current_graph_pairs;
+        public List<TimeParameterPair> Current_graph_pairs;
         public IEnumerable<TimeParameterPair> Vacuum_graph_pairs;
         public IEnumerable<TimeParameterPair> SolenoidU_graph_pairs;
         public IEnumerable<TimeParameterPair> SolenoidI_graph_pairs;
@@ -95,7 +95,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp01 = this.context.vdp01.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp01;
-                        Current_graph_pairs = from par in read_parameters_vdp01 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp01 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp01 = this.context.vdp01.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -123,7 +123,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp02 = this.context.vdp02.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp02;
-                        Current_graph_pairs = from par in read_parameters_vdp02 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp02 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp02 = this.context.vdp02.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -150,7 +150,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp03 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp03;
-                        Current_graph_pairs = from par in read_parameters_vdp03 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp03 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp03 = this.context.vdp03.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -178,7 +178,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp04 = this.context.vdp04.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp04;
-                        Current_graph_pairs = from par in read_parameters_vdp04 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp04 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp04 = this.context.vdp04.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -206,7 +206,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp05 = this.context.vdp05.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp05;
-                        Current_graph_pairs = from par in read_parameters_vdp05 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp05 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp05 = this.context.vdp05.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -234,7 +234,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp06 = this.context.vdp06.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp06;
-                        Current_graph_pairs = from par in read_parameters_vdp06 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp06 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp06 = this.context.vdp06.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -262,7 +262,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp07 = this.context.vdp07.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp07;
-                        Current_graph_pairs = from par in read_parameters_vdp07 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp07 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp07 = this.context.vdp07.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -290,7 +290,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp08 = this.context.vdp08.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp08;
-                        Current_graph_pairs = from par in read_parameters_vdp08 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp08 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp08 = this.context.vdp08.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -318,7 +318,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp09 = this.context.vdp09.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp09;
-                        Current_graph_pairs = from par in read_parameters_vdp09 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp09 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp09 = this.context.vdp09.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -346,7 +346,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp10 = this.context.vdp10.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp10;
-                        Current_graph_pairs = from par in read_parameters_vdp10 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp10 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp10 = this.context.vdp10.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -374,7 +374,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp15 = this.context.vdp15.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp15;
-                        Current_graph_pairs = from par in read_parameters_vdp15 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp15 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp15 = this.context.vdp15.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -402,7 +402,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp16 = this.context.vdp16.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp16;
-                        Current_graph_pairs = from par in read_parameters_vdp16 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp16 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp16 = this.context.vdp16.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -430,7 +430,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp17 = this.context.vdp17.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp17;
-                        Current_graph_pairs = from par in read_parameters_vdp17 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp17 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp17 = this.context.vdp17.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -458,7 +458,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp18 = this.context.vdp18.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp18;
-                        Current_graph_pairs = from par in read_parameters_vdp18 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp18 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp18 = this.context.vdp18.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -487,7 +487,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp19;
-                        Current_graph_pairs = from par in read_parameters_vdp19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -516,7 +516,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp20 = this.context.vdp20.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp20;
-                        Current_graph_pairs = from par in read_parameters_vdp20 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs =(from par in read_parameters_vdp20 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp20 = this.context.vdp20.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -545,7 +545,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp29 = this.context.vdp29.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp29;
-                        Current_graph_pairs = from par in read_parameters_vdp29 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp29 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp29 = this.context.vdp29.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -574,7 +574,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp30 = this.context.vdp30.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp30;
-                        Current_graph_pairs = from par in read_parameters_vdp30 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp30 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp30 = this.context.vdp30.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -603,7 +603,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp31 = this.context.vdp31.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp31;
-                        Current_graph_pairs = from par in read_parameters_vdp31 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp31 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp31 = this.context.vdp31.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -632,7 +632,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp32 = this.context.vdp32.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp32;
-                        Current_graph_pairs = from par in read_parameters_vdp32 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp32 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp32 = this.context.vdp32.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -661,7 +661,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp33 = this.context.vdp33.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp33;
-                        Current_graph_pairs = from par in read_parameters_vdp33 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp33 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp33 = this.context.vdp33.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -690,7 +690,7 @@ namespace FurnacesInHand
                         parameter = "Arc_I";
                         read_parameters_vdp44 = this.context.vdp44.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         currentValues.ItemsSource = read_parameters_vdp44;
-                        Current_graph_pairs = from par in read_parameters_vdp44 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val };
+                        Current_graph_pairs = (from par in read_parameters_vdp44 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val}).ToList();
                         currentPlot(Current_graph_pairs);
                         parameter = "Pressure";
                         read_parameters_vdp44 = this.context.vdp44.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
