@@ -9,7 +9,7 @@ using System.Windows.Media;
 using static FurnacesInHand.TransformWorldToScreen;
 namespace FurnacesInHand
 {
-    class SolenoidIGraph : FrameworkElement
+    class SolenoidIGraph:FrameworkElement
     {
         const int TicksInMillisecond = 10000; //
         private readonly DateTime startTime;
@@ -17,7 +17,7 @@ namespace FurnacesInHand
         private readonly VisualCollection _children;
         // Provide a required override for the VisualChildrenCount property.
 
-        public SolenoidIGraph(IEnumerable<TimeParameterPair> timeParameterPair, Rect rect, DateTime startTime, DateTime finishTime)
+        public SolenoidIGraph(List<TimeParameterPair> timeParameterPair, Rect rect, DateTime startTime, DateTime finishTime)
         {
             this.startTime = startTime;
             this.finishTime = finishTime;
@@ -26,7 +26,7 @@ namespace FurnacesInHand
                 CreateDrawingVisualPlot(timeParameterPair,rect)
             };
         }
-        private DrawingVisual CreateDrawingVisualPlot(IEnumerable<TimeParameterPair> timeParameterPairs, Rect rect)
+        private DrawingVisual CreateDrawingVisualPlot(List<TimeParameterPair> timeParameterPairs, Rect rect)
         {
             DrawingVisual drawingVisual = new DrawingVisual();
             DrawingContext drawingContext = drawingVisual.RenderOpen();
@@ -53,11 +53,24 @@ namespace FurnacesInHand
             Point maxDPoint = new Point(0, 0);
             //bool Clashed = false;
 
-            foreach (var /*пара <время,значение параметра> */ time_parameter in timeParameterPairs)
+            TimeParameterPair time_parameter_pair;
+            TimeParameterPair time_parameter_pair_with_coordinates;
+            int DataLength = timeParameterPairs.Count;
+            for (int i = 0; i < DataLength; i++)
             {
-                WPoint.X = MillisecondsSinceTheBeginning(time_parameter.dt);
-                WPoint.Y = time_parameter.parameter;
+                time_parameter_pair = timeParameterPairs[i];
+                WPoint.X = MillisecondsSinceTheBeginning(time_parameter_pair.dt);
+                WPoint.Y = time_parameter_pair.parameter;
                 DPoint = WtoD(WPoint);
+
+                time_parameter_pair_with_coordinates = new TimeParameterPair()
+                {
+                    dt = timeParameterPairs[i].dt,
+                    parameter = timeParameterPairs[i].parameter,
+                };
+                time_parameter_pair_with_coordinates.screenPoint = DPoint;
+                timeParameterPairs[i] = time_parameter_pair_with_coordinates;
+
                 if (FirstDot) { previousDPoint = DPoint; FirstDot = false; }
                 else
                 if (Math.Round(DPoint.X) != Math.Round(previousDPoint.X)) //алгоритм сглаживания(разрежения)

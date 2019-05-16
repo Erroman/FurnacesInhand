@@ -24,8 +24,8 @@ namespace FurnacesInHand
         private double _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ///Check the state of the left mouse button! And if not pressed, pass back the same value of the voltage,
-            ///else transform the X-coordinate coming in argument 'value'  to the voltage value corresponding to it
+            ///Check the state of the left mouse button! And if not pressed, pass back the same value of the solenoid voltage,
+            ///else transform the X-coordinate coming in argument 'value'  to the solenoid voltage value corresponding to it
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 //При помощи массива значений параметров находим ближайший по времени
@@ -45,5 +45,5 @@ namespace FurnacesInHand
         }
     }
 }
-//делаем так: при нажатой мышке ищем Х-координату её курсора в перечислении Voltage_graph_pairs<ParameterPair>, 
+//делаем так: при нажатой мышке ищем Х-координату её курсора в перечислении SolenoidU_graph_pairs<ParameterPair>, 
 //где в структуру ParameterPair добавлено поле Point screenPoint с занесёнными туда уже при рисовании графика значениями.
