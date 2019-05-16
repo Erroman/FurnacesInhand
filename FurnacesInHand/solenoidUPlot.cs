@@ -10,7 +10,7 @@ namespace FurnacesInHand
 {
     public partial class MainWindow
     {
-        void solenoidUPlot(IEnumerable<TimeParameterPair> timeParameterPairs)
+        void solenoidUPlot(List<TimeParameterPair> timeParameterPairs)
         {
 
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)
