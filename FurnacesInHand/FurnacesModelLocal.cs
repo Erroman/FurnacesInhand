@@ -1,14 +1,14 @@
-namespace FurnacesInHand
+﻿namespace FurnacesInHand
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class FurnacesModel : DbContext
+    public partial class FurnacesModelLocal : DbContext
     {
-        public FurnacesModel()
-            : base("name=FurnacesModel")
+        public FurnacesModelLocal() : 
+            base("name=FurnacesModelLocal")
         {
         }
 
@@ -39,5 +39,12 @@ namespace FurnacesInHand
         {
         }
     }
-    
+    class MyModel : FurnacesModelLocal
+    {
+        public DbSet<vdp08> myNew;
+        public MyModel()
+        {
+            myNew = vdp08;
+        }
+    }
 }
