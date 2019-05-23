@@ -21,7 +21,7 @@ namespace FurnacesInHand
             _window = (MainWindow)_application.MainWindow;
         }
 
-        private double _lastMeasuredValue;
+        private DateTime _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             ///Check the state of the left mouse button! And if not pressed, pass back the same value of the voltage,
@@ -32,7 +32,7 @@ namespace FurnacesInHand
                 if (_window.Voltage_graph_pairs != null)
                 {
                     TimeParameterPair tpp = _window.Voltage_graph_pairs.Where(x => Math.Abs(x.screenPoint.X - (double)value) < 1).Select(x => x).FirstOrDefault();
-                    _lastMeasuredValue = tpp.parameter;
+                    _lastMeasuredValue = tpp.dt;
                 }
 
             }
