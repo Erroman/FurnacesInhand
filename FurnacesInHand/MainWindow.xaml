@@ -120,7 +120,7 @@
             </i:Interaction.Behaviors>
         </local:GraphCanvas>
         <TextBox Text="{Binding CanvasX,StringFormat={}{0:F2},Converter={StaticResource VoltageConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="143,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69"/>
-        <TextBox Text="{Binding CanvasX, Converter={StaticResource VoltageTimeConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="39" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
+        <TextBox Text="{Binding CanvasX, StringFormat= MM.dd.yy HH:mm:ss.fff, Converter={StaticResource VoltageTimeConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="39" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
         <TextBox Text="{Binding CanvasX,StringFormat={}{0:F2},Converter={StaticResource CurrentConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="10,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="1"/>
         <TextBox Text="{Binding CanvasX, Converter={StaticResource CurrentConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="143,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="1"/>
         <TextBox Text="{Binding CanvasX,StringFormat={}{0:F3},Converter={StaticResource VacuumConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="2"/>
