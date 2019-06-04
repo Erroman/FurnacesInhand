@@ -729,28 +729,17 @@ namespace FurnacesInHand
         }
         private void MapTheRemoteBase()
         {
-            using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
-            {
-                var pars = context.vdp03.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Take(9).ToArray<vdp03>();
-                conn = context.Database.Connection; //извлекли объект для соединения с БД
-                conn.Open(); //открыли соединение
-                MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
-                MessageBox.Show($"We have {pars.Length} par(s).");
-                //for (int i = 0; i < 10; i++)
-                //MessageBox.Show(pars[i].dateandtime.ToString()+ " " +pars[i].id+" "+pars[i].mks+" "+pars[i].tagname);
-                //context.vdp03.Load();
-                //inList = context.vdp03.Local;
-                //Binding b = new Binding();
-                //b.Source = new string[] { "11", "22", "33", "11", "22", "33" };
-                //b.Source = new MyData();
-                //b.Source = pars;
-
-                voltageValues.ItemsSource = pars;
-
-
-
-
-            }
+            MessageBox.Show("Копируем таблицу с сервера");
+            secondDataBase.IsChecked = true;
+            //using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
+            //{
+            //    var pars = context.vdp03.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Take(9).ToArray<vdp03>();
+            //    conn = context.Database.Connection; //извлекли объект для соединения с БД
+            //    conn.Open(); //открыли соединение
+            //    MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
+            //    MessageBox.Show($"We have {pars.Length} par(s).");
+            //    voltageValues.ItemsSource = pars;
+            //}
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
