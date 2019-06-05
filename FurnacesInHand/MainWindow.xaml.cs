@@ -731,7 +731,10 @@ namespace FurnacesInHand
         private void MapTheRemoteBase()
         {
             MessageBox.Show("Копируем таблицу с сервера");
-            Process.Start(@"D:\Program Files\PostgreSQL\10\bin\psql.exe");
+            //find the path to the psql
+            //taken from http://csharptest.net/526/how-to-search-the-environments-path-for-an-exe-or-dll/index.html
+            var path_to_postgres = FindExePath("psql.exe");
+            Process.Start(path_to_postgres);
             secondDataBase.IsChecked = true;
             //using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             //{
