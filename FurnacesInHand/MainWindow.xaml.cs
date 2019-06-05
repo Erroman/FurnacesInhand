@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static FurnacesInHand.ServiceFunctions;
+using System.Diagnostics;
 
 namespace FurnacesInHand
 {
@@ -730,6 +731,7 @@ namespace FurnacesInHand
         private void MapTheRemoteBase()
         {
             MessageBox.Show("Копируем таблицу с сервера");
+            Process.Start(@"D:\Program Files\PostgreSQL\10\bin\psql.exe");
             secondDataBase.IsChecked = true;
             //using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             //{
