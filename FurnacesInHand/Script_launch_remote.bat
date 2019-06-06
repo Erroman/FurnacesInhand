@@ -1,0 +1,1 @@
+"D:\Program Files\PostgreSQL\10\bin\psql.exe" -h 10.10.48.24 -U Reader -d fttm -p 5432 -f copy_script.i

@@ -733,11 +733,13 @@ namespace FurnacesInHand
             MessageBox.Show("Копируем таблицу с сервера");
             //find the path to the psql
             //taken from http://csharptest.net/526/how-to-search-the-environments-path-for-an-exe-or-dll/index.html
+            //скачиваем с удалённого сервера
             var path_to_postgres = FindExePath("psql.exe");
             var startInfo = new ProcessStartInfo();
             startInfo.FileName = path_to_postgres;
-            startInfo.Arguments = "   -h localhost - U postgres - d fttm - p 5432";
+            startInfo.Arguments = "-h localhost - U postgres - d fttm - p 5432";// -f copy_script.i
             Process.Start(startInfo);
+            //далее следует закачка на локальный сервер ...
             secondDataBase.IsChecked = true;
             //using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             //{
