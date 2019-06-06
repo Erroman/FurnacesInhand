@@ -734,7 +734,10 @@ namespace FurnacesInHand
             //find the path to the psql
             //taken from http://csharptest.net/526/how-to-search-the-environments-path-for-an-exe-or-dll/index.html
             var path_to_postgres = FindExePath("psql.exe");
-            Process.Start(path_to_postgres);
+            var startInfo = new ProcessStartInfo();
+            startInfo.FileName = path_to_postgres;
+            startInfo.Arguments = "   -h localhost - U postgres - d fttm - p 5432";
+            Process.Start(startInfo);
             secondDataBase.IsChecked = true;
             //using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             //{
