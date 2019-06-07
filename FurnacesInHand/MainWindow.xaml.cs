@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -17,6 +18,10 @@ namespace FurnacesInHand
     /// </summary>
     public partial class MainWindow : Window
     {
+        const string DownLoad_script_file_name="copy_script.i";
+        const string Download_server_credetials = @"-h 10.10.48.24 -U Reader -d fttm -p 5432 -f"; 
+        const string UpLoad_script_file_name = "restore_script.i";
+        const string Upload_server_credetials = @"- h localhost -U postgres -d fttm -p 5432 -f";
         FurnacesModelLocal context;
         DbConnection conn;
         public Int32 numberOfFurnace;
@@ -733,13 +738,20 @@ namespace FurnacesInHand
             MessageBox.Show("Копируем таблицу с сервера");
             //find the path to the psql
             //taken from http://csharptest.net/526/how-to-search-the-environments-path-for-an-exe-or-dll/index.html
-            //скачиваем с удалённого сервера
+            
             var path_to_postgres = FindExePath("psql.exe");
             var startInfo = new ProcessStartInfo();
             startInfo.FileName = path_to_postgres;
-            startInfo.Arguments = "-h localhost - U postgres - d fttm - p 5432";// -f copy_script.i
+            //корректируем номер печи в copy_script.i
+            string current_directory_path = Directory.GetCurrentDirectory();
+            string path_to_download_script = current_directory_path + "\\" + DownLoad_script_file_name;
+            string[] downLoadScript = File.ReadAllLines(path_to_download_script);
+            //скачиваем с удалённого сервера
+            startInfo.Arguments = Download_server_credetials + $"{ DownLoad_script_file_name}";
             Process.Start(startInfo);
             //далее следует закачка на локальный сервер ...
+            startInfo.Arguments = Upload_server_credetials+ $"{UpLoad_script_file_name}";
+            Process.Start(startInfo);
             secondDataBase.IsChecked = true;
             //using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             //{
