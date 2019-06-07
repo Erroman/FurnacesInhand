@@ -19,9 +19,9 @@ namespace FurnacesInHand
     public partial class MainWindow : Window
     {
         const string DownLoad_script_file_name="copy_script.i";
-        const string Download_server_credetials = @"-h 10.10.48.24 -U Reader -d fttm -p 5432 -f"; 
+        const string Download_server_credetials = @"-h 10.10.48.24 -U Reader -d fttm -p 5432"; 
         const string UpLoad_script_file_name = "restore_script.i";
-        const string Upload_server_credetials = @"- h localhost -U postgres -d fttm -p 5432 -f";
+        const string Upload_server_credetials =   @"-h localhost -U postgres -d fttm -p 5432";
         FurnacesModelLocal context;
         DbConnection conn;
         public Int32 numberOfFurnace;
@@ -747,10 +747,23 @@ namespace FurnacesInHand
             string path_to_download_script = current_directory_path + "\\" + DownLoad_script_file_name;
             string[] downLoadScript = File.ReadAllLines(path_to_download_script);
             //скачиваем с удалённого сервера
-            startInfo.Arguments = Download_server_credetials + $"{ DownLoad_script_file_name}";
+            startInfo.Arguments = Download_server_credetials + " -f " + $"{ DownLoad_script_file_name}";
+            try
+            {
+                // Start the process with the info we specified.
+                // Call WaitForExit and then the using-statement will close.
+                using (Process exeProcess = Process.Start(startInfo))
+                {
+                    exeProcess.WaitForExit();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось соединение с цеховой базой данных.");
+            }
             Process.Start(startInfo);
             //далее следует закачка на локальный сервер ...
-            startInfo.Arguments = Upload_server_credetials+ $"{UpLoad_script_file_name}";
+            startInfo.Arguments = Upload_server_credetials+ " -f " + $"{UpLoad_script_file_name}";
             Process.Start(startInfo);
             secondDataBase.IsChecked = true;
             //using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
