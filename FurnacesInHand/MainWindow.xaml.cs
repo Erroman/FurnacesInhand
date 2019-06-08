@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using static FurnacesInHand.ServiceFunctions;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace FurnacesInHand
 {
@@ -746,6 +747,9 @@ namespace FurnacesInHand
             string current_directory_path = Directory.GetCurrentDirectory();
             string path_to_download_script = current_directory_path + "\\" + DownLoad_script_file_name;
             string[] downLoadScript = File.ReadAllLines(path_to_download_script);
+            Regex rgx = new Regex("vdp..");
+            for (int i=0; i < downLoadScript.Length; i++)downLoadScript[i] = rgx.Replace(downLoadScript[i], "vdpXX");
+
             //скачиваем с удалённого сервера
             startInfo.Arguments = Download_server_credetials + " -f " + $"{ DownLoad_script_file_name}";
             try
