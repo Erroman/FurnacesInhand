@@ -748,7 +748,9 @@ namespace FurnacesInHand
             string path_to_download_script = current_directory_path + "\\" + DownLoad_script_file_name;
             string[] downLoadScript = File.ReadAllLines(path_to_download_script);
             Regex rgx = new Regex("vdp..");
-            for (int i=0; i < downLoadScript.Length; i++)downLoadScript[i] = rgx.Replace(downLoadScript[i], "vdpXX");
+            string twoDigitsNumberOfFurnace = this.numberOfFurnace.ToString();
+            twoDigitsNumberOfFurnace = this.numberOfFurnace > 9 ? "" : "0" + twoDigitsNumberOfFurnace;
+            for (int i=0; i < downLoadScript.Length; i++)downLoadScript[i] = rgx.Replace(downLoadScript[i], twoDigitsNumberOfFurnace);
 
             //скачиваем с удалённого сервера
             startInfo.Arguments = Download_server_credetials + " -f " + $"{ DownLoad_script_file_name}";
@@ -821,18 +823,11 @@ namespace FurnacesInHand
         {
             return Int32.Parse(nameOfFurnace.Substring(nameOfFurnace.IndexOf("№") + 1));
         }
-
-        private Int32 extractNumberOfFurnaceFromTheNameOfTheProperty(string nameOfProperty)
-        {
-            return nameOfProperty.Contains("vdp") ? Int32.Parse(nameOfProperty.Substring(3)) : -1;
-        }
-
         private void VoltagePlot_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
             PutTheCursor(clickPoint);
         }
-
         private void VoltagePlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
