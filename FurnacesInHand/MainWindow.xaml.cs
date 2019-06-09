@@ -20,7 +20,8 @@ namespace FurnacesInHand
     public partial class MainWindow : Window
     {
         const string DownLoad_script_file_name="copy_script.i";
-        const string Download_server_credetials = @"-h 10.10.48.24 -U Reader -d fttm -p 5432"; 
+        //const string Download_server_credetials = @"-h 10.10.48.24 -U Reader -d fttm -p 5432"; 
+        const string Download_server_credetials = @"-h localhost -U postgres -d fttm -p 5432";
         const string UpLoad_script_file_name = "restore_script.i";
         const string Upload_server_credetials =   @"-h localhost -U postgres -d fttm -p 5432";
         FurnacesModelLocal context;
@@ -746,12 +747,13 @@ namespace FurnacesInHand
             //корректируем номер печи в copy_script.i
             string current_directory_path = Directory.GetCurrentDirectory();
             string path_to_download_script = current_directory_path + "\\" + DownLoad_script_file_name;
-            string[] downLoadScript = File.ReadAllLines(path_to_download_script);
+            string downLoadScript = File.ReadAllText(path_to_download_script);
             Regex rgx = new Regex("vdp..");
+            Regex rgx1 = new Regex(@"\btime..\b");
             string twoDigitsNumberOfFurnace = this.numberOfFurnace.ToString();
             twoDigitsNumberOfFurnace = this.numberOfFurnace > 9 ? "" : "0" + twoDigitsNumberOfFurnace;
-            for (int i=0; i < downLoadScript.Length; i++)downLoadScript[i] = rgx.Replace(downLoadScript[i], twoDigitsNumberOfFurnace);
-
+            downLoadScript = rgx.Replace(downLoadScript, "vdp" + twoDigitsNumberOfFurnace);
+            File.WriteAllText(path_to_download_script, downLoadScript);
             //скачиваем с удалённого сервера
             startInfo.Arguments = Download_server_credetials + " -f " + $"{ DownLoad_script_file_name}";
             try
@@ -767,8 +769,12 @@ namespace FurnacesInHand
             {
                 MessageBox.Show("Не удалось соединение с цеховой базой данных.");
             }
-            Process.Start(startInfo);
-            //далее следует закачка на локальный сервер ...
+             //Далее следует закачка на локальный сервер,
+            //корректируем номер печи в скрипте для закачки
+            string path_to_upload_script = current_directory_path + "\\" + UpLoad_script_file_name;
+            string upLoadScript = File.ReadAllText(path_to_upload_script);
+            upLoadScript = rgx1.Replace(rgx.Replace(upLoadScript, "vdp" + twoDigitsNumberOfFurnace), "time" + twoDigitsNumberOfFurnace);
+            File.WriteAllText(path_to_upload_script, upLoadScript);
             startInfo.Arguments = Upload_server_credetials+ " -f " + $"{UpLoad_script_file_name}";
             Process.Start(startInfo);
             secondDataBase.IsChecked = true;

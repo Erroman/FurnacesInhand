@@ -1,22 +1,22 @@
-DROP TABLE IF EXISTS public.vdp03;
-CREATE TABLE public.vdp03
+DROP TABLE IF EXISTS public.vdp00;
+CREATE TABLE public.vdp00
 (
     id integer NOT NULL,
     dateandtime timestamp without time zone,
     mks integer,
     tagname character varying(50) COLLATE pg_catalog."default",
     val double precision,
-    CONSTRAINT vdp03_pkey PRIMARY KEY (id)
+    CONSTRAINT vdp00_pkey PRIMARY KEY (id)
 )
 WITH (
     OIDS = FALSE
 )
 TABLESPACE pg_default;
 
-ALTER TABLE public.vdp03
+ALTER TABLE public.vdp00
     OWNER to postgres;
-CREATE INDEX time03
-    ON public.vdp03 USING btree
+CREATE INDEX time00
+    ON public.vdp00 USING btree
     (dateandtime)
     TABLESPACE pg_default;
-\copy vdp03 from 'vdp03copy.csv' DELIMITER ',' CSV;	
+\copy vdp00 from 'vdp00copy.csv' DELIMITER ',' CSV;	
