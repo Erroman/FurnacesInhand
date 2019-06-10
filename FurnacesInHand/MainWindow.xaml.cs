@@ -53,8 +53,8 @@ namespace FurnacesInHand
 
             SetDigitalStartAndFinishTimes();
 
-            firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
-            secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
+            //firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
+            //secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
 
         }
 
@@ -62,13 +62,13 @@ namespace FurnacesInHand
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton li = (sender as RadioButton);
-            Base_Chosen();
+            //Base_Chosen();
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Properties.Settings.Default.firstDatabase = (bool)firstDataBase.IsChecked;
-            Properties.Settings.Default.secondDatabase = (bool)secondDataBase.IsChecked;
+            //Properties.Settings.Default.firstDatabase = (bool)firstDataBase.IsChecked;
+            //Properties.Settings.Default.secondDatabase = (bool)secondDataBase.IsChecked;
             Properties.Settings.Default.numberOfFurnace = this.numberOfFurnace;
             Properties.Settings.Default.begTime = begTime.Text;
             Properties.Settings.Default.endTime = endTime.Text;
@@ -77,15 +77,16 @@ namespace FurnacesInHand
 
             Properties.Settings.Default.Save();
         }
-        private void Base_Chosen()
-        {
-            txtb.Text = "Выбрана ";
-            if ((bool)firstDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)firstDataBase.Content); MapTheRemoteBase(); }
-            else if ((bool)secondDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)secondDataBase.Content); MapTheLocalBase(); }
-            else txtb.Text = "Произведите выбор базы данных!";
-        }
+        //private void Base_Chosen()
+        //{
+        //    txtb.Text = "Выбрана ";
+        //    if ((bool)firstDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)firstDataBase.Content); MapTheRemoteBase(); }
+        //    else if ((bool)secondDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)secondDataBase.Content); MapTheLocalBase(); }
+        //    else txtb.Text = "Произведите выбор базы данных!";
+        //}
         private void MapTheLocalBase()
         {
+            Updated.Text = "";
             using (this.context = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
             {
                 conn = this.context.Database.Connection; //извлекли объект для соединения с БД
@@ -738,9 +739,10 @@ namespace FurnacesInHand
         private void MapTheRemoteBase()
         {
             MessageBox.Show("Копируем таблицу с сервера");
+            Updated.Text = "Обновление базы";
             //find the path to the psql
             //taken from http://csharptest.net/526/how-to-search-the-environments-path-for-an-exe-or-dll/index.html
-            
+
             var path_to_postgres = FindExePath("psql.exe");
             var startInfo = new ProcessStartInfo();
             startInfo.FileName = path_to_postgres;
@@ -751,11 +753,11 @@ namespace FurnacesInHand
             Regex rgx = new Regex("vdp..");
             Regex rgx1 = new Regex(@"\btime..\b");
             string twoDigitsNumberOfFurnace = this.numberOfFurnace.ToString();
-            twoDigitsNumberOfFurnace = this.numberOfFurnace > 9 ? "" : "0" + twoDigitsNumberOfFurnace;
+            twoDigitsNumberOfFurnace = this.numberOfFurnace > 9 ? twoDigitsNumberOfFurnace : "0" + twoDigitsNumberOfFurnace;
             downLoadScript = rgx.Replace(downLoadScript, "vdp" + twoDigitsNumberOfFurnace);
             File.WriteAllText(path_to_download_script, downLoadScript);
             //скачиваем с удалённого сервера
-            startInfo.Arguments = Download_server_credetials + " -f " + $"{ DownLoad_script_file_name}";
+            startInfo.Arguments = Download_server_credetials + " -f " + $"{ DownLoad_script_file_name}"+" -o download.log";
             try
             {
                 // Start the process with the info we specified.
@@ -775,7 +777,7 @@ namespace FurnacesInHand
             string upLoadScript = File.ReadAllText(path_to_upload_script);
             upLoadScript = rgx1.Replace(rgx.Replace(upLoadScript, "vdp" + twoDigitsNumberOfFurnace), "time" + twoDigitsNumberOfFurnace);
             File.WriteAllText(path_to_upload_script, upLoadScript);
-            startInfo.Arguments = Upload_server_credetials+ " -f " + $"{UpLoad_script_file_name}";
+            startInfo.Arguments = Upload_server_credetials+ " -f " + $"{UpLoad_script_file_name}"+" -o upload.log";
             try
             {
                 // Start the process with the info we specified.
@@ -789,8 +791,8 @@ namespace FurnacesInHand
             {
                 MessageBox.Show("Не удалась выгрузка в локальную базу данных");
             }
-
-            secondDataBase.IsChecked = true;
+            Updated.Text = "База обновлена";
+            //secondDataBase.IsChecked = true;
             //using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             //{
             //    var pars = context.vdp03.Where(x => x.tagname == "Arc_U").OrderBy(x => x.id).Take(9).ToArray<vdp03>();
@@ -921,6 +923,11 @@ namespace FurnacesInHand
                 Point clickPoint = e.GetPosition((GraphCanvas)sender);
                 PutTheCursor(clickPoint);
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MapTheRemoteBase();
         }
     }
 

@@ -77,8 +77,6 @@
         <xctk:TimePicker Grid.RowSpan="5" x:Name="begTimeMin" HorizontalAlignment="Left" Margin="95,441,0,0" VerticalAlignment="Top" Height="24" Width="88"/>
         <xctk:TimePicker Grid.RowSpan="5" x:Name="endTimeMin" HorizontalAlignment="Left" Margin="95,491,0,0" VerticalAlignment="Top" Width="88" Height="24"/>
         <ProgressBar HorizontalAlignment="Left" Height="25" Margin="31,149,0,0" VerticalAlignment="Top" Width="120" Grid.Row="3"/>
-        <RadioButton Grid.RowSpan="5" x:Name ="firstDataBase" Content="Удалённая база" HorizontalAlignment="Left" Margin="48,845,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" Height="15" Width="105"/>
-        <RadioButton Grid.RowSpan="5" x:Name="secondDataBase" Content="Локальная база" HorizontalAlignment="Left" Margin="48,865,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" Height="15" Width="105"/>
         <TextBox Grid.RowSpan="5" x:Name ="txtb" HorizontalAlignment="Left" Height="44" Margin="31,906,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Button Grid.RowSpan="5" HorizontalAlignment="Left" Margin="0,539,0,0" VerticalAlignment="Top" Width="183" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Content="Вывод значений"/>
 
@@ -134,6 +132,8 @@
         <TextBox Text="{Binding CanvasX,  StringFormat= dd.MM.yy HH:mm:ss.fff,Converter={StaticResource SolenoidUTimeConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="40" Margin="10,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="3"/>
         <TextBox Text="{Binding CanvasX,StringFormat={}{0:F2},Converter={StaticResource SolenoidIConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="132,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="4"/>
         <TextBox Text="{Binding CanvasX,   StringFormat= dd.MM.yy HH:mm:ss.fff,Converter={StaticResource SolenoidITimeConverter}}" Grid.Column="1" HorizontalAlignment="Left" Height="35" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="4"/>
+        <TextBlock x:Name="Updated" HorizontalAlignment="Left" Margin="40,80,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Height="28"/>
+        <Button Content="Загрузка с сервера" HorizontalAlignment="Left" Margin="31,36,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="46" Click="Button_Click_1"/>
 
     </Grid>
 
