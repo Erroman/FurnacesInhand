@@ -20,8 +20,8 @@ namespace FurnacesInHand
     public partial class MainWindow : Window
     {
         const string DownLoad_script_file_name="copy_script.i";
-        //const string Download_server_credetials = @"-h 10.10.48.24 -U Reader -d fttm -p 5432"; 
-        const string Download_server_credetials = @"-h localhost -U postgres -d fttm -p 5432";
+        const string Download_server_credetials = @"-h 10.10.48.24 -U Reader -d fttm -p 5432"; 
+        //const string Download_server_credetials = @"-h localhost -U postgres -d fttm -p 5432";
         const string UpLoad_script_file_name = "restore_script.i";
         const string Upload_server_credetials =   @"-h localhost -U postgres -d fttm -p 5432";
         FurnacesModelLocal context;
@@ -776,7 +776,20 @@ namespace FurnacesInHand
             upLoadScript = rgx1.Replace(rgx.Replace(upLoadScript, "vdp" + twoDigitsNumberOfFurnace), "time" + twoDigitsNumberOfFurnace);
             File.WriteAllText(path_to_upload_script, upLoadScript);
             startInfo.Arguments = Upload_server_credetials+ " -f " + $"{UpLoad_script_file_name}";
-            Process.Start(startInfo);
+            try
+            {
+                // Start the process with the info we specified.
+                // Call WaitForExit and then the using-statement will close.
+                using (Process exeProcess = Process.Start(startInfo))
+                {
+                    exeProcess.WaitForExit();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Не удалась выгрузка в локальную базу данных");
+            }
+
             secondDataBase.IsChecked = true;
             //using (var context = new FurnacesModelLocalNext()) //создали контекст взаимодействия с базой данных
             //{
