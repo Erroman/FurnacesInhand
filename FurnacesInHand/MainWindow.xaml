@@ -34,7 +34,7 @@
     <Grid HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="216"/>
-            <ColumnDefinition Width="231*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="22"/>
             <ColumnDefinition Width="1423*"/>
         </Grid.ColumnDefinitions>
@@ -138,8 +138,8 @@
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" TextWrapping="Wrap" Text="Напряжение дуги (В)" VerticalAlignment="Top" Height="24" Width="117" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ток дуги (А)" VerticalAlignment="Top" Width="99" Height="24" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,139,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Вакуум (мм рт.ст.)" VerticalAlignment="Top" Width="108" Height="24" />
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Напряжение на соленоиде" VerticalAlignment="Top" Height="34" Width="108" />
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,147,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Ток соленоида" VerticalAlignment="Top" Width="108"  Height="16"/>
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Напряжение на соленоиде (В)" VerticalAlignment="Top" Height="34" Width="108" />
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,147,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Ток соленоида (А)" VerticalAlignment="Top" Width="108"  Height="16"/>
 
     </Grid>
 
