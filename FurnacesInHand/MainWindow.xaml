@@ -140,6 +140,8 @@
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,139,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Вакуум (мм рт.ст.)" VerticalAlignment="Top" Width="108" Height="24" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Напряжение на соленоиде" VerticalAlignment="Top" Height="34" Width="108" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,147,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Ток соленоида" VerticalAlignment="Top" Width="108"  Height="16"/>
+        <TextBox Grid.Column="2" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="2" Height="23" Margin="0,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
 
     </Grid>
 
