@@ -34,8 +34,8 @@
     <Grid HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="216"/>
-            <ColumnDefinition Width="231*"/>
-            <ColumnDefinition Width="22"/>
+            <ColumnDefinition Width="218*"/>
+            <ColumnDefinition Width="35"/>
             <ColumnDefinition Width="1423*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -135,13 +135,13 @@
         <TextBox Text="{Binding CanvasX,   StringFormat= dd.MM.yy HH:mm:ss.fff,Converter={StaticResource SolenoidITimeConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="35" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="4"/>
         <TextBlock x:Name="Updated" HorizontalAlignment="Left" Margin="40,80,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Height="28"/>
         <Button Content="Загрузка с сервера" HorizontalAlignment="Left" Margin="31,36,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="46" Click="Button_Click_1"/>
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" TextWrapping="Wrap" Text="Напряжение дуги (В)" VerticalAlignment="Top" Height="24" Width="117" />
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ток дуги (А)" VerticalAlignment="Top" Width="99" Height="24" />
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,139,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Вакуум (мм рт.ст.)" VerticalAlignment="Top" Width="108" Height="24" />
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Напряжение на соленоиде" VerticalAlignment="Top" Height="34" Width="108" />
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,147,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Ток соленоида" VerticalAlignment="Top" Width="108"  Height="16"/>
-        <TextBox Grid.Column="2" Height="23" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox Grid.Column="2" Height="23" Margin="0,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" TextWrapping="Wrap" Text="Напряжение дуги (В)" VerticalAlignment="Top" Height="24" Width="117" Grid.ColumnSpan="2" />
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="157,135,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ток дуги (А)" VerticalAlignment="Top" Width="73" Height="24" Grid.ColumnSpan="2" />
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,139,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Вакуум (мм рт.ст.)" VerticalAlignment="Top" Width="108" Height="24" Grid.ColumnSpan="2" />
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="108" Grid.ColumnSpan="2" ><Run Text="Напряжение на соленоиде ("/><Run Text="В"/><Run Text=")"/></TextBlock>
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,147,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"  Height="16" Grid.ColumnSpan="2"><Run Text="Ток соленоида"/><Run Text=" (А)"/></TextBlock>
+        <TextBox x:Name="VoltageMax" Grid.Column="2" TextWrapping="Wrap" Margin="0,0,0,175"/>
+        <TextBox x:Name="VoltageMin" Grid.Column="2" Height="23" Margin="0,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
 
     </Grid>
 

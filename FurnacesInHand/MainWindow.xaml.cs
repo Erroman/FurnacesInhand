@@ -50,6 +50,8 @@ namespace FurnacesInHand
             begTimeMin.Text = Properties.Settings.Default.begTimeMin;
             endTime.Text = Properties.Settings.Default.endTime;
             endTimeMin.Text = Properties.Settings.Default.endTimeMin;
+            VoltageMin.Text = Properties.Settings.Default.lowerVoltage;
+            VoltageMax.Text = Properties.Settings.Default.upperVoltage;
 
             SetDigitalStartAndFinishTimes();
 
@@ -74,7 +76,8 @@ namespace FurnacesInHand
             Properties.Settings.Default.endTime = endTime.Text;
             Properties.Settings.Default.begTimeMin = begTimeMin.Text;
             Properties.Settings.Default.endTimeMin = endTimeMin.Text;
-
+            Properties.Settings.Default.lowerVoltage = VoltageMin.Text;
+            Properties.Settings.Default.upperVoltage = VoltageMax.Text;
             Properties.Settings.Default.Save();
         }
         //private void Base_Chosen()
