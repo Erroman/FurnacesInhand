@@ -34,7 +34,7 @@
     <Grid HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="216"/>
-            <ColumnDefinition Width="218*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="35"/>
             <ColumnDefinition Width="1423*"/>
         </Grid.ColumnDefinitions>

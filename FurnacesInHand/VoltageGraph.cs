@@ -17,7 +17,7 @@ namespace FurnacesInHand
         private readonly VisualCollection _children;
         // Provide a required override for the VisualChildrenCount property.
   
-        public VoltageGraph(List<TimeParameterPair> timeParameterPair,Rect rect, DateTime startTime, DateTime finishTime)
+        public VoltageGraph(List<TimeParameterPair> timeParameterPair,Rect rect, DateTime startTime, DateTime finishTime,FurnacesInHandViewModel vm=null)
         {
             this.startTime = startTime;
             this.finishTime = finishTime;
