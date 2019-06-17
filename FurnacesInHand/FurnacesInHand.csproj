@@ -124,6 +124,7 @@
     <Compile Include="GraphCanvas.cs" />
     <Compile Include="inTime.cs" />
     <Compile Include="MouseBehaviour.cs" />
+    <Compile Include="ParametersLimits.cs" />
     <Compile Include="ServiceFunctions.cs" />
     <Compile Include="SolenoidIConverter.cs" />
     <Compile Include="SolenoidIGraph.cs" />

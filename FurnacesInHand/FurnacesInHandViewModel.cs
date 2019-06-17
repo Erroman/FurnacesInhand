@@ -29,7 +29,28 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
-
+        private string _VoltageMax;
+        private string _VoltageMin;
+        public string VoltageMax
+        {
+            get { return _VoltageMax; }
+            set
+            {
+                if (value.Equals(_VoltageMax)) return;
+                _VoltageMax = value;
+                OnPropertyChanged();
+            }
+        }
+        public string VoltageMin
+        {
+            get { return _VoltageMin; }
+            set
+            {
+                if (value.Equals(_VoltageMin)) return;
+                _VoltageMin = value;
+                OnPropertyChanged();
+            }
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

@@ -140,9 +140,8 @@
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,139,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Вакуум (мм рт.ст.)" VerticalAlignment="Top" Width="108" Height="24" Grid.ColumnSpan="2" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,136,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="108" Grid.ColumnSpan="2" ><Run Text="Напряжение на соленоиде ("/><Run Text="В"/><Run Text=")"/></TextBlock>
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="113,147,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"  Height="16" Grid.ColumnSpan="2"><Run Text="Ток соленоида"/><Run Text=" (А)"/></TextBlock>
-        <TextBox x:Name="VoltageMax" Grid.Column="2" TextWrapping="Wrap" Margin="0,0,0,175"/>
-        <TextBox x:Name="VoltageMin" Grid.Column="2" Height="23" Margin="0,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
-
+        <TextBox x:Name="VoltageMax" Text="{Binding VoltageMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Margin="0,0,0,175"/>
+        <TextBox x:Name="VoltageMin" Text="{Binding VoltageMin, Mode=OneWayToSource}" Grid.Column="2" Height="23" Margin="0,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
     </Grid>
 
 </Window>
