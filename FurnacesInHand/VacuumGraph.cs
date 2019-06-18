@@ -15,12 +15,14 @@ namespace FurnacesInHand
         private readonly DateTime startTime;
         private readonly DateTime finishTime;
         private readonly VisualCollection _children;
+        private readonly FurnacesInHandViewModel vm;
         // Provide a required override for the VisualChildrenCount property.
 
-        public VacuumGraph(List<TimeParameterPair> timeParameterPair, Rect rect, DateTime startTime, DateTime finishTime)
+        public VacuumGraph(List<TimeParameterPair> timeParameterPair, Rect rect, DateTime startTime, DateTime finishTime, FurnacesInHandViewModel vm = null)
         {
             this.startTime = startTime;
             this.finishTime = finishTime;
+            this.vm = vm;
             _children = new VisualCollection(this)
             {
                 CreateDrawingVisualPlot(timeParameterPair,rect)
@@ -33,8 +35,8 @@ namespace FurnacesInHand
             Pen pen = new Pen(Brushes.Black, 1.0);
             double LowerLimitForTimeOnXAxis = 0; //нижняя гравница временного интервала в миллисекундах
             double UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(this.finishTime); //верхняя гравница временного интервала в миллисекундах
-            double LowerLimitForVacuumOnYAxis = 0;
-            double UpperLimitForVacuumOnYAxis = 760;
+            double LowerLimitForVacuumOnYAxis = vm == null ? 0 : Double.Parse(vm.VacuumMin);
+            double UpperLimitForVacuumOnYAxis = vm == null ? 50 : Double.Parse(vm.VacuumMax);
             double xmin = rect.X;
             double xmax = rect.X + rect.Width;
             double ymin = rect.Y;

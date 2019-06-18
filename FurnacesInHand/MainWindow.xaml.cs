@@ -54,7 +54,8 @@ namespace FurnacesInHand
             VoltageMax.Text = Properties.Settings.Default.upperVoltage;
             CurrentMin.Text = Properties.Settings.Default.lowerCurrent;
             CurrentMax.Text = Properties.Settings.Default.upperCurrent;
-
+            VacuumMin.Text = Properties.Settings.Default.lowerVacuum;
+            VacuumMax.Text = Properties.Settings.Default.upperVacuum;
 
             SetDigitalStartAndFinishTimes();
 
@@ -83,6 +84,8 @@ namespace FurnacesInHand
             Properties.Settings.Default.upperVoltage = VoltageMax.Text;
             Properties.Settings.Default.lowerCurrent = CurrentMin.Text;
             Properties.Settings.Default.upperCurrent = CurrentMax.Text;
+            Properties.Settings.Default.lowerVacuum = VacuumMin.Text;
+            Properties.Settings.Default.upperVacuum = VacuumMax.Text;
 
             Properties.Settings.Default.Save();
         }
