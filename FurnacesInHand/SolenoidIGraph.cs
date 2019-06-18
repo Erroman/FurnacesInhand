@@ -15,12 +15,14 @@ namespace FurnacesInHand
         private readonly DateTime startTime;
         private readonly DateTime finishTime;
         private readonly VisualCollection _children;
+        private readonly FurnacesInHandViewModel vm;
         // Provide a required override for the VisualChildrenCount property.
 
-        public SolenoidIGraph(List<TimeParameterPair> timeParameterPair, Rect rect, DateTime startTime, DateTime finishTime)
+        public SolenoidIGraph(List<TimeParameterPair> timeParameterPair, Rect rect, DateTime startTime, DateTime finishTime, FurnacesInHandViewModel vm = null)
         {
             this.startTime = startTime;
             this.finishTime = finishTime;
+            this.vm = vm;
             _children = new VisualCollection(this)
             {
                 CreateDrawingVisualPlot(timeParameterPair,rect)
@@ -33,8 +35,8 @@ namespace FurnacesInHand
             Pen pen = new Pen(Brushes.Black, 1.0);
             double LowerLimitForTimeOnXAxis = 0; //нижняя гравница временного интервала в миллисекундах
             double UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(this.finishTime); //верхняя гравница временного интервала в миллисекундах
-            double LowerLimitForsolenoidIOnYAxis = -10;
-            double UpperLimitForsolenoidIOnYAxis = 10;
+            double LowerLimitForsolenoidIOnYAxis = vm == null ? -10 : Double.Parse(vm.SolenoidIMin);
+            double UpperLimitForsolenoidIOnYAxis = vm == null ? 10 : Double.Parse(vm.SolenoidIMax);
             double xmin = rect.X;
             double xmax = rect.X + rect.Width;
             double ymin = rect.Y;

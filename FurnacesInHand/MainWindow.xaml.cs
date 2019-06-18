@@ -56,6 +56,11 @@ namespace FurnacesInHand
             CurrentMax.Text = Properties.Settings.Default.upperCurrent;
             VacuumMin.Text = Properties.Settings.Default.lowerVacuum;
             VacuumMax.Text = Properties.Settings.Default.upperVacuum;
+            SolenoidUMin.Text = Properties.Settings.Default.lowerUSolenoid;
+            SolenoidUMax.Text = Properties.Settings.Default.upperUSolenoid;
+            SolenoidIMin.Text = Properties.Settings.Default.lowerISolenoid;
+            SolenoidIMax.Text = Properties.Settings.Default.upperISolenoid;
+
 
             SetDigitalStartAndFinishTimes();
 
@@ -86,6 +91,10 @@ namespace FurnacesInHand
             Properties.Settings.Default.upperCurrent = CurrentMax.Text;
             Properties.Settings.Default.lowerVacuum = VacuumMin.Text;
             Properties.Settings.Default.upperVacuum = VacuumMax.Text;
+            Properties.Settings.Default.lowerUSolenoid = SolenoidUMin.Text;
+            Properties.Settings.Default.upperUSolenoid = SolenoidUMax.Text;
+            Properties.Settings.Default.lowerISolenoid = SolenoidIMin.Text;
+            Properties.Settings.Default.upperISolenoid = SolenoidIMax.Text;
 
             Properties.Settings.Default.Save();
         }

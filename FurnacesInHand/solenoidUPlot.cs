@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace FurnacesInHand
@@ -17,7 +18,11 @@ namespace FurnacesInHand
             {
                 SolenoidUPlot.Children?.Clear();
                 Rect rectangular = new Rect(0, 0, SolenoidUPlot.ActualWidth, SolenoidUPlot.ActualHeight);
-                _ = SolenoidUPlot.Children.Add(new SolenoidUGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime));
+                FurnacesInHandViewModel vm = (FurnacesInHandViewModel)this.DataContext;
+                //Установить верхние и нижние границы значений, отображаеиых на графике
+                SolenoidUMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                SolenoidUMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                _ = SolenoidUPlot.Children.Add(new SolenoidUGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime,vm:vm));
                 return null;
             }
              ), null);

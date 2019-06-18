@@ -181,7 +181,7 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-50")]
         public string lowerUSolenoid {
             get {
                 return ((string)(this["lowerUSolenoid"]));
@@ -193,7 +193,7 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public string upperUSolenoid {
             get {
                 return ((string)(this["upperUSolenoid"]));
@@ -205,7 +205,7 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-10")]
         public string lowerISolenoid {
             get {
                 return ((string)(this["lowerISolenoid"]));
@@ -217,7 +217,7 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public string upperISolenoid {
             get {
                 return ((string)(this["upperISolenoid"]));

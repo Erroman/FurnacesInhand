@@ -42,16 +42,16 @@
       <Value Profile="(Default)">760</Value>
     </Setting>
     <Setting Name="lowerUSolenoid" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">-50</Value>
     </Setting>
     <Setting Name="upperUSolenoid" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="lowerISolenoid" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">-10</Value>
     </Setting>
     <Setting Name="upperISolenoid" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">10</Value>
     </Setting>
   </Settings>
 </SettingsFile>
