@@ -16,7 +16,6 @@
                 <TextBlock Text="{Binding val}"/>
             </StackPanel>
         </DataTemplate>
-        <local:FurnacesInHandViewModel x:Key="VoltageViewModel"/>
         <local:VoltageConverter x:Key="VoltageConverter" />
         <local:VoltageTimeConverter x:Key="VoltageTimeConverter" />
         <local:CurrentConverter x:Key="CurrentConverter"/>

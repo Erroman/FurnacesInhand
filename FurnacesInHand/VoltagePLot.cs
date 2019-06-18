@@ -17,7 +17,8 @@ namespace FurnacesInHand
              {
                  VoltagePlot.Children?.Clear();
                  Rect rectangular = new Rect(0, 0, VoltagePlot.ActualWidth, VoltagePlot.ActualHeight);
-                 _ = VoltagePlot.Children.Add(new VoltageGraph(timeParameterPairs, rect: rectangular,startTime:this.startTime,finishTime:this.finishTime));
+                 FurnacesInHandViewModel vm = (FurnacesInHandViewModel)this.DataContext;
+                 _ = VoltagePlot.Children.Add(new VoltageGraph(timeParameterPairs, rect: rectangular,startTime:this.startTime,finishTime:this.finishTime,vm:vm));
                  return null;
              }
              ), null);
