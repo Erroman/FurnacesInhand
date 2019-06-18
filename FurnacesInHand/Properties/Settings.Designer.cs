@@ -130,5 +130,101 @@ namespace FurnacesInHand.Properties {
                 this["upperVoltage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string lowerCurrent {
+            get {
+                return ((string)(this["lowerCurrent"]));
+            }
+            set {
+                this["lowerCurrent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public string upperCurrent {
+            get {
+                return ((string)(this["upperCurrent"]));
+            }
+            set {
+                this["upperCurrent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string lowerVacuum {
+            get {
+                return ((string)(this["lowerVacuum"]));
+            }
+            set {
+                this["lowerVacuum"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("760")]
+        public string upperVacuum {
+            get {
+                return ((string)(this["upperVacuum"]));
+            }
+            set {
+                this["upperVacuum"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lowerUSolenoid {
+            get {
+                return ((string)(this["lowerUSolenoid"]));
+            }
+            set {
+                this["lowerUSolenoid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string upperUSolenoid {
+            get {
+                return ((string)(this["upperUSolenoid"]));
+            }
+            set {
+                this["upperUSolenoid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lowerISolenoid {
+            get {
+                return ((string)(this["lowerISolenoid"]));
+            }
+            set {
+                this["lowerISolenoid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string upperISolenoid {
+            get {
+                return ((string)(this["upperISolenoid"]));
+            }
+            set {
+                this["upperISolenoid"] = value;
+            }
+        }
     }
 }
