@@ -95,12 +95,6 @@
             <i:Interaction.Behaviors>
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
-            <i:Interaction.Triggers>
-                <!-- sample to react to the mouse button action https://stackoverflow.com/questions/24260946/handling-mouse-events-in-mvvm-in-wpf -->
-                <i:EventTrigger EventName="MouseUp">
-                    <i:InvokeCommandAction Command="{Binding MyCommand}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
         </local:GraphCanvas>
         <local:GraphCanvas x:Name="CurrentPlot"  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite" MouseLeftButtonDown="CurrentPlot_MouseLeftButtonDown" MouseMove="CurrentPlot_MouseMove">
             <i:Interaction.Behaviors>
