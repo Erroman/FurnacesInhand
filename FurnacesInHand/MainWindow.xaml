@@ -126,7 +126,7 @@
         <TextBox Text="{Binding CanvasX,  StringFormat= dd.MM.yy HH:mm:ss.fff,Converter={StaticResource SolenoidUTimeConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="40" Margin="10,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="3"/>
         <TextBox Text="{Binding CanvasX,StringFormat={}{0:F2},Converter={StaticResource SolenoidIConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="24" Margin="132,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="4"/>
         <TextBox Text="{Binding CanvasX,   StringFormat= dd.MM.yy HH:mm:ss.fff,Converter={StaticResource SolenoidITimeConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="35" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="4"/>
-        <TextBlock x:Name="Updated" HorizontalAlignment="Left" Margin="40,80,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Height="28"/>
+        <TextBlock x:Name="Updated" HorizontalAlignment="Left" Margin="40,108,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Height="28"/>
         <Button Content="Загрузка с сервера" HorizontalAlignment="Left" Margin="31,36,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="46" Click="Button_Click_1"/>
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="130,136,0,0" TextWrapping="Wrap" Text="Напряжение дуги (В)" VerticalAlignment="Top" Height="24" Width="117" Grid.ColumnSpan="2" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="174,135,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ток дуги (КА)" VerticalAlignment="Top" Width="73" Height="24" Grid.ColumnSpan="2" />
@@ -153,6 +153,9 @@
                 <TextBlock Grid.Row="1">по печи</TextBlock>
             </Grid>
         </Button>
+        <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
+        <DatePicker x:Name="endTime_Copy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Height="24" Grid.Row="3" Margin="0,37,0,0"/>
+        <xctk:TimePicker x:Name="endTimeMin_Copy" HorizontalAlignment="Left" Margin="95,37,0,0" VerticalAlignment="Top" Width="88" Height="24" Grid.Row="3"/>
     </Grid>
 
 </Window>
