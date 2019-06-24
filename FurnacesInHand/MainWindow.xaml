@@ -77,7 +77,7 @@
         <xctk:TimePicker x:Name="begTimeMin" HorizontalAlignment="Left" Margin="95,45,0,0" VerticalAlignment="Top" Height="24" Width="88" Grid.Row="2"/>
         <xctk:TimePicker x:Name="endTimeMin" HorizontalAlignment="Left" Margin="95,95,0,0" VerticalAlignment="Top" Width="88" Height="24" Grid.Row="2"/>
         <ProgressBar HorizontalAlignment="Left" Height="25" Margin="31,149,0,0" VerticalAlignment="Top" Width="120" Grid.Row="3"/>
-        <TextBox x:Name ="txtb" HorizontalAlignment="Left" Height="44" Margin="31,114,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Row="4"/>
+        <TextBox x:Name ="txtb" HorizontalAlignment="Left" Height="33" Margin="31,92,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="129" Grid.Row="4"/>
         <Button HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Width="183" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Content="Вывод значений" Grid.Row="2"/>
 
         <ListBox Grid.Row="0" x:Name="voltageValues" HorizontalAlignment="Left" Margin="0,10,0,66" Width="212" Grid.Column="1"  ItemTemplate="{StaticResource ParametersList}" />
@@ -143,6 +143,16 @@
         <TextBox x:Name="SolenoidUMin" Text="{Binding SolenoidUMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="3" Margin="0,175,0,0"/>
         <TextBox x:Name="SolenoidIMax" Text="{Binding SolenoidIMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
         <TextBox x:Name="SolenoidIMin" Text="{Binding SolenoidIMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4" Margin="0,175,0,0"/>
+        <Button  HorizontalAlignment="Left" Margin="31,135,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="46" Click="Button_Click_1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock>Восстановить данные</TextBlock>
+                <TextBlock Grid.Row="1">по печи</TextBlock>
+            </Grid>
+        </Button>
     </Grid>
 
 </Window>
