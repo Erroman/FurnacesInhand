@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:FurnacesInHand"
+        xmlns:mover="clr-namespace:TimeMover;assembly=TimeMover"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Name="mainWindow" x:Class="FurnacesInHand.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="1021" Width="1900" Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized">
@@ -156,6 +157,7 @@
         <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
         <DatePicker x:Name="endTime_Copy" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Height="24" Grid.Row="3" Margin="0,37,0,0"/>
         <xctk:TimePicker x:Name="endTimeMin_Copy" HorizontalAlignment="Left" Margin="95,37,0,0" VerticalAlignment="Top" Width="88" Height="24" Grid.Row="3"/>
+        <mover:UserControl1 HorizontalAlignment="Left" Margin="0,60,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
     </Grid>
 
 </Window>

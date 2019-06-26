@@ -215,5 +215,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TimeMover\TimeMover.csproj">
+      <Project>{341b0b58-64bb-4ecf-8008-932b798c64a0}</Project>
+      <Name>TimeMover</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
