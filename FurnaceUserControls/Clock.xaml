@@ -1,7 +1,19 @@
-﻿<UserControl x:Class="TimeMover.UserControl1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:TimeMover">
+﻿<UserControl x:Class="FurnaceUserControls.Clock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FurnaceUserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
     <x:Code>
         <![CDATA[
-
+public ClockWatch clockWatch;
+public Clock()
+{
+	InitializeComponent();
+	clockWatch = (ClockWatch)Resources["newClock"];
+}
 
 private void clockButton_Click(object O,RoutedEventArgs e)
 {
@@ -26,10 +38,10 @@ private void clockButton_Click(object O,RoutedEventArgs e)
 		case "secondsDown":
 			DownSecond();
 			break;
-		case "MillisecondsUp":
+		case "ticksUp":
 			UpTick();
 			break;
-		case "MillisecondsDown":
+		case "ticksDown":
 			DownTick();
 			break;
 	}
@@ -108,9 +120,9 @@ private bool UpHour()
 }
 private bool UpTick()
 {
-	if(clockWatch.Milliseconds<1000)
+	if(clockWatch.Ticks<(24*60*60-1))
 	{
-		clockWatch.Milliseconds++;
+		clockWatch.Ticks++;
 		return 	true;
 	}
 	else
@@ -118,9 +130,9 @@ private bool UpTick()
 }
 private bool DownTick()
 {
-	if(clockWatch.Milliseconds>0)
+	if(clockWatch.Ticks>0)
 	{
-		clockWatch.Milliseconds--;
+		clockWatch.Ticks--;
 		return 	true;
 	}
 	else
@@ -136,13 +148,13 @@ private bool DownTick()
     </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>         <!-- Часы -->
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>         <!-- Минуты -->
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>         <!-- Секунды -->
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.5*"/>      <!-- Миллисекунды -->
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -164,10 +176,10 @@ private bool DownTick()
             <Button Name="secondsUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
             <Button Name="secondsDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
-        <TextBox Name="Milliseconds" Grid.Column="6" Text ="{Binding Path=Milliseconds,StringFormat='{}{0:0000}',UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Name="Ticks" Grid.Column="6" Text ="{Binding Path=Ticks,StringFormat='{}{0:00000}',UpdateSourceTrigger=PropertyChanged}" />
         <StackPanel Grid.Column="7">
-            <Button Name="MillisecondsUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
-            <Button Name="MillisecondsDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
+            <Button Name="ticksUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
+            <Button Name="ticksDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
 
     </Grid>
