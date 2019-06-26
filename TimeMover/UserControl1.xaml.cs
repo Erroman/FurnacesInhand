@@ -1,12 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-namespace System.Runtime.CompilerServices { sealed class CallerMemberNameAttribute : Attribute { } }
+
 namespace TimeMover
 {
     public class AlarmEventArgs : EventArgs
     {
-        public int TicksToAlarm
+        public int MillisecondsToAlarm
         {
             get;
             set;
@@ -22,24 +22,24 @@ namespace TimeMover
         private int _hours;
         private int _minutes;
         private int _seconds;
-        private int _ticks;
+        private int _milliseconds;
         private bool externalCorrection = true;
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             //Tick calculation
-            if (propertyName == "Ticks" & externalCorrection)
+            if (propertyName == "Milliseconds" & externalCorrection)
             {
                 externalCorrection = false;
-                Hours = TimeSpan.FromSeconds(_ticks).Hours;
+                Hours = TimeSpan.FromMilliseconds(_milliseconds).Hours;
                 externalCorrection = false;
-                Minutes = TimeSpan.FromSeconds(_ticks).Minutes;
+                Minutes = TimeSpan.FromMilliseconds(_milliseconds).Minutes;
                 externalCorrection = false;
-                Seconds = TimeSpan.FromSeconds(_ticks).Seconds;
+                Seconds = TimeSpan.FromMilliseconds(_milliseconds).Seconds;
             }
             else
             {
                 if (externalCorrection)
-                    Ticks = (int)(new TimeSpan(Hours, Minutes, Seconds)).TotalSeconds;
+                    Milliseconds = (int)(new TimeSpan(Hours, Minutes, Seconds)).TotalSeconds;
                 externalCorrection = true;
             }
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -90,22 +90,22 @@ namespace TimeMover
                 }
             }
         }
-        public int Ticks
+        public int Milliseconds
         {
             get
             {
-                //count ticks!
-                return _ticks;
+                //count Milliseconds!
+                return _milliseconds;
             }
             set
             {
-                if (value < 24 * 60 * 60 & value >= 0)
+                if (value < 1000 & value >= 0)
                 {
-                    _ticks = value;
+                    _milliseconds = value;
                     OnPropertyChanged();
                     if (Alarm_On)
                         if (AlarmProcedure != null)
-                            AlarmProcedure(new AlarmEventArgs() { TicksToAlarm = _ticks });
+                            AlarmProcedure(new AlarmEventArgs() { MillisecondsToAlarm = _milliseconds });
 
                 }
             }

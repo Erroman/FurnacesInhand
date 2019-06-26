@@ -31,10 +31,10 @@ private void clockButton_Click(object O,RoutedEventArgs e)
 		case "secondsDown":
 			DownSecond();
 			break;
-		case "ticksUp":
+		case "MillisecondsUp":
 			UpTick();
 			break;
-		case "ticksDown":
+		case "MillisecondsDown":
 			DownTick();
 			break;
 	}
@@ -113,9 +113,9 @@ private bool UpHour()
 }
 private bool UpTick()
 {
-	if(clockWatch.Ticks<(24*60*60-1))
+	if(clockWatch.Milliseconds<1000)
 	{
-		clockWatch.Ticks++;
+		clockWatch.Milliseconds++;
 		return 	true;
 	}
 	else
@@ -123,9 +123,9 @@ private bool UpTick()
 }
 private bool DownTick()
 {
-	if(clockWatch.Ticks>0)
+	if(clockWatch.Milliseconds>0)
 	{
-		clockWatch.Ticks--;
+		clockWatch.Milliseconds--;
 		return 	true;
 	}
 	else
@@ -141,13 +141,13 @@ private bool DownTick()
     </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>         <!-- Часы -->
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>         <!-- Минуты -->
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>         <!-- Секунды -->
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>      <!-- Миллисекунды -->
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -169,10 +169,10 @@ private bool DownTick()
             <Button Name="secondsUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
             <Button Name="secondsDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
-        <TextBox Name="Ticks" Grid.Column="6" Text ="{Binding Path=Ticks,StringFormat='{}{0:00000}',UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Name="Milliseconds" Grid.Column="6" Text ="{Binding Path=Milliseconds,StringFormat='{}{0:000}',UpdateSourceTrigger=PropertyChanged}" />
         <StackPanel Grid.Column="7">
-            <Button Name="ticksUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
-            <Button Name="ticksDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
+            <Button Name="MillisecondsUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
+            <Button Name="MillisecondsDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
 
     </Grid>
