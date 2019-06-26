@@ -169,7 +169,7 @@ private bool DownTick()
             <Button Name="secondsUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
             <Button Name="secondsDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
-        <TextBox Name="Milliseconds" Grid.Column="6" Text ="{Binding Path=Milliseconds,StringFormat='{}{0:000}',UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Name="Milliseconds" Grid.Column="6" Text ="{Binding Path=Milliseconds,StringFormat='{}{0:0000}',UpdateSourceTrigger=PropertyChanged}" />
         <StackPanel Grid.Column="7">
             <Button Name="MillisecondsUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
             <Button Name="MillisecondsDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
