@@ -14,6 +14,7 @@ namespace TimeMover
         public event Action<AlarmEventArgs> AlarmProcedure;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        private DateTime _dt; 
         private int _hours;
         private int _minutes;
         private int _seconds;
@@ -22,7 +23,7 @@ namespace TimeMover
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             //Tick calculation
-            if (propertyName == "Milliseconds" & externalCorrection)
+            if (propertyName == "Dt" & externalCorrection)
             {
                 externalCorrection = false;
                 Hours = TimeSpan.FromMilliseconds(_milliseconds).Hours;
@@ -39,6 +40,11 @@ namespace TimeMover
             }
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+        }
+        public DateTime Dt
+        {
+            get;
+            set;
         }
         public int Hours
         {
