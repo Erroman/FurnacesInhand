@@ -14,7 +14,8 @@ namespace TimeMover
         public event Action<AlarmEventArgs> AlarmProcedure;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private DateTime _dt; 
+        private DateTime _dt;
+        private DateTime _date;
         private int _hours;
         private int _minutes;
         private int _seconds;
@@ -22,26 +23,31 @@ namespace TimeMover
         private bool externalCorrection = true;
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
-            //Tick calculation
-            if (propertyName == "Dt" & externalCorrection)
-            {
-                externalCorrection = false;
-                Hours = TimeSpan.FromMilliseconds(_milliseconds).Hours;
-                externalCorrection = false;
-                Minutes = TimeSpan.FromMilliseconds(_milliseconds).Minutes;
-                externalCorrection = false;
-                Seconds = TimeSpan.FromMilliseconds(_milliseconds).Seconds;
-            }
-            else
-            {
-                if (externalCorrection)
-                    Milliseconds = (int)(new TimeSpan(Hours, Minutes, Seconds)).TotalSeconds;
-                externalCorrection = true;
-            }
+            //Units of time calculation
+            //if (propertyName == "Dt" & externalCorrection)
+            //{
+            //    externalCorrection = false;
+            //    Hours = _dt.Hour;
+            //    externalCorrection = false;
+            //    Minutes = Dt.Minute;                    
+            //    externalCorrection = false;
+            //    Seconds = Dt.Second;
+            //}
+            //else
+            //{
+            //    if (externalCorrection)
+            //        Dt = new DateTime(0,1,Hours, Minutes, Seconds,Milliseconds);
+            //    externalCorrection = true;
+            //}
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
         public DateTime Dt
+        {
+            get;
+            set;
+        }
+        public DateTime Date
         {
             get;
             set;
@@ -95,20 +101,16 @@ namespace TimeMover
         {
             get
             {
-                //count Milliseconds!
                 return _milliseconds;
             }
             set
             {
-                if (value < 1000 & value >= 0)
-                {
-                    _milliseconds = value;
-                    OnPropertyChanged();
-                    if (Alarm_On)
+
+                _milliseconds = value;
+                OnPropertyChanged();
+                if (Alarm_On)
                         if (AlarmProcedure != null)
                             AlarmProcedure(new AlarmEventArgs() { MillisecondsToAlarm = _milliseconds });
-
-                }
             }
         }
 

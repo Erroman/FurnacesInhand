@@ -47,47 +47,67 @@ partial class UserControl1 : UserControl
                     DownSecond();
                     break;
                 case "MillisecondsUp":
-                    UpTick();
+                    UpMillisecond();
                     break;
                 case "MillisecondsDown":
-                    DownTick();
+                    DownMillisecond();
                     break;
             }
         }
-        private void DownSecond()
+        private void UpMillisecond()
         {
-            if (clockWatch.Seconds > 0)
-                clockWatch.Seconds--;
+            if (clockWatch.Milliseconds < 999)
+            {
+                clockWatch.Milliseconds++;
+            }
             else
-                if (DownMinute())
-                clockWatch.Seconds = 59;
+                if (UpSecond())
+                clockWatch.Milliseconds = 0;
         }
-        private void UpSecond()
+        private void DownMillisecond()
+        {
+            if (clockWatch.Milliseconds > 0)
+            {
+                clockWatch.Milliseconds--;
+            }
+            else
+                if(DownSecond())
+                  clockWatch.Milliseconds=999;
+        }
+        private bool UpSecond()
         {
             if (clockWatch.Seconds < 59)
+            {
                 clockWatch.Seconds++;
+                return true;
+            }
             else
                 if (UpMinute())
-                clockWatch.Seconds = 0;
+                {
+                   clockWatch.Seconds = 0;
+                   return true;
+                }
+               else
+                   return false;
+                
         }
-
-        private bool DownMinute()
+        private bool DownSecond()
         {
-            if (clockWatch.Minutes > 0)
+            if (clockWatch.Seconds > 0)
             {
-                clockWatch.Minutes--;
+                clockWatch.Seconds--;
                 return true;
             }
             else
-
-                if (DownHour())
-            {
-                clockWatch.Minutes = 59;
-                return true;
-            }
-            else
-                return false;
+                if(DownMinute())
+                {
+                  clockWatch.Seconds = 59;
+                  return true;
+                }
+                else
+                   return false;
         }
+
         private bool UpMinute()
         {
             if (clockWatch.Minutes < 59)
@@ -96,16 +116,41 @@ partial class UserControl1 : UserControl
                 return true;
             }
             else
-
-                if (UpHour())
+                if(UpHour())
+                {
+                  clockWatch.Minutes = 0;
+                  return true;
+                }
+                else
+                  return false;
+        }
+        private bool DownMinute()
+        {
+            if (clockWatch.Minutes > 0)
             {
-                clockWatch.Minutes = 0;
+                clockWatch.Minutes--;
+                return true;
+            }
+            else
+                if(DownHour())
+                {
+                  clockWatch.Minutes = 59;
+                  return true;
+                }
+                else
+                  return false;
+        }
+
+       private bool UpHour()
+        {
+            if (clockWatch.Hours < 23)
+            {
+                clockWatch.Hours++;
                 return true;
             }
             else
                 return false;
-        }
-
+        }  
         private bool DownHour()
         {
             if (clockWatch.Hours > 0)
@@ -116,36 +161,7 @@ partial class UserControl1 : UserControl
             else
                 return false;
         }
-        private bool UpHour()
-        {
-            if (clockWatch.Hours < 23)
-            {
-                clockWatch.Hours++;
-                return true;
-            }
-            else
-                return false;
-        }
-        private bool UpTick()
-        {
-            if (clockWatch.Milliseconds < 1000)
-            {
-                clockWatch.Milliseconds++;
-                return true;
-            }
-            else
-                return false;
-        }
-        private bool DownTick()
-        {
-            if (clockWatch.Milliseconds > 0)
-            {
-                clockWatch.Milliseconds--;
-                return true;
-            }
-            else
-                return false;
-        }
+ 
     }
 
 }
