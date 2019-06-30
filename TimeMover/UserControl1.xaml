@@ -13,45 +13,46 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="23*"/>
             <!-- Часы -->
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="23*"/>
             <!-- Минуты -->
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="12*"/>
             <!-- Секунды -->
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="29*"/>
             <!-- Миллисекунды -->
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox Name = "hourBox" Grid.Column="0" Text ="{Binding Path=Hours,StringFormat='{}{0:00}'}">
+        <TextBox Name = "hourBox" Grid.Column="0" Text ="{Binding Path=Hours,StringFormat='{}{0:00}'}" Grid.ColumnSpan="2" Margin="0,0,18.911,0">
         </TextBox>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="1.089,0,21.823,0">
             <Button Name="hoursUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
             <Button Name="hoursDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
-        <TextBox Grid.Column="2" Text ="{Binding Path=Minutes,StringFormat='{}{0:00}'}"/>
-        <StackPanel Grid.Column="3">
+        <TextBox Grid.Column="2" Text ="{Binding Path=Minutes,StringFormat='{}{0:00}'}" Grid.ColumnSpan="2" Margin="1.089,0,18.823,0"/>
+        <StackPanel Grid.Column="3" Grid.ColumnSpan="2" Margin="1.177,0,9.735,0">
             <Button Name="minutesUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
             <Button Name="minutesDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
-        <TextBox Grid.Column="4" Text ="{Binding Path=Seconds,StringFormat='{}{0:00}'}"/>
-        <StackPanel Grid.Column="5">
+        <TextBox Grid.Column="4" Text ="{Binding Path=Seconds,StringFormat='{}{0:00}'}" Grid.ColumnSpan="3" Margin="1.177,0,18.733,0"/>
+        <StackPanel Grid.Column="6" Grid.ColumnSpan="2" Margin="1.266,0,28.115,0">
             <Button Name="secondsUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
             <Button Name="secondsDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
-        <TextBox Name="Milliseconds" Grid.Column="6" Text ="{Binding Path=Milliseconds,StringFormat='{}{0:000}',UpdateSourceTrigger=PropertyChanged}" />
-        <StackPanel Grid.Column="7">
+        <TextBox Name="Milliseconds" Grid.Column="7" Text ="{Binding Path=Milliseconds,StringFormat='{}{0:000}',UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="0.267,0,19.086,0" />
+        <StackPanel Grid.Column="7" Grid.ColumnSpan="2" Margin="29.267,0,0.086,0">
             <Button Name="MillisecondsUp"   FontFamily="Marlett" Content="5" Click="clockButton_Click"/>
             <Button Name="MillisecondsDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
-        <DatePicker Name="datePicker" SelectedDate="{Binding Path=Date}" Grid.Row="1" Grid.ColumnSpan="8" HorizontalAlignment="Left" Margin="0,-57,0,0" VerticalAlignment="Top" Width="178"/>
+        <DatePicker Name="datePicker" Grid.Row="1" SelectedDate="{Binding Path=Date}" Grid.ColumnSpan="9" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

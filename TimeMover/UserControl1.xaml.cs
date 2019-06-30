@@ -149,6 +149,12 @@ partial class UserControl1 : UserControl
                 return true;
             }
             else
+                if (UpDay())
+            {
+                clockWatch.Hours = 0;
+                return true;
+            }
+            else
                 return false;
         }  
         private bool DownHour()
@@ -159,9 +165,36 @@ partial class UserControl1 : UserControl
                 return true;
             }
             else
-                return false;
+                if(DownDay())
+                {
+                  clockWatch.Hours = 23;
+                  return true;
+                }
+                else
+                  return false;
+                 
+               
         }
- 
+
+        private bool UpDay()
+        {
+            clockWatch.Date = clockWatch.Date.AddDays(1);
+            return true;
+        }
+        private bool DownDay()
+        {
+            try
+            {
+                clockWatch.Date = clockWatch.Date.AddDays(-1);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+               
+        }
+
     }
 
 }

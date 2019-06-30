@@ -49,8 +49,15 @@ namespace TimeMover
         }
         public DateTime Date
         {
-            get;
-            set;
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                _date = value;
+                OnPropertyChanged();
+            }
         }
         public int Hours
         {
@@ -60,7 +67,7 @@ namespace TimeMover
             }
             set
             {
-                if (value < 24 & value >= 0)
+                if (_hours!=value & value < 24 & value >= 0)
                 {
                     _hours = value;
                     OnPropertyChanged();
@@ -75,7 +82,7 @@ namespace TimeMover
             }
             set
             {
-                if (value < 60 & value >= 0)
+                if (_minutes!=value & value < 60 & value >= 0)
                 {
                     _minutes = value;
                     OnPropertyChanged();
@@ -90,7 +97,7 @@ namespace TimeMover
             }
             set
             {
-                if (value < 60 & value >= 0)
+                if (_seconds!=value & value < 60 & value >= 0)
                 {
                     _seconds = value;
                     OnPropertyChanged();
@@ -105,12 +112,15 @@ namespace TimeMover
             }
             set
             {
-
-                _milliseconds = value;
-                OnPropertyChanged();
-                if (Alarm_On)
+                if(_milliseconds!=value & _milliseconds<1000 & _milliseconds>=0)
+                {
+                    _milliseconds = value;
+                    OnPropertyChanged();
+                    if (Alarm_On)
                         if (AlarmProcedure != null)
                             AlarmProcedure(new AlarmEventArgs() { MillisecondsToAlarm = _milliseconds });
+                }
+
             }
         }
 
