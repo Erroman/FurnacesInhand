@@ -23,21 +23,23 @@ namespace TimeMover
         private bool externalCorrection = true;
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
-            //if (propertyName == "Dt" & externalCorrection)
-            //{
-            //    externalCorrection = false;
-            //    Hours = _dt.Hour;
-            //    externalCorrection = false;
-            //    Minutes = Dt.Minute;                    
-            //    externalCorrection = false;
-            //    Seconds = Dt.Second;
-            //}
-            //else
-            //{
-            //    if (externalCorrection)
-            //        Dt = new DateTime(0,1,Hours, Minutes, Seconds,Milliseconds);
-            //    externalCorrection = true;
-            //}
+            if(propertyName == "Dt" & externalCorrection)
+            {
+                externalCorrection = false;
+                Date = new DateTime(Dt.Year,Dt.Month,Dt.Day);
+                externalCorrection = false;
+                Hours   = Dt.Hour;
+                externalCorrection = false;
+                Minutes = Dt.Minute;                    
+                externalCorrection = false;
+                Seconds = Dt.Second;
+            }
+            else
+            {
+                if (externalCorrection)
+                    Dt = new DateTime(Date.Year,Date.Month,Date.Day,Hours, Minutes, Seconds, Milliseconds);
+                    externalCorrection = true;
+            }
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
