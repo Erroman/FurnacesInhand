@@ -23,7 +23,6 @@ namespace TimeMover
         private bool externalCorrection = true;
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
-            //Units of time calculation
             //if (propertyName == "Dt" & externalCorrection)
             //{
             //    externalCorrection = false;
@@ -44,8 +43,15 @@ namespace TimeMover
         }
         public DateTime Dt
         {
-            get;
-            set;
+            get
+            {
+                return _dt;
+            }
+            set
+            {
+                _dt = value;
+                OnPropertyChanged();
+            }
         }
         public DateTime Date
         {
