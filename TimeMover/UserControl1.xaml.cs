@@ -17,11 +17,25 @@ namespace TimeMover
 partial class UserControl1 : UserControl
     { 
     public ClockWatch clockWatch;
-    public UserControl1()
-    {
+        public DependencyProperty DtValue;
+
+
+        public DateTime Dt
+        {
+            get { return (DateTime)GetValue(DtProperty); }
+            set { SetValue(DtProperty,value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Dt.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DtProperty =
+            DependencyProperty.Register("Dt", typeof(DateTime), typeof(UserControl1));
+
+
+        public UserControl1()
+        {
         InitializeComponent();
         clockWatch = (ClockWatch)Resources["newClock"];
-    }
+        }
 
         private void clockButton_Click(object O, RoutedEventArgs e)
         {
