@@ -27,6 +27,7 @@
         <local:SolenoidUTimeConverter x:Key="SolenoidUTimeConverter"/>
         <local:SolenoidIConverter x:Key="SolenoidIConverter"/>
         <local:SolenoidITimeConverter x:Key="SolenoidITimeConverter"/>
+        <local:TimeConverter x:Key="TimeConverter"/>
     </Window.Resources>
     <Window.DataContext>
         <local:FurnacesInHandViewModel/>
@@ -155,7 +156,7 @@
             </Grid>
         </Button>
         <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
-        <mover:UserControl1 HorizontalAlignment="Left" Margin="0,60,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
+        <mover:UserControl1 Dt="{Binding CanvasX,Converter={StaticResource TimeConverter}}" HorizontalAlignment="Left" Margin="0,60,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
     </Grid>
 
 </Window>

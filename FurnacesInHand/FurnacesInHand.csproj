@@ -134,6 +134,7 @@
     <Compile Include="SolenoidUGraph.cs" />
     <Compile Include="SolenoidUPlot.cs" />
     <Compile Include="SolenoidUTimeConverter.cs" />
+    <Compile Include="TimeConverter.cs" />
     <Compile Include="TimeParameterPair.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
     <Compile Include="VacuumConverter.cs" />
@@ -219,6 +220,10 @@
     <ProjectReference Include="..\TimeMover\TimeMover.csproj">
       <Project>{341b0b58-64bb-4ecf-8008-932b798c64a0}</Project>
       <Name>TimeMover</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VSMPO_AVISMAControls\VSMPO_AVISMAControls.csproj">
+      <Project>{037839c9-5424-495e-9a02-0deeb048a1c3}</Project>
+      <Name>VSMPO_AVISMAControls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

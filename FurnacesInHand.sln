@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurnacesInHand", "FurnacesI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeMover", "TimeMover\TimeMover.csproj", "{341B0B58-64BB-4ECF-8008-932B798C64A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSMPO_AVISMAControls", "VSMPO_AVISMAControls\VSMPO_AVISMAControls.csproj", "{037839C9-5424-495E-9A02-0DEEB048A1C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{341B0B58-64BB-4ECF-8008-932B798C64A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{341B0B58-64BB-4ECF-8008-932B798C64A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{341B0B58-64BB-4ECF-8008-932B798C64A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{037839C9-5424-495E-9A02-0DEEB048A1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{037839C9-5424-495E-9A02-0DEEB048A1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{037839C9-5424-495E-9A02-0DEEB048A1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{037839C9-5424-495E-9A02-0DEEB048A1C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
