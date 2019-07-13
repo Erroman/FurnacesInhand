@@ -18,30 +18,31 @@ namespace VSMPO_AVISMAControls
 partial class TimeMover : UserControl
     {
         private Clockwork clockwork;
-        public DependencyProperty DtValue;
+        public  DependencyProperty DtValue;
 
 
-        public int Dt
+        public DateTime Dt
         {
-            get { return (int)GetValue(DtProperty); }
+            get { return (DateTime)GetValue(DtProperty); }
             set { SetValue(DtProperty,value); }
         }
 
         // Using a DependencyProperty as the backing store for Dt.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DtProperty =
-            DependencyProperty.Register("Dt", typeof(int), typeof(TimeMover));
-
+            DependencyProperty.Register("Dt", typeof(DateTime), typeof(TimeMover),new FrameworkPropertyMetadata(new PropertyChangedCallback(OnDtChanged)));
+        //update Dt in the clockwork by means of Metadata's method from here
 
         public TimeMover()
         {
             InitializeComponent();
-            this.clockwork = (Clockwork)Resources["newClockwork"];
-            this.DataContext = this.clockwork;
-            Binding b = new Binding(nameof(clockwork.Milliseconds));
-            b.Source = clockwork;
-            b.Converter = new DTConverter();
-            b.Mode = BindingMode.TwoWay;
-            this.SetBinding(TimeMover.DtProperty,b);
+            clockwork = (Clockwork)Resources["newClockwork"];
+            clockwork.PropertyChanged += Clockwork_PropertyChanged;
+            // this.DataContext = this.clockwork;
+            // Binding b = new Binding(nameof(clockwork.Dt));
+            // b.Source = clockwork;
+            ////// b.Converter = new DTConverter();
+            // b.Mode = BindingMode.TwoWay;
+            // this.SetBinding(TimeMover.DtProperty,b);
             //this.millisecondBox.Text = "Куку";
             //this.secondBox.SetBinding(TextBox.TextProperty, b);
             //this.minuteBox.SetBinding(TextBox.TextProperty, b);
@@ -49,7 +50,18 @@ partial class TimeMover : UserControl
             //this.datePicker.SetBinding(TextBox.TextProperty, b);
 
         }
+
+        private void Clockwork_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName==nameof(clockwork.Dt))
+            this.SetCurrentValue(DtProperty, clockwork.Dt);
+        }
+        private static void OnDtChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+           ((TimeMover)d).clockwork.Dt = (DateTime)e.NewValue;
+        }
         //D:\Endeavours\WPF\MyBindingLab\MyBindingLab\TimeMover\TimeMover.xaml.cs
+
         private void clockButton_Click(object O, RoutedEventArgs e)
         {
             Button someButton = O as Button;

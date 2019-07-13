@@ -11,6 +11,8 @@ namespace VSMPO_AVISMAControls
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private DateTime _dt;
+        private bool DtSet = false;
+        private bool TimeSet = false;
         public DateTime Dt
         {
             get
@@ -21,6 +23,16 @@ namespace VSMPO_AVISMAControls
             {
                 _dt = value;
                 OnPropertyChanged(nameof(Dt));
+                DtSet = true;
+                if (!TimeSet)
+                {
+                    Milliseconds = Dt.Millisecond;
+                    Seconds = Dt.Second;
+                    Minutes = Dt.Minute;
+                    Hours = Dt.Hour;
+                    Date = Dt;
+                }
+                DtSet = false;
             }
         }
         private int _milliseconds;
@@ -34,6 +46,12 @@ namespace VSMPO_AVISMAControls
             {
                 _milliseconds = value;
                 OnPropertyChanged(nameof(Milliseconds));
+                TimeSet = true;
+                if (!DtSet)
+                {
+                    Dt = new DateTime(Date.Year,Date.Month,Date.Day,Hours,Minutes,Seconds,Milliseconds);
+                }
+                TimeSet = false;
             }
         }
         private int _seconds;
@@ -47,6 +65,12 @@ namespace VSMPO_AVISMAControls
             {
                 _seconds = value;
                 OnPropertyChanged(nameof(Seconds));
+                TimeSet = true;
+                if (!DtSet)
+                {
+                    Dt = new DateTime(Date.Year,Date.Month,Date.Day,Hours,Minutes,Seconds,Milliseconds);
+                }
+                TimeSet = false;
             }
         }
         private int _minutes;
@@ -60,6 +84,12 @@ namespace VSMPO_AVISMAControls
             {
                 _minutes = value;
                 OnPropertyChanged(nameof(Minutes));
+                TimeSet = true;
+                if (!DtSet)
+                {
+                    Dt = new DateTime(Date.Year, Date.Month, Date.Day, Hours, Minutes, Seconds, Milliseconds);
+                }
+                TimeSet = false;
             }
         }
         private int _hours;
@@ -73,6 +103,12 @@ namespace VSMPO_AVISMAControls
             {
                 _hours = value;
                 OnPropertyChanged(nameof(Hours));
+                TimeSet = true;
+                if (!DtSet)
+                {
+                    Dt = new DateTime(Date.Year,Date.Month,Date.Day,Hours,Minutes,Seconds,Milliseconds);
+                }
+                TimeSet = false;
             }
         }
         private DateTime _date;
@@ -86,6 +122,12 @@ namespace VSMPO_AVISMAControls
             {
                 _date = value;
                 OnPropertyChanged(nameof(Date));
+                TimeSet = true;
+                if (!DtSet)
+                {
+                    Dt = new DateTime(Date.Year,Date.Month,Date.Day,Hours,Minutes,Seconds,Milliseconds);
+                }
+                TimeSet = false;
             }
         }
         private void OnPropertyChanged(string property_name)

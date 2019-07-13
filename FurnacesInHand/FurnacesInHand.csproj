@@ -217,10 +217,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TimeMover\TimeMover.csproj">
-      <Project>{341b0b58-64bb-4ecf-8008-932b798c64a0}</Project>
-      <Name>TimeMover</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VSMPO_AVISMAControls\VSMPO_AVISMAControls.csproj">
       <Project>{037839c9-5424-495e-9a02-0deeb048a1c3}</Project>
       <Name>VSMPO_AVISMAControls</Name>

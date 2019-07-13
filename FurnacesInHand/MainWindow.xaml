@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:FurnacesInHand"
-        xmlns:mover="clr-namespace:TimeMover;assembly=TimeMover"
+        xmlns:mover="clr-namespace:VSMPO_AVISMAControls;assembly=VSMPO_AVISMAControls"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Name="mainWindow" x:Class="FurnacesInHand.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="1021" Width="1900" Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized">
@@ -156,7 +156,7 @@
             </Grid>
         </Button>
         <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
-        <mover:UserControl1 Dt="{Binding CanvasX,Converter={StaticResource TimeConverter}}" HorizontalAlignment="Left" Margin="0,60,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
+        <mover:TimeMover Dt="{Binding CanvasX,Converter={StaticResource TimeConverter}}" HorizontalAlignment="Left" Margin="0,60,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
     </Grid>
 
 </Window>

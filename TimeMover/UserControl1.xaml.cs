@@ -17,9 +17,6 @@ namespace TimeMover
 partial class UserControl1 : UserControl
     { 
     public ClockWatch clockWatch;
-        public DependencyProperty DtValue;
-
-
         public DateTime Dt
         {
             get { return (DateTime)GetValue(DtProperty); }

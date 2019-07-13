@@ -47,6 +47,7 @@
             <Button Name="MillisecondsDown" FontFamily="Marlett" Content="6" Click="clockButton_Click"/>
         </StackPanel>
         <DatePicker Name="datePicker" Grid.Row="1" SelectedDate="{Binding Path=Date}" Grid.ColumnSpan="9" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+        <TextBox Name="tbDT" Text="{Binding Dt}" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="23" Margin="1,-28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123" Grid.Column="1"/>
 
     </Grid>
 </UserControl>
