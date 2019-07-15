@@ -53,5 +53,11 @@
     <Setting Name="upperISolenoid" Type="System.String" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
+    <Setting Name="dtBegTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">07/15/2019 13:44:34</Value>
+    </Setting>
+    <Setting Name="dtEndTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">07/15/2019 13:57:00</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -50,6 +50,10 @@ namespace FurnacesInHand
             begTimeMin.Text = Properties.Settings.Default.begTimeMin;
             endTime.Text = Properties.Settings.Default.endTime;
             endTimeMin.Text = Properties.Settings.Default.endTimeMin;
+
+            dtBegTime.Dt = Properties.Settings.Default.dtBegTime;
+            dtEndTime.Dt = Properties.Settings.Default.dtEndTime;
+
             VoltageMin.Text = Properties.Settings.Default.lowerVoltage;
             VoltageMax.Text = Properties.Settings.Default.upperVoltage;
             CurrentMin.Text = Properties.Settings.Default.lowerCurrent;
@@ -78,7 +82,8 @@ namespace FurnacesInHand
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Properties.Settings.Default.firstDatabase = (bool)firstDataBase.IsChecked;
+            Properties.Settings.Default.dtBegTime = dtBegTime.Dt;
+            Properties.Settings.Default.dtEndTime = dtEndTime.Dt;
             //Properties.Settings.Default.secondDatabase = (bool)secondDataBase.IsChecked;
             Properties.Settings.Default.numberOfFurnace = this.numberOfFurnace;
             Properties.Settings.Default.begTime = begTime.Text;

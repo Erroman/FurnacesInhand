@@ -226,5 +226,29 @@ namespace FurnacesInHand.Properties {
                 this["upperISolenoid"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("07/15/2019 13:44:34")]
+        public global::System.DateTime dtBegTime {
+            get {
+                return ((global::System.DateTime)(this["dtBegTime"]));
+            }
+            set {
+                this["dtBegTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("07/15/2019 13:57:00")]
+        public global::System.DateTime dtEndTime {
+            get {
+                return ((global::System.DateTime)(this["dtEndTime"]));
+            }
+            set {
+                this["dtEndTime"] = value;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace FurnacesInHand
@@ -29,6 +30,35 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
+        private DateTime _dtBegTime;
+        private DateTime _dtEndTime;
+        public DateTime DtBegTime
+        {
+            get
+            {
+                return _dtBegTime;
+            }
+            set
+            {
+                _dtBegTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime DtEndTime
+        {
+            get
+            {
+                return _dtEndTime;
+            }
+            set
+            {
+                _dtEndTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private string _VoltageMax;
         private string _VoltageMin;
         public string VoltageMax
