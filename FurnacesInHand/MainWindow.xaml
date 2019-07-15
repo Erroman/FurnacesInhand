@@ -78,7 +78,7 @@
         <DatePicker x:Name="endTime" HorizontalAlignment="Left" Margin="0,95,0,0" VerticalAlignment="Top" Width="99" Height="24" Grid.Row="2"/>
         <xctk:TimePicker x:Name="begTimeMin" HorizontalAlignment="Left" Margin="95,45,0,0" VerticalAlignment="Top" Height="24" Width="88" Grid.Row="2"/>
         <xctk:TimePicker x:Name="endTimeMin" HorizontalAlignment="Left" Margin="95,95,0,0" VerticalAlignment="Top" Width="88" Height="24" Grid.Row="2"/>
-        <ProgressBar HorizontalAlignment="Left" Height="25" Margin="31,149,0,0" VerticalAlignment="Top" Width="120" Grid.Row="3"/>
+
         <TextBox x:Name ="txtb" HorizontalAlignment="Left" Height="33" Margin="31,92,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="129" Grid.Row="4"/>
         <Button HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Width="183" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Content="Вывод значений" Grid.Row="2"/>
 
@@ -155,8 +155,10 @@
                 <TextBlock Grid.Row="1">по печи</TextBlock>
             </Grid>
         </Button>
-        <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
-        <mover:TimeMover Dt="{Binding CanvasX,Converter={StaticResource TimeConverter}}" HorizontalAlignment="Left" Margin="0,60,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
+        <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,114,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
+        <mover:TimeMover Dt="{Binding CanvasX,Converter={StaticResource TimeConverter}}" HorizontalAlignment="Left" Margin="0,144,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
+        <mover:TimeMover Name="dtBegTime" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <mover:TimeMover Name="dtEndTime" HorizontalAlignment="Left" Margin="10,61,0,0" Grid.Row="3" VerticalAlignment="Top"/>
     </Grid>
 
 </Window>
