@@ -16,6 +16,7 @@ namespace FurnacesInHand
             {
                 if (value.Equals(_canvasX)) return;
                 _canvasX = value;
+                //Calculate the time from the X-coordinate
                 OnPropertyChanged();
             }
         }
@@ -32,6 +33,7 @@ namespace FurnacesInHand
         }
         private DateTime _dtBegTime;
         private DateTime _dtEndTime;
+        private DateTime _dtTimeMoment;
         public DateTime DtBegTime
         {
             get
@@ -57,7 +59,18 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
-
+        public DateTime DtTimeMoment
+        {
+            get
+            {
+                return _dtTimeMoment;
+            }
+            set
+            {
+                _dtTimeMoment = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string _VoltageMax;
         private string _VoltageMin;

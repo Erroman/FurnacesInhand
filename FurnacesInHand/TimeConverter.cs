@@ -13,7 +13,7 @@ namespace FurnacesInHand
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new DateTime(1001,11,1,7,40,40);
+            return DateTime.Now;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

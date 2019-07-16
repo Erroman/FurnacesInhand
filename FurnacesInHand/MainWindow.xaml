@@ -10,6 +10,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1021" Width="1900" Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.Resources>
+        <local:FurnacesInHandViewModel x:Key="FurnacesInHandViewModel"/>
         <DataTemplate x:Key="ParametersList" DataType="{x:Type ListBox}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding dateandtime, StringFormat= dd.MM.yy HH:mm:ss.fff}"/>
@@ -30,7 +31,7 @@
         <local:TimeConverter x:Key="TimeConverter"/>
     </Window.Resources>
     <Window.DataContext>
-        <local:FurnacesInHandViewModel/>
+        <Binding Source="{StaticResource FurnacesInHandViewModel}"/>
     </Window.DataContext>
     <Grid HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
@@ -156,9 +157,9 @@
             </Grid>
         </Button>
         <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,114,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
+        <mover:TimeMover Name="dtBegTime" Dt="{Binding DtBegTime,Mode=TwoWay}" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <mover:TimeMover Name="dtEndTime" Dt="{Binding DtEndTime,Mode=TwoWay}" HorizontalAlignment="Left" Margin="10,61,0,0" Grid.Row="3" VerticalAlignment="Top"/>
         <mover:TimeMover Dt="{Binding CanvasX,Converter={StaticResource TimeConverter}}" HorizontalAlignment="Left" Margin="0,144,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
-        <mover:TimeMover Name="dtBegTime" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top"/>
-        <mover:TimeMover Name="dtEndTime" HorizontalAlignment="Left" Margin="10,61,0,0" Grid.Row="3" VerticalAlignment="Top"/>
     </Grid>
 
 </Window>
