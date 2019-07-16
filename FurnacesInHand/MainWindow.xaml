@@ -159,7 +159,7 @@
         <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,114,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
         <mover:TimeMover Name="dtBegTime" Dt="{Binding DtBegTime,Mode=TwoWay}" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top"/>
         <mover:TimeMover Name="dtEndTime" Dt="{Binding DtEndTime,Mode=TwoWay}" HorizontalAlignment="Left" Margin="10,61,0,0" Grid.Row="3" VerticalAlignment="Top"/>
-        <mover:TimeMover Dt="{Binding CanvasX,Converter={StaticResource TimeConverter}}" HorizontalAlignment="Left" Margin="0,144,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
+        <mover:TimeMover Dt="{Binding CanvasX,Converter={StaticResource TimeConverter},ConverterParameter={StaticResource FurnacesInHandViewModel}}" HorizontalAlignment="Left" Margin="0,144,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
     </Grid>
 
 </Window>
