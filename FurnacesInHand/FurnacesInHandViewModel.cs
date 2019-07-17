@@ -71,6 +71,10 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
+        private double _canvasVoltageHeight;
+        private double _canvasVoltageWidth;
+        public double CanvasVoltageHeight { get; set; }
+        public double CanvasVoltageWidth { get; set; }
 
         private string _VoltageMax;
         private string _VoltageMin;
@@ -95,6 +99,11 @@ namespace FurnacesInHand
             }
 
         }
+        private double _canvasCurrentHeight;
+        private double _canvasCurrentWidth;
+        public double CanvasCurrentHeight { get; set; }
+        public double CanvasCurrentWidth { get; set; }
+
         private string _CurrentMax;
         private string _CurrentMin;
         public string CurrentMax
@@ -118,6 +127,11 @@ namespace FurnacesInHand
             }
 
         }
+        private double _canvasVacuumHeight;
+        private double _canvasVacuumWidth;
+        public double CanvasVacuumHeight { get; set; }
+        public double CanvasVacuumWidth { get; set; }
+
         private string _VacuumMax;
         private string _VacuumMin;
         public string VacuumMax
@@ -141,6 +155,11 @@ namespace FurnacesInHand
             }
 
         }
+        private double _canvasSolenoidUHeight;
+        private double _canvasSolenoidUWidth;
+        public double CanvasSolenoidUHeight { get; set; }
+        public double CanvasSolenoidUWidth { get; set; }
+
         private string _SolenoidUMax;
         private string _SolenoidUMin;
         public string SolenoidUMax
@@ -164,6 +183,12 @@ namespace FurnacesInHand
             }
 
         }
+
+        private double _canvasSolenoidIHeight;
+        private double _canvasSolenoidIWidth;
+        public double CanvasSolenoidIHeight { get; set; }
+        public double CanvasSolenoidIWidth { get; set; }
+
         private string _SolenoidIMax;
         private string _SolenoidIMin;
         public string SolenoidIMax
