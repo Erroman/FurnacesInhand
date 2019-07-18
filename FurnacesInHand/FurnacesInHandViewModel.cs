@@ -71,10 +71,139 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
+
         private double _canvasVoltageHeight;
         private double _canvasVoltageWidth;
-        public double CanvasVoltageHeight { get; set; }
-        public double CanvasVoltageWidth { get; set; }
+        public double CanvasVoltageHeight
+        {
+            get
+            {
+                return _canvasVoltageHeight;
+            }
+            set
+            {
+                _canvasVoltageHeight = value;
+                OnPropertyChanged();
+            }
+        }
+        public double CanvasVoltageWidth
+        {
+            get
+            {
+                return _canvasVoltageWidth;
+            }
+            set
+            {
+                _canvasVoltageWidth = value;
+                OnPropertyChanged();
+            }
+        }
+        private double _canvasCurrentHeight;
+        private double _canvasCurrentWidth;
+        public double CanvasCurrentHeight
+        {
+            get
+            {
+                return _canvasCurrentHeight;
+            }
+            set
+            {
+                _canvasCurrentHeight = value;
+                OnPropertyChanged();
+            }
+        }
+        public double CanvasCurrentWidth
+        {
+            get
+            {
+                return _canvasCurrentWidth;
+            }
+            set
+            {
+                _canvasCurrentWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _canvasVacuumHeight;
+        private double _canvasVacuumWidth;
+        public double CanvasVacuumHeight
+        {
+            get
+            {
+                return _canvasVacuumHeight;
+            }
+            set
+            {
+                _canvasVacuumHeight = value;
+                OnPropertyChanged();
+            }
+        }
+        public double CanvasVacuumWidth
+        {
+            get
+            {
+                return _canvasVacuumWidth;
+            }
+            set
+            {
+                _canvasVacuumWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _canvasSolenoidUHeight;
+        private double _canvasSolenoidUWidth;
+        public double CanvasSolenoidUHeight
+        {
+            get
+            {
+                return _canvasSolenoidUHeight;
+            }
+            set
+            {
+                _canvasSolenoidUHeight = value;
+                OnPropertyChanged();
+            }
+        }
+        public double CanvasSolenoidUWidth
+        {
+            get
+            {
+                return _canvasSolenoidUWidth;
+            }
+            set
+            {
+                _canvasSolenoidUWidth = value;
+                OnPropertyChanged();
+            }
+        }
+        private double _canvasSolenoidIHeight;
+        private double _canvasSolenoidIWidth;
+        public double CanvasSolenoidIHeight
+        {
+            get
+            {
+                return _canvasSolenoidIHeight;
+            }
+            set
+            {
+                _canvasSolenoidIHeight = value;
+                OnPropertyChanged();
+            }
+        }
+        public double CanvasSolenoidIWidth
+        {
+            get
+            {
+                return _canvasSolenoidIWidth;
+            }
+            set
+            {
+                _canvasSolenoidIWidth = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string _VoltageMax;
         private string _VoltageMin;
@@ -99,10 +228,7 @@ namespace FurnacesInHand
             }
 
         }
-        private double _canvasCurrentHeight;
-        private double _canvasCurrentWidth;
-        public double CanvasCurrentHeight { get; set; }
-        public double CanvasCurrentWidth { get; set; }
+ 
 
         private string _CurrentMax;
         private string _CurrentMin;
@@ -127,10 +253,7 @@ namespace FurnacesInHand
             }
 
         }
-        private double _canvasVacuumHeight;
-        private double _canvasVacuumWidth;
-        public double CanvasVacuumHeight { get; set; }
-        public double CanvasVacuumWidth { get; set; }
+
 
         private string _VacuumMax;
         private string _VacuumMin;
@@ -155,10 +278,7 @@ namespace FurnacesInHand
             }
 
         }
-        private double _canvasSolenoidUHeight;
-        private double _canvasSolenoidUWidth;
-        public double CanvasSolenoidUHeight { get; set; }
-        public double CanvasSolenoidUWidth { get; set; }
+
 
         private string _SolenoidUMax;
         private string _SolenoidUMin;
@@ -184,10 +304,7 @@ namespace FurnacesInHand
 
         }
 
-        private double _canvasSolenoidIHeight;
-        private double _canvasSolenoidIWidth;
-        public double CanvasSolenoidIHeight { get; set; }
-        public double CanvasSolenoidIWidth { get; set; }
+
 
         private string _SolenoidIMax;
         private string _SolenoidIMin;
