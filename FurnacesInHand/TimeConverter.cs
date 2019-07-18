@@ -14,6 +14,7 @@ namespace FurnacesInHand
     class TimeConverter : IValueConverter
     {
         DateTime? dt = null;
+        Point p = new Point(0,0);
         FurnacesInHandViewModel finhViewModel;
         double LowerLimitForTimeOnXAxis; //нижняя гравница временного интервала в миллисекундах
         double UpperLimitForTimeOnXAxis; //верхняя гравница временного интервала в миллисекундах
@@ -30,8 +31,8 @@ namespace FurnacesInHand
                 finhViewModel = (FurnacesInHandViewModel)parameter;
                 xmin = 0;
                 xmax = finhViewModel.CanvasVoltageWidth;
-                LowerLimitForTimeOnXAxis = finhViewModel.DtBegTime.Millisecond;
-                UpperLimitForTimeOnXAxis = finhViewModel.DtEndTime.Millisecond;
+                LowerLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtBegTime);
+                UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtEndTime);
                 PrepareTransformations
                     (
                     LowerLimitForTimeOnXAxis, UpperLimitForTimeOnXAxis,
@@ -39,15 +40,22 @@ namespace FurnacesInHand
                     xmin, xmax,
                     ymin, ymax
                     );
-                dt = DateTime.Now;
+                p.X = (double)value;
+                dt = (finhViewModel.DtBegTime + TimeSpan.FromMilliseconds(DtoW(p).X));
             }
               
             return dt;
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;
+        }
+        private double MillisecondsSinceTheBeginning(DateTime dt)
+        {
+
+            return (dt - finhViewModel.DtBegTime).Ticks / TimeSpan.TicksPerMillisecond;
         }
     }
 }
