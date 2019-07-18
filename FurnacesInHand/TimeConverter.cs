@@ -28,13 +28,17 @@ namespace FurnacesInHand
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 finhViewModel = (FurnacesInHandViewModel)parameter;
-                //PrepareTransformations
-                //    (
-                //    LowerLimitForTimeOnXAxis, UpperLimitForTimeOnXAxis,
-                //    LowerLimitOnYAxis, UpperLimitOnYAxis,
-                //    xmin, xmax,
-                //    ymin, ymax
-                //    );
+                xmin = 0;
+                xmax = finhViewModel.CanvasVoltageWidth;
+                LowerLimitForTimeOnXAxis = finhViewModel.DtBegTime.Millisecond;
+                UpperLimitForTimeOnXAxis = finhViewModel.DtEndTime.Millisecond;
+                PrepareTransformations
+                    (
+                    LowerLimitForTimeOnXAxis, UpperLimitForTimeOnXAxis,
+                    LowerLimitOnYAxis, UpperLimitOnYAxis,
+                    xmin, xmax,
+                    ymin, ymax
+                    );
                 dt = DateTime.Now;
             }
               
