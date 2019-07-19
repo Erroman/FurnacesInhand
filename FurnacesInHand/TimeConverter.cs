@@ -50,6 +50,7 @@ namespace FurnacesInHand
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            finhViewModel = (FurnacesInHandViewModel)parameter;
             return null;
         }
         private double MillisecondsSinceTheBeginning(DateTime dt)
