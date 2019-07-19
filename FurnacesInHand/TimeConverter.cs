@@ -31,7 +31,7 @@ namespace FurnacesInHand
                 finhViewModel = (FurnacesInHandViewModel)parameter;
                 PrepareTransform(finhViewModel);
                 p.X = (double)value;
-                dt = (finhViewModel.DtBegTime + TimeSpan.FromMilliseconds(DtoW(p).X));
+                dt = finhViewModel.DtBegTime + TimeSpan.FromMilliseconds(DtoW(p).X);
             }
               
             return dt;
@@ -41,7 +41,12 @@ namespace FurnacesInHand
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             finhViewModel = (FurnacesInHandViewModel)parameter;
-            return null;
+            PrepareTransform(finhViewModel);
+            dt = (DateTime)value;
+            TimeSpan ts = (TimeSpan)(dt - finhViewModel.DtBegTime);
+            p.X = ts.TotalMilliseconds;
+             p.X = WtoD(p).X;
+            return p.X;
         }
         private void PrepareTransform(FurnacesInHandViewModel finhViewModel)
         {

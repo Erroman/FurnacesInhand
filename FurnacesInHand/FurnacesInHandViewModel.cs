@@ -14,7 +14,7 @@ namespace FurnacesInHand
             get { return _canvasX; }
             set
             {
-                if (value.Equals(_canvasX)) return;
+               // if (value.Equals(_canvasX)) return;
                 _canvasX = value;
                 //Calculate the time from the X-coordinate
                 OnPropertyChanged();
