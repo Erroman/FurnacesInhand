@@ -29,17 +29,7 @@ namespace FurnacesInHand
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 finhViewModel = (FurnacesInHandViewModel)parameter;
-                xmin = 0;
-                xmax = finhViewModel.CanvasVoltageWidth;
-                LowerLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtBegTime);
-                UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtEndTime);
-                PrepareTransformations
-                    (
-                    LowerLimitForTimeOnXAxis, UpperLimitForTimeOnXAxis,
-                    LowerLimitOnYAxis, UpperLimitOnYAxis,
-                    xmin, xmax,
-                    ymin, ymax
-                    );
+                PrepareTransform(finhViewModel);
                 p.X = (double)value;
                 dt = (finhViewModel.DtBegTime + TimeSpan.FromMilliseconds(DtoW(p).X));
             }
@@ -52,6 +42,20 @@ namespace FurnacesInHand
         {
             finhViewModel = (FurnacesInHandViewModel)parameter;
             return null;
+        }
+        private void PrepareTransform(FurnacesInHandViewModel finhViewModel)
+        {
+            xmin = 0;
+            xmax = finhViewModel.CanvasVoltageWidth;
+            LowerLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtBegTime);
+            UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtEndTime);
+            PrepareTransformations
+                (
+                LowerLimitForTimeOnXAxis, UpperLimitForTimeOnXAxis,
+                LowerLimitOnYAxis, UpperLimitOnYAxis,
+                xmin, xmax,
+                ymin, ymax
+                );
         }
         private double MillisecondsSinceTheBeginning(DateTime dt)
         {
