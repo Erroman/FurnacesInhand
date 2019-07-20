@@ -73,10 +73,10 @@
                 <TreeViewItem Header="Печь №44" Margin="0,0,25,0"/>
             </TreeViewItem>
         </TreeView>
-        <Label Content="Начало плавки" HorizontalAlignment="Left" Height="24" Margin="40,18,0,0" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
-        <Label Content="Конец плавки" HorizontalAlignment="Left" Height="24" Margin="40,69,0,0" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
+        <Label Content="Начало наблюдения" HorizontalAlignment="Left" Height="24" Margin="40,18,0,0" VerticalAlignment="Top" Width="132" Grid.Row="2"/>
+        <Label Content="Конец наблюдения" HorizontalAlignment="Left" Height="24" Margin="40,98,0,0" VerticalAlignment="Top" Width="132" Grid.Row="2"/>
         <TextBox x:Name ="txtb" HorizontalAlignment="Left" Height="33" Margin="31,92,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="129" Grid.Row="4"/>
-        <Button HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Width="183" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Content="Вывод значений" Grid.Row="2"/>
+        <Button HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Width="183" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Content="Вывод значений" Grid.Row="3"/>
 
         <ListBox Grid.Row="0" x:Name="voltageValues" HorizontalAlignment="Left" Margin="0,10,0,66" Width="212" Grid.Column="1"  ItemTemplate="{StaticResource ParametersList}" />
 
@@ -152,10 +152,10 @@
                 <TextBlock Grid.Row="1">по печи</TextBlock>
             </Grid>
         </Button>
-        <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,114,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
-        <mover:TimeMover Name="dtBegTime" Dt="{Binding DtBegTime,Mode=TwoWay}" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top"/>
-        <mover:TimeMover Name="dtEndTime" Dt="{Binding DtEndTime,Mode=TwoWay}" HorizontalAlignment="Left" Margin="10,61,0,0" Grid.Row="3" VerticalAlignment="Top"/>
-        <mover:TimeMover Name ="dtCurrentTime" Dt="{Binding CanvasX,Converter={StaticResource TimeConverter},ConverterParameter={StaticResource FurnacesInHandViewModel},Mode=TwoWay}" HorizontalAlignment="Left" Margin="0,144,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
+        <Label Content="Текущий момент времени" HorizontalAlignment="Left" Height="30" Margin="10,73,0,0" VerticalAlignment="Top" Width="173" Grid.Row="3"/>
+        <mover:TimeMover Name="dtBegTime" Dt="{Binding DtBegTime,Mode=TwoWay}" HorizontalAlignment="Left" Margin="26,42,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <mover:TimeMover Name="dtEndTime" Dt="{Binding DtEndTime,Mode=TwoWay}" HorizontalAlignment="Left" Margin="26,122,0,0" Grid.Row="2" VerticalAlignment="Top" Height="61"/>
+        <mover:TimeMover Name ="dtCurrentTime" Dt="{Binding CanvasX,Converter={StaticResource TimeConverter},ConverterParameter={StaticResource FurnacesInHandViewModel},Mode=TwoWay}" HorizontalAlignment="Left" Margin="11,108,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
     </Grid>
 
 </Window>
