@@ -46,11 +46,6 @@ namespace FurnacesInHand
             this.numberOfFurnace = Properties.Settings.Default.numberOfFurnace;
             ChooseTheItemInTheTreeForTheFurnace(this.numberOfFurnace);
 
-            begTime.Text = Properties.Settings.Default.begTime;
-            begTimeMin.Text = Properties.Settings.Default.begTimeMin;
-            endTime.Text = Properties.Settings.Default.endTime;
-            endTimeMin.Text = Properties.Settings.Default.endTimeMin;
-
             dtBegTime.Dt = Properties.Settings.Default.dtBegTime;
             dtEndTime.Dt = Properties.Settings.Default.dtEndTime;
 
@@ -86,10 +81,6 @@ namespace FurnacesInHand
             Properties.Settings.Default.dtEndTime = dtEndTime.Dt;
             //Properties.Settings.Default.secondDatabase = (bool)secondDataBase.IsChecked;
             Properties.Settings.Default.numberOfFurnace = this.numberOfFurnace;
-            Properties.Settings.Default.begTime = begTime.Text;
-            Properties.Settings.Default.endTime = endTime.Text;
-            Properties.Settings.Default.begTimeMin = begTimeMin.Text;
-            Properties.Settings.Default.endTimeMin = endTimeMin.Text;
             Properties.Settings.Default.lowerVoltage = VoltageMin.Text;
             Properties.Settings.Default.upperVoltage = VoltageMax.Text;
             Properties.Settings.Default.lowerCurrent = CurrentMin.Text;
@@ -751,15 +742,8 @@ namespace FurnacesInHand
         private void SetDigitalStartAndFinishTimes()
         {
 
-            startTime = DateTime.Parse(begTime.Text == "" ? "2000-01-01" : begTime.Text);
-            DateTime startTimeMin = DateTime.Parse(begTimeMin.Text);
-            startTime = startTime.AddHours(startTimeMin.Hour);
-            startTime = startTime.AddMinutes(startTimeMin.Minute);
-
-            finishTime = DateTime.Parse(endTime.Text == "" ? "2050-01-01" : endTime.Text);
-            DateTime finishTimeMin = DateTime.Parse(endTimeMin.Text);
-            finishTime = finishTime.AddHours(finishTimeMin.Hour);
-            finishTime = finishTime.AddMinutes(finishTimeMin.Minute);
+            startTime = dtBegTime.Dt;
+            finishTime = dtEndTime.Dt;
 
         }
         private void MapTheRemoteBase()

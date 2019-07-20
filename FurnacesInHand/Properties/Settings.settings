@@ -11,18 +11,6 @@
     <Setting Name="numberOfFurnace" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="begTime" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2000-01-01</Value>
-    </Setting>
-    <Setting Name="endTime" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2000-01-01</Value>
-    </Setting>
-    <Setting Name="begTimeMin" Type="System.String" Scope="User">
-      <Value Profile="(Default)">00:00</Value>
-    </Setting>
-    <Setting Name="endTimeMin" Type="System.String" Scope="User">
-      <Value Profile="(Default)">23:59</Value>
-    </Setting>
     <Setting Name="lowerVoltage" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>

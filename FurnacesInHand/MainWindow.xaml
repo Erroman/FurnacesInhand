@@ -75,11 +75,6 @@
         </TreeView>
         <Label Content="Начало плавки" HorizontalAlignment="Left" Height="24" Margin="40,18,0,0" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
         <Label Content="Конец плавки" HorizontalAlignment="Left" Height="24" Margin="40,69,0,0" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
-        <DatePicker x:Name="begTime"  HorizontalAlignment="Left" Margin="0,45,0,0" VerticalAlignment="Top" Width="99" Height="24" Grid.Row="2"/>
-        <DatePicker x:Name="endTime" HorizontalAlignment="Left" Margin="0,95,0,0" VerticalAlignment="Top" Width="99" Height="24" Grid.Row="2"/>
-        <xctk:TimePicker x:Name="begTimeMin" HorizontalAlignment="Left" Margin="95,45,0,0" VerticalAlignment="Top" Height="24" Width="88" Grid.Row="2"/>
-        <xctk:TimePicker x:Name="endTimeMin" HorizontalAlignment="Left" Margin="95,95,0,0" VerticalAlignment="Top" Width="88" Height="24" Grid.Row="2"/>
-
         <TextBox x:Name ="txtb" HorizontalAlignment="Left" Height="33" Margin="31,92,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="129" Grid.Row="4"/>
         <Button HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Width="183" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Content="Вывод значений" Grid.Row="2"/>
 

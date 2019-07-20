@@ -61,54 +61,6 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2000-01-01")]
-        public string begTime {
-            get {
-                return ((string)(this["begTime"]));
-            }
-            set {
-                this["begTime"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2000-01-01")]
-        public string endTime {
-            get {
-                return ((string)(this["endTime"]));
-            }
-            set {
-                this["endTime"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("00:00")]
-        public string begTimeMin {
-            get {
-                return ((string)(this["begTimeMin"]));
-            }
-            set {
-                this["begTimeMin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("23:59")]
-        public string endTimeMin {
-            get {
-                return ((string)(this["endTimeMin"]));
-            }
-            set {
-                this["endTimeMin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public string lowerVoltage {
             get {
