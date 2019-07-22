@@ -114,7 +114,8 @@
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
         </local:GraphCanvas>
-        <TextBox Text="{Binding CanvasX,StringFormat={}{0:F2},Converter={StaticResource VoltageConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="27" Margin="132,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69"/>
+        <!--TextBox Text="{Binding CanvasX,StringFormat={}{0:F2},Converter={StaticResource VoltageConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="27" Margin="132,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69"/-->
+        <TextBox Text="{Binding ElementName=dtCurrentTime,Path=Dt,StringFormat={}{0:F2}}" Grid.Column="1"  HorizontalAlignment="Left" Height="27" Margin="132,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69"/>
         <!--TextBox Text="{Binding CanvasX, StringFormat= dd.MM.yy HH:mm:ss.fff, Converter={StaticResource VoltageTimeConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="39" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/-->
         <TextBox Text="{Binding ElementName=dtCurrentTime,Path=Dt, StringFormat= dd.MM.yy HH:mm:ss.fff}" Grid.Column="1"  HorizontalAlignment="Left" Height="39" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
         <TextBox Text="{Binding CanvasX,StringFormat={}{0:F2},Converter={StaticResource CurrentConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="24" Margin="132,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="1"/>
