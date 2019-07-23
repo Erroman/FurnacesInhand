@@ -21,8 +21,7 @@
         <local:VoltageStrictConverter x:Key="VoltageStrictConverter" />
         <local:CurrentStrictConverter x:Key="CurrentStrictConverter" />
         <local:VacuumStrictConverter x:Key="VacuumStrictConverter" />
-        <local:SolenoidUConverter x:Key="SolenoidUConverter"/>
-        <local:SolenoidUTimeConverter x:Key="SolenoidUTimeConverter"/>
+        <local:SolenoidUStrictConverter x:Key="SolenoidUStrictConverter"/>
         <local:SolenoidIConverter x:Key="SolenoidIConverter"/>
         <local:SolenoidITimeConverter x:Key="SolenoidITimeConverter"/>
         <local:TimeConverter x:Key="TimeConverter"/>
@@ -117,9 +116,9 @@
         <TextBox Text="{Binding ElementName=dtCurrentTime,Path=Dt, StringFormat= dd.MM.yy HH:mm:ss.fff, Converter={StaticResource CurrentStrictConverter},ConverterParameter=Time}" Grid.Column="1"  HorizontalAlignment="Left" Height="38" Margin="10,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="1"/>
         <TextBox Text="{Binding ElementName=dtCurrentTime,Path=Dt,StringFormat={}{0:F3},Converter={StaticResource VacuumStrictConverter},ConverterParameter=Value}" Grid.Column="1"  HorizontalAlignment="Left" Height="25" Margin="132,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="2"/>
         <TextBox Text="{Binding ElementName=dtCurrentTime,Path=Dt,StringFormat= dd.MM.yy HH:mm:ss.fff,Converter={StaticResource VacuumStrictConverter},ConverterParameter=Time}" Grid.Column="1"  HorizontalAlignment="Left" Height="36" Margin="10,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="2"/>
+        <TextBox Text="{Binding ElementName=dtCurrentTime,Path=Dt,StringFormat={}{0:F2},Converter={StaticResource SolenoidUStrictConverter},ConverterParameter=Value}" Grid.Column="1"  HorizontalAlignment="Left" Height="26" Margin="132,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="3"/>
+        <TextBox Text="{Binding ElementName=dtCurrentTime,Path=Dt, StringFormat= dd.MM.yy HH:mm:ss.fff,Converter={StaticResource SolenoidUStrictConverter},ConverterParameter=Time}" Grid.Column="1"  HorizontalAlignment="Left" Height="40" Margin="10,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="3"/>
         
-        <TextBox Text="{Binding CanvasX,StringFormat={}{0:F2},Converter={StaticResource SolenoidUConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="26" Margin="132,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="3"/>
-        <TextBox Text="{Binding CanvasX,  StringFormat= dd.MM.yy HH:mm:ss.fff,Converter={StaticResource SolenoidUTimeConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="40" Margin="10,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="3"/>
         <TextBox Text="{Binding CanvasX,StringFormat={}{0:F2},Converter={StaticResource SolenoidIConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="24" Margin="132,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="4"/>
         <TextBox Text="{Binding CanvasX,   StringFormat= dd.MM.yy HH:mm:ss.fff,Converter={StaticResource SolenoidITimeConverter}}" Grid.Column="1"  HorizontalAlignment="Left" Height="35" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="4"/>
         <TextBlock x:Name="Updated" HorizontalAlignment="Left" Margin="40,108,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Height="28"/>

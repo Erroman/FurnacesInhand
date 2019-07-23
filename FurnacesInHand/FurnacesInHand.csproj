@@ -131,10 +131,9 @@
     <Compile Include="SolenoidIGraph.cs" />
     <Compile Include="SolenoidIPlot.cs" />
     <Compile Include="SolenoidITimeConverter.cs" />
-    <Compile Include="SolenoidUConverter.cs" />
     <Compile Include="SolenoidUGraph.cs" />
     <Compile Include="SolenoidUPlot.cs" />
-    <Compile Include="SolenoidUTimeConverter.cs" />
+    <Compile Include="SolenoidUStrictConverter.cs" />
     <Compile Include="TimeConverter.cs" />
     <Compile Include="TimeParameterPair.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
