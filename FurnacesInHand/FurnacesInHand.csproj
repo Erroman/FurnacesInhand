@@ -130,6 +130,7 @@
     <Compile Include="SolenoidIConverter.cs" />
     <Compile Include="SolenoidIGraph.cs" />
     <Compile Include="SolenoidIPlot.cs" />
+    <Compile Include="SolenoidIStrictConverter.cs" />
     <Compile Include="SolenoidITimeConverter.cs" />
     <Compile Include="SolenoidUGraph.cs" />
     <Compile Include="SolenoidUPlot.cs" />
