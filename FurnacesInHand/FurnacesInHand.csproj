@@ -138,11 +138,9 @@
     <Compile Include="TimeConverter.cs" />
     <Compile Include="TimeParameterPair.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
-    <Compile Include="VacuumConverter.cs" />
     <Compile Include="VacuumGraph.cs" />
     <Compile Include="VacuumPlot.cs" />
     <Compile Include="VacuumStrictConverter.cs" />
-    <Compile Include="VacuumTimeConverter.cs" />
     <Compile Include="vdp01.cs" />
     <Compile Include="vdp02.cs" />
     <Compile Include="vdp03.cs" />
