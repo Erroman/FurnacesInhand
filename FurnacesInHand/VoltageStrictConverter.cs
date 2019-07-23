@@ -11,11 +11,11 @@ using static FurnacesInHand.EnumerableExtensions;
 
 namespace FurnacesInHand
 {
-    class VoltageConverter:IValueConverter
+    class VoltageStrictConverter:IValueConverter
     {
         private App _application;
         private MainWindow _window;
-        public VoltageConverter()
+        public VoltageStrictConverter()
         {
             _application = (App)Application.Current;
             _window = (MainWindow)_application.MainWindow;
@@ -31,7 +31,7 @@ namespace FurnacesInHand
             if (_window.Voltage_graph_pairs != null)
                 {
                 //tpp = _window.Voltage_graph_pairs.Where(x => x.dt == _window.Voltage_graph_pairs.Max(x1 => x1.dt)).FirstOrDefault();
-                tpp = _window.Voltage_graph_pairs.OrderBy(x=>x.dt).FirstOrDefault();
+                tpp = _window.Voltage_graph_pairs.Where(x=>x.dt<=dt).OrderBy(x=>x.dt).LastOrDefault();
                 _lastMeasuredValue = tpp.parameter;
                 }
   

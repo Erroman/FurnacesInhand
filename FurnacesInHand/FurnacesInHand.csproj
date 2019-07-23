@@ -163,6 +163,7 @@
     <Compile Include="vdp32.cs" />
     <Compile Include="vdp33.cs" />
     <Compile Include="vdp44.cs" />
+    <Compile Include="VoltageConverter.cs" />
     <Compile Include="VoltageGraph.cs" />
     <Compile Include="VoltagePLot.cs" />
     <Compile Include="VoltageStrictConverter.cs" />
