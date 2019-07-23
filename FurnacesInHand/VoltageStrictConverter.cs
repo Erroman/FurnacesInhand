@@ -21,19 +21,26 @@ namespace FurnacesInHand
             _window = (MainWindow)_application.MainWindow;
         }
 
-        private double _lastMeasuredValue;
+        private object _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             //value parameter holds a DateTime value obtained from TimeMover control
             DateTime dt = (DateTime)value;
+            string timeOrvalue = (string)parameter;
             //Ближайшая по времени структура из считанного набора параметров
             TimeParameterPair tpp;
             if (_window.Voltage_graph_pairs != null)
                 {
                 //tpp = _window.Voltage_graph_pairs.Where(x => x.dt == _window.Voltage_graph_pairs.Max(x1 => x1.dt)).FirstOrDefault();
                 tpp = _window.Voltage_graph_pairs.Where(x=>x.dt<=dt).OrderBy(x=>x.dt).LastOrDefault();
-                _lastMeasuredValue = tpp.parameter;
-                }
+                if (timeOrvalue == "Value")
+                    _lastMeasuredValue = tpp.parameter;
+                else
+                    _lastMeasuredValue = tpp.dt;
+            }
+            
+
+
   
             return _lastMeasuredValue; //presumably get it from the parameter argument
         }
