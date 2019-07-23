@@ -117,6 +117,7 @@
     <Compile Include="CurrentConverter.cs" />
     <Compile Include="CurrentGraph.cs" />
     <Compile Include="CurrentPlot.cs" />
+    <Compile Include="CurrentStrictConverter.cs" />
     <Compile Include="CurrentTimeConverter.cs" />
     <Compile Include="FurnaceModelLocalNext.cs" />
     <Compile Include="FurnacesInHandViewModel.cs" />
@@ -163,11 +164,9 @@
     <Compile Include="vdp32.cs" />
     <Compile Include="vdp33.cs" />
     <Compile Include="vdp44.cs" />
-    <Compile Include="VoltageConverter.cs" />
     <Compile Include="VoltageGraph.cs" />
     <Compile Include="VoltagePLot.cs" />
     <Compile Include="VoltageStrictConverter.cs" />
-    <Compile Include="VoltageTimeConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

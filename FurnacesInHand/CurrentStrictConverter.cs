@@ -11,31 +11,37 @@ using static FurnacesInHand.EnumerableExtensions;
 
 namespace FurnacesInHand
 {
-    class VoltageConverter:IValueConverter
+    class CurrentStrictConverter:IValueConverter
     {
         private App _application;
         private MainWindow _window;
-        public VoltageConverter()
+        public CurrentStrictConverter()
         {
             _application = (App)Application.Current;
             _window = (MainWindow)_application.MainWindow;
         }
 
-        private double _lastMeasuredValue;
+        private object _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ///Check the state of the left mouse button! And if not pressed, pass back the same value of the voltage,
-            ///else transform the X-coordinate coming in argument 'value'  to the voltage value corresponding to it
-            if (Mouse.LeftButton == MouseButtonState.Pressed)
-            { 
-                //При помощи массива значений параметров находим ближайший по времени
-                if (_window.Voltage_graph_pairs != null)
+            //value parameter holds a DateTime value obtained from TimeMover control
+            DateTime dt = (DateTime)value;
+            string timeOrvalue = (string)parameter;
+            //Ближайшая по времени структура из считанного набора параметров
+            TimeParameterPair tpp;
+            if (_window.Current_graph_pairs != null)
                 {
-                    TimeParameterPair tpp = _window.Voltage_graph_pairs.Where(x => Math.Abs(x.screenPoint.X-(double)value)<1).Select(x => x).FirstOrDefault();
+                //tpp = _window.Current_graph_pairs.Where(x => x.dt == _window.Current_graph_pairs.Max(x1 => x1.dt)).FirstOrDefault();
+                tpp = _window.Current_graph_pairs.Where(x=>x.dt<=dt).OrderBy(x=>x.dt).LastOrDefault();
+                if (timeOrvalue == "Value")
                     _lastMeasuredValue = tpp.parameter;
-                }
-                
-             }
+                else
+                    _lastMeasuredValue = tpp.dt;
+            }
+            
+
+
+  
             return _lastMeasuredValue; //presumably get it from the parameter argument
         }
 
@@ -45,5 +51,5 @@ namespace FurnacesInHand
         }
     }
 }
-//делаем так: при нажатой мышке ищем Х-координату её курсора в перечислении Voltage_graph_pairs<ParameterPair>, 
+//делаем так: при нажатой мышке ищем Х-координату её курсора в перечислении Current_graph_pairs<ParameterPair>, 
 //где в структуру ParameterPair добавлено поле Point screenPoint с занесёнными туда уже при рисовании графика значениями.
