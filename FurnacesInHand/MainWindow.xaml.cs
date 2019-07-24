@@ -507,8 +507,10 @@ namespace FurnacesInHand
                         parameter = "Arc_U";
                         var read_parameters_vdp19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
                         MessageBox.Show($"We have {read_parameters_vdp19.Length} par(s).");
-                        voltageValues.ItemsSource = read_parameters_vdp19;
+                        //voltageValues.ItemsSource = read_parameters_vdp19;
                         Voltage_graph_pairs = (from par in read_parameters_vdp19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
+                        voltageValues.ItemsSource = Voltage_graph_pairs;
+                        //Apply  the DataTemplate here!
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
