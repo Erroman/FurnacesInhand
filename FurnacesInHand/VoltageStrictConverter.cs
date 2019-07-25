@@ -33,6 +33,9 @@ namespace FurnacesInHand
                 {
                 //tpp = _window.Voltage_graph_pairs.Where(x => x.dt == _window.Voltage_graph_pairs.Max(x1 => x1.dt)).FirstOrDefault();
                 tpp = _window.Voltage_graph_pairs.Where(x=>x.dt<=dt).OrderBy(x=>x.dt).LastOrDefault();
+                int index = _window.Voltage_graph_pairs.FindIndex(a => a.dt == tpp.dt);
+                _window.voltageValues.SelectedIndex = index;
+                _window.voltageValues.ScrollIntoView(_window.voltageValues.Items[index]);
                 if (timeOrvalue == "Value")
                     _lastMeasuredValue = tpp.parameter;
                 else
