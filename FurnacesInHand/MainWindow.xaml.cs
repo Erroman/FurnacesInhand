@@ -869,7 +869,7 @@ namespace FurnacesInHand
                 PutTheCursor(clickPoint);
             }
         }
-        private void PutTheCursor(Point clickPoint)
+        public void PutTheCursor(Point clickPoint)
         {
             //Show the nearest values in ListBoxes(TrxtBoxes)! 
             VoltagePlot.VerticalCursor(clickPoint);
