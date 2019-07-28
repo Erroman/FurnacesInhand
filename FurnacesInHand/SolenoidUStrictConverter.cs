@@ -39,7 +39,10 @@ namespace FurnacesInHand
                 if (timeOrvalue == "Value")
                     _lastMeasuredValue = tpp.parameter;
                 else
+                {
+                    _window.PutTheCursor(tpp.screenPoint);
                     _lastMeasuredValue = tpp.dt;
+                }
             }
             
 
