@@ -117,6 +117,7 @@
     <Compile Include="CurrentConverter.cs" />
     <Compile Include="CurrentGraph.cs" />
     <Compile Include="CurrentPlot.cs" />
+    <Compile Include="CurrentStrictConverter.cs" />
     <Compile Include="CurrentTimeConverter.cs" />
     <Compile Include="FurnaceModelLocalNext.cs" />
     <Compile Include="FurnacesInHandViewModel.cs" />
@@ -124,21 +125,22 @@
     <Compile Include="GraphCanvas.cs" />
     <Compile Include="inTime.cs" />
     <Compile Include="MouseBehaviour.cs" />
+    <Compile Include="ParametersLimits.cs" />
     <Compile Include="ServiceFunctions.cs" />
     <Compile Include="SolenoidIConverter.cs" />
     <Compile Include="SolenoidIGraph.cs" />
     <Compile Include="SolenoidIPlot.cs" />
+    <Compile Include="SolenoidIStrictConverter.cs" />
     <Compile Include="SolenoidITimeConverter.cs" />
-    <Compile Include="SolenoidUConverter.cs" />
     <Compile Include="SolenoidUGraph.cs" />
     <Compile Include="SolenoidUPlot.cs" />
-    <Compile Include="SolenoidUTimeConverter.cs" />
+    <Compile Include="SolenoidUStrictConverter.cs" />
+    <Compile Include="TimeConverter.cs" />
     <Compile Include="TimeParameterPair.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
-    <Compile Include="VacuumConverter.cs" />
     <Compile Include="VacuumGraph.cs" />
     <Compile Include="VacuumPlot.cs" />
-    <Compile Include="VacuumTimeConverter.cs" />
+    <Compile Include="VacuumStrictConverter.cs" />
     <Compile Include="vdp01.cs" />
     <Compile Include="vdp02.cs" />
     <Compile Include="vdp03.cs" />
@@ -161,10 +163,9 @@
     <Compile Include="vdp32.cs" />
     <Compile Include="vdp33.cs" />
     <Compile Include="vdp44.cs" />
-    <Compile Include="VoltageConverter.cs" />
     <Compile Include="VoltageGraph.cs" />
     <Compile Include="VoltagePLot.cs" />
-    <Compile Include="VoltageTimeConverter.cs" />
+    <Compile Include="VoltageStrictConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -213,6 +214,12 @@
     <Content Include="restore_script.i">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VSMPO_AVISMAControls\VSMPO_AVISMAControls.csproj">
+      <Project>{037839c9-5424-495e-9a02-0deeb048a1c3}</Project>
+      <Name>VSMPO_AVISMAControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

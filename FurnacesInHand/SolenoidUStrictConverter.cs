@@ -11,31 +11,43 @@ using static FurnacesInHand.EnumerableExtensions;
 
 namespace FurnacesInHand
 {
-    class SolenoidUTimeConverter : IValueConverter
+    class SolenoidUStrictConverter : IValueConverter
     {
         private App _application;
         private MainWindow _window;
-        public SolenoidUTimeConverter()
+        public SolenoidUStrictConverter()
         {
             _application = (App)Application.Current;
             _window = (MainWindow)_application.MainWindow;
         }
 
-        private DateTime _lastMeasuredValue;
+        private object _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ///Check the state of the left mouse button! And if not pressed, pass back the same value of the solenoid voltage,
-            ///else transform the X-coordinate coming in argument 'value'  to the solenoid voltage value corresponding to it
-            if (Mouse.LeftButton == MouseButtonState.Pressed)
-            {
-                //При помощи массива значений параметров находим ближайший по времени
-                if (_window.SolenoidU_graph_pairs != null)
+            //value parameter holds a DateTime value obtained from TimeMover control
+            DateTime dt = (DateTime)value;
+            string timeOrvalue = (string)parameter;
+            //Ближайшая по времени структура из считанного набора параметров
+            TimeParameterPair tpp;
+            if (_window.SolenoidU_graph_pairs != null)
                 {
-                    TimeParameterPair tpp = _window.SolenoidU_graph_pairs.Where(x => Math.Abs(x.screenPoint.X - (double)value) < 1).Select(x => x).FirstOrDefault();
+                //tpp = _window.SolenoidU_graph_pairs.Where(x => x.dt == _window.SolenoidU_graph_pairs.Max(x1 => x1.dt)).FirstOrDefault();
+                tpp = _window.SolenoidU_graph_pairs.Where(x=>x.dt<=dt).OrderBy(x=>x.dt).LastOrDefault();
+                int index = _window.SolenoidU_graph_pairs.FindIndex(a => a.dt == tpp.dt);
+                _window.solVoltageValues.SelectedIndex = index;
+                _window.solVoltageValues.ScrollIntoView(_window.solVoltageValues.Items[index]);
+                if (timeOrvalue == "Value")
+                    _lastMeasuredValue = tpp.parameter;
+                else
+                {
+                    _window.PutTheCursor(tpp.screenPoint);
                     _lastMeasuredValue = tpp.dt;
                 }
-
             }
+            
+
+
+  
             return _lastMeasuredValue; //presumably get it from the parameter argument
         }
 

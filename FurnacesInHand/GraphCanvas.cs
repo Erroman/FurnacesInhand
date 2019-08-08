@@ -7,6 +7,40 @@ namespace FurnacesInHand
 {
     class GraphCanvas:Canvas
     {
+        public GraphCanvas()
+     : base()
+        {
+            this.SizeChanged += new SizeChangedEventHandler(GraphCanvas_SizeChanged);
+        }
+
+        void GraphCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            PanelHeight = this.ActualHeight;
+            PanelWidth = this.ActualWidth;
+        }
+
+        public double PanelWidth
+        {
+            get { return (double)GetValue(PanelWidthProperty); }
+            set { SetValue(PanelWidthProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PanelWidth. This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PanelWidthProperty =
+          DependencyProperty.Register("PanelWidth", typeof(double), typeof(GraphCanvas),
+          new PropertyMetadata(0d));
+
+        public double PanelHeight
+        {
+            get { return (double)GetValue(PanelHeightProperty); }
+            set { SetValue(PanelHeightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PanelHeight. This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PanelHeightProperty =
+          DependencyProperty.Register("PanelHeight", typeof(double), typeof(GraphCanvas),
+          new PropertyMetadata(0d));
+
         private Path verticalCursor = null;
         public Path VerticalCursor(Point point)
         {

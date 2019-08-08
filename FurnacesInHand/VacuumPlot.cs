@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace FurnacesInHand
@@ -17,7 +18,11 @@ namespace FurnacesInHand
             {
                 VacuumPlot.Children?.Clear();
                 Rect rectangular = new Rect(0, 0, VacuumPlot.ActualWidth, VacuumPlot.ActualHeight);
-                _ = VacuumPlot.Children.Add(new VacuumGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime));
+                FurnacesInHandViewModel vm = (FurnacesInHandViewModel)this.DataContext;
+                //Установить верхние и нижние границы значений, отображаеиых на графике
+                VacuumMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                VacuumMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                _ = VacuumPlot.Children.Add(new VacuumGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime,vm:vm));
                 return null;
             }
              ), null);

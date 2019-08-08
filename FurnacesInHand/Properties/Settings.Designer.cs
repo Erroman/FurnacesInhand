@@ -61,54 +61,6 @@ namespace FurnacesInHand.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2000-01-01")]
-        public string begTime {
-            get {
-                return ((string)(this["begTime"]));
-            }
-            set {
-                this["begTime"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2000-01-01")]
-        public string endTime {
-            get {
-                return ((string)(this["endTime"]));
-            }
-            set {
-                this["endTime"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("00:00")]
-        public string begTimeMin {
-            get {
-                return ((string)(this["begTimeMin"]));
-            }
-            set {
-                this["begTimeMin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("23:59")]
-        public string endTimeMin {
-            get {
-                return ((string)(this["endTimeMin"]));
-            }
-            set {
-                this["endTimeMin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public string lowerVoltage {
             get {
@@ -128,6 +80,126 @@ namespace FurnacesInHand.Properties {
             }
             set {
                 this["upperVoltage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string lowerCurrent {
+            get {
+                return ((string)(this["lowerCurrent"]));
+            }
+            set {
+                this["lowerCurrent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public string upperCurrent {
+            get {
+                return ((string)(this["upperCurrent"]));
+            }
+            set {
+                this["upperCurrent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string lowerVacuum {
+            get {
+                return ((string)(this["lowerVacuum"]));
+            }
+            set {
+                this["lowerVacuum"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("760")]
+        public string upperVacuum {
+            get {
+                return ((string)(this["upperVacuum"]));
+            }
+            set {
+                this["upperVacuum"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-50")]
+        public string lowerUSolenoid {
+            get {
+                return ((string)(this["lowerUSolenoid"]));
+            }
+            set {
+                this["lowerUSolenoid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public string upperUSolenoid {
+            get {
+                return ((string)(this["upperUSolenoid"]));
+            }
+            set {
+                this["upperUSolenoid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-10")]
+        public string lowerISolenoid {
+            get {
+                return ((string)(this["lowerISolenoid"]));
+            }
+            set {
+                this["lowerISolenoid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public string upperISolenoid {
+            get {
+                return ((string)(this["upperISolenoid"]));
+            }
+            set {
+                this["upperISolenoid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("07/15/2019 13:44:34")]
+        public global::System.DateTime dtBegTime {
+            get {
+                return ((global::System.DateTime)(this["dtBegTime"]));
+            }
+            set {
+                this["dtBegTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("07/15/2019 13:57:00")]
+        public global::System.DateTime dtEndTime {
+            get {
+                return ((global::System.DateTime)(this["dtEndTime"]));
+            }
+            set {
+                this["dtEndTime"] = value;
             }
         }
     }

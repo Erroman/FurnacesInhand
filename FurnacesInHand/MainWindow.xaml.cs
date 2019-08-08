@@ -46,12 +46,20 @@ namespace FurnacesInHand
             this.numberOfFurnace = Properties.Settings.Default.numberOfFurnace;
             ChooseTheItemInTheTreeForTheFurnace(this.numberOfFurnace);
 
-            begTime.Text = Properties.Settings.Default.begTime;
-            begTimeMin.Text = Properties.Settings.Default.begTimeMin;
-            endTime.Text = Properties.Settings.Default.endTime;
-            endTimeMin.Text = Properties.Settings.Default.endTimeMin;
+            dtBegTime.Dt = Properties.Settings.Default.dtBegTime;
+            dtEndTime.Dt = Properties.Settings.Default.dtEndTime;
+
             VoltageMin.Text = Properties.Settings.Default.lowerVoltage;
             VoltageMax.Text = Properties.Settings.Default.upperVoltage;
+            CurrentMin.Text = Properties.Settings.Default.lowerCurrent;
+            CurrentMax.Text = Properties.Settings.Default.upperCurrent;
+            VacuumMin.Text = Properties.Settings.Default.lowerVacuum;
+            VacuumMax.Text = Properties.Settings.Default.upperVacuum;
+            SolenoidUMin.Text = Properties.Settings.Default.lowerUSolenoid;
+            SolenoidUMax.Text = Properties.Settings.Default.upperUSolenoid;
+            SolenoidIMin.Text = Properties.Settings.Default.lowerISolenoid;
+            SolenoidIMax.Text = Properties.Settings.Default.upperISolenoid;
+
 
             SetDigitalStartAndFinishTimes();
 
@@ -69,15 +77,21 @@ namespace FurnacesInHand
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Properties.Settings.Default.firstDatabase = (bool)firstDataBase.IsChecked;
+            Properties.Settings.Default.dtBegTime = dtBegTime.Dt;
+            Properties.Settings.Default.dtEndTime = dtEndTime.Dt;
             //Properties.Settings.Default.secondDatabase = (bool)secondDataBase.IsChecked;
             Properties.Settings.Default.numberOfFurnace = this.numberOfFurnace;
-            Properties.Settings.Default.begTime = begTime.Text;
-            Properties.Settings.Default.endTime = endTime.Text;
-            Properties.Settings.Default.begTimeMin = begTimeMin.Text;
-            Properties.Settings.Default.endTimeMin = endTimeMin.Text;
             Properties.Settings.Default.lowerVoltage = VoltageMin.Text;
             Properties.Settings.Default.upperVoltage = VoltageMax.Text;
+            Properties.Settings.Default.lowerCurrent = CurrentMin.Text;
+            Properties.Settings.Default.upperCurrent = CurrentMax.Text;
+            Properties.Settings.Default.lowerVacuum = VacuumMin.Text;
+            Properties.Settings.Default.upperVacuum = VacuumMax.Text;
+            Properties.Settings.Default.lowerUSolenoid = SolenoidUMin.Text;
+            Properties.Settings.Default.upperUSolenoid = SolenoidUMax.Text;
+            Properties.Settings.Default.lowerISolenoid = SolenoidIMin.Text;
+            Properties.Settings.Default.upperISolenoid = SolenoidIMax.Text;
+
             Properties.Settings.Default.Save();
         }
         //private void Base_Chosen()
@@ -495,6 +509,8 @@ namespace FurnacesInHand
                         MessageBox.Show($"We have {read_parameters_vdp19.Length} par(s).");
                         voltageValues.ItemsSource = read_parameters_vdp19;
                         Voltage_graph_pairs = (from par in read_parameters_vdp19 select new TimeParameterPair() { dt = (DateTime)par.dateandtime, parameter = (double)par.val }).ToList();
+                        //voltageValues.ItemsSource = Voltage_graph_pairs;
+                        //Apply  the DataTemplate here!
                         voltagePlot(Voltage_graph_pairs);
                         parameter = "Arc_I";
                         read_parameters_vdp19 = this.context.vdp19.Where(x => x.tagname == parameter && x.dateandtime >= startTime && x.dateandtime <= finishTime).OrderBy(x => x.id).ToArray();
@@ -728,15 +744,8 @@ namespace FurnacesInHand
         private void SetDigitalStartAndFinishTimes()
         {
 
-            startTime = DateTime.Parse(begTime.Text == "" ? "2000-01-01" : begTime.Text);
-            DateTime startTimeMin = DateTime.Parse(begTimeMin.Text);
-            startTime = startTime.AddHours(startTimeMin.Hour);
-            startTime = startTime.AddMinutes(startTimeMin.Minute);
-
-            finishTime = DateTime.Parse(endTime.Text == "" ? "2050-01-01" : endTime.Text);
-            DateTime finishTimeMin = DateTime.Parse(endTimeMin.Text);
-            finishTime = finishTime.AddHours(finishTimeMin.Hour);
-            finishTime = finishTime.AddMinutes(finishTimeMin.Minute);
+            startTime = dtBegTime.Dt;
+            finishTime = dtEndTime.Dt;
 
         }
         private void MapTheRemoteBase()
@@ -860,7 +869,7 @@ namespace FurnacesInHand
                 PutTheCursor(clickPoint);
             }
         }
-        private void PutTheCursor(Point clickPoint)
+        public void PutTheCursor(Point clickPoint)
         {
             //Show the nearest values in ListBoxes(TrxtBoxes)! 
             VoltagePlot.VerticalCursor(clickPoint);

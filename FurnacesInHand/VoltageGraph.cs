@@ -15,12 +15,14 @@ namespace FurnacesInHand
         private readonly DateTime startTime;
         private readonly DateTime finishTime;
         private readonly VisualCollection _children;
+        private readonly FurnacesInHandViewModel vm;
         // Provide a required override for the VisualChildrenCount property.
-  
-        public VoltageGraph(List<TimeParameterPair> timeParameterPair,Rect rect, DateTime startTime, DateTime finishTime)
+
+        public VoltageGraph(List<TimeParameterPair> timeParameterPair,Rect rect, DateTime startTime, DateTime finishTime,FurnacesInHandViewModel vm=null)
         {
             this.startTime = startTime;
             this.finishTime = finishTime;
+            this.vm = vm;
             _children = new VisualCollection(this)
             {
                 CreateDrawingVisualPlot(timeParameterPair,rect)
@@ -33,8 +35,8 @@ namespace FurnacesInHand
             Pen pen = new Pen(Brushes.Black, 1.0);
             double LowerLimitForTimeOnXAxis = 0; //нижняя гравница временного интервала в миллисекундах
             double UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(this.finishTime); //верхняя гравница временного интервала в миллисекундах
-            double LowerLimitForVoltageOnYAxis = 0; //Properties.Settings.Default.;
-            double UpperLimitForVoltageOnYAxis = 50;
+            double LowerLimitForVoltageOnYAxis = vm == null ? 0 : Double.Parse(vm.VoltageMin); //Properties.Settings.Default.;
+            double UpperLimitForVoltageOnYAxis = vm == null ? 50 : Double.Parse(vm.VoltageMax);
             double xmin = rect.X;
             double xmax = rect.X + rect.Width;
             double ymin = rect.Y;

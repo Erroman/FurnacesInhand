@@ -11,23 +11,41 @@
     <Setting Name="numberOfFurnace" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="begTime" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2000-01-01</Value>
-    </Setting>
-    <Setting Name="endTime" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2000-01-01</Value>
-    </Setting>
-    <Setting Name="begTimeMin" Type="System.String" Scope="User">
-      <Value Profile="(Default)">00:00</Value>
-    </Setting>
-    <Setting Name="endTimeMin" Type="System.String" Scope="User">
-      <Value Profile="(Default)">23:59</Value>
-    </Setting>
     <Setting Name="lowerVoltage" Type="System.String" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="upperVoltage" Type="System.String" Scope="User">
       <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="lowerCurrent" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="upperCurrent" Type="System.String" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="lowerVacuum" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="upperVacuum" Type="System.String" Scope="User">
+      <Value Profile="(Default)">760</Value>
+    </Setting>
+    <Setting Name="lowerUSolenoid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-50</Value>
+    </Setting>
+    <Setting Name="upperUSolenoid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="lowerISolenoid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-10</Value>
+    </Setting>
+    <Setting Name="upperISolenoid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="dtBegTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">07/15/2019 13:44:34</Value>
+    </Setting>
+    <Setting Name="dtEndTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">07/15/2019 13:57:00</Value>
     </Setting>
   </Settings>
 </SettingsFile>
