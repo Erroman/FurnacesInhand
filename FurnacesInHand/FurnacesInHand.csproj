@@ -216,6 +216,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RangeSliderControl\RangeSliderControls.csproj">
+      <Project>{e99ce19e-0af8-4ab0-8586-834528782b19}</Project>
+      <Name>RangeSliderControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VSMPO_AVISMAControls\VSMPO_AVISMAControls.csproj">
       <Project>{037839c9-5424-495e-9a02-0deeb048a1c3}</Project>
       <Name>VSMPO_AVISMAControls</Name>
