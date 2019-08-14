@@ -123,7 +123,7 @@
         <TextBox Text="{Binding Dt, ConverterParameter=Time, Converter={StaticResource VacuumStrictConverter}, ElementName=dtCurrentTime, StringFormat=dd.MM.yy HH:mm:ss.fff}" Grid.Column="1"  HorizontalAlignment="Left" Height="36" Margin="10,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="2"/>
         <TextBox Text="{Binding Dt, ConverterParameter=Value, Converter={StaticResource SolenoidUStrictConverter}, ElementName=dtCurrentTime, StringFormat=\{0:F2\}}" Grid.Column="1"  HorizontalAlignment="Left" Height="26" Margin="132,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="3"/>
         <TextBox Text="{Binding Dt, ConverterParameter=Time, Converter={StaticResource SolenoidUStrictConverter}, ElementName=dtCurrentTime, StringFormat=dd.MM.yy HH:mm:ss.fff}" Grid.Column="1"  HorizontalAlignment="Left" Height="40" Margin="10,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="3"/>
-        <TextBox Text="{Binding Dt, ConverterParameter=Value, Converter={StaticResource SolenoidIStrictConverter}, ElementName=dtCurrentTime, StringFormat=\{0:F2\}}" Grid.Column="1"  HorizontalAlignment="Left" Height="24" Margin="132,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="4"/>
+        <TextBox Text="{Binding Dt, ConverterParameter=Value, Converter={StaticResource SolenoidIStrictConverter}, ElementName=dtCurrentTime, StringFormat=\{0:F2\}}" Grid.Column="1"  HorizontalAlignment="Left" Height="24" Margin="130,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="4"/>
         <TextBox Text="{Binding Dt, ConverterParameter=Time, Converter={StaticResource SolenoidIStrictConverter}, ElementName=dtCurrentTime, StringFormat=dd.MM.yy HH:mm:ss.fff}" Grid.Column="1"  HorizontalAlignment="Left" Height="35" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="4"/>
         <TextBlock x:Name="Updated" HorizontalAlignment="Left" Margin="40,108,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Height="28"/>
         <Button Content="Загрузка с сервера" HorizontalAlignment="Left" Margin="31,36,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="46" Click="Button_Click_1"/>
@@ -131,7 +131,7 @@
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="174,135,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ток дуги (КА)" VerticalAlignment="Top" Width="73" Height="24" Grid.ColumnSpan="2" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="139,139,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Вакуум (мм рт.ст.)" VerticalAlignment="Top" Width="108" Height="24" Grid.ColumnSpan="2" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="139,136,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="108" Grid.ColumnSpan="2" ><Run Text="Напряжение на соленоиде ("/><Run Text="В"/><Run Text=")"/></TextBlock>
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="139,147,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"  Height="16" Grid.ColumnSpan="2"><Run Text="Ток соленоида"/><Run Text=" (А)"/></TextBlock>
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="110,143,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="108"  Height="16" Grid.ColumnSpan="2"><Run Text="Ток соленоида"/><Run Text=" (А)"/></TextBlock>
         <TextBox x:Name="VoltageMax" Text="{Binding VoltageMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
         <TextBox x:Name="VoltageMin" Text="{Binding VoltageMin, Mode=OneWayToSource}" Grid.Column="2" Height="23" Margin="0,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <TextBox x:Name="CurrentMax" Text="{Binding CurrentMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,1,0,0" Grid.Row="1"/>
@@ -139,9 +139,9 @@
         <TextBox x:Name="VacuumMax" Text="{Binding VacuumMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="2"/>
         <TextBox x:Name="VacuumMin" Text="{Binding VacuumMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,175,0,0" Grid.Row="2"/>
         <TextBox x:Name="SolenoidUMax" Text="{Binding SolenoidUMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="3"/>
-        <TextBox x:Name="SolenoidUMin" Text="{Binding SolenoidUMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="3" Margin="0,175,0,0"/>
+        <TextBox x:Name="SolenoidUMin" Text="{Binding SolenoidUMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="3" Margin="0,168,0,0" Grid.RowSpan="2"/>
         <TextBox x:Name="SolenoidIMax" Text="{Binding SolenoidIMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
-        <TextBox x:Name="SolenoidIMin" Text="{Binding SolenoidIMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4" Margin="0,175,0,0"/>
+        <TextBox x:Name="SolenoidIMin" Text="{Binding SolenoidIMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4" Margin="0,168,0,0" Grid.RowSpan="2"/>
         <Button  HorizontalAlignment="Left" Margin="31,135,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="46" Click="Button_Click_1">
             <Grid>
                 <Grid.RowDefinitions>
@@ -156,6 +156,7 @@
         <mover:TimeMover x:Name="dtBegTime" Dt="{Binding DtBegTime, Mode=TwoWay}" HorizontalAlignment="Left" Margin="26,42,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <mover:TimeMover x:Name="dtEndTime" Dt="{Binding DtEndTime, Mode=TwoWay}" HorizontalAlignment="Left" Margin="26,122,0,0" Grid.Row="2" VerticalAlignment="Top" Height="61"/>
         <mover:TimeMover x:Name ="dtCurrentTime" Dt="{Binding CanvasX, ConverterParameter={StaticResource FurnacesInHandViewModel}, Converter={StaticResource TimeConverter}, Mode=TwoWay}" HorizontalAlignment="Left" Margin="11,108,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
+        <Border Grid.Row="5" Grid.Column="3" BorderBrush="Black" BorderThickness="0 1 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <RangeSliderControls:RangeSlider Minimum="0" UpperValue="100" Maximum="100" Grid.Column="3" HorizontalAlignment="Stretch" Height="20" Margin="10,0,10,0" Grid.Row="6" VerticalAlignment="Top"/>
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Height="135" Margin="10,28,0,0" Grid.Row="4" VerticalAlignment="Top" Width="15"/>
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Height="128" Margin="10,36,0,0" Grid.Row="3" VerticalAlignment="Top" Width="20"/>
