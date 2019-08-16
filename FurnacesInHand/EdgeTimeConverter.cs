@@ -23,22 +23,13 @@ namespace FurnacesInHand
             _datacontext = (FurnacesInHandViewModel)(_window.DataContext);
         }
 
-        private double _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ///Check the state of the left mouse button! And if not pressed, pass back the same value of the solenoid current,
-            ///else transform the X-coordinate coming in argument 'value'  to the solenoid current value corresponding to it
-            if (Mouse.LeftButton == MouseButtonState.Pressed)
-            {
-                //При помощи массива значений параметров находим ближайший по времени
-                if (_window.SolenoidI_graph_pairs != null)
-                {
-                    TimeParameterPair tpp = _window.SolenoidI_graph_pairs.Where(x => Math.Abs(x.screenPoint.X - (double)value) < 1).Select(x => x).FirstOrDefault();
-                    _lastMeasuredValue = tpp.parameter;
-                }
-
-            }
-            return _lastMeasuredValue; //presumably get it from the parameter argument
+            string UpperOrLower = (string)parameter;
+            if (UpperOrLower == "LowerValue")
+                return _datacontext.DtBegTime;
+            else
+                return _datacontext.DtEndTime;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
