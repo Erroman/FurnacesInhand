@@ -119,6 +119,7 @@
     <Compile Include="CurrentPlot.cs" />
     <Compile Include="CurrentStrictConverter.cs" />
     <Compile Include="CurrentTimeConverter.cs" />
+    <Compile Include="EdgeTimeConverter.cs" />
     <Compile Include="FurnaceModelLocalNext.cs" />
     <Compile Include="FurnacesInHandViewModel.cs" />
     <Compile Include="FurnacesModelLocal.cs" />
