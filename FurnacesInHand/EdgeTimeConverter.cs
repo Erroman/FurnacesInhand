@@ -15,11 +15,12 @@ namespace FurnacesInHand
     {
         private App _application;
         private MainWindow _window;
+        private FurnacesInHandViewModel _datacontext;
         public EdgeTimeConverter()
         {
             _application = (App)Application.Current;
             _window = (MainWindow)_application.MainWindow;
-            
+            _datacontext = (FurnacesInHandViewModel)(_window.DataContext);
         }
 
         private double _lastMeasuredValue;
