@@ -38,8 +38,10 @@ namespace FurnacesInHand
             }
      
             else
-
+            { 
                 timeValue =  _datacontext.DtEndTime;
+            }
+                
             return timeValue;
         }
 
