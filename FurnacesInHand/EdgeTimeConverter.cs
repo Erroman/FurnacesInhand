@@ -26,10 +26,21 @@ namespace FurnacesInHand
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string UpperOrLower = (string)parameter;
-            if (UpperOrLower == "LowerValue")
-                return _datacontext.DtBegTime;
+            DateTime timeValue;
+            TimeSpan timeFullSpan = _datacontext.DtEndTime - _datacontext.DtBegTime;
+            double timeRangeSliderFullSpan = _window.timeRangeSlider.Maximum - _window.timeRangeSlider.Minimum;
+            double thumbPosition = (double)value- _window.timeRangeSlider.Minimum;
+            if (UpperOrLower == "LowerValue") 
+            {           
+                long l = (long)(timeFullSpan.Ticks*thumbPosition / timeRangeSliderFullSpan);
+                timeValue = _datacontext.DtBegTime + TimeSpan.FromTicks(l);
+
+            }
+     
             else
-                return _datacontext.DtEndTime;
+
+                timeValue =  _datacontext.DtEndTime;
+            return timeValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
