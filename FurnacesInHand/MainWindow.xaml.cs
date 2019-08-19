@@ -746,6 +746,9 @@ namespace FurnacesInHand
 
             startTime = dtBegTime.Dt;
             finishTime = dtEndTime.Dt;
+            //initial positions of the thumbs on the Time RangeSlider:
+            timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
+            timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
 
         }
         private void MapTheRemoteBase()
