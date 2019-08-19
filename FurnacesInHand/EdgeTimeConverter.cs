@@ -29,17 +29,21 @@ namespace FurnacesInHand
             DateTime timeValue;
             TimeSpan timeFullSpan = _datacontext.DtEndTime - _datacontext.DtBegTime;
             double timeRangeSliderFullSpan = _window.timeRangeSlider.Maximum - _window.timeRangeSlider.Minimum;
-            double thumbPosition = (double)value- _window.timeRangeSlider.Minimum;
+            double thumbPosition;
+            long l;
             if (UpperOrLower == "LowerValue") 
-            {           
-                long l = (long)(timeFullSpan.Ticks*thumbPosition / timeRangeSliderFullSpan);
+            {
+                thumbPosition = (double)value - _window.timeRangeSlider.Minimum;
+                l = (long)(timeFullSpan.Ticks * thumbPosition / timeRangeSliderFullSpan);
                 timeValue = _datacontext.DtBegTime + TimeSpan.FromTicks(l);
 
             }
      
             else
-            { 
-                timeValue =  _datacontext.DtEndTime;
+            {
+                thumbPosition = (double)value - _window.timeRangeSlider.Maximum;
+                l = (long)(timeFullSpan.Ticks * thumbPosition / timeRangeSliderFullSpan);
+                timeValue = _datacontext.DtEndTime + TimeSpan.FromTicks(l);
             }
                 
             return timeValue;
