@@ -29,7 +29,7 @@
         <local:SolenoidITimeConverter x:Key="SolenoidITimeConverter"/>
         <local:TimeConverter x:Key="TimeConverter"/>
         <local:EdgeTimeConverter x:Key="EdgeTimeConverter"/>
-        <local:EdgeTimeMultiConverter x:Key="EdgeTimeMultiConverter"/>
+        <local:EdgeTimeConverterToSource x:Key="EdgeTimeConverterToSource"/>
     </Window.Resources>
     <Window.DataContext>
         <Binding Source="{StaticResource FurnacesInHandViewModel}"/>
@@ -161,7 +161,14 @@
         <mover:TimeMover x:Name="dtEndTime" Dt="{Binding DtEndTime, Mode=TwoWay}" HorizontalAlignment="Left" Margin="26,122,0,0" Grid.Row="2" VerticalAlignment="Top" Height="61"/>
         <mover:TimeMover x:Name ="dtCurrentTime" Dt="{Binding CanvasX, ConverterParameter={StaticResource FurnacesInHandViewModel}, Converter={StaticResource TimeConverter}, Mode=TwoWay}" HorizontalAlignment="Left" Margin="11,108,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
         <Border Grid.Row="5" Grid.Column="3" BorderBrush="Black" BorderThickness="1 1 1 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <RangeSliderControls:RangeSlider Name="timeRangeSlider" LowerValue="{Binding LowerValue,Mode=TwoWay}" UpperValue="{Binding UpperValue,Mode=TwoWay}" Minimum="0" Maximum="100" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Center"/>
+        <RangeSliderControls:RangeSlider Name="timeRangeSlider"  Minimum="0" Maximum="100" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Center">
+            <RangeSliderControls:RangeSlider.LowerValue>
+                 <Binding Path="DtEdgeBegTime" Converter="{StaticResource EdgeTimeConverterToSource}" ConverterParameter="LowerValue" Mode="OneWayToSource"/>
+            </RangeSliderControls:RangeSlider.LowerValue>
+            <RangeSliderControls:RangeSlider.UpperValue>
+                <Binding Path="DtEdgeEndTime" Converter="{StaticResource EdgeTimeConverterToSource}" ConverterParameter="UpperValue" Mode="OneWayToSource"/>
+            </RangeSliderControls:RangeSlider.UpperValue>
+        </RangeSliderControls:RangeSlider>
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Height="135" Margin="10,28,0,0" Grid.Row="4" VerticalAlignment="Top" Width="15"/>
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Height="128" Margin="10,36,0,0" Grid.Row="3" VerticalAlignment="Top" Width="20"/>
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Height="142" Margin="10,28,0,0" Grid.Row="2" VerticalAlignment="Top" Width="20"/>
@@ -169,14 +176,12 @@
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Height="143" Margin="10,28,0,0" VerticalAlignment="Top" Width="20"/>
         <TextBlock  Grid.Column="2" Margin="9,0,0,0" Grid.Row="6" TextWrapping="Wrap"  VerticalAlignment="Top" Grid.ColumnSpan="2">
             <TextBlock.Text>
-                <Binding Path="LowerValue" ConverterParameter="LowerValue" Converter="{StaticResource EdgeTimeConverter}" Mode="OneWay" />
+                <Binding Path="DtEdgeBegTime"  Mode="OneWay" />
             </TextBlock.Text>
         </TextBlock>
         <TextBlock Grid.Column="3" HorizontalAlignment="Right" Margin="0,0,11,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2">
-        <TextBlock.Text>
-                <MultiBinding Converter="{StaticResource EdgeTimeMultiConverter}"  ConverterParameter="UpperValue" Mode="OneWay">
-                    <Binding Path="UpperValue" ConverterParameter="UpperValue" Converter="{StaticResource EdgeTimeConverter}" Mode="OneWay" />
-                </MultiBinding>
+           <TextBlock.Text>
+                <Binding Path="DtEdgeEndTime"  Mode="OneWay" />
             </TextBlock.Text> 
         </TextBlock>
     </Grid>

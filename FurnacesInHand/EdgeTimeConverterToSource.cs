@@ -11,19 +11,23 @@ using static FurnacesInHand.EnumerableExtensions;
 
 namespace FurnacesInHand
 {
-    class EdgeTimeConverter : IValueConverter
+    class EdgeTimeConverterToSource : IValueConverter
     {
         private App _application;
         private MainWindow _window;
         private FurnacesInHandViewModel _datacontext;
-        public EdgeTimeConverter()
+        public EdgeTimeConverterToSource()
         {
             _application = (App)Application.Current;
             _window = (MainWindow)_application.MainWindow;
             _datacontext = (FurnacesInHandViewModel)(_window.DataContext);
         }
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string UpperOrLower = (string)parameter;
             DateTime timeValue;
@@ -31,31 +35,22 @@ namespace FurnacesInHand
             double timeRangeSliderFullSpan = _window.timeRangeSlider.Maximum - _window.timeRangeSlider.Minimum;
             double thumbPosition;
             long l;
-            if (UpperOrLower == "LowerValue") 
+            if (UpperOrLower == "LowerValue")
             {
                 thumbPosition = (double)value - _window.timeRangeSlider.Minimum;
                 l = (long)(timeFullSpan.Ticks * thumbPosition / timeRangeSliderFullSpan);
                 timeValue = _datacontext.DtBegTime + TimeSpan.FromTicks(l);
 
             }
-     
+
             else
             {
                 thumbPosition = (double)value - _window.timeRangeSlider.Maximum;
                 l = (long)(timeFullSpan.Ticks * thumbPosition / timeRangeSliderFullSpan);
                 timeValue = _datacontext.DtEndTime + TimeSpan.FromTicks(l);
             }
-                
-            return timeValue;
-        }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            DateTime dt;
-            dt = DateTime.Parse((string)value);
-            return dt;
+            return timeValue;
         }
     }
 }
-//делаем так: при нажатой мышке ищем Х-координату её курсора в перечислении SolenoidI_graph_pairs<ParameterPair>, 
-//где в структуру ParameterPair добавлено поле Point screenPoint с занесёнными туда уже при рисовании графика значениями.

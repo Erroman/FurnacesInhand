@@ -71,6 +71,18 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
+        private DateTime _dtEdgeBegTime;
+        private DateTime _dtEdgeEndTime;
+        public DateTime DtEdgeBegTime 
+        {
+            get => _dtEdgeBegTime;
+            set => _dtEdgeBegTime = value;
+        }
+        public DateTime DtEdgeEndTime
+        {
+            get => _dtEdgeEndTime;
+            set => _dtEdgeEndTime = value;
+        }
 
         private double _canvasVoltageHeight;
         private double _canvasVoltageWidth;
