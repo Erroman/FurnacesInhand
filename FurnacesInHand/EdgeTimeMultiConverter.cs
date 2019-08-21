@@ -30,7 +30,8 @@ namespace FurnacesInHand
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            return values[0];
+            DateTime timeValue = (DateTime)values[0];
+            return timeValue.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

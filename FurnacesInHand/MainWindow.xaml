@@ -174,9 +174,9 @@
         </TextBlock>
         <TextBlock Grid.Column="3" HorizontalAlignment="Right" Margin="0,0,11,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2">
         <TextBlock.Text>
-                <!--<MultiBinding Converter="{StaticResource EdgeTimeMultiConverter}"  ConverterParameter="UpperValue">-->
+                <MultiBinding Converter="{StaticResource EdgeTimeMultiConverter}"  ConverterParameter="UpperValue" Mode="OneWay">
                     <Binding Path="UpperValue" ConverterParameter="UpperValue" Converter="{StaticResource EdgeTimeConverter}" Mode="OneWay" />
-                <!--</MultiBinding>-->
+                </MultiBinding>
             </TextBlock.Text> 
         </TextBlock>
     </Grid>
