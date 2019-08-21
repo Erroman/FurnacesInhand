@@ -341,30 +341,7 @@ namespace FurnacesInHand
             }
 
         }
-        double _LowerValue;
-        double _UpperValue;
-        public double LowerValue 
-        {
-            get { return _LowerValue;} 
-            set 
-            {
-                if (value.Equals(_LowerValue)) return;
-                _LowerValue = value;
-                OnPropertyChanged();
-
-            }
-        }
-        public double UpperValue
-        {
-            get { return _UpperValue; }
-            set
-            {
-                if (value.Equals(_UpperValue)) return;
-                _UpperValue = value;
-                OnPropertyChanged();
-
-            }
-        }
+ 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

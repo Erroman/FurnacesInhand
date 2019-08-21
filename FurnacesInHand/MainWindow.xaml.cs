@@ -26,6 +26,7 @@ namespace FurnacesInHand
         const string Upload_server_credetials =   @"-h localhost -U postgres -d fttm -p 5432";
         FurnacesModelLocal context;
         DbConnection conn;
+        FurnacesInHandViewModel datacontext;
         public Int32 numberOfFurnace;
         public List<TimeParameterPair> Voltage_graph_pairs;
         public List<TimeParameterPair> Current_graph_pairs;
@@ -37,11 +38,14 @@ namespace FurnacesInHand
         public DateTime startTime;
         public DateTime finishTime;
 
+
         enum Parameters
         {Напряжение,Ток,Вакуум,Ток_соленоида, Напряжение_на_соленоиде}
         public MainWindow()
         {
             InitializeComponent();
+
+            datacontext = (FurnacesInHandViewModel)this.DataContext;
 
             this.numberOfFurnace = Properties.Settings.Default.numberOfFurnace;
             ChooseTheItemInTheTreeForTheFurnace(this.numberOfFurnace);
@@ -60,6 +64,8 @@ namespace FurnacesInHand
             SolenoidIMin.Text = Properties.Settings.Default.lowerISolenoid;
             SolenoidIMax.Text = Properties.Settings.Default.upperISolenoid;
 
+            timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
+            timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
 
             SetDigitalStartAndFinishTimes();
 
@@ -744,11 +750,9 @@ namespace FurnacesInHand
         private void SetDigitalStartAndFinishTimes()
         {
 
-            startTime = dtBegTime.Dt;
-            finishTime = dtEndTime.Dt;
-            //initial positions of the thumbs on the Time RangeSlider:
-            timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
-            timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
+                   //initial positions of the thumbs on the Time RangeSlider:
+            startTime  = datacontext.DtEdgeBegTime;
+            finishTime = datacontext.DtEdgeEndTime;
 
         }
         private void MapTheRemoteBase()

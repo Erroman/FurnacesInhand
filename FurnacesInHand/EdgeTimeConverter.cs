@@ -27,7 +27,7 @@ namespace FurnacesInHand
         {
             string UpperOrLower = (string)parameter;
             DateTime timeValue;
-            TimeSpan timeFullSpan = _datacontext.DtEndTime - _datacontext.DtBegTime;
+            TimeSpan timeFullSpan = _datacontext.DtEdgeEndTime - _datacontext.DtEdgeBegTime;
             double timeRangeSliderFullSpan = _window.timeRangeSlider.Maximum - _window.timeRangeSlider.Minimum;
             double thumbPosition;
             long l;
@@ -35,7 +35,7 @@ namespace FurnacesInHand
             {
                 thumbPosition = (double)value - _window.timeRangeSlider.Minimum;
                 l = (long)(timeFullSpan.Ticks * thumbPosition / timeRangeSliderFullSpan);
-                timeValue = _datacontext.DtBegTime + TimeSpan.FromTicks(l);
+                timeValue = _datacontext.DtEdgeBegTime + TimeSpan.FromTicks(l);
 
             }
      
@@ -43,7 +43,7 @@ namespace FurnacesInHand
             {
                 thumbPosition = (double)value - _window.timeRangeSlider.Maximum;
                 l = (long)(timeFullSpan.Ticks * thumbPosition / timeRangeSliderFullSpan);
-                timeValue = _datacontext.DtEndTime + TimeSpan.FromTicks(l);
+                timeValue = _datacontext.DtEdgeEndTime + TimeSpan.FromTicks(l);
             }
                 
             return timeValue;
