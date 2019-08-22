@@ -163,7 +163,7 @@
         <Border Grid.Row="5" Grid.Column="3" BorderBrush="Black" BorderThickness="1 1 1 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <RangeSliderControls:RangeSlider Name="timeRangeSlider"  Minimum="0" Maximum="100" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Center">
             <RangeSliderControls:RangeSlider.LowerValue>
-                 <Binding Path="DtEdgeBegTime" Converter="{StaticResource EdgeTimeConverterToSource}" ConverterParameter="LowerValue" Mode="OneWayToSource"/>
+                <Binding Path="DtEdgeBegTime" Converter="{StaticResource EdgeTimeConverterToSource}" ConverterParameter="LowerValue" Mode="OneWayToSource"/>
             </RangeSliderControls:RangeSlider.LowerValue>
             <RangeSliderControls:RangeSlider.UpperValue>
                 <Binding Path="DtEdgeEndTime" Converter="{StaticResource EdgeTimeConverterToSource}" ConverterParameter="UpperValue" Mode="OneWayToSource"/>
@@ -180,10 +180,12 @@
             </TextBlock.Text>
         </TextBlock>
         <TextBlock Grid.Column="3" HorizontalAlignment="Right" Margin="0,0,11,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2">
-           <TextBlock.Text>
+            <TextBlock.Text>
                 <Binding Path="DtEdgeEndTime"  Mode="OneWay" />
-            </TextBlock.Text> 
+            </TextBlock.Text>
         </TextBlock>
+        <Button Content="Уменьшить" HorizontalAlignment="Left" Margin="10,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="196"/>
+        <Button Content="Увеличить" Grid.Column="1" HorizontalAlignment="Left" Margin="11,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="191" Grid.RowSpan="2"/>
     </Grid>
 
 </Window>

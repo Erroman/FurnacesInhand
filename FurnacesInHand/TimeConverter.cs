@@ -31,7 +31,7 @@ namespace FurnacesInHand
                 finhViewModel = (FurnacesInHandViewModel)parameter;
                 PrepareTransform(finhViewModel);
                 p.X = (double)value;
-                dt = finhViewModel.DtBegTime + TimeSpan.FromMilliseconds(DtoW(p).X);
+                dt = finhViewModel.DtEdgeBegTime  + TimeSpan.FromMilliseconds(DtoW(p).X);
             }
               
             return dt;
@@ -43,7 +43,7 @@ namespace FurnacesInHand
             finhViewModel = (FurnacesInHandViewModel)parameter;
             PrepareTransform(finhViewModel);
             dt = (DateTime)value;
-            TimeSpan ts = (TimeSpan)(dt - finhViewModel.DtBegTime);
+            TimeSpan ts = (TimeSpan)(dt - finhViewModel.DtEdgeBegTime);
             p.X = ts.TotalMilliseconds;
              p.X = WtoD(p).X;
             return p.X;
@@ -52,8 +52,8 @@ namespace FurnacesInHand
         {
             xmin = 0;
             xmax = finhViewModel.CanvasVoltageWidth;
-            LowerLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtBegTime);
-            UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtEndTime);
+            LowerLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtEdgeBegTime);
+            UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtEdgeEndTime);
             PrepareTransformations
                 (
                 LowerLimitForTimeOnXAxis, UpperLimitForTimeOnXAxis,
@@ -65,7 +65,7 @@ namespace FurnacesInHand
         private double MillisecondsSinceTheBeginning(DateTime dt)
         {
 
-            return (dt - finhViewModel.DtBegTime).Ticks / TimeSpan.TicksPerMillisecond;
+            return (dt - finhViewModel.DtEdgeBegTime).Ticks / TimeSpan.TicksPerMillisecond;
         }
     }
 }
