@@ -190,7 +190,7 @@
             </TextBlock.Text>
         </TextBlock>
         <Button Content="Уменьшить" HorizontalAlignment="Left" Margin="10,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="196"/>
-        <Button Content="Увеличить" Grid.Column="1" HorizontalAlignment="Left" Margin="11,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="191" Grid.RowSpan="2"/>
+        <Button Content="Увеличить" Grid.Column="1" HorizontalAlignment="Left" Margin="11,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="191" Grid.RowSpan="2" Click="Button_Click_3"/>
     </Grid>
 
 </Window>

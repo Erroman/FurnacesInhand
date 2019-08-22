@@ -65,8 +65,6 @@ namespace FurnacesInHand
             SolenoidIMin.Text = Properties.Settings.Default.lowerISolenoid;
             SolenoidIMax.Text = Properties.Settings.Default.upperISolenoid;
 
-            timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
-            timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
 
             SetDigitalStartAndFinishTimes("StartValues");
 
@@ -108,7 +106,7 @@ namespace FurnacesInHand
         //    else if ((bool)secondDataBase.IsChecked) { txtb.Text += StringToLowerCase((string)secondDataBase.Content); MapTheLocalBase(); }
         //    else txtb.Text = "Произведите выбор базы данных!";
         //}
-        private void MapTheLocalBase()
+        private void MapTheLocalBase(string EdgeOrGlobalTimeBoundaries= "StartValues")
         {
             Updated.Text = "";
             using (this.context = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
@@ -116,7 +114,7 @@ namespace FurnacesInHand
                 conn = this.context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
                 //MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
-                SetDigitalStartAndFinishTimes();
+                SetDigitalStartAndFinishTimes(EdgeOrGlobalTimeBoundaries);
                 switch (this.numberOfFurnace)
                 {
                     case 1:
@@ -750,10 +748,14 @@ namespace FurnacesInHand
         }
         private void SetDigitalStartAndFinishTimes(string WhatTimeInterval="StartValues")
         {
-            if(WhatTimeInterval == "StartValues") 
+
+            
+            if (WhatTimeInterval == "StartValues") 
             {
-                startTime  = datacontext.DtEdgeBegTime;
-                finishTime = datacontext.DtEdgeEndTime; 
+                timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
+                timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
+                startTime  = datacontext.DtBegTime;
+                finishTime = datacontext.DtEndTime; 
             }
             else
             {
@@ -1000,6 +1002,11 @@ namespace FurnacesInHand
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             UpLoadTheDataBaseFromTheCopy();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            MapTheLocalBase("Set Edge Time Values");
         }
     }
 
