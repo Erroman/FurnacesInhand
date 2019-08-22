@@ -833,6 +833,44 @@ namespace FurnacesInHand
             //    voltageValues.ItemsSource = pars;
             //}
         }
+        private void UpLoadTheDataBaseFromTheCopy()
+        {
+            MessageBox.Show("Восстанавливаем базу:");
+            Updated.Text = "Обновление базы";
+            //find the path to the psql
+            //taken from http://csharptest.net/526/how-to-search-the-environments-path-for-an-exe-or-dll/index.html
+
+            var path_to_postgres = FindExePath("psql.exe");
+            var startInfo = new ProcessStartInfo();
+            startInfo.FileName = path_to_postgres;
+            string current_directory_path = Directory.GetCurrentDirectory();
+            string path_to_download_script = current_directory_path + "\\" + DownLoad_script_file_name;
+            Regex rgx = new Regex("vdp..");
+            Regex rgx1 = new Regex(@"\btime..\b");
+            string twoDigitsNumberOfFurnace = this.numberOfFurnace.ToString();
+            twoDigitsNumberOfFurnace = this.numberOfFurnace > 9 ? twoDigitsNumberOfFurnace : "0" + twoDigitsNumberOfFurnace;
+            //Далее следует закачка на локальный сервер,
+            //корректируем номер печи в скрипте для закачки
+            string path_to_upload_script = current_directory_path + "\\" + UpLoad_script_file_name;
+            string upLoadScript = File.ReadAllText(path_to_upload_script);
+            upLoadScript = rgx1.Replace(rgx.Replace(upLoadScript, "vdp" + twoDigitsNumberOfFurnace), "time" + twoDigitsNumberOfFurnace);
+            File.WriteAllText(path_to_upload_script, upLoadScript);
+            startInfo.Arguments = Upload_server_credetials + " -f " + $"{UpLoad_script_file_name}" + " -o upload.log";
+            try
+            {
+                // Start the process with the info we specified.
+                // Call WaitForExit and then the using-statement will close.
+                using (Process exeProcess = Process.Start(startInfo))
+                {
+                    exeProcess.WaitForExit();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Не удалась выгрузка в локальную базу данных");
+            }
+            Updated.Text = "База обновлена";
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -959,7 +997,13 @@ namespace FurnacesInHand
         {
             MapTheRemoteBase();
         }
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            UpLoadTheDataBaseFromTheCopy();
+        }
     }
 
-
 }
+
+
+
