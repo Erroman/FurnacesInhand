@@ -35,7 +35,8 @@ namespace FurnacesInHand
         public List<TimeParameterPair> SolenoidI_graph_pairs;
  
         public String parameter;
-        public DateTime startTime;
+
+        public DateTime startTime;  //начало и конец временного интервала для демонстрации параметров
         public DateTime finishTime;
 
 
@@ -67,7 +68,7 @@ namespace FurnacesInHand
             timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
             timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
 
-            SetDigitalStartAndFinishTimes();
+            SetDigitalStartAndFinishTimes("StartValues");
 
             //firstDataBase.IsChecked = Properties.Settings.Default.firstDatabase;
             //secondDataBase.IsChecked = Properties.Settings.Default.secondDatabase;
@@ -747,12 +748,22 @@ namespace FurnacesInHand
 
             }
         }
-        private void SetDigitalStartAndFinishTimes()
+        private void SetDigitalStartAndFinishTimes(string WhatTimeInterval="StartValues")
         {
+            if(WhatTimeInterval == "StartValues") 
+            {
+                startTime  = datacontext.DtEdgeBegTime;
+                finishTime = datacontext.DtEdgeEndTime; 
+            }
+            else
+            {
+                startTime = datacontext.DtEdgeBegTime;
+                finishTime = datacontext.DtEdgeEndTime;
+            }
 
-                   //initial positions of the thumbs on the Time RangeSlider:
-            startTime  = datacontext.DtEdgeBegTime;
-            finishTime = datacontext.DtEdgeEndTime;
+
+            //initial positions of the thumbs on the Time RangeSlider:
+
 
         }
         private void MapTheRemoteBase()
