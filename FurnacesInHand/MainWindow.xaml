@@ -51,6 +51,7 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <TreeView Grid.RowSpan="3" x:Name="ListOfFurnaces" Height="399" Margin="10,10,10,0" VerticalAlignment="Top" SelectedItemChanged="TreeView_SelectedItemChanged">
             <TreeViewItem Header ="Что на печах:" IsExpanded="True"  Margin="0,0,25,0">
