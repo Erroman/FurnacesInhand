@@ -182,12 +182,12 @@
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Height="143" Margin="10,28,0,0" VerticalAlignment="Top" Width="20"/>
         <TextBlock  Grid.Column="2" Margin="9,0,0,0" Grid.Row="6" TextWrapping="Wrap"  FontSize="12" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <TextBlock.Text>
-                <Binding Path="DtEdgeBegTime"  Mode="OneWay"  StringFormat="dd.MM.yy\&#x0a;HH:mm:ss"/>
+                <Binding Path="DtFixedEdgeBegTime"  Mode="OneWay"  StringFormat="dd.MM.yy\&#x0a;HH:mm:ss"/>
             </TextBlock.Text>
         </TextBlock>
         <TextBlock Grid.Column="3" HorizontalAlignment="Right" Margin="0,0,11,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <TextBlock.Text>
-                <Binding Path="DtEdgeEndTime"  Mode="OneWay" StringFormat="dd.MM.yy\&#x0a;HH:mm:ss"/>
+                <Binding Path="DtFixedEdgeEndTime"  Mode="OneWay" StringFormat="dd.MM.yy\&#x0a;HH:mm:ss"/>
             </TextBlock.Text>
         </TextBlock>
         <TextBlock  Grid.Column="2"  Grid.Row="8" TextWrapping="Wrap"  FontSize="12" VerticalAlignment="Top" Grid.ColumnSpan="2">
