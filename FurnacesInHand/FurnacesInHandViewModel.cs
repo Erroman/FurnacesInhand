@@ -71,6 +71,16 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
+        public DateTime DtFixedEdgeBegTime
+        {
+            get;
+            set;
+        }
+        public DateTime DtFixedEdgeEndTime
+        {
+            get;
+            set;
+        }
         private DateTime _dtEdgeBegTime;
         private DateTime _dtEdgeEndTime;
         public DateTime DtEdgeBegTime 
