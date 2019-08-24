@@ -752,11 +752,18 @@ namespace FurnacesInHand
             
             if (WhatTimeInterval == "StartValues") 
             {
-                timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
-                timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
                 datacontext.DtFixedEdgeBegTime = datacontext.DtBegTime;
                 datacontext.DtFixedEdgeEndTime = datacontext.DtEndTime;
             }
+            else 
+            { 
+                datacontext.DtFixedEdgeBegTime = datacontext.DtEdgeBegTime;
+                datacontext.DtFixedEdgeEndTime = datacontext.DtEdgeEndTime;
+            }
+            timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
+            timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
+            datacontext.DtEdgeBegTime = datacontext.DtFixedEdgeBegTime;
+            datacontext.DtEdgeEndTime = datacontext.DtFixedEdgeEndTime;
             startTime  = datacontext.DtFixedEdgeBegTime;
             finishTime = datacontext.DtFixedEdgeEndTime;
         }
