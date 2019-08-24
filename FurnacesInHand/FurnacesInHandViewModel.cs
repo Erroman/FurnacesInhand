@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace FurnacesInHand
 {
-    class FurnacesInHandViewModel
+    class FurnacesInHandViewModel:INotifyPropertyChanged
     {
         private double _canvasX;
         private double _canvasY;
@@ -86,12 +86,20 @@ namespace FurnacesInHand
         public DateTime DtEdgeBegTime 
         {
             get => _dtEdgeBegTime;
-            set => _dtEdgeBegTime = value;
+            set 
+            { 
+                _dtEdgeBegTime = value;
+                OnPropertyChanged();
+            }
         }
         public DateTime DtEdgeEndTime
         {
             get => _dtEdgeEndTime;
-            set => _dtEdgeEndTime = value;
+            set 
+            {
+                _dtEdgeEndTime = value;
+                OnPropertyChanged();
+            }
         }
 
         private double _canvasVoltageHeight;
