@@ -754,19 +754,11 @@ namespace FurnacesInHand
             {
                 timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
                 timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
-                startTime  = datacontext.DtBegTime;
-                finishTime = datacontext.DtEndTime; 
+                datacontext.DtFixedEdgeBegTime = datacontext.DtBegTime;
+                datacontext.DtFixedEdgeEndTime = datacontext.DtEndTime;
             }
-            else
-            {
-                startTime = datacontext.DtEdgeBegTime;
-                finishTime = datacontext.DtEdgeEndTime;
-            }
-
-
-            //initial positions of the thumbs on the Time RangeSlider:
-
-
+            startTime  = datacontext.DtFixedEdgeBegTime;
+            finishTime = datacontext.DtFixedEdgeEndTime;
         }
         private void MapTheRemoteBase()
         {
