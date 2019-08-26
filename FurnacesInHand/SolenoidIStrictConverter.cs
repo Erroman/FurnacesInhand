@@ -36,13 +36,18 @@ namespace FurnacesInHand
                 int index = _window.SolenoidI_graph_pairs.FindIndex(a => a.dt == tpp.dt);
                 _window.solCurrentValues.SelectedIndex = index;
                 _window.solCurrentValues.ScrollIntoView(_window.solCurrentValues.Items[index]);
-                if (timeOrvalue == "Value")
-                    _lastMeasuredValue = tpp.parameter;
-                else
+                if (index >= 0)
                 {
-                    _window.PutTheCursor(tpp.screenPoint);
-                    _lastMeasuredValue = tpp.dt;
+                    if (timeOrvalue == "Value")
+                        _lastMeasuredValue = tpp.parameter;
+                    else
+                    {
+                        _window.PutTheCursor(tpp.screenPoint);
+                        _lastMeasuredValue = tpp.dt;
+                    }
                 }
+                else
+                    _lastMeasuredValue = String.Empty;
             }
             
 
