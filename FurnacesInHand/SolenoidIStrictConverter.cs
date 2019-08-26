@@ -30,14 +30,14 @@ namespace FurnacesInHand
             //Ближайшая по времени структура из считанного набора параметров
             TimeParameterPair tpp;
             if (_window.SolenoidI_graph_pairs != null)
-                {
+            {
                 //tpp = _window.SolenoidI_graph_pairs.Where(x => x.dt == _window.SolenoidI_graph_pairs.Max(x1 => x1.dt)).FirstOrDefault();
-                tpp = _window.SolenoidI_graph_pairs.Where(x=>x.dt<=dt).OrderBy(x=>x.dt).LastOrDefault();
+                tpp = _window.SolenoidI_graph_pairs.Where(x => x.dt <= dt).OrderBy(x => x.dt).LastOrDefault();
                 int index = _window.SolenoidI_graph_pairs.FindIndex(a => a.dt == tpp.dt);
-                _window.solCurrentValues.SelectedIndex = index;
-                _window.solCurrentValues.ScrollIntoView(_window.solCurrentValues.Items[index]);
                 if (index >= 0)
                 {
+                    _window.solCurrentValues.SelectedIndex = index;
+                    _window.solCurrentValues.ScrollIntoView(_window.solCurrentValues.Items[index]);
                     if (timeOrvalue == "Value")
                         _lastMeasuredValue = tpp.parameter;
                     else
@@ -49,10 +49,9 @@ namespace FurnacesInHand
                 else
                     _lastMeasuredValue = String.Empty;
             }
-            
+            else
+                _lastMeasuredValue = String.Empty;
 
-
-  
             return _lastMeasuredValue; //presumably get it from the parameter argument
         }
 

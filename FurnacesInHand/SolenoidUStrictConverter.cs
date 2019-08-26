@@ -42,13 +42,16 @@ namespace FurnacesInHand
                         _lastMeasuredValue = tpp.parameter;
                     else
                     {
-                        _lastMeasuredValue = tpp.dt;
                         _window.PutTheCursor(tpp.screenPoint);
+                        _lastMeasuredValue = tpp.dt;
                     }
                 }
                 else
-                _lastMeasuredValue = String.Empty;
+                    _lastMeasuredValue = String.Empty;
             }
+            else
+                _lastMeasuredValue = String.Empty;
+
             return _lastMeasuredValue; //presumably get it from the parameter argument
         }
 
