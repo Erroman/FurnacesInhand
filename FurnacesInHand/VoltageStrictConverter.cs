@@ -30,25 +30,28 @@ namespace FurnacesInHand
             //Ближайшая по времени структура из считанного набора параметров
             TimeParameterPair tpp;
             if (_window.Voltage_graph_pairs != null)
-                {
+            {
                 //tpp = _window.Voltage_graph_pairs.Where(x => x.dt == _window.Voltage_graph_pairs.Max(x1 => x1.dt)).FirstOrDefault();
                 tpp = _window.Voltage_graph_pairs.Where(x=>x.dt<=dt).OrderBy(x=>x.dt).LastOrDefault();
                 int index = _window.Voltage_graph_pairs.FindIndex(a => a.dt == tpp.dt);
-                _window.voltageValues.SelectedIndex = index;
-                _window.voltageValues.ScrollIntoView(_window.voltageValues.Items[index]);
-                if (timeOrvalue == "Value")
-                    _lastMeasuredValue = tpp.parameter;
-                else
+                if (index >= 0)
                 {
+                    _window.voltageValues.SelectedIndex = index;
+                    _window.voltageValues.ScrollIntoView(_window.voltageValues.Items[index]);
+                    if (timeOrvalue == "Value")
+                        _lastMeasuredValue = tpp.parameter;
+                    else
+                    {
+                        _lastMeasuredValue = tpp.dt;
+                    }
                     _window.PutTheCursor(tpp.screenPoint);
-                    _lastMeasuredValue = tpp.dt;
                 }
-                    
+                else
+                    _lastMeasuredValue = String.Empty;
             }
-            
+            else
+                _lastMeasuredValue = String.Empty;
 
-
-  
             return _lastMeasuredValue; //presumably get it from the parameter argument
         }
 
