@@ -166,7 +166,9 @@
         <mover:TimeMover x:Name="dtBegTime" Dt="{Binding DtBegTime, Mode=TwoWay}" HorizontalAlignment="Left" Margin="26,76,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <mover:TimeMover x:Name="dtEndTime" Dt="{Binding DtEndTime, Mode=TwoWay}" HorizontalAlignment="Left" Margin="26,153,0,0" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Top" Height="61"/>
         <mover:TimeMover x:Name ="dtCurrentTime" Dt="{Binding CanvasX, ConverterParameter={StaticResource FurnacesInHandViewModel}, Converter={StaticResource TimeConverter}, Mode=TwoWay}" HorizontalAlignment="Left" Margin="11,108,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
-        <Border Grid.Row="5" Grid.Column="3" BorderBrush="Black" BorderThickness="1 1 1 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Border Grid.Row="5" Grid.Column="3" BorderBrush="Black" BorderThickness="1 1 1 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TextBlock TextWrapping="Wrap" Text="Ось Х Время наблюдения" FontWeight="ExtraBold" HorizontalAlignment="Center"/>
+        </Border>
         <RangeSliderControls:RangeSlider Name="timeRangeSlider"  Minimum="0" Maximum="100" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Center">
             <RangeSliderControls:RangeSlider.LowerValue>
                 <Binding Path="DtEdgeBegTime" Converter="{StaticResource EdgeTimeConverterToSource}" ConverterParameter="LowerValue" Mode="OneWayToSource"/>
