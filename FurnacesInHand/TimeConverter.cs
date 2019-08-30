@@ -52,8 +52,8 @@ namespace FurnacesInHand
         {
             xmin = 0;
             xmax = finhViewModel.CanvasVoltageWidth;
-            LowerLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtEdgeBegTime);
-            UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtEdgeEndTime);
+            LowerLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtFixedEdgeBegTime);
+            UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(finhViewModel.DtFixedEdgeEndTime);
             PrepareTransformations
                 (
                 LowerLimitForTimeOnXAxis, UpperLimitForTimeOnXAxis,
@@ -65,7 +65,7 @@ namespace FurnacesInHand
         private double MillisecondsSinceTheBeginning(DateTime dt)
         {
 
-            return (dt - finhViewModel.DtEdgeBegTime).Ticks / TimeSpan.TicksPerMillisecond;
+            return (dt - finhViewModel.DtFixedEdgeBegTime).Ticks / TimeSpan.TicksPerMillisecond;
         }
     }
 }
