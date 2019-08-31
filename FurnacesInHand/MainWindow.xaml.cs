@@ -996,7 +996,8 @@ namespace FurnacesInHand
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MapTheRemoteBase();
+            if(MessageBoxResult.Yes == MessageBox.Show("Текущая локальная копия таблицы по печи будет заменена!\n Убедитесь в наличии связи сервером", "Закачка данных с сервера 31 цеха", MessageBoxButton.YesNo, MessageBoxImage.Question))
+                            MapTheRemoteBase();
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
