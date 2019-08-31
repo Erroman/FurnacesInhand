@@ -13,7 +13,7 @@ namespace FurnacesInHand
 {
     class TimeConverter : IValueConverter
     {
-        DateTime? dt = null;
+        DateTime? dt = DateTime.Now;
         Point p = new Point(0,0);
         FurnacesInHandViewModel finhViewModel;
         double LowerLimitForTimeOnXAxis; //нижняя гравница временного интервала в миллисекундах
