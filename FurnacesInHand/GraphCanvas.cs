@@ -46,7 +46,7 @@ namespace FurnacesInHand
         {
             Path myPath = new Path();
             myPath.Stroke = Brushes.Black;
-            myPath.StrokeThickness = 0.1;
+            myPath.StrokeThickness = 0.2;
 
             LineGeometry myLineGeometry = new LineGeometry();
             myLineGeometry.StartPoint = new Point(point.X, 0);
