@@ -44,7 +44,8 @@ namespace FurnacesInHand
                     {
                         _lastMeasuredValue = tpp.dt;
                     }
-                    _window.PutTheCursor(tpp.screenPoint);
+                    //_window.PutTheCursor(tpp.screenPoint);
+                    _window.SolenoidIPlot.VerticalCursor(tpp.screenPoint);
                 }
                 else
                     _lastMeasuredValue = String.Empty;

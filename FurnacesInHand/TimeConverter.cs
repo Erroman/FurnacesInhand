@@ -29,7 +29,7 @@ namespace FurnacesInHand
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 finhViewModel = (FurnacesInHandViewModel)parameter;
-                PrepareTransform(finhViewModel);
+                PrepareTransform(finhViewModel); 
                 p.X = (double)value;
                 dt = finhViewModel.DtEdgeBegTime  + TimeSpan.FromMilliseconds(DtoW(p).X);
             }
