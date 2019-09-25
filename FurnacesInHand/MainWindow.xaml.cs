@@ -929,11 +929,11 @@ namespace FurnacesInHand
         public void PutTheCursor(Point clickPoint)
         {
             //Show the nearest values in ListBoxes(TrxtBoxes)! 
-            VoltagePlot.VerticalCursor(clickPoint);
-            CurrentPlot.VerticalCursor(clickPoint);
-            VacuumPlot.VerticalCursor(clickPoint);
-            SolenoidUPlot.VerticalCursor(clickPoint);
-            SolenoidIPlot.VerticalCursor(clickPoint);
+         //   VoltagePlot.VerticalCursor(clickPoint);
+         //   CurrentPlot.VerticalCursor(clickPoint);
+         //   VacuumPlot.VerticalCursor(clickPoint);
+         //   SolenoidUPlot.VerticalCursor(clickPoint);
+         //   SolenoidIPlot.VerticalCursor(clickPoint);
         }
 
         private void CurrentPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

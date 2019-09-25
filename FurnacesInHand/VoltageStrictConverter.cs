@@ -45,7 +45,7 @@ namespace FurnacesInHand
                         _lastMeasuredValue = tpp.dt;
                     }
                     //_window.PutTheCursor(tpp.screenPoint);
-                    _window.VoltagePlot.VerticalCursor(tpp.screenPoint);
+                    //_window.VoltagePlot.VerticalCursor(tpp.screenPoint);
                 }
                 else
                     _lastMeasuredValue = String.Empty;
