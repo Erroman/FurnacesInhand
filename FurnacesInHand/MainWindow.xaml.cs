@@ -943,11 +943,11 @@ namespace FurnacesInHand
         }
         private void CurrentPlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                Point clickPoint = e.GetPosition((GraphCanvas)sender);
-                PutTheCursor(clickPoint);
-            }
+            //if (e.LeftButton == MouseButtonState.Pressed)
+            //{
+            //    Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            //    PutTheCursor(clickPoint);
+            //}
         }
         private void VacuumPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

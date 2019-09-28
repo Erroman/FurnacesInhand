@@ -1,4 +1,9 @@
-﻿using System;
+﻿//This converter lets to reflect the values and times of parameters in the TextBoxes,
+// which are bound to CanvasX property in the FurnacesInHandViewModel
+//and the converter converts in two ways the clicked point's X coordinate on screen
+//to the timedate value on the TimeMover and convert back  
+//the time from a TimeMover to the screen X coordinate
+using System;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
