@@ -11,18 +11,21 @@ namespace FurnacesInHand
 {
     public partial class MainWindow
     {
+        UIElement vacuumGraph = null;
         void vacuumPlot(List<TimeParameterPair> timeParameterPairs)
         {
 
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)
             {
-                VacuumPlot.Children?.Clear();
+                if(vacuumGraph!=null)
+                    VacuumPlot.Children?.Remove(vacuumGraph);
                 Rect rectangular = new Rect(0, 0, VacuumPlot.ActualWidth, VacuumPlot.ActualHeight);
                 FurnacesInHandViewModel vm = (FurnacesInHandViewModel)this.DataContext;
                 //Установить верхние и нижние границы значений, отображаеиых на графике
                 VacuumMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 VacuumMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                _ = VacuumPlot.Children.Add(new VacuumGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime,vm:vm));
+                vacuumGraph = new VacuumGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime, vm: vm);
+                VacuumPlot.Children.Add(vacuumGraph);
                 return null;
             }
              ), null);

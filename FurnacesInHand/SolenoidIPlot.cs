@@ -11,18 +11,21 @@ namespace FurnacesInHand
 {
     public partial class MainWindow
     {
+        UIElement solenoidIGraph = null;
         void solenoidIPlot(List<TimeParameterPair> timeParameterPairs)
         {
 
             this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)
             {
-                SolenoidIPlot.Children?.Clear();
+                if(solenoidIGraph!=null)
+                    SolenoidIPlot.Children?.Remove(solenoidIGraph);
                 Rect rectangular = new Rect(0, 0, SolenoidIPlot.ActualWidth, SolenoidIPlot.ActualHeight);
                 FurnacesInHandViewModel vm = (FurnacesInHandViewModel)this.DataContext;
                 //Установить верхние и нижние границы значений, отображаеиых на графике
                 SolenoidIMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 SolenoidIMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                _ = SolenoidIPlot.Children.Add(new SolenoidIGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime,vm:vm));
+                solenoidIGraph = new SolenoidIGraph(timeParameterPairs, rect: rectangular, startTime: this.startTime, finishTime: this.finishTime, vm: vm);
+                SolenoidIPlot.Children.Add(solenoidIGraph);
                 return null;
             }
              ), null);
