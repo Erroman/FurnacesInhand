@@ -129,6 +129,7 @@
     <Compile Include="MouseBehaviour.cs" />
     <Compile Include="ParametersLimits.cs" />
     <Compile Include="ServiceFunctions.cs" />
+    <Compile Include="SetPropertyAction.cs" />
     <Compile Include="SolenoidIConverter.cs" />
     <Compile Include="SolenoidIGraph.cs" />
     <Compile Include="SolenoidIPlot.cs" />

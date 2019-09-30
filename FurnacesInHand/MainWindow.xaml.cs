@@ -913,19 +913,6 @@ namespace FurnacesInHand
         {
             return Int32.Parse(nameOfFurnace.Substring(nameOfFurnace.IndexOf("№") + 1));
         }
-        private void VoltagePlot_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Point clickPoint = e.GetPosition((GraphCanvas)sender);
-            PutTheCursor(clickPoint);
-        }
-        private void VoltagePlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                Point clickPoint = e.GetPosition((GraphCanvas)sender);
-                PutTheCursor(clickPoint);
-            }
-        }
         public void PutTheCursor(Point clickPoint)
         {
             //Show the nearest values in ListBoxes(TrxtBoxes)! 
@@ -936,6 +923,24 @@ namespace FurnacesInHand
             SolenoidIPlot.VerticalCursor(clickPoint);
         }
 
+
+        private void VoltagePlot_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            PutTheCursor(clickPoint);
+        }
+        private void VoltagePlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void VoltagePlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point clickPoint = e.GetPosition((GraphCanvas)sender);
+                PutTheCursor(clickPoint);
+            }
+        }
         private void CurrentPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
@@ -1008,6 +1013,8 @@ namespace FurnacesInHand
         {
             MapTheLocalBase("Set Edge Time Values");
         }
+
+    
     }
 
 }
