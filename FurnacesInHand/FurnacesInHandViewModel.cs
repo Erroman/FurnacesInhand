@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -31,6 +33,21 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
+        //Attached property for the type Rectangle showing it if the mouse left button is pressed
+        public static readonly DependencyProperty IsLeftMouseButtonPressed = DependencyProperty.RegisterAttached
+            (  "IsLeftMouseButtonPressed",  typeof(Boolean),  typeof(FurnacesInHandViewModel),  
+            new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.AffectsRender)
+);
+        public static void SetIsLeftMouseButtonPressed(UIElement element, Boolean value)
+        {
+            element.SetValue(IsLeftMouseButtonPressed, value);
+        }
+        public static Boolean GetIsLeftMouseButtonPressed(UIElement element)
+        {
+            return (Boolean)element.GetValue(IsLeftMouseButtonPressed);
+        }
+
+
         private DateTime _dtBegTime;
         private DateTime _dtEndTime;
         private DateTime _dtTimeMoment;
