@@ -10,6 +10,7 @@
         x:Name="mainWindow" x:Class="FurnacesInHand.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="1021" Width="1900" Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    
     <Window.Resources>
         <local:FurnacesInHandViewModel x:Key="FurnacesInHandViewModel"/>
         <DataTemplate x:Key="ParametersList" DataType="{x:Type ListBox}">
@@ -34,9 +35,9 @@
         <Style TargetType="Rectangle">
             <Setter Property="Fill" Value="Black"/>
             <Style.Triggers>
-                <Trigger Property="local:FurnacesInHandViewModel.IsLeftMouseButtonPressed" Value="True">
+                <DataTrigger Binding="{Binding IsLeftMouseButtonPressed}" Value="True">
                     <Setter Property="Fill" Value="Transparent"/>
-                </Trigger>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
@@ -104,13 +105,13 @@
 
         <ListBox Grid.Row="4" x:Name="solCurrentValues" HorizontalAlignment="Left" Height="132" Margin="0,10,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1"  ItemTemplate="{StaticResource ParametersList}" />
 
-        <local:GraphCanvas x:Name="VoltagePlot" PanelHeight="{Binding CanvasVoltageHeight, Mode=OneWayToSource}" PanelWidth="{Binding CanvasVoltageWidth, Mode=OneWayToSource}" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue" MouseLeftButtonDown="VoltagePlot_MouseLeftButtonDown" MouseMove="VoltagePlot_MouseMove" MouseLeftButtonUp="VoltagePlot_MouseLeftButtonUp">
+        <local:GraphCanvas x:Name="VoltagePlot" PanelHeight="{Binding CanvasVoltageHeight, Mode=OneWayToSource}" PanelWidth="{Binding CanvasVoltageWidth, Mode=OneWayToSource}" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue" MouseLeftButtonDown="VoltagePlot_MouseLeftButtonDown"  MouseMove="VoltagePlot_MouseMove" MouseLeftButtonUp="VoltagePlot_MouseLeftButtonUp">
             <i:Interaction.Behaviors>
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
             <Rectangle Canvas.Left="{Binding CanvasX,Mode=OneWay}"  Width="0.4" Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas},Path=ActualHeight}"/>
         </local:GraphCanvas>
-        <local:GraphCanvas x:Name="CurrentPlot"  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite" MouseLeftButtonDown="CurrentPlot_MouseLeftButtonDown" MouseMove="CurrentPlot_MouseMove">
+        <local:GraphCanvas x:Name="CurrentPlot"  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite" MouseLeftButtonDown="CurrentPlot_MouseLeftButtonDown" MouseLeftButtonUp="CurrentPlot_MouseLeftButtonUp" MouseMove="CurrentPlot_MouseMove">
             <i:Interaction.Behaviors>
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>

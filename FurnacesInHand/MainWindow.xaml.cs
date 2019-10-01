@@ -1,16 +1,14 @@
 ﻿using System;
-using System.IO;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Data.Entity;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static FurnacesInHand.ServiceFunctions;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace FurnacesInHand
 {
@@ -931,7 +929,7 @@ namespace FurnacesInHand
         }
         private void VoltagePlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+           
         }
         private void VoltagePlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
@@ -986,8 +984,6 @@ namespace FurnacesInHand
 
         private void SolenoidIPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Point clickPoint = e.GetPosition((GraphCanvas)sender);
-            PutTheCursor(clickPoint);
         }
 
         private void SolenoidIPlot_MouseMove(object sender, MouseEventArgs e)
@@ -1014,7 +1010,15 @@ namespace FurnacesInHand
             MapTheLocalBase("Set Edge Time Values");
         }
 
-    
+        private void CurrentPlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void VoltagePlot_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 
 }

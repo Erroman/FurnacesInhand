@@ -11,6 +11,12 @@ namespace FurnacesInHand
      : base()
         {
             this.SizeChanged += new SizeChangedEventHandler(GraphCanvas_SizeChanged);
+            //this.MouseLeftButtonDown += GraphCanvas_MouseLeftButtonDown;
+        }
+
+        private void GraphCanvas_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         void GraphCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -58,8 +64,7 @@ namespace FurnacesInHand
             verticalCursor = myPath;
             this.Children.Add(myPath);
             return myPath;
-
-
         }
+        
     }
 }
