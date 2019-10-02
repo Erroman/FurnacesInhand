@@ -33,19 +33,33 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
-        private bool _isLeftMouseButtonPressed;
+        private bool _drawCursorWhenMousButtonUp;
         //Attached property for the type Rectangle showing it if the mouse left button is pressed
-        public bool IsLeftMouseButtonPressed 
+        public bool DrawCursorWhenMousButtonUp 
         {
             get 
             { 
-                return _isLeftMouseButtonPressed; 
+                return _drawCursorWhenMousButtonUp; 
             }
             set 
             { 
-                _isLeftMouseButtonPressed = value;
+                _drawCursorWhenMousButtonUp = value;
                 OnPropertyChanged();
             } 
+        }
+        private double _cursorXCoordinate;
+        //Attached property for the type Rectangle showing it if the mouse left button is pressed
+        public double CursorXCoordinate
+        {
+            get
+            {
+                return _cursorXCoordinate;
+            }
+            set
+            {
+                _cursorXCoordinate = value;
+                OnPropertyChanged();
+            }
         }
 
 

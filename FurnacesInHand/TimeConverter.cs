@@ -31,11 +31,13 @@ namespace FurnacesInHand
         double ymax=100;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            finhViewModel = (FurnacesInHandViewModel)parameter;
+            finhViewModel.DrawCursorWhenMousButtonUp = false;
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
-                finhViewModel = (FurnacesInHandViewModel)parameter;
-                PrepareTransform(finhViewModel); 
                 p.X = (double)value;
+                finhViewModel.CursorXCoordinate = p.X;
+                PrepareTransform(finhViewModel); 
                 dt = finhViewModel.DtEdgeBegTime  + TimeSpan.FromMilliseconds(DtoW(p).X);
             }
               
@@ -46,6 +48,7 @@ namespace FurnacesInHand
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             finhViewModel = (FurnacesInHandViewModel)parameter;
+            finhViewModel.DrawCursorWhenMousButtonUp = true;
             PrepareTransform(finhViewModel);
             dt = (DateTime)value;
             TimeSpan ts = (TimeSpan)(dt - finhViewModel.DtEdgeBegTime);

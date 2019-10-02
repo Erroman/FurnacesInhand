@@ -924,12 +924,13 @@ namespace FurnacesInHand
 
         private void VoltagePlot_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            //datacontext.IsLeftMouseButtonPressed = true;
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
             PutTheCursor(clickPoint);
         }
         private void VoltagePlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-           
+            //datacontext.IsLeftMouseButtonPressed = false;
         }
         private void VoltagePlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
@@ -969,8 +970,13 @@ namespace FurnacesInHand
  
         private void SolenoidUPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //datacontext.IsLeftMouseButtonPressed = true;
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
             PutTheCursor(clickPoint);
+        }
+        private void SolenoidUPlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //datacontext.IsLeftMouseButtonPressed = false;
         }
 
         private void SolenoidUPlot_MouseMove(object sender, MouseEventArgs e)
@@ -984,15 +990,23 @@ namespace FurnacesInHand
 
         private void SolenoidIPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //datacontext.IsLeftMouseButtonPressed = true;
+            Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            PutTheCursor(clickPoint);
         }
-
+        private void SolenoidIPlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //datacontext.IsLeftMouseButtonPressed = false;
+        }
         private void SolenoidIPlot_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+                //datacontext.IsLeftMouseButtonPressed = true;
                 Point clickPoint = e.GetPosition((GraphCanvas)sender);
                 PutTheCursor(clickPoint);
             }
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -1019,6 +1033,8 @@ namespace FurnacesInHand
         {
 
         }
+
+
     }
 
 }
