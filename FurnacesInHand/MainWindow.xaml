@@ -101,11 +101,11 @@
 
         <ListBox Grid.Row="4" x:Name="solCurrentValues" HorizontalAlignment="Left" Height="132" Margin="0,10,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1"  ItemTemplate="{StaticResource ParametersList}" />
 
-        <local:GraphCanvas x:Name="VoltagePlot" PanelHeight="{Binding CanvasVoltageHeight, Mode=OneWayToSource}" PanelWidth="{Binding CanvasVoltageWidth, Mode=OneWayToSource}" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue" MouseLeftButtonDown="VoltagePlot_MouseLeftButtonDown" MouseLeftButtonUp="VoltagePlot_MouseLeftButtonUp" MouseMove="VoltagePlot_MouseMove">
+        <local:GraphCanvas x:Name="VoltagePlot" PanelHeight="{Binding CanvasVoltageHeight, Mode=OneWayToSource}" PanelWidth="{Binding CanvasVoltageWidth, Mode=OneWayToSource}" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AliceBlue"  MouseLeftButtonDown="VoltagePlot_MouseLeftButtonDown"  MouseMove="VoltagePlot_MouseMove">
             <i:Interaction.Behaviors>
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
-            <Rectangle Canvas.Left="{Binding CanvasX,Converter={StaticResource CursorConverter},ConverterParameter={StaticResource FurnacesInHandViewModel}, Mode=OneWay}"  Width="0.4" Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas},Path=ActualHeight}"/>
+            <Rectangle x:Name="VoltagePlotCursor" Canvas.Left="{Binding CanvasX,Converter={StaticResource CursorConverter},ConverterParameter={StaticResource FurnacesInHandViewModel}, Mode=OneWay}"  Width="0.4" Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas},Path=ActualHeight}"/>
         </local:GraphCanvas>
         <local:GraphCanvas x:Name="CurrentPlot"  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="AntiqueWhite" MouseLeftButtonDown="CurrentPlot_MouseLeftButtonDown"  MouseMove="CurrentPlot_MouseMove">
             <i:Interaction.Behaviors>
@@ -119,13 +119,13 @@
             </i:Interaction.Behaviors>
             <Rectangle Canvas.Left="{Binding CanvasX,Converter={StaticResource CursorConverter},ConverterParameter={StaticResource FurnacesInHandViewModel}, Mode=OneWay}"  Width="0.4" Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas},Path=ActualHeight}"/>
         </local:GraphCanvas>
-        <local:GraphCanvas x:Name ="SolenoidUPlot" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Azure" MouseLeftButtonDown="SolenoidUPlot_MouseLeftButtonDown" MouseLeftButtonUp="SolenoidUPlot_MouseLeftButtonUp" MouseMove="SolenoidUPlot_MouseMove">
+        <local:GraphCanvas x:Name ="SolenoidUPlot" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Azure" MouseLeftButtonDown="SolenoidUPlot_MouseLeftButtonDown"  MouseMove="SolenoidUPlot_MouseMove">
             <i:Interaction.Behaviors>
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>
             <Rectangle Canvas.Left="{Binding CanvasX,Converter={StaticResource CursorConverter},ConverterParameter={StaticResource FurnacesInHandViewModel}, Mode=OneWay}"  Width="0.4" Height="{Binding RelativeSource={RelativeSource AncestorType=Canvas},Path=ActualHeight}"/>
         </local:GraphCanvas>
-        <local:GraphCanvas x:Name ="SolenoidIPlot" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Cornsilk" MouseLeftButtonDown="SolenoidIPlot_MouseLeftButtonDown" MouseLeftButtonUp="SolenoidIPlot_MouseLeftButtonUp" MouseMove="SolenoidIPlot_MouseMove">
+        <local:GraphCanvas x:Name ="SolenoidIPlot" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Cornsilk" MouseLeftButtonDown="SolenoidIPlot_MouseLeftButtonDown"  MouseMove="SolenoidIPlot_MouseMove">
             <i:Interaction.Behaviors>
                 <local:MouseBehaviour MouseX="{Binding CanvasX, Mode=OneWayToSource}" MouseY="{Binding CanvasY, Mode=OneWayToSource}" />
             </i:Interaction.Behaviors>

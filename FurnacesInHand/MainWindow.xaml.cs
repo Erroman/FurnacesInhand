@@ -924,13 +924,9 @@ namespace FurnacesInHand
 
         private void VoltagePlot_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //datacontext.IsLeftMouseButtonPressed = true;
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            datacontext.CanvasX = clickPoint.X;
             PutTheCursor(clickPoint);
-        }
-        private void VoltagePlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //datacontext.IsLeftMouseButtonPressed = false;
         }
         private void VoltagePlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
@@ -974,10 +970,6 @@ namespace FurnacesInHand
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
             PutTheCursor(clickPoint);
         }
-        private void SolenoidUPlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //datacontext.IsLeftMouseButtonPressed = false;
-        }
 
         private void SolenoidUPlot_MouseMove(object sender, MouseEventArgs e)
         {
@@ -993,10 +985,6 @@ namespace FurnacesInHand
             //datacontext.IsLeftMouseButtonPressed = true;
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
             PutTheCursor(clickPoint);
-        }
-        private void SolenoidIPlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //datacontext.IsLeftMouseButtonPressed = false;
         }
         private void SolenoidIPlot_MouseMove(object sender, MouseEventArgs e)
         {
@@ -1023,17 +1011,6 @@ namespace FurnacesInHand
         {
             MapTheLocalBase("Set Edge Time Values");
         }
-
-        private void CurrentPlot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void VoltagePlot_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
 
     }
 

@@ -11,18 +11,6 @@ namespace FurnacesInHand
      : base()
         {
             this.SizeChanged += new SizeChangedEventHandler(GraphCanvas_SizeChanged);
-            //this.MouseLeftButtonDown += GraphCanvas_MouseLeftButtonDown;
-            //this.PreviewMouseLeftButtonUp += GraphCanvas_PreviewMouseLeftButtonUp;
-        }
-
-        private void GraphCanvas_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            MessageBox.Show("GraphCanvas_PreviewMouseLeftButtonUp");
-        }
-
-        private void GraphCanvas_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         void GraphCanvas_SizeChanged(object sender, SizeChangedEventArgs e)

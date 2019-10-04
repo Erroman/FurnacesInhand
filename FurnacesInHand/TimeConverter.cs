@@ -54,6 +54,7 @@ namespace FurnacesInHand
             TimeSpan ts = (TimeSpan)(dt - finhViewModel.DtEdgeBegTime);
             p.X = ts.TotalMilliseconds;
              p.X = WtoD(p).X;
+            finhViewModel.CursorXCoordinate = p.X;
             return p.X;
         }
         private void PrepareTransform(FurnacesInHandViewModel finhViewModel)
