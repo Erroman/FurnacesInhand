@@ -29,7 +29,6 @@
         <local:SolenoidIConverter x:Key="SolenoidIConverter"/>
         <local:SolenoidITimeConverter x:Key="SolenoidITimeConverter"/>
         <local:TimeConverter x:Key="TimeConverter"/>
-        <local:EdgeTimeConverter x:Key="EdgeTimeConverter"/>
         <local:EdgeTimeConverterToSource x:Key="EdgeTimeConverterToSource"/>
         <local:CursorConverter x:Key = "CursorConverter"/>
 
