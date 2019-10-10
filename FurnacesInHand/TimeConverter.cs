@@ -38,7 +38,7 @@ namespace FurnacesInHand
                 p.X = (double)value;
                 finhViewModel.CursorXCoordinate = p.X;
                 PrepareTransform(finhViewModel); 
-                dt = finhViewModel.DtEdgeBegTime  + TimeSpan.FromMilliseconds(DtoW(p).X);
+                dt = finhViewModel.DtFixedEdgeBegTime  + TimeSpan.FromMilliseconds(DtoW(p).X);
             }
               
             return dt;
@@ -51,7 +51,7 @@ namespace FurnacesInHand
             finhViewModel.DrawCursorWhenMousButtonUp = true;
             PrepareTransform(finhViewModel);
             dt = (DateTime)value;
-            TimeSpan ts = (TimeSpan)(dt - finhViewModel.DtEdgeBegTime);
+            TimeSpan ts = (TimeSpan)(dt - finhViewModel.DtFixedEdgeBegTime);
             p.X = ts.TotalMilliseconds;
              p.X = WtoD(p).X;
             finhViewModel.CursorXCoordinate = p.X;
