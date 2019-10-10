@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSMPO_AVISMAControls", "VSM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RangeSliderControls", "RangeSliderControl\RangeSliderControls.csproj", "{E99CE19E-0AF8-4AB0-8586-834528782B19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRulerControl", "TestRulerControl\TestRulerControl.csproj", "{E6A815BF-B812-46F1-9D14-F732E9290E8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E99CE19E-0AF8-4AB0-8586-834528782B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E99CE19E-0AF8-4AB0-8586-834528782B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E99CE19E-0AF8-4AB0-8586-834528782B19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6A815BF-B812-46F1-9D14-F732E9290E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6A815BF-B812-46F1-9D14-F732E9290E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6A815BF-B812-46F1-9D14-F732E9290E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6A815BF-B812-46F1-9D14-F732E9290E8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
