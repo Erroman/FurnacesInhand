@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RulerControl\RulerControl.csproj">
+      <Project>{4f1d4704-502f-42b0-be55-aab83ce99ff7}</Project>
+      <Name>RulerControl</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
