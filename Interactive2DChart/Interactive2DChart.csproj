@@ -63,6 +63,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ChartStyle.cs" />
+    <Compile Include="ChartStyleBase.cs" />
+    <Compile Include="DataCollection.cs" />
     <Compile Include="DataSeries.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -2,10 +2,11 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
-namespace LineCharts
+namespace Interactive2DChart
 {
     public class DataSeries
     {
+        public string[,] DataString { get; set; }
         private Polyline lineSeries = new Polyline();
         private Brush lineColor;
         private double lineThickness = 1;
