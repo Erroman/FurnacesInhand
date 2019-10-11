@@ -77,99 +77,124 @@ namespace Interactive2DChart
             get { return isYGrid; }
             set { isYGrid = value; }
         }
-        public void AddChartStyle(TextBlock tbTitle, TextBlock tbXLabel, TextBlock tbYLabel, DataSeries ds)
+        public void AddChartStyle(TextBlock tbTitle, TextBlock tbXLabel, TextBlock tbYLabel)
         {
             Point pt = new Point();
             Line tick = new Line();
             double offset = 0;
             double dx, dy;
             TextBlock tb = new TextBlock();
+            double optimalXSpacing = 100;
+            double optimalYSpacing = 80;
             // determine right offset:
-            tb.Text = Xmax.ToString();
+            tb.Text = Math.Round(Xmax, 0).ToString();
             tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
             Size size = tb.DesiredSize;
             rightOffset = size.Width / 2 + 2;
             // Determine left offset:
-            for (dy = Ymin; dy <= Ymax; dy += YTick)
+            double xScale = 0.0, yScale = 0.0;
+            double xSpacing = 0.0, ySpacing = 0.0;
+            double xTick = 0.0, yTick = 0.0;
+            int xStart = 0, xEnd = 1;
+            int yStart = 0, yEnd = 1;
+            double offset0 = 30;
+            while (Math.Abs(offset - offset0) > 1)
             {
-                pt = NormalizePoint(new Point(Xmin, dy));
-                tb = new TextBlock();
-                tb.Text = dy.ToString();
-                tb.TextAlignment = TextAlignment.Right;
-                tb.Measure(new Size(Double.PositiveInfinity,
-                Double.PositiveInfinity));
-                size = tb.DesiredSize;
-                if (offset < size.Width)
-                    offset = size.Width;
+                if (Xmin != Xmax)
+                    xScale = (TextCanvas.Width - offset0 - rightOffset - 5) /
+                    (Xmax - Xmin);
+                if (Ymin != Ymax)
+                    yScale = TextCanvas.Height / (Ymax - Ymin);
+                xSpacing = optimalXSpacing / xScale;
+                xTick = OptimalSpacing(xSpacing);
+                ySpacing = optimalYSpacing / yScale;
+                yTick = OptimalSpacing(ySpacing);
+                xStart = (int)Math.Ceiling(Xmin / xTick);
+                xEnd = (int)Math.Floor(Xmax / xTick);
+                yStart = (int)Math.Ceiling(Ymin / yTick);
+                yEnd = (int)Math.Floor(Ymax / yTick);
+                for (int i = yStart; i <= yEnd; i++)
+                {
+                    dy = i * yTick;
+                    pt = NormalizePoint(new Point(Xmin, dy));
+                    tb = new TextBlock();
+                    tb.Text = dy.ToString();
+                    tb.TextAlignment = TextAlignment.Right;
+                    tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
+                    size = tb.DesiredSize;
+                    if (offset < size.Width)
+                        offset = size.Width;
+                }
+                if (offset0 > offset)
+                    offset0 -= 0.5;
+                else if (offset0 < offset)
+                    offset0 += 0.5;
             }
             leftOffset = offset + 5;
             Canvas.SetLeft(ChartCanvas, leftOffset);
             Canvas.SetBottom(ChartCanvas, bottomOffset);
-            ChartCanvas.Width = Math.Abs(TextCanvas.Width - leftOffset - rightOffset);
-            ChartCanvas.Height = Math.Abs(TextCanvas.Height - bottomOffset - size.Height / 2);
+            ChartCanvas.Width = TextCanvas.Width - leftOffset - rightOffset;
+            ChartCanvas.Height = TextCanvas.Height - bottomOffset - size.Height / 2;
             Rectangle chartRect = new Rectangle();
             chartRect.Stroke = Brushes.Black;
             chartRect.Width = ChartCanvas.Width;
             chartRect.Height = ChartCanvas.Height;
             ChartCanvas.Children.Add(chartRect);
-            // Create vertical gridlines:
+            if (Xmin != Xmax)
+                xScale = ChartCanvas.Width / (Xmax - Xmin);
+            if (Ymin != Ymax)
+                yScale = ChartCanvas.Height / (Ymax - Ymin);
+            xSpacing = optimalXSpacing / xScale;
+            xTick = OptimalSpacing(xSpacing);
+            ySpacing = optimalYSpacing / yScale;
+            yTick = OptimalSpacing(ySpacing);
+            xStart = (int)Math.Ceiling(Xmin / xTick);
+            xEnd = (int)Math.Floor(Xmax / xTick);
+            yStart = (int)Math.Ceiling(Ymin / yTick);
+            yEnd = (int)Math.Floor(Ymax / yTick);
+            // Create vertical gridlines and x tick marks:
             if (IsYGrid == true)
             {
-                for (dx = Xmin + XTick; dx < Xmax; dx += XTick)
+                for (int i = xStart; i <= xEnd; i++)
                 {
                     gridline = new Line();
                     AddLinePattern();
+                    dx = i * xTick;
                     gridline.X1 = NormalizePoint(new Point(dx, Ymin)).X;
                     gridline.Y1 = NormalizePoint(new Point(dx, Ymin)).Y;
                     gridline.X2 = NormalizePoint(new Point(dx, Ymax)).X;
                     gridline.Y2 = NormalizePoint(new Point(dx, Ymax)).Y;
                     ChartCanvas.Children.Add(gridline);
-                }
-            }
-            // Create horizontal gridlines:
-            if (IsXGrid == true)
-            {
-                for (dy = Ymin + YTick; dy < Ymax; dy += YTick)
-                {
-                    gridline = new Line();
-                    AddLinePattern();
-                    gridline.X1 = NormalizePoint(new Point(Xmin, dy)).X;
-                    gridline.Y1 = NormalizePoint(new Point(Xmin, dy)).Y;
-                    gridline.X2 = NormalizePoint(new Point(Xmax, dy)).X;
-                    gridline.Y2 = NormalizePoint(new Point(Xmax, dy)).Y;
-                    ChartCanvas.Children.Add(gridline);
-                }
-            }
-            // Create x-axis tick marks:
-            for (dx = Xmin; dx < Xmax; dx += xTick)
-            {
-                pt = NormalizePoint(new Point(dx, Ymin));
-                tick = new Line();
-                tick.Stroke = Brushes.Black;
-                tick.X1 = pt.X;
-                tick.Y1 = pt.Y;
-                tick.X2 = pt.X;
-                tick.Y2 = pt.Y - 5;
-                ChartCanvas.Children.Add(tick);
-                if (dx >= 0 && dx < ds.DataString.GetLength(1))
-                {
+                    pt = NormalizePoint(new Point(dx, Ymin));
+                    tick = new Line();
+                    tick.Stroke = Brushes.Black;
+                    tick.X1 = pt.X;
+                    tick.Y1 = pt.Y;
+                    tick.X2 = pt.X;
+                    tick.Y2 = pt.Y - 5;
+                    ChartCanvas.Children.Add(tick);
                     tb = new TextBlock();
-                    double d0 = DateToDouble(ds.DataString[0, 0]);
-                    double d1 = DateToDouble(ds.DataString[0, 1]);
-                    double d = DateToDouble(ds.DataString[0, (int)dx]);
-                    if (d0 > d1)
-                        d = DateToDouble(ds.DataString[0,
-                        ds.DataString.GetLength(1) - 1 - (int)dx]);
-                    tb.Text = DoubleToDate(d).ToString("m");
+                    tb.Text = dx.ToString();
                     tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
                     size = tb.DesiredSize;
                     TextCanvas.Children.Add(tb);
                     Canvas.SetLeft(tb, leftOffset + pt.X - size.Width / 2);
                     Canvas.SetTop(tb, pt.Y + 2 + size.Height / 2);
                 }
-                // Create y-axis tick marks:
-                for (dy = Ymin; dy <= Ymax; dy += YTick)
+            }
+            // Create horizontal gridlines and y tick marks:
+            if (IsXGrid == true)
+            {
+                for (int i = yStart; i <= yEnd; i++)
                 {
+                    gridline = new Line();
+                    AddLinePattern();
+                    dy = i * yTick;
+                    gridline.X1 = NormalizePoint(new Point(Xmin, dy)).X;
+                    gridline.Y1 = NormalizePoint(new Point(Xmin, dy)).Y;
+                    gridline.X2 = NormalizePoint(new Point(Xmax, dy)).X;
+                    gridline.Y2 = NormalizePoint(new Point(Xmax, dy)).Y;
+                    ChartCanvas.Children.Add(gridline);
                     pt = NormalizePoint(new Point(Xmin, dy));
                     tick = new Line();
                     tick.Stroke = Brushes.Black;
@@ -186,14 +211,13 @@ namespace Interactive2DChart
                     Canvas.SetRight(tb, ChartCanvas.Width + 10);
                     Canvas.SetTop(tb, pt.Y);
                 }
-                // Add title and labels:
-                tbTitle.Text = Title;
-                tbXLabel.Text = XLabel;
-                tbYLabel.Text = YLabel;
-                tbXLabel.Margin = new Thickness(leftOffset + 2, 2, 2, 2);
-                tbTitle.Margin = new Thickness(leftOffset + 2, 2, 2, 2);
             }
-  
+            // Add title and labels:
+            tbTitle.Text = Title;
+            tbXLabel.Text = XLabel;
+            tbYLabel.Text = YLabel;
+            tbXLabel.Margin = new Thickness(leftOffset + 2, 2, 2, 2);
+            tbTitle.Margin = new Thickness(leftOffset + 2, 2, 2, 2);
         }
         public void AddLinePattern()
         {
