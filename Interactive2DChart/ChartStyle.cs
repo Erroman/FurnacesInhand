@@ -165,6 +165,7 @@ namespace Interactive2DChart
                     gridline.X2 = NormalizePoint(new Point(dx, Ymax)).X;
                     gridline.Y2 = NormalizePoint(new Point(dx, Ymax)).Y;
                     ChartCanvas.Children.Add(gridline);
+                    //Evidently adding vertical tick
                     pt = NormalizePoint(new Point(dx, Ymin));
                     tick = new Line();
                     tick.Stroke = Brushes.Black;
