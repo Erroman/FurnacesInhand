@@ -25,5 +25,31 @@ namespace RulerControls
             InitializeComponent();
             this.DataContext = new DateTimeRangesViewModel();
         }
+
+
+        public DateTime StartOfScale
+        {
+            get { return (DateTime)GetValue(StartOfScaleProperty); }
+            set { SetValue(StartOfScaleProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for StartOfScale.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StartOfScaleProperty =
+            DependencyProperty.Register("StartOfScale", typeof(DateTime), typeof(HorizontalRuler));
+
+
+        public DateTime EndOfScale
+        {
+            get { return (DateTime)GetValue(EndOfScaleProperty); }
+            set { SetValue(EndOfScaleProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EndOfScale.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EndOfScaleProperty =
+            DependencyProperty.Register("EndOfScale", typeof(DateTime), typeof(HorizontalRuler));
+
+
+
+
     }
 }
