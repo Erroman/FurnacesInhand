@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RulerControl
+namespace RulerControls
 {
     /// <summary>
     /// Логика взаимодействия для HorizontalRuler.xaml
@@ -23,6 +23,7 @@ namespace RulerControl
         public HorizontalRuler()
         {
             InitializeComponent();
+            this.DataContext = new DateTimeRangesViewModel();
         }
     }
 }

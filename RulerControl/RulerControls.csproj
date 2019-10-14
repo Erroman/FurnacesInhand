@@ -48,6 +48,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeRangesViewModel.cs" />
+    <Compile Include="TransformWorldToScreen.cs" />
     <Page Include="HorizontalRuler.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
