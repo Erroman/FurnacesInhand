@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,15 +17,9 @@ namespace FurnacesInHand
         private MainWindow _window;
         public VoltageStrictConverter()
         {
-            var prop = DesignerProperties.IsInDesignModeProperty;
-            bool design = (bool)DependencyPropertyDescriptor.
-                FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
-            if (!design)
-            {
                 _application = (App)Application.Current;
                 _window = (MainWindow)_application.MainWindow;
-            }
-        }
+         }
 
         private object _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

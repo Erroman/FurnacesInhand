@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:RulerControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
+    <StackPanel x:Name="rulerBody">
         <Rectangle Stroke="Black" StrokeThickness="2" Fill="Black" Height="2" VerticalAlignment="Top"></Rectangle>
     </StackPanel>
 </UserControl>
