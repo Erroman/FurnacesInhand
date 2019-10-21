@@ -69,7 +69,13 @@ namespace RulerControls
             GeometryGroup axisX = new GeometryGroup();
             axisX.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
             axisX_path.Data = axisX;
+            rulerBody.Children.Clear();
             rulerBody.Children.Add(axisX_path);
+        }
+
+        private void rulerBody_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            BuildTimeAxis();
         }
     }
 }
