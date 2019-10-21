@@ -68,6 +68,9 @@ namespace RulerControls
             double actualHeight = rulerBody.ActualHeight;
             GeometryGroup axisX = new GeometryGroup();
             axisX.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
+            //And now put the ticks:
+
+
             axisX_path.Data = axisX;
             rulerBody.Children.Clear();
             rulerBody.Children.Add(axisX_path);
