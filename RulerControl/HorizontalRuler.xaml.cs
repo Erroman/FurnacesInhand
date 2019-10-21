@@ -24,6 +24,7 @@ namespace RulerControls
         {
             InitializeComponent();
             this.DataContext = new DateTimeRangesViewModel();
+    
         }
 
 
@@ -48,8 +49,27 @@ namespace RulerControls
         public static readonly DependencyProperty EndOfScaleProperty =
             DependencyProperty.Register("EndOfScale", typeof(DateTime), typeof(HorizontalRuler));
 
-
-
-
+        private void rulerBody_Loaded(object sender, RoutedEventArgs e)
+        {
+            BuildTimeAxis();
+  
+        }
+        public void BuildTimeAxis() 
+        {
+            Path axisX_path = new Path();
+            axisX_path.StrokeThickness = 2;
+            axisX_path.Stroke = Brushes.Black;
+            if (rulerBody.ActualWidth == 0)
+            {
+                MessageBox.Show("Zero canvas's width!");
+                return;
+            };
+            double actualWidth  = rulerBody.ActualWidth;
+            double actualHeight = rulerBody.ActualHeight;
+            GeometryGroup axisX = new GeometryGroup();
+            axisX.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
+            axisX_path.Data = axisX;
+            rulerBody.Children.Add(axisX_path);
+        }
     }
 }
