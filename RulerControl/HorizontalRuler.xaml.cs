@@ -27,7 +27,8 @@ namespace RulerControls
     
         }
 
-
+        readonly static DateTime DefaultStartTime = new DateTime(2019, 11, 19);
+        readonly static DateTime DefaultEndTime = new DateTime(2019, 11, 21);
         public DateTime StartOfScale
         {
             get { return (DateTime)GetValue(StartOfScaleProperty); }
@@ -36,7 +37,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for StartOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartOfScaleProperty =
-            DependencyProperty.Register("StartOfScale", typeof(DateTime), typeof(HorizontalRuler));
+            DependencyProperty.Register("StartOfScale", typeof(DateTime), typeof(HorizontalRuler),new PropertyMetadata(DefaultStartTime));
 
 
         public DateTime EndOfScale
@@ -47,7 +48,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for EndOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndOfScaleProperty =
-            DependencyProperty.Register("EndOfScale", typeof(DateTime), typeof(HorizontalRuler));
+            DependencyProperty.Register("EndOfScale", typeof(DateTime), typeof(HorizontalRuler),new PropertyMetadata(DefaultEndTime));
 
         private void rulerBody_Loaded(object sender, RoutedEventArgs e)
         {
