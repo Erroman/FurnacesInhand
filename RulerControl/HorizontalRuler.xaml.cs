@@ -50,11 +50,6 @@ namespace RulerControls
         public static readonly DependencyProperty EndOfScaleProperty =
             DependencyProperty.Register("EndOfScale", typeof(DateTime), typeof(HorizontalRuler),new PropertyMetadata(DefaultEndTime));
 
-        private void rulerBody_Loaded(object sender, RoutedEventArgs e)
-        {
-            BuildTimeAxis();
-  
-        }
         public void BuildTimeAxis() 
         {
             Path axisX_path = new Path();
@@ -69,6 +64,7 @@ namespace RulerControls
             double actualHeight = rulerBody.ActualHeight;
             GeometryGroup axisX = new GeometryGroup();
             axisX.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
+
             //And now put the ticks:
 
 
