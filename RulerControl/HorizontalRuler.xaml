@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:RulerControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Canvas x:Name="rulerBody" SizeChanged="rulerBody_SizeChanged">
+    <Canvas x:Name="rulerBody" Loaded="rulerBody_Loaded">
 
      </Canvas>
 </UserControl>

@@ -27,8 +27,8 @@ namespace RulerControls
     
         }
 
-        readonly static DateTime DefaultStartTime = new DateTime(2019, 11, 19);
-        readonly static DateTime DefaultEndTime = new DateTime(2019, 11, 21);
+        readonly static DateTime DefaultStartTime = new DateTime(2019, 10, 19);
+        readonly static DateTime DefaultEndTime = new DateTime(2019, 10, 21);
         public DateTime StartOfScale
         {
             get { return (DateTime)GetValue(StartOfScaleProperty); }
@@ -64,18 +64,23 @@ namespace RulerControls
             double actualHeight = rulerBody.ActualHeight;
             GeometryGroup axisX = new GeometryGroup();
             axisX.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
-
             //And now put the ticks:
-
+            //MessageBox.Show(this.StartOfScale.ToString()+"   "+this.EndOfScale.ToString());
 
             axisX_path.Data = axisX;
             rulerBody.Children.Clear();
             rulerBody.Children.Add(axisX_path);
         }
 
+
         private void rulerBody_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             BuildTimeAxis();
+        }
+
+        private void rulerBody_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.SizeChanged += this.rulerBody_SizeChanged;
         }
     }
 }
