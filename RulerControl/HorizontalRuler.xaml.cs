@@ -121,6 +121,7 @@ namespace RulerControls
 
         private void rulerBody_Loaded(object sender, RoutedEventArgs e)
         {
+            BuildTimeAxis();
             this.SizeChanged += this.rulerBody_SizeChanged;
         }
     }
