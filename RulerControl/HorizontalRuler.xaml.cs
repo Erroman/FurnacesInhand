@@ -74,6 +74,7 @@ namespace RulerControls
         void AddTheHorizontalLineWithTimeMarks(GeometryGroup geometryGroup) 
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
+            AddVerticalTimeMarks(geometryGroup);
 
         }
         void AddVerticalTimeMarks(GeometryGroup geometryGroup) 
@@ -92,9 +93,24 @@ namespace RulerControls
             int numberOfDayMarks = (Int32)(dtEndNumberOfDays - dtStartNumberOfDays);
             this.dayMarks = new Int32[numberOfDayMarks];
 
-            int dayNumber = dtEndNumberOfDays;
-            for (int dayMark = numberOfDayMarks; dayMark > 0; dayMark--) dayMarks[dayMark - 1] = dayNumber--;
             TransformWorldToScreen.PrepareTransformations(dtStartTicks, dtEndTicks, 0, this.actualHeight, 0, this.actualWidth, this.actualHeight,0);
+            int dayNumber = dtEndNumberOfDays;
+            Point worldPointOnTheLine = new Point(0,0);
+            Point worldPointUnderTheLine = new Point(0, 0);
+            Point devicePointOnTheLine = new Point(0,0);
+            Point devicePointUnderTheLine = new Point(0,0);
+            for (int dayMark = numberOfDayMarks; dayMark > 0; dayMark--) 
+            {
+                worldPointOnTheLine.X = dayNumber * TimeSpan.TicksPerDay;
+                worldPointOnTheLine.Y = 0;
+                worldPointUnderTheLine.X = dayNumber * TimeSpan.TicksPerDay;
+                worldPointUnderTheLine.Y = 10;
+                devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
+                devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
+                geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
+                dayMarks[dayMark - 1] = dayNumber--;
+            }
+            
 
         }
 
