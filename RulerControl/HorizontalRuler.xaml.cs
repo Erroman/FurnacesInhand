@@ -22,6 +22,8 @@ namespace RulerControls
     {
         private double actualWidth;
         private double actualHeight;
+        private Int32[] dayMarks;
+
         public HorizontalRuler()
         {
             InitializeComponent();
@@ -59,7 +61,7 @@ namespace RulerControls
 
             //Create a new geometry group for drawing the axis there
             GeometryGroup axisX = new GeometryGroup();
-            //And now put  a line with time ticks in it
+            //And now put  a line with time ticks on it in the group
             AddTheHorizontalLineWithTimeMarks(axisX);
             
             Path axisX_path = new Path();
@@ -79,7 +81,19 @@ namespace RulerControls
             AddVerticalDayMarks(geometryGroup);
         }
         void AddVerticalDayMarks(GeometryGroup geometryGroup) 
-        { 
+        {
+            DateTime dtStart = StartOfScale;
+            DateTime dtEnd   = EndOfScale;
+            Int64 dtStartTicks = dtStart.Ticks;
+            Int64 dtEndTicks = dtEnd.Ticks;
+            Int32 dtStartNumberOfDays = (Int32)(dtStartTicks / TimeSpan.TicksPerDay);
+            Int32 dtEndNumberOfDays = (Int32)(dtEndTicks / TimeSpan.TicksPerDay);
+ 
+            int numberOfDayMarks = (Int32)(dtEndNumberOfDays - dtStartNumberOfDays);
+            this.dayMarks = new Int32[numberOfDayMarks];
+
+            int dayNumber = dtEndNumberOfDays;
+            for (int dayMark = numberOfDayMarks; dayMark > 0; dayMark--) dayMarks[dayMark - 1] = dayNumber--;
 
         }
 
