@@ -20,6 +20,8 @@ namespace RulerControls
     /// </summary>
     public partial class HorizontalRuler : UserControl
     {
+        private double actualWidth;
+        private double actualHeight;
         public HorizontalRuler()
         {
             InitializeComponent();
@@ -52,26 +54,34 @@ namespace RulerControls
 
         public void BuildTimeAxis() 
         {
+            this.actualWidth = rulerBody.ActualWidth;
+            this.actualHeight = rulerBody.ActualHeight;
+
+            //Create a new geometry group for drawing the axis there
+            GeometryGroup axisX = new GeometryGroup();
+            //And now put  a line with time ticks in it
+            AddTheHorizontalLineWithTimeMarks(axisX);
+            
             Path axisX_path = new Path();
             axisX_path.StrokeThickness = 2;
             axisX_path.Stroke = Brushes.Black;
-            if (rulerBody.ActualWidth == 0)
-            {
-                MessageBox.Show("Zero canvas's width!");
-                return;
-            };
-            double actualWidth  = rulerBody.ActualWidth;
-            double actualHeight = rulerBody.ActualHeight;
-            GeometryGroup axisX = new GeometryGroup();
-            axisX.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
-            //And now put the ticks:
-            //MessageBox.Show(this.StartOfScale.ToString()+"   "+this.EndOfScale.ToString());
-
             axisX_path.Data = axisX;
             rulerBody.Children.Clear();
             rulerBody.Children.Add(axisX_path);
         }
+        void AddTheHorizontalLineWithTimeMarks(GeometryGroup geometryGroup) 
+        {
+            geometryGroup.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
 
+        }
+        void AddVerticalTimeMarks(GeometryGroup geometryGroup) 
+        {
+            AddVerticalDayMarks(geometryGroup);
+        }
+        void AddVerticalDayMarks(GeometryGroup geometryGroup) 
+        { 
+
+        }
 
         private void rulerBody_SizeChanged(object sender, SizeChangedEventArgs e)
         {
