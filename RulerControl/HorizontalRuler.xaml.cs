@@ -94,6 +94,7 @@ namespace RulerControls
 
             int dayNumber = dtEndNumberOfDays;
             for (int dayMark = numberOfDayMarks; dayMark > 0; dayMark--) dayMarks[dayMark - 1] = dayNumber--;
+            TransformWorldToScreen.PrepareTransformations(dtStartTicks, dtEndTicks, 0, this.actualHeight, 0, this.actualWidth, this.actualHeight,0);
 
         }
 
