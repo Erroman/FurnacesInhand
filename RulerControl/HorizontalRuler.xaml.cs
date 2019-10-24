@@ -22,7 +22,18 @@ namespace RulerControls
     {
         private double actualWidth;
         private double actualHeight;
-        private Int32[] dayMarks;
+        struct Mark
+        {   
+            public Mark(Point bottom,Point top)
+            {
+                MarkTop = top;
+                MarkBottom = bottom;
+            }
+            public Point MarkTop;
+            public Point MarkBottom;
+ 
+        }
+        List<Mark> DayMarks = new List<Mark> { };
 
         public HorizontalRuler()
         {
@@ -70,6 +81,11 @@ namespace RulerControls
             axisX_path.Data = axisX;
             rulerBody.Children.Clear();
             rulerBody.Children.Add(axisX_path);
+            //Put labels:
+            string dayLabel = "Some text";
+            //devicePointUnderTheLine.Y -= 5;
+            //DrawText(rulerBody, dayLabel, devicePointUnderTheLine, 12, HorizontalAlignment.Center, VerticalAlignment.Center);
+
         }
         void AddTheHorizontalLineWithTimeMarks(GeometryGroup geometryGroup) 
         {
@@ -91,7 +107,8 @@ namespace RulerControls
             Int32 dtEndNumberOfDays = (Int32)(dtEndTicks / TimeSpan.TicksPerDay);
  
             int numberOfDayMarks = (Int32)(dtEndNumberOfDays - dtStartNumberOfDays);
-            this.dayMarks = new Int32[numberOfDayMarks];
+            DayMarks = new List<Mark>(numberOfDayMarks);
+
 
             TransformWorldToScreen.PrepareTransformations(dtStartTicks, dtEndTicks, 0, this.actualHeight, 0, this.actualWidth, this.actualHeight,0);
             int dayNumber = dtEndNumberOfDays;
@@ -108,9 +125,10 @@ namespace RulerControls
                 devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                 devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                 geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                dayMarks[dayMark - 1] = dayNumber--;
+                DayMarks.Add(new Mark(devicePointOnTheLine,devicePointUnderTheLine));
+                dayNumber--;
+
             }
-            
 
         }
         // http://csharphelper.com/blog/2014/09/draw-a-graph-with-labels-wpf-c/ 
