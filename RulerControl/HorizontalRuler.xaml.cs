@@ -88,7 +88,7 @@ namespace RulerControls
             //devicePointUnderTheLine.Y -= 5;
             foreach (var mark in DayMarks)
             {
-                dayLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.DayNumber, 0, 0, 0)).ToString();
+                dayLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.DayNumber, 0, 0, 0)).ToString("dd.MM.yy");
                 DrawText(rulerBody, dayLabel, mark.MarkTop, 12, HorizontalAlignment.Center, VerticalAlignment.Center); 
             }
 
