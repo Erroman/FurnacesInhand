@@ -40,8 +40,6 @@ namespace RulerControls
         public HorizontalRuler()
         {
             InitializeComponent();
-            this.DataContext = new DateTimeRangesViewModel();
-    
         }
 
         readonly static DateTime DefaultStartTime = new DateTime(2019, 10, 19);
