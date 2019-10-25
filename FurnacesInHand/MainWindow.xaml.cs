@@ -752,6 +752,8 @@ namespace FurnacesInHand
             {
                 datacontext.DtFixedEdgeBegTime = datacontext.DtBegTime;
                 datacontext.DtFixedEdgeEndTime = datacontext.DtEndTime;
+                datacontext.DtEdgeBegTime = datacontext.DtFixedEdgeBegTime;
+                datacontext.DtEdgeEndTime = datacontext.DtFixedEdgeEndTime;
             }
             else 
             { 
@@ -760,8 +762,6 @@ namespace FurnacesInHand
             }
             timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
             timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
-            datacontext.DtEdgeBegTime = datacontext.DtFixedEdgeBegTime;
-            datacontext.DtEdgeEndTime = datacontext.DtFixedEdgeEndTime;
             startTime  = datacontext.DtFixedEdgeBegTime;
             finishTime = datacontext.DtFixedEdgeEndTime;
         }
