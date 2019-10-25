@@ -54,7 +54,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition Height="20"/>
+            <RowDefinition x:Name="Axis_X" Height="30"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="35"/>
@@ -180,7 +180,7 @@
         <mover:TimeMover x:Name ="dtCurrentTime" Dt="{Binding CanvasX, ConverterParameter={StaticResource FurnacesInHandViewModel}, Converter={StaticResource TimeConverter}, Mode=TwoWay}" HorizontalAlignment="Left" Margin="11,108,0,0" Grid.Row="3" VerticalAlignment="Top" Width="183"/>
 
         <Border Grid.Row="5" Grid.Column="3" BorderBrush="Black" BorderThickness="1 1 1 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBlock TextWrapping="Wrap" Text="Ось Х Время наблюдения" FontWeight="ExtraBold" HorizontalAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="Ось Х Время наблюдения" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
         </Border>
         <RulerControls:HorizontalRuler Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <RangeSliderControls:RangeSlider x:Name="timeRangeSlider"  Minimum="0" Maximum="100" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Center" LowerValue="{Binding DtEdgeBegTime, ConverterParameter=LowerValue, Converter={StaticResource EdgeTimeConverterToSource}, Mode=OneWayToSource}" UpperValue="{Binding DtEdgeEndTime, ConverterParameter=UpperValue, Converter={StaticResource EdgeTimeConverterToSource}, Mode=OneWayToSource}"/>

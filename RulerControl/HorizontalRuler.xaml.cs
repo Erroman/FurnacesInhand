@@ -89,7 +89,7 @@ namespace RulerControls
             foreach (var mark in DayMarks)
             {
                 dayLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.DayNumber, 0, 0, 0)).ToString("dd.MM.yy");
-                DrawText(rulerBody, dayLabel, mark.MarkTop, 12, HorizontalAlignment.Center, VerticalAlignment.Center); 
+                DrawText(rulerBody, dayLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center); 
             }
 
         }
@@ -164,7 +164,7 @@ namespace RulerControls
                 y -= label.DesiredSize.Height / 2;
             else if (valign == VerticalAlignment.Bottom)
                 y -= label.DesiredSize.Height;
-            Canvas.SetTop(label, y);
+            Canvas.SetTop(label, y+4);
         }
         private void rulerBody_SizeChanged(object sender, SizeChangedEventArgs e)
         {
