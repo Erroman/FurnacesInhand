@@ -106,13 +106,14 @@ namespace FurnacesInHand
         //}
         private void MapTheLocalBase(string EdgeOrGlobalTimeBoundaries= "StartValues")
         {
-            Updated.Text = "";
+           Updated.Text = "";
             using (this.context = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
             {
                 conn = this.context.Database.Connection; //извлекли объект для соединения с БД
                 conn.Open(); //открыли соединение
                 //MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
                 SetDigitalStartAndFinishTimes(EdgeOrGlobalTimeBoundaries);
+                this.timeScale.BuildTimeAxis();
                 switch (this.numberOfFurnace)
                 {
                     case 1:
