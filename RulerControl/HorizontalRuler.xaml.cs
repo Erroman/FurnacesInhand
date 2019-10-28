@@ -88,14 +88,17 @@ namespace RulerControls
             //devicePointUnderTheLine.Y -= 5;
             foreach (var mark in HourMarks)
             {
-                hourLabel = (new DateTime(1, 1, 1) + new TimeSpan(0, (int)mark.MarkNumber, 0, 0)).ToString("HH:mm");
-                DrawText(rulerBody, hourLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
+                if(mark.MarkNumber % 24 != 0) 
+                {
+                    hourLabel = (new DateTime(1, 1, 1) + new TimeSpan(0, mark.MarkNumber, 0, 0)).ToString("HH");
+                    DrawText(rulerBody, hourLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
+                }
             }
 
             foreach (var mark in DayMarks)
             {
                 dayLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.MarkNumber, 0, 0, 0)).ToString("dd.MM.yy");
-                DrawText(rulerBody, dayLabel, mark.MarkTop, 7, HorizontalAlignment.Center, VerticalAlignment.Center); 
+                DrawText(rulerBody, dayLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center); 
             }
 
 
@@ -168,7 +171,7 @@ namespace RulerControls
                 worldPointOnTheLine.X = hourNumber * TimeSpan.TicksPerHour;
                 worldPointOnTheLine.Y = 0;
                 worldPointUnderTheLine.X = hourNumber * TimeSpan.TicksPerHour;
-                worldPointUnderTheLine.Y = 7;
+                worldPointUnderTheLine.Y = 5;
                 devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                 devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                 geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
