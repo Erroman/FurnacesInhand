@@ -36,6 +36,7 @@ namespace RulerControls
  
         }
         List<Mark> DayMarks = new List<Mark> { };
+        List<Mark> HourMarks = new List<Mark> { };
 
         public HorizontalRuler()
         {
@@ -100,6 +101,7 @@ namespace RulerControls
         void AddVerticalTimeMarks(GeometryGroup geometryGroup) 
         {
             AddVerticalDayMarks(geometryGroup);
+            AddVerticalHourMarks(geometryGroup);
         }
         void AddVerticalDayMarks(GeometryGroup geometryGroup) 
         {
@@ -131,6 +133,39 @@ namespace RulerControls
                 geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
                 DayMarks.Add(new Mark(devicePointOnTheLine,devicePointUnderTheLine,dayNumber));
                 dayNumber--;
+
+            }
+        }
+        void AddVerticalHourMarks(GeometryGroup geometryGroup)
+        {
+            DateTime dtStart = StartOfScale;
+            DateTime dtEnd = EndOfScale;
+            Int64 dtStartTicks = dtStart.Ticks;
+            Int64 dtEndTicks = dtEnd.Ticks;
+            Int32 dtStartNumberOfHours = (Int32)(dtStartTicks / TimeSpan.TicksPerHour);
+            Int32 dtEndNumberOfHours = (Int32)(dtEndTicks / TimeSpan.TicksPerHour);
+
+            int numberOfHourMarks = (Int32)(dtEndNumberOfHours - dtStartNumberOfHours);
+            HourMarks = new List<Mark>(numberOfHourMarks);
+
+
+            TransformWorldToScreen.PrepareTransformations(dtStartTicks, dtEndTicks, 0, this.actualHeight, 0, this.actualWidth, this.actualHeight, 0);
+            int hourNumber = dtEndNumberOfHours;
+            Point worldPointOnTheLine = new Point(0, 0);
+            Point worldPointUnderTheLine = new Point(0, 0);
+            Point devicePointOnTheLine = new Point(0, 0);
+            Point devicePointUnderTheLine = new Point(0, 0);
+            for (int dayMark = numberOfHourMarks; dayMark > 0; dayMark--)
+            {
+                worldPointOnTheLine.X = hourNumber * TimeSpan.TicksPerHour;
+                worldPointOnTheLine.Y = 0;
+                worldPointUnderTheLine.X = hourNumber * TimeSpan.TicksPerHour;
+                worldPointUnderTheLine.Y = 7;
+                devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
+                devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
+                geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
+                HourMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, hourNumber));
+                hourNumber--;
 
             }
 

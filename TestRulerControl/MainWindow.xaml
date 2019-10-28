@@ -7,9 +7,7 @@
         xmlns:RulerControl="clr-namespace:RulerControls;assembly=RulerControls"  xmlns:VSMPO_AVISMAControls="clr-namespace:VSMPO_AVISMAControls;assembly=VSMPO_AVISMAControls"  x:Class="TestRulerControl.MainWindow"        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="1000">
-    <Window.Resources>
-        <local:ScaleUpdateConverter x:Key="ScaleUpdateConverter"/>
-    </Window.Resources>
+ 
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="48*"/>
@@ -24,7 +22,7 @@
             <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
         <RulerControl:HorizontalRuler Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <RulerControl:HorizontalRuler x:Name="rC" StartOfScale="{Binding ElementName=StartTime,Path=Dt,Converter={StaticResource ScaleUpdateConverter}}" EndOfScale="{Binding ElementName=EndTime,Path=Dt,Converter={StaticResource ScaleUpdateConverter}}"  Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3"/>
+        <RulerControl:HorizontalRuler x:Name="rC" StartOfScale="{Binding ElementName=StartTime,Path=Dt}" EndOfScale="{Binding ElementName=EndTime,Path=Dt}"  Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3"/>
         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="238,108,0,0" Grid.Row="1" VerticalAlignment="Top" Width="136" Height="37" Click="Button_Click"/>
         <VSMPO_AVISMAControls:TimeMover Name="StartTime" Grid.Column="1" HorizontalAlignment="Left" Height="64" Margin="24,108,0,0" Grid.Row="1" VerticalAlignment="Top" Width="177"/>
         <VSMPO_AVISMAControls:TimeMover Name="EndTime"   Grid.Column="1" HorizontalAlignment="Left" Height="64" Margin="420,108,0,0" Grid.Row="1" VerticalAlignment="Top" Width="186"/>
