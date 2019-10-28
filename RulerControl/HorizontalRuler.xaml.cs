@@ -24,15 +24,15 @@ namespace RulerControls
         private double actualHeight;
         struct Mark
         {   
-            public Mark(Point bottom,Point top,int dayNumber)
+            public Mark(Point bottom,Point top,int markNumber)
             {
                 MarkTop = top;
                 MarkBottom = bottom;
-                DayNumber = dayNumber;
+                MarkNumber = markNumber;
             }
             public Point MarkTop;
             public Point MarkBottom;
-            public int DayNumber;
+            public int MarkNumber;
  
         }
         List<Mark> DayMarks = new List<Mark> { };
@@ -83,13 +83,21 @@ namespace RulerControls
             rulerBody.Children.Clear();
             rulerBody.Children.Add(axisX_path);
             //Put labels:
-            string dayLabel=String.Empty;
+            string dayLabel  = String.Empty;
+            string hourLabel = String.Empty;
             //devicePointUnderTheLine.Y -= 5;
+            foreach (var mark in HourMarks)
+            {
+                hourLabel = (new DateTime(1, 1, 1) + new TimeSpan(0, (int)mark.MarkNumber, 0, 0)).ToString("HH:mm");
+                DrawText(rulerBody, hourLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
+            }
+
             foreach (var mark in DayMarks)
             {
-                dayLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.DayNumber, 0, 0, 0)).ToString("dd.MM.yy");
-                DrawText(rulerBody, dayLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center); 
+                dayLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.MarkNumber, 0, 0, 0)).ToString("dd.MM.yy");
+                DrawText(rulerBody, dayLabel, mark.MarkTop, 7, HorizontalAlignment.Center, VerticalAlignment.Center); 
             }
+
 
         }
         void AddTheHorizontalLineWithTimeMarks(GeometryGroup geometryGroup) 
