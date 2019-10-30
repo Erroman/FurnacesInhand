@@ -760,6 +760,9 @@ namespace FurnacesInHand
             { 
                 datacontext.DtFixedEdgeBegTime = datacontext.DtEdgeBegTime;
                 datacontext.DtFixedEdgeEndTime = datacontext.DtEdgeEndTime;
+                datacontext.stackToUndoZoomIn.Push(datacontext.DtFixedEdgeBegTime);
+                datacontext.stackToUndoZoomIn.Push(datacontext.DtFixedEdgeEndTime);
+                //Put onto the Stack to use for decreasing
             }
             timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
             timeRangeSlider.UpperValue = timeRangeSlider.Maximum;

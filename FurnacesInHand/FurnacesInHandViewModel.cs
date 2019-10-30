@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace FurnacesInHand
 {
@@ -406,5 +407,7 @@ namespace FurnacesInHand
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        public Stack<DateTime> stackToUndoZoomIn = new Stack<DateTime>();
+
     }
 }
