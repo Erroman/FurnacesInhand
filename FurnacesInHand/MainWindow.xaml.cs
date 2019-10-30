@@ -760,9 +760,6 @@ namespace FurnacesInHand
             { 
                 datacontext.DtFixedEdgeBegTime = datacontext.DtEdgeBegTime;
                 datacontext.DtFixedEdgeEndTime = datacontext.DtEdgeEndTime;
-                datacontext.stackToUndoZoomIn.Push(datacontext.DtFixedEdgeBegTime);
-                datacontext.stackToUndoZoomIn.Push(datacontext.DtFixedEdgeEndTime);
-                //Put onto the Stack to use for decreasing
             }
             timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
             timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
@@ -1011,11 +1008,26 @@ namespace FurnacesInHand
             UpLoadTheDataBaseFromTheCopy();
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Zoom_In(object sender, RoutedEventArgs e)
         {
+            datacontext.stackToUndoZoomIn.Push(datacontext.DtFixedEdgeBegTime);
+            datacontext.stackToUndoZoomIn.Push(datacontext.DtFixedEdgeEndTime);
+            //MessageBox.Show($"Stack Count {datacontext.stackToUndoZoomIn.Count()}");
+            //Put onto the Stack to use for decreasing
+
             MapTheLocalBase("Set Edge Time Values");
         }
 
+        private void Zoom_Out(object sender, RoutedEventArgs e)
+        {
+            if (datacontext.stackToUndoZoomIn.Count() > 0) 
+            {
+                //MessageBox.Show($"Stack Count {datacontext.stackToUndoZoomIn.Count()}");
+                datacontext.DtEdgeEndTime = datacontext.stackToUndoZoomIn.Pop();
+                datacontext.DtEdgeBegTime = datacontext.stackToUndoZoomIn.Pop();
+                MapTheLocalBase("Set Edge Time Values");
+            }
+        }
     }
 
 }

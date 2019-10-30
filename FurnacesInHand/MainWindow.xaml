@@ -195,8 +195,8 @@
         <TextBlock  Grid.Column="2"  Grid.Row="8" TextWrapping="Wrap"  FontSize="12" VerticalAlignment="Top" Grid.ColumnSpan="2" Text="{Binding DtEdgeBegTime, Mode=OneWay, StringFormat=dd.MM.yy\\&#xA;HH:mm:ss}"/>
         <TextBlock Grid.Column="3" HorizontalAlignment="Right" Margin="0,0,11,0" Grid.Row="8" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Text="{Binding DtEdgeEndTime, Mode=OneWay, StringFormat=dd.MM.yy\\&#xA;HH:mm:ss}"/>
 
-        <Button Content="Уменьшить" HorizontalAlignment="Left" Margin="10,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="196"/>
-        <Button Content="Увеличить" Grid.Column="1" HorizontalAlignment="Left" Margin="11,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="191" Grid.RowSpan="2" Click="Button_Click_3"/>
+        <Button Content="Уменьшить" HorizontalAlignment="Left" Margin="10,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="196" Click="Zoom_Out"/>
+        <Button Content="Увеличить" Grid.Column="1" HorizontalAlignment="Left" Margin="11,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="191" Grid.RowSpan="2" Click="Zoom_In"/>
     </Grid>
 
 </Window>
