@@ -88,7 +88,7 @@
         <Label Content="Начало наблюдения" HorizontalAlignment="Left" Height="24" Margin="40,51,0,0" VerticalAlignment="Top" Width="132" Grid.Row="2"/>
         <Label Content="Конец наблюдения" HorizontalAlignment="Left" Height="24" Margin="40,129,0,0" VerticalAlignment="Top" Width="132" Grid.Row="2"/>
         <TextBox x:Name ="txtb" HorizontalAlignment="Left" Height="33" Margin="31,92,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="129" Grid.Row="4"/>
-        <Button HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="183" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Content="Вывод значений" Grid.Row="3"/>
+        <Button HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="183" Height="35" RenderTransformOrigin="0.788,0.351" Click="Button_Click" Content="Вывод значений на экран" Grid.Row="3"/>
 
         <ListBox Grid.Row="0" x:Name="voltageValues" HorizontalAlignment="Left" Margin="0,10,0,66" Width="212" Grid.Column="1"  ItemTemplate="{StaticResource ParametersList}"/>
 
@@ -142,7 +142,7 @@
         <TextBox x:Name="SolenoidIValue" Text="{Binding Dt, ConverterParameter=Value, Converter={StaticResource SolenoidIStrictConverter}, ElementName=dtCurrentTime, StringFormat=\{0:F2\}}" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Left" Height="24" Margin="130,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.Row="4"/>
         <TextBox x:Name="SolenoidITime" Text="{Binding Dt, ConverterParameter=Time, Converter={StaticResource SolenoidIStrictConverter}, ElementName=dtCurrentTime, StringFormat=dd.MM.yy HH:mm:ss.fff}" Grid.Column="1"  HorizontalAlignment="Left" Height="35" Margin="10,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="4" Grid.RowSpan="2"/>
         <TextBlock x:Name="Updated" HorizontalAlignment="Left" Margin="40,108,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Height="28"/>
-        <Button Content="Загрузка с сервера" HorizontalAlignment="Left" Margin="31,36,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="46" Click="Button_Click_1"/>
+        <Button Content="Загрузка с сервера" HorizontalAlignment="Left" Margin="31,56,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="26" Click="Button_Click_1"/>
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="96,115,0,0" TextWrapping="Wrap" FontWeight="ExtraBold" Text="Напряжение дуги (В)" VerticalAlignment="Top" Height="34" Width="117" Grid.ColumnSpan="2" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="136,128,0,0" Grid.Row="1" TextWrapping="Wrap" FontWeight="ExtraBold" Text="Ток дуги (КА)" VerticalAlignment="Top" Width="73" Height="31" />
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="103,137,0,0" Grid.Row="2" TextWrapping="Wrap" FontWeight="ExtraBold" Text="Вакуум (мм рт.ст)" VerticalAlignment="Top" Width="112" Height="24" Grid.ColumnSpan="2" />
@@ -184,7 +184,7 @@
         </Border>
         <RulerControls:HorizontalRuler Name="timeScale" Grid.Row="5"  StartOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeBegTime,Mode=OneWay}" EndOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeEndTime,Mode=OneWay}" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <RangeSliderControls:RangeSlider  Grid.Row="7" x:Name="timeRangeSlider"  Minimum="0" Maximum="100" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" LowerValue="{Binding DtEdgeBegTime, ConverterParameter=LowerValue, Converter={StaticResource EdgeTimeConverterToSource}, Mode=OneWayToSource}" UpperValue="{Binding DtEdgeEndTime, ConverterParameter=UpperValue, Converter={StaticResource EdgeTimeConverterToSource}, Mode=OneWayToSource}"/>
-        
+
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Margin="10,28,0,34" Grid.Row="4" Width="15"/>
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Margin="10,24,0,30" Grid.Row="3" Width="20"/>
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="2" Width="20" Height="125" VerticalAlignment="Top"/>
@@ -197,6 +197,7 @@
 
         <Button Content="Уменьшить" HorizontalAlignment="Left" Margin="10,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="196" Click="Zoom_Out"/>
         <Button Content="Увеличить" Grid.Column="1" HorizontalAlignment="Left" Margin="11,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="191" Grid.RowSpan="2" Click="Zoom_In"/>
+        <Button Content="Выдача&#xD;&#xA; на печать" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Top" Width="183" Height="36"/>
     </Grid>
 
 </Window>
