@@ -110,6 +110,7 @@ namespace FurnacesInHand
             using (this.context = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
             {
                 conn = this.context.Database.Connection; //извлекли объект для соединения с БД
+                this.context.Database.CommandTimeout = 12000;
                 conn.Open(); //открыли соединение
                 //MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
                 SetDigitalStartAndFinishTimes(EdgeOrGlobalTimeBoundaries);
@@ -1026,6 +1027,15 @@ namespace FurnacesInHand
                 datacontext.DtEdgeEndTime = datacontext.stackToUndoZoomIn.Pop();
                 datacontext.DtEdgeBegTime = datacontext.stackToUndoZoomIn.Pop();
                 MapTheLocalBase("Set Edge Time Values");
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(mainWindow, "A Simple Drawing");
             }
         }
     }

@@ -161,9 +161,10 @@
         <Button  HorizontalAlignment="Left" Margin="31,135,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="46" Click="Button_Click_2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="96*"/>
+                    <ColumnDefinition Width="95*"/>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="22*"/>
+                    <ColumnDefinition Width="23*"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -197,7 +198,7 @@
 
         <Button Content="Уменьшить" HorizontalAlignment="Left" Margin="10,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="196" Click="Zoom_Out"/>
         <Button Content="Увеличить" Grid.Column="1" HorizontalAlignment="Left" Margin="11,1,0,0" Grid.Row="6" VerticalAlignment="Top" Width="191" Grid.RowSpan="2" Click="Zoom_In"/>
-        <Button Content="Выдача&#xD;&#xA; на печать" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Top" Width="183" Height="36"/>
+        <Button Content="Выдача&#xD;&#xA; на печать" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Top" Width="183" Height="36" Click="Button_Click_3"/>
     </Grid>
 
 </Window>
