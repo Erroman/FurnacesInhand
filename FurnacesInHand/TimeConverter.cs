@@ -1,4 +1,9 @@
-﻿using System;
+﻿//This converter lets to reflect the values and times of parameters in the TextBoxes,
+// which are bound to CanvasX property in the FurnacesInHandViewModel
+//and the converter converts in two ways the clicked point's X coordinate on screen
+//to the timedate value on the TimeMover and convert back  
+//the time from a TimeMover to the screen X coordinate
+using System;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -26,12 +31,14 @@ namespace FurnacesInHand
         double ymax=100;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            finhViewModel = (FurnacesInHandViewModel)parameter;
+            finhViewModel.DrawCursorWhenMousButtonUp = false;
             if (Mouse.LeftButton == MouseButtonState.Pressed)
             {
-                finhViewModel = (FurnacesInHandViewModel)parameter;
-                PrepareTransform(finhViewModel); 
                 p.X = (double)value;
-                dt = finhViewModel.DtEdgeBegTime  + TimeSpan.FromMilliseconds(DtoW(p).X);
+                finhViewModel.CursorXCoordinate = p.X;
+                PrepareTransform(finhViewModel); 
+                dt = finhViewModel.DtFixedEdgeBegTime  + TimeSpan.FromMilliseconds(DtoW(p).X);
             }
               
             return dt;
@@ -41,11 +48,13 @@ namespace FurnacesInHand
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             finhViewModel = (FurnacesInHandViewModel)parameter;
+            finhViewModel.DrawCursorWhenMousButtonUp = true;
             PrepareTransform(finhViewModel);
             dt = (DateTime)value;
-            TimeSpan ts = (TimeSpan)(dt - finhViewModel.DtEdgeBegTime);
+            TimeSpan ts = (TimeSpan)(dt - finhViewModel.DtFixedEdgeBegTime);
             p.X = ts.TotalMilliseconds;
              p.X = WtoD(p).X;
+            finhViewModel.CursorXCoordinate = p.X;
             return p.X;
         }
         private void PrepareTransform(FurnacesInHandViewModel finhViewModel)

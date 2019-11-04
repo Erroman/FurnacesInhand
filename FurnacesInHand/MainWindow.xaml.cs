@@ -1,16 +1,14 @@
 ﻿using System;
-using System.IO;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Data.Entity;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static FurnacesInHand.ServiceFunctions;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace FurnacesInHand
 {
@@ -108,13 +106,15 @@ namespace FurnacesInHand
         //}
         private void MapTheLocalBase(string EdgeOrGlobalTimeBoundaries= "StartValues")
         {
-            Updated.Text = "";
+           Updated.Text = "";
             using (this.context = new FurnacesModelLocal()) //создали контекст взаимодействия с базой данных
             {
                 conn = this.context.Database.Connection; //извлекли объект для соединения с БД
+                this.context.Database.CommandTimeout = 12000;
                 conn.Open(); //открыли соединение
                 //MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
                 SetDigitalStartAndFinishTimes(EdgeOrGlobalTimeBoundaries);
+                this.timeScale.BuildTimeAxis();
                 switch (this.numberOfFurnace)
                 {
                     case 1:
@@ -754,6 +754,8 @@ namespace FurnacesInHand
             {
                 datacontext.DtFixedEdgeBegTime = datacontext.DtBegTime;
                 datacontext.DtFixedEdgeEndTime = datacontext.DtEndTime;
+                datacontext.DtEdgeBegTime = datacontext.DtFixedEdgeBegTime;
+                datacontext.DtEdgeEndTime = datacontext.DtFixedEdgeEndTime;
             }
             else 
             { 
@@ -762,8 +764,6 @@ namespace FurnacesInHand
             }
             timeRangeSlider.LowerValue = timeRangeSlider.Minimum;
             timeRangeSlider.UpperValue = timeRangeSlider.Maximum;
-            datacontext.DtEdgeBegTime = datacontext.DtFixedEdgeBegTime;
-            datacontext.DtEdgeEndTime = datacontext.DtFixedEdgeEndTime;
             startTime  = datacontext.DtFixedEdgeBegTime;
             finishTime = datacontext.DtFixedEdgeEndTime;
         }
@@ -913,9 +913,21 @@ namespace FurnacesInHand
         {
             return Int32.Parse(nameOfFurnace.Substring(nameOfFurnace.IndexOf("№") + 1));
         }
+        public void PutTheCursor(Point clickPoint)
+        {
+            //Show the nearest values in ListBoxes(TrxtBoxes)! 
+            VoltagePlot.VerticalCursor(clickPoint);
+            CurrentPlot.VerticalCursor(clickPoint);
+            VacuumPlot.VerticalCursor(clickPoint);
+            SolenoidUPlot.VerticalCursor(clickPoint);
+            SolenoidIPlot.VerticalCursor(clickPoint);
+        }
+
+
         private void VoltagePlot_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
+            datacontext.CanvasX = clickPoint.X;
             PutTheCursor(clickPoint);
         }
         private void VoltagePlot_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -926,16 +938,6 @@ namespace FurnacesInHand
                 PutTheCursor(clickPoint);
             }
         }
-        public void PutTheCursor(Point clickPoint)
-        {
-            //Show the nearest values in ListBoxes(TrxtBoxes)! 
-         //   VoltagePlot.VerticalCursor(clickPoint);
-         //   CurrentPlot.VerticalCursor(clickPoint);
-         //   VacuumPlot.VerticalCursor(clickPoint);
-         //   SolenoidUPlot.VerticalCursor(clickPoint);
-         //   SolenoidIPlot.VerticalCursor(clickPoint);
-        }
-
         private void CurrentPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
@@ -966,6 +968,7 @@ namespace FurnacesInHand
  
         private void SolenoidUPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //datacontext.IsLeftMouseButtonPressed = true;
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
             PutTheCursor(clickPoint);
         }
@@ -981,17 +984,19 @@ namespace FurnacesInHand
 
         private void SolenoidIPlot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //datacontext.IsLeftMouseButtonPressed = true;
             Point clickPoint = e.GetPosition((GraphCanvas)sender);
             PutTheCursor(clickPoint);
         }
-
         private void SolenoidIPlot_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+                //datacontext.IsLeftMouseButtonPressed = true;
                 Point clickPoint = e.GetPosition((GraphCanvas)sender);
                 PutTheCursor(clickPoint);
             }
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -1004,9 +1009,35 @@ namespace FurnacesInHand
             UpLoadTheDataBaseFromTheCopy();
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Zoom_In(object sender, RoutedEventArgs e)
         {
+            datacontext.stackToUndoZoomIn.Push(datacontext.DtFixedEdgeBegTime);
+            datacontext.stackToUndoZoomIn.Push(datacontext.DtFixedEdgeEndTime);
+            //MessageBox.Show($"Stack Count {datacontext.stackToUndoZoomIn.Count()}");
+            //Put onto the Stack to use for decreasing
+
             MapTheLocalBase("Set Edge Time Values");
+        }
+
+        private void Zoom_Out(object sender, RoutedEventArgs e)
+        {
+            if (datacontext.stackToUndoZoomIn.Count() > 0) 
+            {
+                //MessageBox.Show($"Stack Count {datacontext.stackToUndoZoomIn.Count()}");
+                datacontext.DtEdgeEndTime = datacontext.stackToUndoZoomIn.Pop();
+                datacontext.DtEdgeBegTime = datacontext.stackToUndoZoomIn.Pop();
+                MapTheLocalBase("Set Edge Time Values");
+            }
+        }
+
+        private void PrintingForm(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(mainWindow, "A Simple Drawing");
+            }
+            new PrintForm().Show();
         }
     }
 

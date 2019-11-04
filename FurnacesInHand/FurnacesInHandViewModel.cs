@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace FurnacesInHand
 {
@@ -31,6 +34,36 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
+        private bool _drawCursorWhenMousButtonUp;
+        //Attached property for the type Rectangle showing it if the mouse left button is pressed
+        public bool DrawCursorWhenMousButtonUp 
+        {
+            get 
+            { 
+                return _drawCursorWhenMousButtonUp; 
+            }
+            set 
+            { 
+                _drawCursorWhenMousButtonUp = value;
+                OnPropertyChanged();
+            } 
+        }
+        private double _cursorXCoordinate;
+        //Attached property for the type Rectangle showing it if the mouse left button is pressed
+        public double CursorXCoordinate
+        {
+            get
+            {
+                return _cursorXCoordinate;
+            }
+            set
+            {
+                _cursorXCoordinate = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private DateTime _dtBegTime;
         private DateTime _dtEndTime;
         private DateTime _dtTimeMoment;
@@ -374,5 +407,7 @@ namespace FurnacesInHand
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        public Stack<DateTime> stackToUndoZoomIn = new Stack<DateTime>();
+
     }
 }

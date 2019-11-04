@@ -58,8 +58,7 @@ namespace FurnacesInHand
             verticalCursor = myPath;
             this.Children.Add(myPath);
             return myPath;
-
-
         }
+        
     }
 }

@@ -119,7 +119,7 @@
     <Compile Include="CurrentPlot.cs" />
     <Compile Include="CurrentStrictConverter.cs" />
     <Compile Include="CurrentTimeConverter.cs" />
-    <Compile Include="EdgeTimeConverter.cs" />
+    <Compile Include="CursorConverter.cs" />
     <Compile Include="EdgeTimeConverterToSource.cs" />
     <Compile Include="FurnaceModelLocalNext.cs" />
     <Compile Include="FurnacesInHandViewModel.cs" />
@@ -128,7 +128,11 @@
     <Compile Include="inTime.cs" />
     <Compile Include="MouseBehaviour.cs" />
     <Compile Include="ParametersLimits.cs" />
+    <Compile Include="PrintForm.xaml.cs">
+      <DependentUpon>PrintForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ServiceFunctions.cs" />
+    <Compile Include="SetPropertyAction.cs" />
     <Compile Include="SolenoidIConverter.cs" />
     <Compile Include="SolenoidIGraph.cs" />
     <Compile Include="SolenoidIPlot.cs" />
@@ -181,6 +185,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PrintForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -221,6 +229,10 @@
     <ProjectReference Include="..\RangeSliderControl\RangeSliderControls.csproj">
       <Project>{e99ce19e-0af8-4ab0-8586-834528782b19}</Project>
       <Name>RangeSliderControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RulerControl\RulerControls.csproj">
+      <Project>{4f1d4704-502f-42b0-be55-aab83ce99ff7}</Project>
+      <Name>RulerControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\VSMPO_AVISMAControls\VSMPO_AVISMAControls.csproj">
       <Project>{037839c9-5424-495e-9a02-0deeb048a1c3}</Project>

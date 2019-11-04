@@ -17,9 +17,9 @@ namespace FurnacesInHand
         private MainWindow _window;
         public VoltageStrictConverter()
         {
-            _application = (App)Application.Current;
-            _window = (MainWindow)_application.MainWindow;
-        }
+                _application = (App)Application.Current;
+                _window = (MainWindow)_application.MainWindow;
+         }
 
         private object _lastMeasuredValue;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

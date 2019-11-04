@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Globalization;
 
 using static FurnacesInHand.TransformWorldToScreen;
 namespace FurnacesInHand
@@ -35,8 +36,8 @@ namespace FurnacesInHand
             Pen pen = new Pen(Brushes.Black, 1.0);
             double LowerLimitForTimeOnXAxis = 0; //нижняя гравница временного интервала в миллисекундах
             double UpperLimitForTimeOnXAxis = MillisecondsSinceTheBeginning(this.finishTime); //верхняя гравница временного интервала в миллисекундах
-            double LowerLimitForVoltageOnYAxis = vm == null ? 0 : Double.Parse(vm.VoltageMin); //Properties.Settings.Default.;
-            double UpperLimitForVoltageOnYAxis = vm == null ? 50 : Double.Parse(vm.VoltageMax);
+            double LowerLimitForVoltageOnYAxis = vm == null ? 0 : Double.Parse(vm.VoltageMin.Replace(',', '.'), CultureInfo.InvariantCulture); //Properties.Settings.Default.;
+            double UpperLimitForVoltageOnYAxis = vm == null ? 50 : Double.Parse(vm.VoltageMax.Replace(',', '.'), CultureInfo.InvariantCulture);
             double xmin = rect.X;
             double xmax = rect.X + rect.Width;
             double ymin = rect.Y;
