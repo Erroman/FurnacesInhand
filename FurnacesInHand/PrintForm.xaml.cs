@@ -20,10 +20,19 @@ namespace FurnacesInHand
     public partial class PrintForm : Window
     {
         UIElement voltageGraph = null;
+        UIElement currentGraph = null;
+        UIElement vacuumGraph = null;
+        UIElement solenoidUGraph = null;
+        UIElement solenoidIGraph = null;
+
         public PrintForm()
         {
             InitializeComponent();
         }
         public void voltagePlot(List<TimeParameterPair> Voltage_graph_pairs) { }
+        public void currentPlot(List<TimeParameterPair> timeParameterPairs) { }
+        public void vacuumPlot(List<TimeParameterPair> timeParameterPairs) { }
+        public void solenoidUPlot(List<TimeParameterPair> timeParameterPairs) { }
+        public void solenoidIPlot(List<TimeParameterPair> timeParameterPairs) { }
     }
 }

@@ -1039,6 +1039,10 @@ namespace FurnacesInHand
             }
             PrintForm printForm = new PrintForm();
             printForm.voltagePlot(Voltage_graph_pairs);
+            printForm.currentPlot(Current_graph_pairs);
+            printForm.vacuumPlot(Vacuum_graph_pairs);
+            printForm.solenoidUPlot(SolenoidU_graph_pairs);
+            printForm.solenoidIPlot(SolenoidI_graph_pairs);
             printForm.Show();
         }
     }
