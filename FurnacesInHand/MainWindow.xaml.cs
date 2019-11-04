@@ -1030,13 +1030,14 @@ namespace FurnacesInHand
             }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void PrintingForm(object sender, RoutedEventArgs e)
         {
             PrintDialog printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
             {
                 printDialog.PrintVisual(mainWindow, "A Simple Drawing");
             }
+            new PrintForm().Show();
         }
     }
 
