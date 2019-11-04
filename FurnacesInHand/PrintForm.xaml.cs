@@ -19,9 +19,11 @@ namespace FurnacesInHand
     /// </summary>
     public partial class PrintForm : Window
     {
+        UIElement voltageGraph = null;
         public PrintForm()
         {
             InitializeComponent();
         }
+        public void voltagePlot(List<TimeParameterPair> Voltage_graph_pairs) { }
     }
 }

@@ -1037,7 +1037,9 @@ namespace FurnacesInHand
             {
                 printDialog.PrintVisual(mainWindow, "A Simple Drawing");
             }
-            new PrintForm().Show();
+            PrintForm printForm = new PrintForm();
+            printForm.voltagePlot(Voltage_graph_pairs);
+            printForm.Show();
         }
     }
 
