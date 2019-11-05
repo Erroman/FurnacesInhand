@@ -73,7 +73,33 @@ namespace FurnacesInHand
             }
             ), null);
         }
-        public void solenoidUPlot(List<TimeParameterPair> timeParameterPairs) { }
-        public void solenoidIPlot(List<TimeParameterPair> timeParameterPairs) { }
+        public void solenoidUPlot(List<TimeParameterPair> SolenoidU_graph_pairs, DateTime startTime, DateTime finishTime, FurnacesInHandViewModel vm = null) 
+        { 
+            this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)
+            {
+                if (solenoidUGraph != null)
+                    SolenoidUPlot.Children?.Remove(solenoidUGraph);
+                Rect rectangular = new Rect(0, 0, SolenoidUPlot.ActualWidth, SolenoidUPlot.ActualHeight);
+                //Установить верхние и нижние границы значений, отображаеиых на графике
+                solenoidUGraph = new SolenoidUGraph(SolenoidU_graph_pairs, rect: rectangular, startTime: startTime, finishTime: finishTime, vm: vm);
+                SolenoidUPlot.Children.Add(solenoidUGraph);
+                return null;
+            }
+            ), null);
+        }
+        public void solenoidIPlot(List<TimeParameterPair> SolenoidI_graph_pairs, DateTime startTime, DateTime finishTime, FurnacesInHandViewModel vm = null) 
+        {
+            this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)
+            {
+                if (solenoidIGraph != null)
+                    SolenoidIPlot.Children?.Remove(solenoidIGraph);
+                Rect rectangular = new Rect(0, 0, SolenoidIPlot.ActualWidth, SolenoidIPlot.ActualHeight);
+                //Установить верхние и нижние границы значений, отображаеиых на графике
+                solenoidIGraph = new SolenoidIGraph(SolenoidI_graph_pairs, rect: rectangular, startTime: startTime, finishTime: finishTime, vm: vm);
+                SolenoidIPlot.Children.Add(solenoidIGraph);
+                return null;
+            }
+   ), null);
+        }
     }
 }

@@ -19,6 +19,6 @@
         <local:GraphCanvas x:Name="CurrentPlot" Grid.Row="1" Style="{StaticResource CurrentCanvas}"/>
         <local:GraphCanvas x:Name="VacuumPlot" Grid.Row="2" Style="{StaticResource VacuumCanvas}"/>
         <local:GraphCanvas x:Name="SolenoidUPlot" Grid.Row="3" Style="{StaticResource SolenoidUCanvas}"/>
-        <local:GraphCanvas x:Name="SolenoidIlot" Grid.Row="4" Style="{StaticResource SolenoidICanvas}"/>
+        <local:GraphCanvas x:Name="SolenoidIPlot" Grid.Row="4" Style="{StaticResource SolenoidICanvas}"/>
     </Grid>
 </Window>

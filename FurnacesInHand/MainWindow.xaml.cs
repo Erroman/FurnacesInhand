@@ -1044,8 +1044,12 @@ namespace FurnacesInHand
             VacuumMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             VacuumMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             printForm.vacuumPlot(Vacuum_graph_pairs, this.startTime, this.finishTime, vm: datacontext);
-            printForm.solenoidUPlot(SolenoidU_graph_pairs);
-            printForm.solenoidIPlot(SolenoidI_graph_pairs);
+            SolenoidUMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            SolenoidUMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            printForm.solenoidUPlot(SolenoidU_graph_pairs, this.startTime, this.finishTime, vm: datacontext);
+            SolenoidIMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            SolenoidIMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            printForm.solenoidIPlot(SolenoidI_graph_pairs, this.startTime, this.finishTime, vm: datacontext);
             PrintDialog printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
             {
