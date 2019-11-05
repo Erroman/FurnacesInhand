@@ -9,9 +9,25 @@
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="Background" Value="AliceBlue"/>
         </Style>
-        <Style x:Key="CurrentCanvas"/>
-        <Style x:Key="VacuumCanvas"/>
-        <Style x:Key="SolenoidUCanvas"/>
-        <Style x:Key="SolenoidICanvas"/>
+        <Style x:Key="CurrentCanvas" TargetType="Canvas">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="AntiqueWhite"/>
+        </Style>
+        <Style x:Key="VacuumCanvas" TargetType="Canvas">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="Aqua"/>
+        </Style>
+        <Style x:Key="SolenoidUCanvas" TargetType="Canvas">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="Azure"/>
+        </Style>
+        <Style x:Key="SolenoidICanvas" TargetType="Canvas">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="Cornsilk"/>
+        </Style>
     </Application.Resources>
 </Application>

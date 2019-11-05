@@ -1038,14 +1038,16 @@ namespace FurnacesInHand
             VoltageMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             VoltageMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             printForm.voltagePlot(Voltage_graph_pairs,this.startTime,this.finishTime,vm:datacontext);
-            printForm.currentPlot(Current_graph_pairs);
+            CurrentMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            CurrentMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            printForm.currentPlot(Current_graph_pairs, this.startTime, this.finishTime, vm: datacontext);
             printForm.vacuumPlot(Vacuum_graph_pairs);
             printForm.solenoidUPlot(SolenoidU_graph_pairs);
             printForm.solenoidIPlot(SolenoidI_graph_pairs);
             PrintDialog printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
             {
-                printDialog.PrintVisual(mainWindow, "A Simple Drawing");
+                printDialog.PrintVisual(printForm, "A Simple Drawing");
             }
 
 

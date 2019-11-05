@@ -45,7 +45,20 @@ namespace FurnacesInHand
             }
              ), null);
         }
-        public void currentPlot(List<TimeParameterPair> timeParameterPairs) { }
+        public void currentPlot(List<TimeParameterPair> Current_graph_pairs, DateTime startTime, DateTime finishTime, FurnacesInHandViewModel vm = null)
+        {
+            this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)
+            {
+                if (currentGraph != null)
+                    CurrentPlot.Children?.Remove(currentGraph);
+                Rect rectangular = new Rect(0, 0, CurrentPlot.ActualWidth, CurrentPlot.ActualHeight);
+                //Установить верхние и нижние границы значений, отображаеиых на графике
+                currentGraph = new CurrentGraph(Current_graph_pairs, rect: rectangular, startTime: startTime, finishTime: finishTime, vm: vm);
+                CurrentPlot.Children.Add(currentGraph);
+                return null;
+            }
+        ), null);
+        }
         public void vacuumPlot(List<TimeParameterPair> timeParameterPairs) { }
         public void solenoidUPlot(List<TimeParameterPair> timeParameterPairs) { }
         public void solenoidIPlot(List<TimeParameterPair> timeParameterPairs) { }
