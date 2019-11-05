@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FurnacesInHand
 {
-    class FurnacesInHandViewModel:INotifyPropertyChanged
+    public class FurnacesInHandViewModel:INotifyPropertyChanged
     {
         private double _canvasX;
         private double _canvasY;

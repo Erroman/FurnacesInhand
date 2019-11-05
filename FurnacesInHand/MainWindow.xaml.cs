@@ -1032,18 +1032,25 @@ namespace FurnacesInHand
 
         private void PrintingForm(object sender, RoutedEventArgs e)
         {
+   
+            PrintForm printForm = new PrintForm();
+            printForm.Show();
+            VoltageMax.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            VoltageMin.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            printForm.voltagePlot(Voltage_graph_pairs,this.startTime,this.finishTime,vm:datacontext);
+            printForm.currentPlot(Current_graph_pairs);
+            printForm.vacuumPlot(Vacuum_graph_pairs);
+            printForm.solenoidUPlot(SolenoidU_graph_pairs);
+            printForm.solenoidIPlot(SolenoidI_graph_pairs);
             PrintDialog printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
             {
                 printDialog.PrintVisual(mainWindow, "A Simple Drawing");
             }
-            PrintForm printForm = new PrintForm();
-            printForm.voltagePlot(Voltage_graph_pairs);
-            printForm.currentPlot(Current_graph_pairs);
-            printForm.vacuumPlot(Vacuum_graph_pairs);
-            printForm.solenoidUPlot(SolenoidU_graph_pairs);
-            printForm.solenoidIPlot(SolenoidI_graph_pairs);
-            printForm.Show();
+
+
+
+
         }
     }
 

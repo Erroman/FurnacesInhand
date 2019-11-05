@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:FurnacesInHand"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="VoltageCanvas" TargetType="Canvas">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+        </Style>
+        <Style x:Key="CurrentCanvas"/>
+        <Style x:Key="VacuumCanvas"/>
+        <Style x:Key="SolenoidUCanvas"/>
+        <Style x:Key="SolenoidICanvas"/>
     </Application.Resources>
 </Application>

@@ -6,8 +6,16 @@
         xmlns:local="clr-namespace:FurnacesInHand"
         mc:Ignorable="d"
         x:Name="printForm"
-        Title="PrintForm" Height="450" Width="800">
+        Title="PrintForm" Height="450" Width="800" WindowState="Maximized">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <local:GraphCanvas x:Name="VoltagePlot" Style="{StaticResource VoltageCanvas}"/>
+
     </Grid>
 </Window>
