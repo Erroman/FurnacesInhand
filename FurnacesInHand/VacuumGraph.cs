@@ -58,7 +58,7 @@ namespace FurnacesInHand
 
             TimeParameterPair time_parameter_pair;
             TimeParameterPair time_parameter_pair_with_coordinates;
-            int DataLength = timeParameterPairs.Count;
+            int DataLength = timeParameterPairs == null ? 0 : timeParameterPairs.Count;
             for (int i = 0; i < DataLength; i++)
             {
                 time_parameter_pair = timeParameterPairs[i];

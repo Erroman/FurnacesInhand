@@ -59,7 +59,20 @@ namespace FurnacesInHand
             }
         ), null);
         }
-        public void vacuumPlot(List<TimeParameterPair> timeParameterPairs) { }
+        public void vacuumPlot(List<TimeParameterPair> Vacuum_graph_pairs, DateTime startTime, DateTime finishTime, FurnacesInHandViewModel vm = null) 
+        {
+            this.Dispatcher.BeginInvoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate (Object state)
+            {
+                if (vacuumGraph != null)
+                    VacuumPlot.Children?.Remove(vacuumGraph);
+                Rect rectangular = new Rect(0, 0, VacuumPlot.ActualWidth, VacuumPlot.ActualHeight);
+                //Установить верхние и нижние границы значений, отображаеиых на графике
+                vacuumGraph = new VacuumGraph(Vacuum_graph_pairs, rect: rectangular, startTime: startTime, finishTime: finishTime, vm: vm);
+                VacuumPlot.Children.Add(vacuumGraph);
+                return null;
+            }
+            ), null);
+        }
         public void solenoidUPlot(List<TimeParameterPair> timeParameterPairs) { }
         public void solenoidIPlot(List<TimeParameterPair> timeParameterPairs) { }
     }
