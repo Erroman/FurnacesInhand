@@ -29,5 +29,6 @@
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="Background" Value="Cornsilk"/>
         </Style>
+        <local:FurnacesInHandViewModel x:Key="FurnacesInHandViewModel"/>
     </Application.Resources>
 </Application>

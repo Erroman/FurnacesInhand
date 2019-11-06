@@ -13,7 +13,6 @@
         Title="MainWindow" Height="1021" Width="1900" Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Window.Resources>
-        <local:FurnacesInHandViewModel x:Key="FurnacesInHandViewModel"/>
         <DataTemplate x:Key="ParametersList" DataType="{x:Type ListBox}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding dateandtime, StringFormat=dd.MM.yy HH:mm:ss.fff}"/>
