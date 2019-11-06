@@ -166,7 +166,7 @@ namespace RulerControls
             Point worldPointUnderTheLine = new Point(0, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            for (int dayMark = numberOfHourMarks; dayMark > 0; dayMark--)
+            for (int hourMark = numberOfHourMarks; hourMark > 0; hourMark--)
             {
                 worldPointOnTheLine.X = hourNumber * TimeSpan.TicksPerHour;
                 worldPointOnTheLine.Y = 0;
