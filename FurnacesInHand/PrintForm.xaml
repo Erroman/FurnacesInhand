@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurnacesInHand"
+        xmlns:RulerControls="clr-namespace:RulerControls;assembly=RulerControls"
         mc:Ignorable="d"
         x:Name="printForm"
         Title="PrintForm" Height="450" Width="800" WindowState="Maximized">
@@ -14,11 +15,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition x:Name="Axis_X" Height="30"/>
         </Grid.RowDefinitions>
         <local:GraphCanvas x:Name="VoltagePlot" Style="{StaticResource VoltageCanvas}"/>
         <local:GraphCanvas x:Name="CurrentPlot" Grid.Row="1" Style="{StaticResource CurrentCanvas}"/>
         <local:GraphCanvas x:Name="VacuumPlot" Grid.Row="2" Style="{StaticResource VacuumCanvas}"/>
         <local:GraphCanvas x:Name="SolenoidUPlot" Grid.Row="3" Style="{StaticResource SolenoidUCanvas}"/>
         <local:GraphCanvas x:Name="SolenoidIPlot" Grid.Row="4" Style="{StaticResource SolenoidICanvas}"/>
+        <RulerControls:HorizontalRuler Name="timeScale" Grid.Row="5"  StartOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeBegTime,Mode=OneWay}" EndOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeEndTime,Mode=OneWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>
