@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static RulerControls.TransformWorldToScreen;
+
 
 namespace RulerControls
 {
@@ -149,6 +151,7 @@ namespace RulerControls
         }
         void AddVerticalHourMarks(GeometryGroup geometryGroup)
         {
+            const double MinGapSize = 5;
             DateTime dtStart = StartOfScale;
             DateTime dtEnd = EndOfScale;
             Int64 dtStartTicks = dtStart.Ticks;
@@ -162,6 +165,10 @@ namespace RulerControls
 
             TransformWorldToScreen.PrepareTransformations(dtStartTicks, dtEndTicks, 0, this.actualHeight, 0, this.actualWidth, this.actualHeight, 0);
             int hourNumber = dtEndNumberOfHours;
+            Point worldPointOnTheLineAtTheStart = new Point(dtStartTicks, 0);
+            Point worldPointOnTheLineAtTheEnd = new Point(dtEndTicks, 0);
+            double hourMarkDistance = (WtoD(worldPointOnTheLineAtTheEnd).X - WtoD(worldPointOnTheLineAtTheStart).X)/ dtEndNumberOfHours;
+            if (hourMarkDistance > MinGapSize) ;
             Point worldPointOnTheLine = new Point(0, 0);
             Point worldPointUnderTheLine = new Point(0, 0);
             Point devicePointOnTheLine = new Point(0, 0);
