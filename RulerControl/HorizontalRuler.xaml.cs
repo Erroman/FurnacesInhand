@@ -39,6 +39,7 @@ namespace RulerControls
         }
         List<Mark> DayMarks = new List<Mark> { };
         List<Mark> HourMarks = new List<Mark> { };
+        double hourMarkDistance;
 
         public HorizontalRuler()
         {
@@ -167,8 +168,8 @@ namespace RulerControls
             int hourNumber = dtEndNumberOfHours;
             Point worldPointOnTheLineAtTheStart = new Point(dtStartTicks, 0);
             Point worldPointOnTheLineAtTheEnd = new Point(dtEndTicks, 0);
-            double hourMarkDistance = (WtoD(worldPointOnTheLineAtTheEnd).X - WtoD(worldPointOnTheLineAtTheStart).X)/ dtEndNumberOfHours;
-            if (hourMarkDistance > MinGapSize) ;
+            hourMarkDistance = (WtoD(worldPointOnTheLineAtTheEnd).X - WtoD(worldPointOnTheLineAtTheStart).X)/ numberOfHourMarks;
+            if (hourMarkDistance > MinGapSize) { 
             Point worldPointOnTheLine = new Point(0, 0);
             Point worldPointUnderTheLine = new Point(0, 0);
             Point devicePointOnTheLine = new Point(0, 0);
@@ -186,7 +187,7 @@ namespace RulerControls
                 hourNumber--;
 
             }
-
+            }
         }
         // http://csharphelper.com/blog/2014/09/draw-a-graph-with-labels-wpf-c/ 
         // Position a label at the indicated point.
