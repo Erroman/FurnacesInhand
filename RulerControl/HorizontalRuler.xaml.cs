@@ -39,6 +39,9 @@ namespace RulerControls
         }
         List<Mark> DayMarks = new List<Mark> { };
         List<Mark> HourMarks = new List<Mark> { };
+
+        const double MinHourMarksGapSize = 5;
+        const double MinHourMarkLabelGapSize = 2 * MinHourMarksGapSize;
         double hourMarkDistance;
 
         public HorizontalRuler()
@@ -64,6 +67,7 @@ namespace RulerControls
             get { return (DateTime)GetValue(EndOfScaleProperty); }
             set { SetValue(EndOfScaleProperty, value); }
         }
+
 
         // Using a DependencyProperty as the backing store for EndOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndOfScaleProperty =
@@ -93,8 +97,11 @@ namespace RulerControls
             {
                 if(mark.MarkNumber % 24 != 0) 
                 {
-                    hourLabel = (new DateTime(1, 1, 1) + new TimeSpan(0, mark.MarkNumber, 0, 0)).ToString("HH");
-                    DrawText(rulerBody, hourLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
+                    if(hourMarkDistance> MinHourMarkLabelGapSize || mark.MarkNumber % 2 != 0) 
+                    {
+                        hourLabel = (new DateTime(1, 1, 1) + new TimeSpan(0, mark.MarkNumber, 0, 0)).ToString("HH");
+                        DrawText(rulerBody, hourLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
+                    }
                 }
             }
 
@@ -152,7 +159,6 @@ namespace RulerControls
         }
         void AddVerticalHourMarks(GeometryGroup geometryGroup)
         {
-            const double MinGapSize = 5;
             DateTime dtStart = StartOfScale;
             DateTime dtEnd = EndOfScale;
             Int64 dtStartTicks = dtStart.Ticks;
@@ -169,7 +175,7 @@ namespace RulerControls
             Point worldPointOnTheLineAtTheStart = new Point(dtStartTicks, 0);
             Point worldPointOnTheLineAtTheEnd = new Point(dtEndTicks, 0);
             hourMarkDistance = (WtoD(worldPointOnTheLineAtTheEnd).X - WtoD(worldPointOnTheLineAtTheStart).X)/ numberOfHourMarks;
-            if (hourMarkDistance > MinGapSize) { 
+            if (hourMarkDistance > MinHourMarksGapSize) { 
             Point worldPointOnTheLine = new Point(0, 0);
             Point worldPointUnderTheLine = new Point(0, 0);
             Point devicePointOnTheLine = new Point(0, 0);
