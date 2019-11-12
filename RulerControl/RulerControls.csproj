@@ -50,6 +50,9 @@
   <ItemGroup>
     <Compile Include="DateTimeRangesViewModel.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
+    <Compile Include="VerticalRuler.xaml.cs">
+      <DependentUpon>VerticalRuler.xaml</DependentUpon>
+    </Compile>
     <Page Include="HorizontalRuler.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -58,6 +61,10 @@
       <DependentUpon>HorizontalRuler.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="VerticalRuler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
