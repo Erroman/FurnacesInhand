@@ -19,7 +19,7 @@ namespace RulerControls
     /// <summary>
     /// Логика взаимодействия для VerticalRuler.xaml
     /// </summary>
-    public partial class VerticalRuler : Window
+    public partial class VerticalRuler : UserControl
     {
         private double actualWidth;
         private double actualHeight;
