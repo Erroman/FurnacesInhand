@@ -48,29 +48,29 @@ namespace RulerControls
             InitializeComponent();
         }
 
-        readonly static DateTime DefaultStartTime = new DateTime(2019, 10, 19);
-        readonly static DateTime DefaultEndTime = new DateTime(2019, 10, 21);
-        public DateTime StartOfScale
+        readonly static double DefaultStartVoltage = 0;
+        readonly static double DefaultEndVoltage = 50;
+        public double StartOfScale
         {
-            get { return (DateTime)GetValue(StartOfScaleProperty); }
+            get { return (double)GetValue(StartOfScaleProperty); }
             set { SetValue(StartOfScaleProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for StartOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartOfScaleProperty =
-            DependencyProperty.Register("StartOfScale", typeof(DateTime), typeof(HorizontalRuler), new PropertyMetadata(DefaultStartTime));
+            DependencyProperty.Register("StartOfScale", typeof(double), typeof(VolageVerticalRuler), new PropertyMetadata(DefaultStartVoltage));
 
 
-        public DateTime EndOfScale
+        public double EndOfScale
         {
-            get { return (DateTime)GetValue(EndOfScaleProperty); }
+            get { return (double)GetValue(EndOfScaleProperty); }
             set { SetValue(EndOfScaleProperty, value); }
         }
 
 
         // Using a DependencyProperty as the backing store for EndOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndOfScaleProperty =
-            DependencyProperty.Register("EndOfScale", typeof(DateTime), typeof(HorizontalRuler), new PropertyMetadata(DefaultEndTime));
+            DependencyProperty.Register("EndOfScale", typeof(double), typeof(VolageVerticalRuler), new PropertyMetadata(DefaultEndVoltage));
 
         public void BuildAxis()
         {
@@ -115,72 +115,65 @@ namespace RulerControls
         void AddTheVerticalLineWithVoltageMarks(GeometryGroup geometryGroup)
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
-            AddVerticalTimeMarks(geometryGroup);
+            AddHorizontalVoltageMarks(geometryGroup);
 
         }
-        void AddVerticalTimeMarks(GeometryGroup geometryGroup)
+        void AddHorizontalVoltageMarks(GeometryGroup geometryGroup)
         {
-            AddVerticalDayMarks(geometryGroup);
-            AddVerticalHourMarks(geometryGroup);
+            AddTenVoltsMarks(geometryGroup);
+            AddVoltsMarks(geometryGroup);
         }
-        void AddVerticalDayMarks(GeometryGroup geometryGroup)
+        void AddTenVoltsMarks(GeometryGroup geometryGroup)
         {
-            DateTime dtStart = StartOfScale;
-            DateTime dtEnd = EndOfScale;
-            Int64 dtStartTicks = dtStart.Ticks;
-            Int64 dtEndTicks = dtEnd.Ticks;
-            Int32 dtStartNumberOfDays = (Int32)(dtStartTicks / TimeSpan.TicksPerDay);
-            Int32 dtEndNumberOfDays = (Int32)(dtEndTicks / TimeSpan.TicksPerDay);
+            double voltStart = StartOfScale;
+            double voltEnd = EndOfScale;
 
-            int numberOfDayMarks = (Int32)(dtEndNumberOfDays - dtStartNumberOfDays);
-            TenVoltMarks = new List<Mark>(numberOfDayMarks);
+            int numberOfTenVoltsMarks = (Int32)(voltEnd - voltEnd)/10;
+            TenVoltMarks = new List<Mark>(numberOfTenVoltsMarks);
 
 
-            TransformWorldToScreen.PrepareTransformations(dtStartTicks, dtEndTicks, 0, this.actualHeight, 0, this.actualWidth, this.actualHeight, 0);
-            int dayNumber = dtEndNumberOfDays;
+            TransformWorldToScreen.PrepareTransformations(voltStart, voltEnd, 0, this.actualWidth, 0, this.actualHeight, this.actualWidth, 0);
+            int tenVoltsNumber = numberOfTenVoltsMarks;
             Point worldPointOnTheLine = new Point(0, 0);
             Point worldPointUnderTheLine = new Point(0, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            for (int dayMark = numberOfDayMarks; dayMark > 0; dayMark--)
+            for (int tenVoltMark = 0; tenVoltMark > numberOfTenVoltsMarks; tenVoltMark++)
             {
-                worldPointOnTheLine.X = dayNumber * TimeSpan.TicksPerDay;
+                worldPointOnTheLine.X = 0;
                 worldPointOnTheLine.Y = 0;
-                worldPointUnderTheLine.X = dayNumber * TimeSpan.TicksPerDay;
+                worldPointUnderTheLine.X = 10;
                 worldPointUnderTheLine.Y = 10;
                 devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                 devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                 geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                TenVoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, dayNumber));
-                dayNumber--;
+                TenVoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, tenVoltsNumber));
+                tenVoltsNumber++;
 
             }
         }
-        void AddVerticalHourMarks(GeometryGroup geometryGroup)
+        void AddVoltsMarks(GeometryGroup geometryGroup)
         {
-            DateTime dtStart = StartOfScale;
-            DateTime dtEnd = EndOfScale;
-            Int64 dtStartTicks = dtStart.Ticks;
-            Int64 dtEndTicks = dtEnd.Ticks;
-            Int32 dtStartNumberOfHours = (Int32)(dtStartTicks / TimeSpan.TicksPerHour);
-            Int32 dtEndNumberOfHours = (Int32)(dtEndTicks / TimeSpan.TicksPerHour);
-
-            int numberOfHourMarks = (Int32)(dtEndNumberOfHours - dtStartNumberOfHours);
-            VoltMarks = new List<Mark>(numberOfHourMarks);
+            double voltStart = StartOfScale;
+            double voltEnd = EndOfScale;
 
 
-            TransformWorldToScreen.PrepareTransformations(dtStartTicks, dtEndTicks, 0, this.actualHeight, 0, this.actualWidth, this.actualHeight, 0);
-            int hourNumber = dtEndNumberOfHours;
-            Point worldPointOnTheLineAtTheStart = new Point(dtStartTicks, 0);
-            Point worldPointOnTheLineAtTheEnd = new Point(dtEndTicks, 0);
-            hourMarkDistance = (WtoD(worldPointOnTheLineAtTheEnd).X - WtoD(worldPointOnTheLineAtTheStart).X) / numberOfHourMarks;
+            int numberOfVoltMarks = (Int32)(voltEnd - voltEnd);
+            VoltMarks = new List<Mark>(numberOfVoltMarks);
+
+
+            TransformWorldToScreen.PrepareTransformations(voltStart, voltEnd, 0, this.actualWidth, 0, this.actualHeight, this.actualWidth, 0);
+            int voltsNumber = numberOfVoltMarks;
+            Point worldPointOnTheLineAtTheStart = new Point(0, StartOfScale);
+            Point worldPointOnTheLineAtTheEnd = new Point(0, EndOfScale);
+            hourMarkDistance = (WtoD(worldPointOnTheLineAtTheEnd).X - WtoD(worldPointOnTheLineAtTheStart).X) / numberOfVoltMarks;
             if (hourMarkDistance > MinHourMarksGapSize)
             {
                 Point worldPointOnTheLine = new Point(0, 0);
                 Point worldPointUnderTheLine = new Point(0, 0);
                 Point devicePointOnTheLine = new Point(0, 0);
                 Point devicePointUnderTheLine = new Point(0, 0);
-                for (int hourMark = numberOfHourMarks; hourMark > 0; hourMark--)
+                for (int hourMark = 0 ; hourMark < numberOfVoltMarks; hourMark++)
                 {
                     worldPointOnTheLine.X = hourNumber * TimeSpan.TicksPerHour;
                     worldPointOnTheLine.Y = 0;
