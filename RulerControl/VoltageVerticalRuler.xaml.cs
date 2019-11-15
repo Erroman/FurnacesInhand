@@ -17,9 +17,9 @@ using static RulerControls.TransformWorldToScreen;
 namespace RulerControls
 {
     /// <summary>
-    /// Логика взаимодействия для VerticalRuler.xaml
+    /// Логика взаимодействия для VolageVerticalRuler.xaml
     /// </summary>
-    public partial class VerticalRuler : UserControl
+    public partial class VolageVerticalRuler : UserControl
     {
         private double actualWidth;
         private double actualHeight;
@@ -36,14 +36,14 @@ namespace RulerControls
             public int MarkNumber;
 
         }
-        List<Mark> DayMarks = new List<Mark> { };
-        List<Mark> HourMarks = new List<Mark> { };
+        List<Mark> TenVoltMarks = new List<Mark> { };
+        List<Mark> VoltMarks = new List<Mark> { };
 
         const double MinHourMarksGapSize = 5;
         const double MinHourMarkLabelGapSize = 2 * MinHourMarksGapSize;
         double hourMarkDistance;
 
-        public VerticalRuler()
+        public VolageVerticalRuler()
         {
             InitializeComponent();
         }
@@ -72,47 +72,47 @@ namespace RulerControls
         public static readonly DependencyProperty EndOfScaleProperty =
             DependencyProperty.Register("EndOfScale", typeof(DateTime), typeof(HorizontalRuler), new PropertyMetadata(DefaultEndTime));
 
-        public void BuildTimeAxis()
+        public void BuildAxis()
         {
             this.actualWidth = rulerBody.ActualWidth;
             this.actualHeight = rulerBody.ActualHeight;
 
             //Create a new geometry group for drawing the axis there
-            GeometryGroup axisX = new GeometryGroup();
-            //And now put  a line with time ticks on it in the group
-            AddTheHorizontalLineWithTimeMarks(axisX);
+            GeometryGroup axis = new GeometryGroup();
+            //And now put  a line with voltage ticks on it in the group
+            AddTheVerticalLineWithVoltageMarks(axis);
 
-            Path axisX_path = new Path();
-            axisX_path.StrokeThickness = 2;
-            axisX_path.Stroke = Brushes.Black;
-            axisX_path.Data = axisX;
+            Path axis_path = new Path();
+            axis_path.StrokeThickness = 2;
+            axis_path.Stroke = Brushes.Black;
+            axis_path.Data = axis;
             rulerBody.Children.Clear();
-            rulerBody.Children.Add(axisX_path);
+            rulerBody.Children.Add(axis_path);
             //Put labels:
-            string dayLabel = String.Empty;
-            string hourLabel = String.Empty;
+            string tenVoltsLabel = String.Empty;
+            string voltsLabel = String.Empty;
             //devicePointUnderTheLine.Y -= 5;
-            foreach (var mark in HourMarks)
+            foreach (var mark in VoltMarks)
             {
-                if (mark.MarkNumber % 24 != 0)
+                if (mark.MarkNumber % 10 != 0)
                 {
                     if (hourMarkDistance > MinHourMarkLabelGapSize || mark.MarkNumber % 2 != 0)
                     {
-                        hourLabel = (new DateTime(1, 1, 1) + new TimeSpan(0, mark.MarkNumber, 0, 0)).ToString("HH");
-                        DrawText(rulerBody, hourLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
+                        voltsLabel = (new DateTime(1, 1, 1) + new TimeSpan(0, mark.MarkNumber, 0, 0)).ToString("HH");
+                        DrawText(rulerBody, voltsLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
                     }
                 }
             }
 
-            foreach (var mark in DayMarks)
+            foreach (var mark in TenVoltMarks)
             {
-                dayLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.MarkNumber, 0, 0, 0)).ToString("dd.MM.yy");
-                DrawText(rulerBody, dayLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
+                tenVoltsLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.MarkNumber, 0, 0, 0)).ToString("dd.MM.yy");
+                DrawText(rulerBody, tenVoltsLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
             }
 
 
         }
-        void AddTheHorizontalLineWithTimeMarks(GeometryGroup geometryGroup)
+        void AddTheVerticalLineWithVoltageMarks(GeometryGroup geometryGroup)
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
             AddVerticalTimeMarks(geometryGroup);
@@ -133,7 +133,7 @@ namespace RulerControls
             Int32 dtEndNumberOfDays = (Int32)(dtEndTicks / TimeSpan.TicksPerDay);
 
             int numberOfDayMarks = (Int32)(dtEndNumberOfDays - dtStartNumberOfDays);
-            DayMarks = new List<Mark>(numberOfDayMarks);
+            TenVoltMarks = new List<Mark>(numberOfDayMarks);
 
 
             TransformWorldToScreen.PrepareTransformations(dtStartTicks, dtEndTicks, 0, this.actualHeight, 0, this.actualWidth, this.actualHeight, 0);
@@ -151,7 +151,7 @@ namespace RulerControls
                 devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                 devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                 geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                DayMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, dayNumber));
+                TenVoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, dayNumber));
                 dayNumber--;
 
             }
@@ -166,7 +166,7 @@ namespace RulerControls
             Int32 dtEndNumberOfHours = (Int32)(dtEndTicks / TimeSpan.TicksPerHour);
 
             int numberOfHourMarks = (Int32)(dtEndNumberOfHours - dtStartNumberOfHours);
-            HourMarks = new List<Mark>(numberOfHourMarks);
+            VoltMarks = new List<Mark>(numberOfHourMarks);
 
 
             TransformWorldToScreen.PrepareTransformations(dtStartTicks, dtEndTicks, 0, this.actualHeight, 0, this.actualWidth, this.actualHeight, 0);
@@ -189,7 +189,7 @@ namespace RulerControls
                     devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                     devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                     geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                    HourMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, hourNumber));
+                    VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, hourNumber));
                     hourNumber--;
 
                 }
@@ -226,12 +226,12 @@ namespace RulerControls
         }
         private void rulerBody_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            BuildTimeAxis();
+            BuildAxis();
         }
 
         private void rulerBody_Loaded(object sender, RoutedEventArgs e)
         {
-            BuildTimeAxis();
+            BuildAxis();
             this.SizeChanged += this.rulerBody_SizeChanged;
         }
     }
