@@ -92,23 +92,23 @@ namespace RulerControls
             string tenVoltsLabel = String.Empty;
             string voltsLabel = String.Empty;
             //devicePointUnderTheLine.Y -= 5;
-            foreach (var mark in VoltMarks)
-            {
-                if (mark.MarkNumber % 10 != 0)
-                {
-                    if (hourMarkDistance > MinHourMarkLabelGapSize || mark.MarkNumber % 2 != 0)
-                    {
-                        voltsLabel = (new DateTime(1, 1, 1) + new TimeSpan(0, mark.MarkNumber, 0, 0)).ToString("HH");
-                        DrawText(rulerBody, voltsLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
-                    }
-                }
-            }
+            //foreach (var mark in VoltMarks)
+            //{
+            //    if (mark.MarkNumber % 10 != 0)
+            //    {
+            //        if (hourMarkDistance > MinHourMarkLabelGapSize || mark.MarkNumber % 2 != 0)
+            //        {
+            //            voltsLabel = (new DateTime(1, 1, 1) + new TimeSpan(0, mark.MarkNumber, 0, 0)).ToString("HH");
+            //            DrawText(rulerBody, voltsLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
+            //        }
+            //    }
+            //}
 
-            foreach (var mark in TenVoltMarks)
-            {
-                tenVoltsLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.MarkNumber, 0, 0, 0)).ToString("dd.MM.yy");
-                DrawText(rulerBody, tenVoltsLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
-            }
+            //foreach (var mark in TenVoltMarks)
+            //{
+            //    tenVoltsLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.MarkNumber, 0, 0, 0)).ToString("dd.MM.yy");
+            //    DrawText(rulerBody, tenVoltsLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
+            //}
 
 
         }
