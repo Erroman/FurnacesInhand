@@ -104,7 +104,7 @@ namespace RulerControls
             //    }
             //}
 
-            //foreach (var mark in TenVoltMarks)
+            //foreach (var mark in TenVoltMarks)6
             //{
             //    tenVoltsLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.MarkNumber, 0, 0, 0)).ToString("dd.MM.yy");
             //    DrawText(rulerBody, tenVoltsLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
@@ -115,7 +115,8 @@ namespace RulerControls
         void AddTheVerticalLineWithVoltageMarks(GeometryGroup geometryGroup)
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(actualWidth, 0), new Point(actualWidth, actualHeight)));
-            AddHorizontalVoltageMarks(geometryGroup);
+            if (this.actualHeight != 0 & this.actualWidth != 0)
+                AddHorizontalVoltageMarks(geometryGroup);
 
         }
         void AddHorizontalVoltageMarks(GeometryGroup geometryGroup)
@@ -130,10 +131,10 @@ namespace RulerControls
             int voltageDistance = 10; //расстояние в вольтах между соседними делениями (10В).
             int tenVoltsMarkLength = 10; //длина отметки для напряжения,кратного 10В
 
-            int numberOfTenVoltsMarks = (Int32)(voltEnd - voltEnd)/ voltageDistance; //количество делений на шкале для заданного расстояния между ними
+            int numberOfTenVoltsMarks = (Int32)(voltEnd - voltStart)/ voltageDistance; //количество делений на шкале для заданного расстояния между ними
             TenVoltMarks = new List<Mark>(numberOfTenVoltsMarks);
 
-
+         
             TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
             int tenVoltsNumber = numberOfTenVoltsMarks;
             Point worldPointOnTheLine = new Point(this.actualWidth, 0);
@@ -151,6 +152,7 @@ namespace RulerControls
                 tenVoltsNumber++;
 
             }
+
         }
         //void AddVoltsMarks(GeometryGroup geometryGroup)
         //{

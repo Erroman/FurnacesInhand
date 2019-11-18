@@ -116,7 +116,8 @@ namespace RulerControls
         void AddTheHorizontalLineWithTimeMarks(GeometryGroup geometryGroup) 
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(0, 0), new Point(actualWidth, 0)));
-            AddVerticalTimeMarks(geometryGroup);
+            if (this.actualHeight != 0 & this.actualWidth != 0)
+                AddVerticalTimeMarks(geometryGroup);
 
         }
         void AddVerticalTimeMarks(GeometryGroup geometryGroup) 
