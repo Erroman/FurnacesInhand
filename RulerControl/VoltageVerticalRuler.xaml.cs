@@ -122,7 +122,7 @@ namespace RulerControls
         void AddHorizontalVoltageMarks(GeometryGroup geometryGroup)
         {
             AddTenVoltsMarks(geometryGroup);
-           // AddVoltsMarks(geometryGroup);
+            AddVoltsMarks(geometryGroup);
         }
         void AddTenVoltsMarks(GeometryGroup geometryGroup)
         {
@@ -154,42 +154,46 @@ namespace RulerControls
             }
 
         }
-        //void AddVoltsMarks(GeometryGroup geometryGroup)
-        //{
-        //    double voltStart = StartOfScale;
-        //    double voltEnd = EndOfScale;
+        void AddVoltsMarks(GeometryGroup geometryGroup)
+        {
+            double voltStart = StartOfScale;
+            double voltEnd = EndOfScale;
+            int voltageDistance = 1; //расстояние в вольтах между соседними делениями (1В).
+            int voltsMarkLength = 7; //длина отметки для напряжения,кратного 1В
+
+            int numberOfVoltMarks = (Int32)(voltEnd - voltStart) / voltageDistance; //количество делений на шкале для заданного расстояния между ними
+            VoltMarks = new List<Mark>(numberOfVoltMarks);
 
 
-        //    int numberOfVoltMarks = (Int32)(voltEnd - voltEnd);
-        //    VoltMarks = new List<Mark>(numberOfVoltMarks);
 
+            TransformWorldToScreen.PrepareTransformations(voltStart, voltEnd, 0, this.actualWidth, 0, this.actualHeight, this.actualWidth, 0);
+            int voltsNumber = numberOfVoltMarks;
+            Point worldPointOnTheLine = new Point(this.actualWidth, 0);
+            Point worldPointUnderTheLine = new Point(this.actualWidth - voltsMarkLength, 0);
+            Point devicePointOnTheLine = new Point(0, 0);
+            Point devicePointUnderTheLine = new Point(0, 0);
+            //    hourMarkDistance = (WtoD(worldPointOnTheLineAtTheEnd).X - WtoD(worldPointOnTheLineAtTheStart).X) / numberOfVoltMarks;
+            //    if (hourMarkDistance > MinHourMarksGapSize)
+            //    {
+            //        Point worldPointOnTheLine = new Point(0, 0);
+            //        Point worldPointUnderTheLine = new Point(0, 0);
+            //        Point devicePointOnTheLine = new Point(0, 0);
+            //        Point devicePointUnderTheLine = new Point(0, 0);
+            //        for (int hourMark = 0 ; hourMark < numberOfVoltMarks; hourMark++)
+            //        {
+            //            worldPointOnTheLine.X = 0;
+            //            worldPointOnTheLine.Y = 0;
+            //            worldPointUnderTheLine.X = 5;
+            //            worldPointUnderTheLine.Y = 0;
+            //            devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
+            //            devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
+            //            geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
+            //            VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, hourNumber));
+            //            hourNumber--;
 
-        //    TransformWorldToScreen.PrepareTransformations(voltStart, voltEnd, 0, this.actualWidth, 0, this.actualHeight, this.actualWidth, 0);
-        //    int voltsNumber = numberOfVoltMarks;
-        //    Point worldPointOnTheLineAtTheStart = new Point(0, StartOfScale);
-        //    Point worldPointOnTheLineAtTheEnd = new Point(0, EndOfScale);
-        //    hourMarkDistance = (WtoD(worldPointOnTheLineAtTheEnd).X - WtoD(worldPointOnTheLineAtTheStart).X) / numberOfVoltMarks;
-        //    if (hourMarkDistance > MinHourMarksGapSize)
-        //    {
-        //        Point worldPointOnTheLine = new Point(0, 0);
-        //        Point worldPointUnderTheLine = new Point(0, 0);
-        //        Point devicePointOnTheLine = new Point(0, 0);
-        //        Point devicePointUnderTheLine = new Point(0, 0);
-        //        for (int hourMark = 0 ; hourMark < numberOfVoltMarks; hourMark++)
-        //        {
-        //            worldPointOnTheLine.X = 0;
-        //            worldPointOnTheLine.Y = 0;
-        //            worldPointUnderTheLine.X = 5;
-        //            worldPointUnderTheLine.Y = 0;
-        //            devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
-        //            devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
-        //            geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-        //            VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, hourNumber));
-        //            hourNumber--;
-
-        //        }
-        //    }
-        //}
+            //        }
+            //    }
+        }
         // http://csharphelper.com/blog/2014/09/draw-a-graph-with-labels-wpf-c/ 
         // Position a label at the indicated point.
         private void DrawText(Canvas can, string text, Point location,
