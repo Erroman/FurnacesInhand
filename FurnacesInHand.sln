@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interactive2DChart", "Inter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintingTest", "PrintingTest\PrintingTest.csproj", "{31B82C6A-E8D7-4D93-B37B-D467B89DBD15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalInput", "DigitalInput\DigitalInput.csproj", "{AA7072D0-C043-4B52-B488-321820227300}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{31B82C6A-E8D7-4D93-B37B-D467B89DBD15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31B82C6A-E8D7-4D93-B37B-D467B89DBD15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31B82C6A-E8D7-4D93-B37B-D467B89DBD15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA7072D0-C043-4B52-B488-321820227300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7072D0-C043-4B52-B488-321820227300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7072D0-C043-4B52-B488-321820227300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7072D0-C043-4B52-B488-321820227300}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
