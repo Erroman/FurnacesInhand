@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:DigitalInput"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TextBox HorizontalAlignment="Left" Height="33" Margin="275,175,0,0" FontSize = "20" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154"/>
-
-    </Grid>
+    <StackPanel>
+        <TextBox HorizontalAlignment="Center" Height="33" FontSize = "20" TextWrapping="Wrap" Text="{Binding DigitalNumber}" VerticalAlignment="Top"  Width="154"/>
+        <TextBox Height="33" TextWrapping="Wrap" FontSize = "20" Text="{Binding DigitalNumber}" HorizontalAlignment="Center"  Width="154"/>
+    </StackPanel>
 </Window>

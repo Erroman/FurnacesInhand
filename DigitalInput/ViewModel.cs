@@ -14,7 +14,7 @@ namespace DigitalInput
         public double DigitalNumber 
         {
             get { return _digitalNumber; }
-            set { _digitalNumber = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DigitalNumber))); }
+            set { _digitalNumber = 1.1*value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DigitalNumber))); }
         }
     }
 }
