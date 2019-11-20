@@ -73,7 +73,7 @@ namespace RulerControls
         public static readonly DependencyProperty EndOfScaleProperty =
             DependencyProperty.Register("EndOfScale", typeof(DateTime), typeof(HorizontalRuler),new PropertyMetadata(DefaultEndTime));
 
-        public void BuildTimeAxis() 
+        public void BuildAxis() 
         {
             this.actualWidth = rulerBody.ActualWidth;
             this.actualHeight = rulerBody.ActualHeight;
@@ -227,12 +227,12 @@ namespace RulerControls
         }
         private void rulerBody_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            BuildTimeAxis();
+            BuildAxis();
         }
 
         private void rulerBody_Loaded(object sender, RoutedEventArgs e)
         {
-            BuildTimeAxis();
+            BuildAxis();
             this.SizeChanged += this.rulerBody_SizeChanged;
         }
     }

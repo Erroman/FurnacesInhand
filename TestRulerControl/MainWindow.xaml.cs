@@ -29,7 +29,7 @@ namespace TestRulerControl
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.rC.BuildTimeAxis();
+            this.rC.BuildAxis();
         }
   
     }

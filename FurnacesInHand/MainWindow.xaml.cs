@@ -114,7 +114,8 @@ namespace FurnacesInHand
                 conn.Open(); //открыли соединение
                 //MessageBox.Show(String.Format("PostgreSQL version is {0}", conn.ServerVersion));
                 SetDigitalStartAndFinishTimes(EdgeOrGlobalTimeBoundaries);
-                this.timeScale.BuildTimeAxis();
+                this.timeScale.BuildAxis();
+                this.voltScale.BuildAxis();
                 switch (this.numberOfFurnace)
                 {
                     case 1:

@@ -150,7 +150,7 @@
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="110,143,0,0" Grid.Row="4" TextWrapping="Wrap" FontWeight="ExtraBold" VerticalAlignment="Top" Width="108"  Height="16" Grid.ColumnSpan="2"><Run Text="Ток соленоида"/><Run Text=" (А)"/></TextBlock>
         <TextBox x:Name="VoltageMax" Text="{Binding VoltageMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
         <TextBox x:Name="VoltageMin" Text="{Binding VoltageMin, Mode=OneWayToSource}" Grid.Column="2" Height="23" Margin="0,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <RulerControls:VolageVerticalRuler Grid.Row="0" Grid.Column="3"/>
+        <RulerControls:VolageVerticalRuler Name="voltScale" Grid.Row="0" Grid.Column="3" StartOfScale="{Binding VoltageMin,Mode=OneWay}" EndOfScale="{Binding VoltageMax,Mode=OneWay}"/>
         <TextBox x:Name="CurrentMax" Text="{Binding CurrentMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,1,0,0" Grid.Row="1"/>
         <TextBox x:Name="CurrentMin" Text="{Binding CurrentMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,153,0,0" Grid.Row="1"/>
         <TextBox x:Name="VacuumMax" Text="{Binding VacuumMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="2"/>
@@ -184,7 +184,7 @@
         <Border Grid.Row="5" Grid.Column="4" BorderBrush="Black" BorderThickness="1 1 1 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBlock TextWrapping="Wrap" Text="Ось Х Время наблюдения" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
         </Border>
-        <RulerControls:HorizontalRuler Name="timeScale" Grid.Row="5"  StartOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeBegTime,Mode=OneWay}" EndOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeEndTime,Mode=OneWay}" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <RulerControls:HorizontalRuler Name="timeScale" Grid.Row="5"  StartOfScale="{Binding DtFixedEdgeBegTime,Mode=OneWay}" EndOfScale="{Binding DtFixedEdgeEndTime,Mode=OneWay}" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <RangeSliderControls:RangeSlider  Grid.Row="7" x:Name="timeRangeSlider"  Minimum="0" Maximum="100" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" LowerValue="{Binding DtEdgeBegTime, ConverterParameter=LowerValue, Converter={StaticResource EdgeTimeConverterToSource}, Mode=OneWayToSource}" UpperValue="{Binding DtEdgeEndTime, ConverterParameter=UpperValue, Converter={StaticResource EdgeTimeConverterToSource}, Mode=OneWayToSource}"/>
 
         <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Margin="10,28,0,34" Grid.Row="4" Width="15"/>
