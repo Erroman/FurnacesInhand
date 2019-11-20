@@ -39,10 +39,8 @@ namespace RulerControls
         List<Mark> TenVoltMarks = new List<Mark> { };
         List<Mark> VoltMarks = new List<Mark> { };
 
-        const double MinHourMarksGapSize = 5;
-        const double MinHourMarkLabelGapSize = 2 * MinHourMarksGapSize;
-        double hourMarkDistance;
-
+        const double MinVoltMarksGapSize = 5;
+        const double MinVoltMarkLabelGapSize = 2 * MinVoltMarksGapSize; //минимально допустимое расстояние между обозначениями на вольтовых отметках по вертикали
         public VolageVerticalRuler()
         {
             InitializeComponent();
@@ -136,11 +134,12 @@ namespace RulerControls
 
          
             TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
-            int tenVoltsNumber = numberOfTenVoltsMarks;
+
             Point worldPointOnTheLine = new Point(this.actualWidth, 0);
             Point worldPointUnderTheLine = new Point(this.actualWidth - tenVoltsMarkLength, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
+            int tenVoltsNumber = numberOfTenVoltsMarks;
             for (int tenVoltMark = 0; tenVoltMark < numberOfTenVoltsMarks; tenVoltMark++)
             {
                 worldPointOnTheLine.Y += voltageDistance;
@@ -165,34 +164,33 @@ namespace RulerControls
             VoltMarks = new List<Mark>(numberOfVoltMarks);
 
 
+            Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth,voltStart);
+            Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, voltEnd);
+            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
+            Point devicePointAtTheStartOfTheScale = WtoD(worldPointAtTheStartOfTheScale);
+            Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
+            double voltMarkDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfVoltMarks;
 
-            TransformWorldToScreen.PrepareTransformations(voltStart, voltEnd, 0, this.actualWidth, 0, this.actualHeight, this.actualWidth, 0);
-            int voltsNumber = numberOfVoltMarks;
             Point worldPointOnTheLine = new Point(this.actualWidth, 0);
             Point worldPointUnderTheLine = new Point(this.actualWidth - voltsMarkLength, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            //    hourMarkDistance = (WtoD(worldPointOnTheLineAtTheEnd).X - WtoD(worldPointOnTheLineAtTheStart).X) / numberOfVoltMarks;
-            //    if (hourMarkDistance > MinHourMarksGapSize)
-            //    {
-            //        Point worldPointOnTheLine = new Point(0, 0);
-            //        Point worldPointUnderTheLine = new Point(0, 0);
-            //        Point devicePointOnTheLine = new Point(0, 0);
-            //        Point devicePointUnderTheLine = new Point(0, 0);
-            //        for (int hourMark = 0 ; hourMark < numberOfVoltMarks; hourMark++)
-            //        {
-            //            worldPointOnTheLine.X = 0;
-            //            worldPointOnTheLine.Y = 0;
-            //            worldPointUnderTheLine.X = 5;
-            //            worldPointUnderTheLine.Y = 0;
-            //            devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
-            //            devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
-            //            geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-            //            VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, hourNumber));
-            //            hourNumber--;
+            int voltsNumber = numberOfVoltMarks; //номер вольтовой отметки в списке отметок, наращивается в цикле
 
-            //        }
-            //    }
+            if (voltMarkDistance > MinVoltMarksGapSize)
+            {
+                for (int VoltMark = 0; VoltMark < numberOfVoltMarks; VoltMark++)
+                {
+                    worldPointOnTheLine.Y += voltageDistance;
+                    worldPointUnderTheLine.Y += voltageDistance;
+                    devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
+                    devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
+                    geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
+                    VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, voltsNumber));
+                    voltsNumber++;
+
+                }
+        }
         }
         // http://csharphelper.com/blog/2014/09/draw-a-graph-with-labels-wpf-c/ 
         // Position a label at the indicated point.
