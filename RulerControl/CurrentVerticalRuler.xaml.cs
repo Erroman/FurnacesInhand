@@ -57,7 +57,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for StartOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartOfScaleProperty =
-            DependencyProperty.Register("StartOfScale", typeof(double), typeof(VoltageVerticalRuler), new PropertyMetadata(DefaultStartVoltage));
+            DependencyProperty.Register("StartOfScale", typeof(double), typeof(CurrentVerticalRuler), new PropertyMetadata(DefaultStartVoltage));
 
 
         public double EndOfScale
@@ -69,7 +69,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for EndOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndOfScaleProperty =
-            DependencyProperty.Register("EndOfScale", typeof(double), typeof(VoltageVerticalRuler), new PropertyMetadata(DefaultEndVoltage));
+            DependencyProperty.Register("EndOfScale", typeof(double), typeof(CurrentVerticalRuler), new PropertyMetadata(DefaultEndVoltage));
 
         public void BuildAxis()
         {

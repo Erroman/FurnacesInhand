@@ -303,9 +303,9 @@ namespace FurnacesInHand
         }
  
 
-        private string _CurrentMax;
-        private string _CurrentMin;
-        public string CurrentMax
+        private double _CurrentMax;
+        private double _CurrentMin;
+        public double CurrentMax
         {
             get { return _CurrentMax; }
             set
@@ -315,7 +315,7 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
-        public string CurrentMin
+        public double CurrentMin
         {
             get { return _CurrentMin; }
             set

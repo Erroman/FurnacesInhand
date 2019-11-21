@@ -86,9 +86,9 @@ namespace FurnacesInHand.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public string lowerCurrent {
+        public double lowerCurrent {
             get {
-                return ((string)(this["lowerCurrent"]));
+                return ((double)(this["lowerCurrent"]));
             }
             set {
                 this["lowerCurrent"] = value;
@@ -98,9 +98,9 @@ namespace FurnacesInHand.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50")]
-        public string upperCurrent {
+        public double upperCurrent {
             get {
-                return ((string)(this["upperCurrent"]));
+                return ((double)(this["upperCurrent"]));
             }
             set {
                 this["upperCurrent"] = value;

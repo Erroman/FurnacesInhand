@@ -17,10 +17,10 @@
     <Setting Name="upperVoltage" Type="System.Double" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
-    <Setting Name="lowerCurrent" Type="System.String" Scope="User">
+    <Setting Name="lowerCurrent" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="upperCurrent" Type="System.String" Scope="User">
+    <Setting Name="upperCurrent" Type="System.Double" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="lowerVacuum" Type="System.String" Scope="User">

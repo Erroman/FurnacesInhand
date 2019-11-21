@@ -57,8 +57,9 @@ namespace FurnacesInHand
             voltScale.StartOfScale = Properties.Settings.Default.lowerVoltage;
             voltScale.EndOfScale = Properties.Settings.Default.upperVoltage;
 
-            CurrentMin.Text = Properties.Settings.Default.lowerCurrent;
-            CurrentMax.Text = Properties.Settings.Default.upperCurrent;
+            currentScale.StartOfScale = Properties.Settings.Default.lowerCurrent;
+            currentScale.EndOfScale = Properties.Settings.Default.upperCurrent;
+
             VacuumMin.Text = Properties.Settings.Default.lowerVacuum;
             VacuumMax.Text = Properties.Settings.Default.upperVacuum;
             SolenoidUMin.Text = Properties.Settings.Default.lowerUSolenoid;
@@ -89,8 +90,8 @@ namespace FurnacesInHand
             Properties.Settings.Default.numberOfFurnace = this.numberOfFurnace;
             Properties.Settings.Default.lowerVoltage = voltScale.StartOfScale;
             Properties.Settings.Default.upperVoltage = voltScale.EndOfScale;
-            Properties.Settings.Default.lowerCurrent = CurrentMin.Text;
-            Properties.Settings.Default.upperCurrent = CurrentMax.Text;
+            Properties.Settings.Default.lowerCurrent = currentScale.StartOfScale;
+            Properties.Settings.Default.upperCurrent = currentScale.EndOfScale;
             Properties.Settings.Default.lowerVacuum = VacuumMin.Text;
             Properties.Settings.Default.upperVacuum = VacuumMax.Text;
             Properties.Settings.Default.lowerUSolenoid = SolenoidUMin.Text;
@@ -119,6 +120,7 @@ namespace FurnacesInHand
                 SetDigitalStartAndFinishTimes(EdgeOrGlobalTimeBoundaries);
                 this.timeScale.BuildAxis();
                 this.voltScale.BuildAxis();
+                this.currentScale.BuildAxis();
                 switch (this.numberOfFurnace)
                 {
                     case 1:
