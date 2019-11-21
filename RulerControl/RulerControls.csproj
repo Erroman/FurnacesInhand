@@ -54,6 +54,9 @@
       <DependentUpon>CurrentVerticalRuler.xaml</DependentUpon>
     </Compile>
     <Compile Include="DateTimeRangesViewModel.cs" />
+    <Compile Include="SolenoidIVerticalRuler.xaml.cs">
+      <DependentUpon>SolenoidIVerticalRuler.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SolenoidUVerticalRuler.xaml.cs">
       <DependentUpon>SolenoidUVerticalRuler.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,10 @@
       <DependentUpon>HorizontalRuler.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SolenoidIVerticalRuler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SolenoidUVerticalRuler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
