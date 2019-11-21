@@ -157,8 +157,10 @@
         <TextBox x:Name="CurrentMin" Text="{Binding CurrentMin}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,153,0,0" Grid.Row="1"/>
         <RulerControls:CurrentVerticalRuler Name="currentScale" Grid.Row="1" Grid.Column="3" StartOfScale="{Binding CurrentMin,Mode=TwoWay}" EndOfScale="{Binding CurrentMax,Mode=TwoWay}"/>
         
-        <TextBox x:Name="VacuumMax" Text="{Binding VacuumMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="2"/>
-        <TextBox x:Name="VacuumMin" Text="{Binding VacuumMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,154,0,0" Grid.Row="2" Grid.RowSpan="2"/>
+        <TextBox x:Name="VacuumMax" Text="{Binding VacuumMax}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="2"/>
+        <TextBox x:Name="VacuumMin" Text="{Binding VacuumMin}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,154,0,0" Grid.Row="2" Grid.RowSpan="2"/>
+        <RulerControls:VacuumVerticalRuler Name="vacuumScale" Grid.Row="2" Grid.Column="3" StartOfScale="{Binding VacuumMin,Mode=TwoWay}" EndOfScale="{Binding VacuumMax,Mode=TwoWay}"/>
+        
         <TextBox x:Name="SolenoidUMax" Text="{Binding SolenoidUMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="3"/>
         <TextBox x:Name="SolenoidUMin" Text="{Binding SolenoidUMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="3" Margin="0,154,0,0" Grid.RowSpan="2"/>
         <TextBox x:Name="SolenoidIMax" Text="{Binding SolenoidIMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4"/>

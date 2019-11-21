@@ -55,6 +55,9 @@
     </Compile>
     <Compile Include="DateTimeRangesViewModel.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
+    <Compile Include="VacuumVerticalRuler.xaml.cs">
+      <DependentUpon>VacuumVerticalRuler.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VoltageVerticalRuler.xaml.cs">
       <DependentUpon>VoltageVerticalRuler.xaml</DependentUpon>
     </Compile>
@@ -70,6 +73,10 @@
       <DependentUpon>HorizontalRuler.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="VacuumVerticalRuler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VoltageVerticalRuler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

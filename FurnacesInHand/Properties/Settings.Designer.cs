@@ -110,9 +110,9 @@ namespace FurnacesInHand.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public string lowerVacuum {
+        public double lowerVacuum {
             get {
-                return ((string)(this["lowerVacuum"]));
+                return ((double)(this["lowerVacuum"]));
             }
             set {
                 this["lowerVacuum"] = value;
@@ -122,9 +122,9 @@ namespace FurnacesInHand.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("760")]
-        public string upperVacuum {
+        public double upperVacuum {
             get {
-                return ((string)(this["upperVacuum"]));
+                return ((double)(this["upperVacuum"]));
             }
             set {
                 this["upperVacuum"] = value;

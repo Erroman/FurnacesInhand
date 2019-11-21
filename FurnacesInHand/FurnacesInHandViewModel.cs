@@ -328,9 +328,9 @@ namespace FurnacesInHand
         }
 
 
-        private string _VacuumMax;
-        private string _VacuumMin;
-        public string VacuumMax
+        private double _VacuumMax;
+        private double _VacuumMin;
+        public double VacuumMax
         {
             get { return _VacuumMax; }
             set
@@ -340,7 +340,7 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
-        public string VacuumMin
+        public double VacuumMin
         {
             get { return _VacuumMin; }
             set

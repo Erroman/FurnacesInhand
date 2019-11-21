@@ -52,16 +52,13 @@ namespace FurnacesInHand
             dtBegTime.Dt = Properties.Settings.Default.dtBegTime;
             dtEndTime.Dt = Properties.Settings.Default.dtEndTime;
 
-           // VoltageMin.Text = Properties.Settings.Default.lowerVoltage;
-           // VoltageMax.Text = Properties.Settings.Default.upperVoltage;
             voltScale.StartOfScale = Properties.Settings.Default.lowerVoltage;
             voltScale.EndOfScale = Properties.Settings.Default.upperVoltage;
-
             currentScale.StartOfScale = Properties.Settings.Default.lowerCurrent;
             currentScale.EndOfScale = Properties.Settings.Default.upperCurrent;
+            vacuumScale.StartOfScale = Properties.Settings.Default.lowerVacuum;
+            vacuumScale.EndOfScale   = Properties.Settings.Default.upperVacuum;
 
-            VacuumMin.Text = Properties.Settings.Default.lowerVacuum;
-            VacuumMax.Text = Properties.Settings.Default.upperVacuum;
             SolenoidUMin.Text = Properties.Settings.Default.lowerUSolenoid;
             SolenoidUMax.Text = Properties.Settings.Default.upperUSolenoid;
             SolenoidIMin.Text = Properties.Settings.Default.lowerISolenoid;
@@ -92,8 +89,8 @@ namespace FurnacesInHand
             Properties.Settings.Default.upperVoltage = voltScale.EndOfScale;
             Properties.Settings.Default.lowerCurrent = currentScale.StartOfScale;
             Properties.Settings.Default.upperCurrent = currentScale.EndOfScale;
-            Properties.Settings.Default.lowerVacuum = VacuumMin.Text;
-            Properties.Settings.Default.upperVacuum = VacuumMax.Text;
+            Properties.Settings.Default.lowerVacuum = vacuumScale.StartOfScale;
+            Properties.Settings.Default.upperVacuum = vacuumScale.EndOfScale;
             Properties.Settings.Default.lowerUSolenoid = SolenoidUMin.Text;
             Properties.Settings.Default.upperUSolenoid = SolenoidUMax.Text;
             Properties.Settings.Default.lowerISolenoid = SolenoidIMin.Text;
@@ -121,6 +118,7 @@ namespace FurnacesInHand
                 this.timeScale.BuildAxis();
                 this.voltScale.BuildAxis();
                 this.currentScale.BuildAxis();
+                this.vacuumScale.BuildAxis();
                 switch (this.numberOfFurnace)
                 {
                     case 1:

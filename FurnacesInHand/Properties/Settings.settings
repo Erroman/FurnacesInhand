@@ -23,10 +23,10 @@
     <Setting Name="upperCurrent" Type="System.Double" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
-    <Setting Name="lowerVacuum" Type="System.String" Scope="User">
+    <Setting Name="lowerVacuum" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="upperVacuum" Type="System.String" Scope="User">
+    <Setting Name="upperVacuum" Type="System.Double" Scope="User">
       <Value Profile="(Default)">760</Value>
     </Setting>
     <Setting Name="lowerUSolenoid" Type="System.String" Scope="User">
