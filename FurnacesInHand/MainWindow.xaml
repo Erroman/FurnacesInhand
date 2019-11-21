@@ -149,8 +149,8 @@
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="109,136,0,0" Grid.Row="3" TextWrapping="Wrap" FontWeight="ExtraBold" VerticalAlignment="Top" Height="34" Width="100" ><Run Text="Напряжение на соленоиде ("/><Run Text="В"/><Run Text=")"/></TextBlock>
         <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="110,143,0,0" Grid.Row="4" TextWrapping="Wrap" FontWeight="ExtraBold" VerticalAlignment="Top" Width="108"  Height="16" Grid.ColumnSpan="2"><Run Text="Ток соленоида"/><Run Text=" (А)"/></TextBlock>
         
-        <TextBox x:Name="VoltageMax" Text="{Binding VoltageMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
-        <TextBox x:Name="VoltageMin" Text="{Binding VoltageMin, Mode=OneWayToSource}" Grid.Column="2" Height="23" Margin="0,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <TextBox x:Name="VoltageMax" Text="{Binding VoltageMax}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+        <TextBox x:Name="VoltageMin" Text="{Binding VoltageMin}" Grid.Column="2" Height="23" Margin="0,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <RulerControls:VolageVerticalRuler Name="voltScale" Grid.Row="0" Grid.Column="3" StartOfScale="{Binding VoltageMin,Mode=OneWay}" EndOfScale="{Binding VoltageMax,Mode=OneWay}"/>
         
         <TextBox x:Name="CurrentMax" Text="{Binding CurrentMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,1,0,0" Grid.Row="1"/>

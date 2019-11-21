@@ -127,7 +127,6 @@
     <Compile Include="GraphCanvas.cs" />
     <Compile Include="inTime.cs" />
     <Compile Include="MouseBehaviour.cs" />
-    <Compile Include="ParametersLimits.cs" />
     <Compile Include="PrintForm.xaml.cs">
       <DependentUpon>PrintForm.xaml</DependentUpon>
     </Compile>

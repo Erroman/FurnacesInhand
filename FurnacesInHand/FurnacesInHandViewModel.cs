@@ -278,9 +278,9 @@ namespace FurnacesInHand
             }
         }
 
-        private string _VoltageMax;
-        private string _VoltageMin;
-        public string VoltageMax
+        private double _VoltageMax;
+        private double _VoltageMin;
+        public double VoltageMax
         {
             get { return _VoltageMax; }
             set
@@ -290,7 +290,7 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
-        public string VoltageMin
+        public double VoltageMin
         {
             get { return _VoltageMin; }
             set
