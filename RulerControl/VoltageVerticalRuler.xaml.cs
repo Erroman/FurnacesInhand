@@ -17,9 +17,9 @@ using static RulerControls.TransformWorldToScreen;
 namespace RulerControls
 {
     /// <summary>
-    /// Логика взаимодействия для VolageVerticalRuler.xaml
+    /// Логика взаимодействия для VoltageVerticalRuler.xaml
     /// </summary>
-    public partial class VolageVerticalRuler : UserControl
+    public partial class VoltageVerticalRuler : UserControl
     {
         private double actualWidth;
         private double actualHeight;
@@ -41,7 +41,7 @@ namespace RulerControls
 
         const double MinVoltMarksGapSize = 5;
         const double MinVoltMarkLabelGapSize = 2 * MinVoltMarksGapSize; //минимально допустимое расстояние между обозначениями на вольтовых отметках по вертикали
-        public VolageVerticalRuler()
+        public VoltageVerticalRuler()
         {
             InitializeComponent();
         }
@@ -56,7 +56,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for StartOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartOfScaleProperty =
-            DependencyProperty.Register("StartOfScale", typeof(double), typeof(VolageVerticalRuler), new PropertyMetadata(DefaultStartVoltage));
+            DependencyProperty.Register("StartOfScale", typeof(double), typeof(VoltageVerticalRuler), new PropertyMetadata(DefaultStartVoltage));
 
 
         public double EndOfScale
@@ -68,7 +68,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for EndOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndOfScaleProperty =
-            DependencyProperty.Register("EndOfScale", typeof(double), typeof(VolageVerticalRuler), new PropertyMetadata(DefaultEndVoltage));
+            DependencyProperty.Register("EndOfScale", typeof(double), typeof(VoltageVerticalRuler), new PropertyMetadata(DefaultEndVoltage));
 
         public void BuildAxis()
         {

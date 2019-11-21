@@ -21,7 +21,7 @@
             <ColumnDefinition Width="170*"/>
             <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
-        <RulerControl:VolageVerticalRuler Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <RulerControl:VoltageVerticalRuler Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <RulerControl:HorizontalRuler Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <RulerControl:HorizontalRuler x:Name="rC" StartOfScale="{Binding ElementName=StartTime,Path=Dt}" EndOfScale="{Binding ElementName=EndTime,Path=Dt}"  Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3"/>
         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="238,108,0,0" Grid.Row="1" VerticalAlignment="Top" Width="136" Height="37" Click="Button_Click"/>

@@ -52,8 +52,11 @@ namespace FurnacesInHand
             dtBegTime.Dt = Properties.Settings.Default.dtBegTime;
             dtEndTime.Dt = Properties.Settings.Default.dtEndTime;
 
-            VoltageMin.Text = Properties.Settings.Default.lowerVoltage;
-            VoltageMax.Text = Properties.Settings.Default.upperVoltage;
+           // VoltageMin.Text = Properties.Settings.Default.lowerVoltage;
+           // VoltageMax.Text = Properties.Settings.Default.upperVoltage;
+            voltScale.StartOfScale = Properties.Settings.Default.lowerVoltage;
+            voltScale.EndOfScale = Properties.Settings.Default.upperVoltage;
+
             CurrentMin.Text = Properties.Settings.Default.lowerCurrent;
             CurrentMax.Text = Properties.Settings.Default.upperCurrent;
             VacuumMin.Text = Properties.Settings.Default.lowerVacuum;
@@ -84,8 +87,8 @@ namespace FurnacesInHand
             Properties.Settings.Default.dtEndTime = dtEndTime.Dt;
             //Properties.Settings.Default.secondDatabase = (bool)secondDataBase.IsChecked;
             Properties.Settings.Default.numberOfFurnace = this.numberOfFurnace;
-            Properties.Settings.Default.lowerVoltage = VoltageMin.Text;
-            Properties.Settings.Default.upperVoltage = VoltageMax.Text;
+            Properties.Settings.Default.lowerVoltage = voltScale.StartOfScale;
+            Properties.Settings.Default.upperVoltage = voltScale.EndOfScale;
             Properties.Settings.Default.lowerCurrent = CurrentMin.Text;
             Properties.Settings.Default.upperCurrent = CurrentMax.Text;
             Properties.Settings.Default.lowerVacuum = VacuumMin.Text;
