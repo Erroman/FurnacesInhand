@@ -58,9 +58,9 @@ namespace FurnacesInHand
             currentScale.EndOfScale = Properties.Settings.Default.upperCurrent;
             vacuumScale.StartOfScale = Properties.Settings.Default.lowerVacuum;
             vacuumScale.EndOfScale   = Properties.Settings.Default.upperVacuum;
+            solenoidUScale.StartOfScale = Properties.Settings.Default.lowerUSolenoid;
+            solenoidUScale.EndOfScale   = Properties.Settings.Default.upperUSolenoid;
 
-            SolenoidUMin.Text = Properties.Settings.Default.lowerUSolenoid;
-            SolenoidUMax.Text = Properties.Settings.Default.upperUSolenoid;
             SolenoidIMin.Text = Properties.Settings.Default.lowerISolenoid;
             SolenoidIMax.Text = Properties.Settings.Default.upperISolenoid;
 
@@ -91,8 +91,8 @@ namespace FurnacesInHand
             Properties.Settings.Default.upperCurrent = currentScale.EndOfScale;
             Properties.Settings.Default.lowerVacuum = vacuumScale.StartOfScale;
             Properties.Settings.Default.upperVacuum = vacuumScale.EndOfScale;
-            Properties.Settings.Default.lowerUSolenoid = SolenoidUMin.Text;
-            Properties.Settings.Default.upperUSolenoid = SolenoidUMax.Text;
+            Properties.Settings.Default.lowerUSolenoid = solenoidUScale.StartOfScale;
+            Properties.Settings.Default.upperUSolenoid = solenoidUScale.EndOfScale;
             Properties.Settings.Default.lowerISolenoid = SolenoidIMin.Text;
             Properties.Settings.Default.upperISolenoid = SolenoidIMax.Text;
 
@@ -119,6 +119,7 @@ namespace FurnacesInHand
                 this.voltScale.BuildAxis();
                 this.currentScale.BuildAxis();
                 this.vacuumScale.BuildAxis();
+                this.solenoidUScale.BuildAxis();
                 switch (this.numberOfFurnace)
                 {
                     case 1:

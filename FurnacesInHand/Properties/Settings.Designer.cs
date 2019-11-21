@@ -134,9 +134,9 @@ namespace FurnacesInHand.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-50")]
-        public string lowerUSolenoid {
+        public double lowerUSolenoid {
             get {
-                return ((string)(this["lowerUSolenoid"]));
+                return ((double)(this["lowerUSolenoid"]));
             }
             set {
                 this["lowerUSolenoid"] = value;
@@ -146,9 +146,9 @@ namespace FurnacesInHand.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50")]
-        public string upperUSolenoid {
+        public double upperUSolenoid {
             get {
-                return ((string)(this["upperUSolenoid"]));
+                return ((double)(this["upperUSolenoid"]));
             }
             set {
                 this["upperUSolenoid"] = value;
