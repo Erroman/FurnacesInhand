@@ -34,6 +34,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -48,11 +50,18 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrentVerticalRuler.xaml.cs">
+      <DependentUpon>CurrentVerticalRuler.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DateTimeRangesViewModel.cs" />
     <Compile Include="TransformWorldToScreen.cs" />
     <Compile Include="VoltageVerticalRuler.xaml.cs">
       <DependentUpon>VoltageVerticalRuler.xaml</DependentUpon>
     </Compile>
+    <Page Include="CurrentVerticalRuler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HorizontalRuler.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
