@@ -379,9 +379,9 @@ namespace FurnacesInHand
 
 
 
-        private string _SolenoidIMax;
-        private string _SolenoidIMin;
-        public string SolenoidIMax
+        private double _SolenoidIMax;
+        private double _SolenoidIMin;
+        public double SolenoidIMax
         {
             get { return _SolenoidIMax; }
             set
@@ -391,7 +391,7 @@ namespace FurnacesInHand
                 OnPropertyChanged();
             }
         }
-        public string SolenoidIMin
+        public double SolenoidIMin
         {
             get { return _SolenoidIMin; }
             set

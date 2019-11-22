@@ -165,8 +165,9 @@
         <TextBox x:Name="SolenoidUMin" Text="{Binding SolenoidUMin}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="3" Margin="0,154,0,0" Grid.RowSpan="2"/>
         <RulerControls:SolenoidUVerticalRuler Name="solenoidUScale" Grid.Row="3" Grid.Column="3" StartOfScale="{Binding SolenoidUMin,Mode=TwoWay}" EndOfScale="{Binding SolenoidUMax,Mode=TwoWay}"/>        
         
-        <TextBox x:Name="SolenoidIMax" Text="{Binding SolenoidIMax, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
-        <TextBox x:Name="SolenoidIMin" Text="{Binding SolenoidIMin, Mode=OneWayToSource}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4" Margin="0,154,0,0" Grid.RowSpan="2"/>
+        <TextBox x:Name="SolenoidIMax" Text="{Binding SolenoidIMax}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
+        <TextBox x:Name="SolenoidIMin" Text="{Binding SolenoidIMin}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4" Margin="0,154,0,0" Grid.RowSpan="2"/>
+        <RulerControls:SolenoidUVerticalRuler Name="solenoidIScale" Grid.Row="4" Grid.Column="3" StartOfScale="{Binding SolenoidIMin,Mode=TwoWay}" EndOfScale="{Binding SolenoidIMax,Mode=TwoWay}"/>
         <Button  HorizontalAlignment="Left" Margin="31,135,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="46" Click="Button_Click_2">
             <Grid>
                 <Grid.ColumnDefinitions>

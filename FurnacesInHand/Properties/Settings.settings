@@ -35,10 +35,10 @@
     <Setting Name="upperUSolenoid" Type="System.Double" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
-    <Setting Name="lowerISolenoid" Type="System.String" Scope="User">
+    <Setting Name="lowerISolenoid" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-10</Value>
     </Setting>
-    <Setting Name="upperISolenoid" Type="System.String" Scope="User">
+    <Setting Name="upperISolenoid" Type="System.Double" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="dtBegTime" Type="System.DateTime" Scope="User">

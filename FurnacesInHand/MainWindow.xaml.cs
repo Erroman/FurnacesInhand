@@ -60,9 +60,8 @@ namespace FurnacesInHand
             vacuumScale.EndOfScale   = Properties.Settings.Default.upperVacuum;
             solenoidUScale.StartOfScale = Properties.Settings.Default.lowerUSolenoid;
             solenoidUScale.EndOfScale   = Properties.Settings.Default.upperUSolenoid;
-
-            SolenoidIMin.Text = Properties.Settings.Default.lowerISolenoid;
-            SolenoidIMax.Text = Properties.Settings.Default.upperISolenoid;
+            solenoidUScale.StartOfScale = Properties.Settings.Default.lowerISolenoid;
+            solenoidUScale.EndOfScale = Properties.Settings.Default.upperISolenoid;
 
 
             SetDigitalStartAndFinishTimes("StartValues");
@@ -93,8 +92,8 @@ namespace FurnacesInHand
             Properties.Settings.Default.upperVacuum = vacuumScale.EndOfScale;
             Properties.Settings.Default.lowerUSolenoid = solenoidUScale.StartOfScale;
             Properties.Settings.Default.upperUSolenoid = solenoidUScale.EndOfScale;
-            Properties.Settings.Default.lowerISolenoid = SolenoidIMin.Text;
-            Properties.Settings.Default.upperISolenoid = SolenoidIMax.Text;
+            Properties.Settings.Default.lowerISolenoid = solenoidUScale.StartOfScale;
+            Properties.Settings.Default.upperISolenoid = solenoidUScale.EndOfScale;
 
             Properties.Settings.Default.Save();
         }
@@ -120,6 +119,7 @@ namespace FurnacesInHand
                 this.currentScale.BuildAxis();
                 this.vacuumScale.BuildAxis();
                 this.solenoidUScale.BuildAxis();
+                this.solenoidIScale.BuildAxis();
                 switch (this.numberOfFurnace)
                 {
                     case 1:
