@@ -17,11 +17,16 @@
             <RowDefinition Height="*"/>
             <RowDefinition x:Name="Axis_X" Height="30"/>
         </Grid.RowDefinitions>
-        <local:GraphCanvas x:Name="VoltagePlot" Style="{StaticResource VoltageCanvas}"/>
-        <local:GraphCanvas x:Name="CurrentPlot" Grid.Row="1" Style="{StaticResource CurrentCanvas}"/>
-        <local:GraphCanvas x:Name="VacuumPlot" Grid.Row="2" Style="{StaticResource VacuumCanvas}"/>
-        <local:GraphCanvas x:Name="SolenoidUPlot" Grid.Row="3" Style="{StaticResource SolenoidUCanvas}"/>
-        <local:GraphCanvas x:Name="SolenoidIPlot" Grid.Row="4" Style="{StaticResource SolenoidICanvas}"/>
-        <RulerControls:HorizontalRuler Name="timeScale" Grid.Row="5"  StartOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeBegTime,Mode=OneWay}" EndOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeEndTime,Mode=OneWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <local:GraphCanvas x:Name="VoltagePlot"         Grid.Row="0" Grid.Column="1" Style="{StaticResource VoltageCanvas}"/>
+        <local:GraphCanvas x:Name="CurrentPlot"         Grid.Row="1" Grid.Column="1" Style="{StaticResource CurrentCanvas}"/>
+        <local:GraphCanvas x:Name="VacuumPlot"          Grid.Row="2" Grid.Column="1" Style="{StaticResource VacuumCanvas}"/>
+        <local:GraphCanvas x:Name="SolenoidUPlot"       Grid.Row="3" Grid.Column="1" Style="{StaticResource SolenoidUCanvas}"/>
+        <local:GraphCanvas x:Name="SolenoidIPlot"       Grid.Row="4" Grid.Column="1" Style="{StaticResource SolenoidICanvas}"/>
+        <RulerControls:HorizontalRuler Name="timeScale" Grid.Row="5" Grid.Column="1" StartOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeBegTime,Mode=OneWay}" EndOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeEndTime,Mode=OneWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <RulerControls:VoltageVerticalRuler Name="vacuumScale"/>
     </Grid>
 </Window>

@@ -60,8 +60,8 @@ namespace FurnacesInHand
             vacuumScale.EndOfScale   = Properties.Settings.Default.upperVacuum;
             solenoidUScale.StartOfScale = Properties.Settings.Default.lowerUSolenoid;
             solenoidUScale.EndOfScale   = Properties.Settings.Default.upperUSolenoid;
-            solenoidUScale.StartOfScale = Properties.Settings.Default.lowerISolenoid;
-            solenoidUScale.EndOfScale = Properties.Settings.Default.upperISolenoid;
+            solenoidIScale.StartOfScale = Properties.Settings.Default.lowerISolenoid;
+            solenoidIScale.EndOfScale = Properties.Settings.Default.upperISolenoid;
 
 
             SetDigitalStartAndFinishTimes("StartValues");
