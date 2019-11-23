@@ -27,6 +27,10 @@
         <local:GraphCanvas x:Name="SolenoidUPlot"       Grid.Row="3" Grid.Column="1" Style="{StaticResource SolenoidUCanvas}"/>
         <local:GraphCanvas x:Name="SolenoidIPlot"       Grid.Row="4" Grid.Column="1" Style="{StaticResource SolenoidICanvas}"/>
         <RulerControls:HorizontalRuler Name="timeScale" Grid.Row="5" Grid.Column="1" StartOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeBegTime,Mode=OneWay}" EndOfScale="{Binding Source={StaticResource FurnacesInHandViewModel} ,Path=DtFixedEdgeEndTime,Mode=OneWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <RulerControls:VoltageVerticalRuler Name="vacuumScale"/>
+        <RulerControls:VoltageVerticalRuler Name="vacuumScale" Width="30"  Grid.Row="0"/>
+        <RulerControls:CurrentVerticalRuler Name="currentScale" Width="30" Grid.Row="1"/>
+        <RulerControls:VacuumVerticalRuler  Name="vacuumState"  Width="30" Grid.Row="2"/>
+        <RulerControls:SolenoidUVerticalRuler Name="solenoidUScale" Width="30" Grid.Row="3"/>
+        <RulerControls:SolenoidIVerticalRuler Name="solenoidIScale" Width="30" Grid.Row="4"/>
     </Grid>
 </Window>
