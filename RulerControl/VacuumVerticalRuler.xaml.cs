@@ -36,11 +36,13 @@ namespace RulerControls
             public int MarkNumber;
 
         }
-        List<Mark> TenVoltMarks = new List<Mark> { };
-        List<Mark> VoltMarks = new List<Mark> { };
-
-        const double MinVoltMarksGapSize = 5;
-        const double MinVoltMarkLabelGapSize = 2 * MinVoltMarksGapSize; //минимально допустимое расстояние между обозначениями на вольтовых отметках по вертикали
+        List<Mark> HundredUnitMarks = new List<Mark> { };
+        List<Mark> TenUnitMarks = new List<Mark> { };
+        List<Mark> UnitMarks = new List<Mark> { };
+        const double MinHudredUnitMarksGapSize = 5;
+        const double MinTenUnitMarksGapSize = 5;
+        const double MinUnitMarksGapSize = 5;
+        const double MinVoltMarkLabelGapSize = 2 * MinUnitMarksGapSize; //минимально допустимое расстояние между обозначениями на вольтовых отметках по вертикали
         public VacuumVerticalRuler()
         {
             InitializeComponent();
@@ -78,7 +80,7 @@ namespace RulerControls
             //Create a new geometry group for drawing the axis there
             GeometryGroup axis = new GeometryGroup();
             //And now put  a line with voltage ticks on it in the group
-            AddTheVerticalLineWithVoltageMarks(axis);
+            AddTheVerticalLineWithUnitsMarks(axis);
 
             Path axis_path = new Path();
             axis_path.StrokeThickness = 2;
@@ -90,7 +92,7 @@ namespace RulerControls
             string tenVoltsLabel = String.Empty;
             string voltsLabel = String.Empty;
             //devicePointUnderTheLine.Y -= 5;
-            //foreach (var mark in VoltMarks)
+            //foreach (var mark in UnitMarks)
             //{
             //    if (mark.MarkNumber % 10 != 0)
             //    {
@@ -102,7 +104,7 @@ namespace RulerControls
             //    }
             //}
 
-            //foreach (var mark in TenVoltMarks)6
+            //foreach (var mark in TenUnitMarks)6
             //{
             //    tenVoltsLabel = (new DateTime(1, 1, 1) + new TimeSpan((int)mark.MarkNumber, 0, 0, 0)).ToString("dd.MM.yy");
             //    DrawText(rulerBody, tenVoltsLabel, mark.MarkTop, 10, HorizontalAlignment.Center, VerticalAlignment.Center);
@@ -110,83 +112,120 @@ namespace RulerControls
 
 
         }
-        void AddTheVerticalLineWithVoltageMarks(GeometryGroup geometryGroup)
+        void AddTheVerticalLineWithUnitsMarks(GeometryGroup geometryGroup)
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(actualWidth, 0), new Point(actualWidth, actualHeight)));
             if (this.actualHeight != 0 & this.actualWidth != 0)
-                AddHorizontalVoltageMarks(geometryGroup);
+                AddHorizontalUnitsMarks(geometryGroup);
 
         }
-        void AddHorizontalVoltageMarks(GeometryGroup geometryGroup)
+        void AddHorizontalUnitsMarks(GeometryGroup geometryGroup)
         {
-            AddTenVoltsMarks(geometryGroup);
-            AddVoltsMarks(geometryGroup);
+            AddTenUnitMarks(geometryGroup);
+            AddOneUnitMarks(geometryGroup);
         }
-        void AddTenVoltsMarks(GeometryGroup geometryGroup)
+        void AddHundredUnitMarks(GeometryGroup geometryGroup)
         {
-            double voltStart = StartOfScale;
-            double voltEnd = EndOfScale;
-            int voltageDistance = 10; //расстояние в вольтах между соседними делениями (10В).
-            int tenVoltsMarkLength = 10; //длина отметки для напряжения,кратного 10В
+            int hundredUnitDistance = 100; //расстояние в вольтах между соседними делениями (100В).
+            int hundredUnitMarkLength = 10; //длина отметки для напряжения,кратного 100В
 
-            int numberOfTenVoltsMarks = (Int32)(voltEnd - voltStart) / voltageDistance; //количество делений на шкале для заданного расстояния между ними
-            TenVoltMarks = new List<Mark>(numberOfTenVoltsMarks);
+            int numberOfHundredUnitsMarks = (Int32)(EndOfScale - StartOfScale) / hundredUnitDistance; //количество делений на шкале для заданного расстояния между ними
+            HundredUnitMarks = new List<Mark>(numberOfHundredUnitsMarks);
 
-
-            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
-
-            Point worldPointOnTheLine = new Point(this.actualWidth, 0);
-            Point worldPointUnderTheLine = new Point(this.actualWidth - tenVoltsMarkLength, 0);
-            Point devicePointOnTheLine = new Point(0, 0);
-            Point devicePointUnderTheLine = new Point(0, 0);
-            int tenVoltsNumber = numberOfTenVoltsMarks;
-            for (int tenVoltMark = 0; tenVoltMark < numberOfTenVoltsMarks; tenVoltMark++)
-            {
-                worldPointOnTheLine.Y += voltageDistance;
-                worldPointUnderTheLine.Y += voltageDistance;
-                devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
-                devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
-                geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                TenVoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, tenVoltsNumber));
-                tenVoltsNumber++;
-
-            }
-
-        }
-        void AddVoltsMarks(GeometryGroup geometryGroup)
-        {
-            double voltStart = StartOfScale;
-            double voltEnd = EndOfScale;
-            int voltageDistance = 1; //расстояние в вольтах между соседними делениями (1В).
-            int voltsMarkLength = 7; //длина отметки для напряжения,кратного 1В
-
-            int numberOfVoltMarks = (Int32)(voltEnd - voltStart) / voltageDistance; //количество делений на шкале для заданного расстояния между ними
-            VoltMarks = new List<Mark>(numberOfVoltMarks);
-
-
-            Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, voltStart);
-            Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, voltEnd);
+            Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
+            Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
             TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
             Point devicePointAtTheStartOfTheScale = WtoD(worldPointAtTheStartOfTheScale);
             Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
-            double voltMarkDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfVoltMarks;
+            double hundredMarksDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfHundredUnitsMarks;
 
             Point worldPointOnTheLine = new Point(this.actualWidth, 0);
-            Point worldPointUnderTheLine = new Point(this.actualWidth - voltsMarkLength, 0);
+            Point worldPointUnderTheLine = new Point(this.actualWidth - hundredUnitMarkLength, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int voltsNumber = numberOfVoltMarks; //номер вольтовой отметки в списке отметок, наращивается в цикле
-
-            if (voltMarkDistance > MinVoltMarksGapSize)
+            int hundredUnitsNumber = numberOfHundredUnitsMarks;
+            if (hundredMarksDistance > MinHudredUnitMarksGapSize)
             {
-                for (int VoltMark = 0; VoltMark < numberOfVoltMarks; VoltMark++)
+                for (int hundredUnitsMark = 0; hundredUnitsMark < numberOfHundredUnitsMarks; hundredUnitsMark++)
                 {
-                    worldPointOnTheLine.Y += voltageDistance;
-                    worldPointUnderTheLine.Y += voltageDistance;
+                    worldPointOnTheLine.Y += hundredUnitDistance;
+                    worldPointUnderTheLine.Y += hundredUnitDistance;
                     devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                     devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                     geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                    VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, voltsNumber));
+                    HundredUnitMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, hundredUnitsNumber));
+                    hundredUnitsNumber++;
+
+                }
+            }
+        }
+        void AddTenUnitMarks(GeometryGroup geometryGroup)
+        {
+            int tenUnitDistance = 10; //расстояние в вольтах между соседними делениями (10В).
+            int tenUnitMarkLength = 10; //длина отметки для напряжения,кратного 10В
+
+            int numberOfTenUnitsMarks = (Int32)(EndOfScale - StartOfScale) / tenUnitDistance; //количество делений на шкале для заданного расстояния между ними
+            TenUnitMarks = new List<Mark>(numberOfTenUnitsMarks);
+
+            Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
+            Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
+            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
+            Point devicePointAtTheStartOfTheScale = WtoD(worldPointAtTheStartOfTheScale);
+            Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
+            double tenMarksDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfTenUnitsMarks;
+
+            Point worldPointOnTheLine = new Point(this.actualWidth, 0);
+            Point worldPointUnderTheLine = new Point(this.actualWidth - tenUnitMarkLength, 0);
+            Point devicePointOnTheLine = new Point(0, 0);
+            Point devicePointUnderTheLine = new Point(0, 0);
+            int tenUnitsNumber = numberOfTenUnitsMarks;
+            if (tenMarksDistance > MinTenUnitMarksGapSize)
+            {
+                for (int tenUnitsMark = 0; tenUnitsMark < numberOfTenUnitsMarks; tenUnitsMark++)
+                {
+                    worldPointOnTheLine.Y += tenUnitDistance;
+                    worldPointUnderTheLine.Y += tenUnitDistance;
+                    devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
+                    devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
+                    geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
+                    TenUnitMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, tenUnitsNumber));
+                    tenUnitsNumber++;
+
+                }
+            }
+        }
+        void AddOneUnitMarks(GeometryGroup geometryGroup)
+        {
+            int oneUnitDistance = 1; //количество единиц измерения между соседними делениями (1).
+            int unitMarkLength = 7; //длина отметки количества единиц измерения,кратного 1
+
+            int numberOfUnitMarks = (Int32)(EndOfScale - StartOfScale) / oneUnitDistance; //количество делений на шкале для заданного расстояния между ними
+            UnitMarks = new List<Mark>(numberOfUnitMarks);
+
+
+            Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
+            Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
+            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
+            Point devicePointAtTheStartOfTheScale = WtoD(worldPointAtTheStartOfTheScale);
+            Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
+            double marksDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfUnitMarks;
+
+            Point worldPointOnTheLine = new Point(this.actualWidth, 0);
+            Point worldPointUnderTheLine = new Point(this.actualWidth - unitMarkLength, 0);
+            Point devicePointOnTheLine = new Point(0, 0);
+            Point devicePointUnderTheLine = new Point(0, 0);
+            int voltsNumber = numberOfUnitMarks; //номер вольтовой отметки в списке отметок, наращивается в цикле
+
+            if (marksDistance > MinUnitMarksGapSize)
+            {
+                for (int oneUnitMark = 0; oneUnitMark < numberOfUnitMarks; oneUnitMark++)
+                {
+                    worldPointOnTheLine.Y += oneUnitDistance;
+                    worldPointUnderTheLine.Y += oneUnitDistance;
+                    devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
+                    devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
+                    geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
+                    UnitMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, voltsNumber));
                     voltsNumber++;
 
                 }
