@@ -139,7 +139,7 @@ namespace RulerControls
             Point worldPointUnderTheLine = new Point(this.actualWidth - tenVoltsMarkLength, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int tenVoltsNumber = numberOfTenVoltsMarks;
+            int tenVoltsNumber = 0;
             for (int tenVoltMark = 0; tenVoltMark < numberOfTenVoltsMarks; tenVoltMark++)
             {
                 worldPointOnTheLine.Y += voltageDistance;
@@ -175,7 +175,7 @@ namespace RulerControls
             Point worldPointUnderTheLine = new Point(this.actualWidth - voltsMarkLength, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int voltsNumber = numberOfVoltMarks; //номер вольтовой отметки в списке отметок, наращивается в цикле
+            int voltsNumber = 0; //номер вольтовой отметки в списке отметок, наращивается в цикле
 
             if (voltMarkDistance > MinVoltMarksGapSize)
             {

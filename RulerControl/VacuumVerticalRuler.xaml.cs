@@ -42,14 +42,14 @@ namespace RulerControls
         const double MinHudredUnitMarksGapSize = 5;
         const double MinTenUnitMarksGapSize = 5;
         const double MinUnitMarksGapSize = 5;
-        const double MinVoltMarkLabelGapSize = 2 * MinUnitMarksGapSize; //минимально допустимое расстояние между обозначениями на вольтовых отметках по вертикали
+        const double MinUnitMarkLabelGapSize = 2 * MinUnitMarksGapSize; //минимально допустимое расстояние между обозначениями на вольтовых отметках по вертикали
         public VacuumVerticalRuler()
         {
             InitializeComponent();
         }
 
-        readonly static double DefaultStartVoltage = 0;
-        readonly static double DefaultEndVoltage = 50;
+        readonly static double DefaultStartVacuum = 0;
+        readonly static double DefaultEndVacuum = 50;
         public double StartOfScale
         {
             get { return (double)GetValue(StartOfScaleProperty); }
@@ -58,7 +58,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for StartOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartOfScaleProperty =
-            DependencyProperty.Register("StartOfScale", typeof(double), typeof(VacuumVerticalRuler), new PropertyMetadata(DefaultStartVoltage));
+            DependencyProperty.Register("StartOfScale", typeof(double), typeof(VacuumVerticalRuler), new PropertyMetadata(DefaultStartVacuum));
 
 
         public double EndOfScale
@@ -70,7 +70,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for EndOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndOfScaleProperty =
-            DependencyProperty.Register("EndOfScale", typeof(double), typeof(VacuumVerticalRuler), new PropertyMetadata(DefaultEndVoltage));
+            DependencyProperty.Register("EndOfScale", typeof(double), typeof(VacuumVerticalRuler), new PropertyMetadata(DefaultEndVacuum));
 
         public void BuildAxis()
         {
@@ -79,7 +79,7 @@ namespace RulerControls
 
             //Create a new geometry group for drawing the axis there
             GeometryGroup axis = new GeometryGroup();
-            //And now put  a line with voltage ticks on it in the group
+            //And now put  a line with vacuum ticks on it in the group
             AddTheVerticalLineWithUnitsMarks(axis);
 
             Path axis_path = new Path();
@@ -89,8 +89,8 @@ namespace RulerControls
             rulerBody.Children.Clear();
             rulerBody.Children.Add(axis_path);
             //Put labels:
-            string tenVoltsLabel = String.Empty;
-            string voltsLabel = String.Empty;
+            string tenUnitsLabel = String.Empty;
+            string unitsLabel = String.Empty;
             //devicePointUnderTheLine.Y -= 5;
             //foreach (var mark in UnitMarks)
             //{
@@ -126,10 +126,10 @@ namespace RulerControls
         }
         void AddHundredUnitMarks(GeometryGroup geometryGroup)
         {
-            int hundredUnitDistance = 100; //расстояние в вольтах между соседними делениями (100В).
+            int hundredUnitDistance = 100; //разность в вольтах между соседними делениями (100В).
             int hundredUnitMarkLength = 10; //длина отметки для напряжения,кратного 100В
 
-            int numberOfHundredUnitsMarks = (Int32)(EndOfScale - StartOfScale) / hundredUnitDistance; //количество делений на шкале для заданного расстояния между ними
+            int numberOfHundredUnitsMarks = (Int32)(EndOfScale - StartOfScale) / hundredUnitDistance; //количество делений на шкале для заданной разницы значений
             HundredUnitMarks = new List<Mark>(numberOfHundredUnitsMarks);
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
@@ -214,7 +214,7 @@ namespace RulerControls
             Point worldPointUnderTheLine = new Point(this.actualWidth - unitMarkLength, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int voltsNumber = numberOfUnitMarks; //номер вольтовой отметки в списке отметок, наращивается в цикле
+            int unitNumber = 0; //номер отметки значения вакуума в списке отметок, наращивается в цикле
 
             if (marksDistance > MinUnitMarksGapSize)
             {
@@ -225,8 +225,8 @@ namespace RulerControls
                     devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                     devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                     geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                    UnitMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, voltsNumber));
-                    voltsNumber++;
+                    UnitMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, unitNumber));
+                    unitNumber++;
 
                 }
             }

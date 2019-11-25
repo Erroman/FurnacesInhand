@@ -175,7 +175,7 @@ namespace RulerControls
             Point worldPointUnderTheLine = new Point(this.actualWidth - voltsMarkLength, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int voltsNumber = numberOfVoltMarks; //номер вольтовой отметки в списке отметок, наращивается в цикле
+            int unitNumber = 0; //номер амперной отметки в списке отметок, наращивается в цикле
 
             if (voltMarkDistance > MinVoltMarksGapSize)
             {
@@ -186,8 +186,8 @@ namespace RulerControls
                     devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                     devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                     geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                    VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, voltsNumber));
-                    voltsNumber++;
+                    VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, unitNumber));
+                    unitNumber++;
 
                 }
             }

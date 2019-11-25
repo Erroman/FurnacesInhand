@@ -140,7 +140,7 @@ namespace RulerControls
             Point worldPointUnderTheLine = new Point(this.actualWidth - tenVoltsMarkLength, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int tenVoltsNumber = numberOfTenVoltsMarks;
+            int tenUnitsNumber = 0;
             for (int tenVoltMark = 0; tenVoltMark < numberOfTenVoltsMarks; tenVoltMark++)
             {
                 worldPointOnTheLine.Y += voltageDistance;
@@ -148,8 +148,8 @@ namespace RulerControls
                 devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                 devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                 geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                TenVoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, tenVoltsNumber));
-                tenVoltsNumber++;
+                TenVoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, tenUnitsNumber));
+                tenUnitsNumber++;
 
             }
 
@@ -176,7 +176,7 @@ namespace RulerControls
             Point worldPointUnderTheLine = new Point(this.actualWidth - voltsMarkLength, 0);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int voltsNumber = numberOfVoltMarks; //номер вольтовой отметки в списке отметок, наращивается в цикле
+            int unitNumber = 0; //номер вольтовой отметки в списке отметок, наращивается в цикле
 
             if (voltMarkDistance > MinVoltMarksGapSize)
             {
@@ -187,8 +187,8 @@ namespace RulerControls
                     devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                     devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                     geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                    VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, voltsNumber));
-                    voltsNumber++;
+                    VoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, unitNumber));
+                    unitNumber++;
 
                 }
             }
