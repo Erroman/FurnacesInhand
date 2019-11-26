@@ -23,22 +23,6 @@ namespace RulerControls
     {
         private double actualWidth;
         private double actualHeight;
-        struct Mark
-        {
-            public Mark(Point bottom, Point top, int markNumber)
-            {
-                MarkTop = top;
-                MarkBottom = bottom;
-                MarkNumber = markNumber;
-            }
-            public Point MarkTop;
-            public Point MarkBottom;
-            public int MarkNumber;
-
-        }
-        List<Mark> HundredUnitMarks = new List<Mark> { };
-        List<Mark> TenUnitMarks = new List<Mark> { };
-        List<Mark> UnitMarks = new List<Mark> { };
         const double MinHudredUnitMarksGapSize = 5;
         const double MinTenUnitMarksGapSize = 5;
         const double MinUnitMarksGapSize = 5;
@@ -121,16 +105,16 @@ namespace RulerControls
         }
         void AddHorizontalUnitsMarks(GeometryGroup geometryGroup)
         {
+            AddHundredUnitMarks(geometryGroup);
             AddTenUnitMarks(geometryGroup);
             AddOneUnitMarks(geometryGroup);
         }
         void AddHundredUnitMarks(GeometryGroup geometryGroup)
         {
             int hundredUnitDistance = 100; //разность в вольтах между соседними делениями (100В).
-            int hundredUnitMarkLength = 10; //длина отметки для напряжения,кратного 100В
+            int hundredUnitMarkLength = 13; //длина отметки для напряжения,кратного 100В
 
             int numberOfHundredUnitsMarks = (Int32)(EndOfScale - StartOfScale) / hundredUnitDistance; //количество делений на шкале для заданной разницы значений
-            HundredUnitMarks = new List<Mark>(numberOfHundredUnitsMarks);
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
@@ -139,23 +123,19 @@ namespace RulerControls
             Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
             double hundredMarksDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfHundredUnitsMarks;
 
-            Point worldPointOnTheLine = new Point(this.actualWidth, 0);
-            Point worldPointUnderTheLine = new Point(this.actualWidth - hundredUnitMarkLength, 0);
+            Point worldPointOnTheLine = new Point(this.actualWidth, StartOfScale);
+            Point worldPointUnderTheLine = new Point(this.actualWidth - hundredUnitMarkLength, StartOfScale);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int hundredUnitsNumber = numberOfHundredUnitsMarks;
             if (hundredMarksDistance > MinHudredUnitMarksGapSize)
             {
                 for (int hundredUnitsMark = 0; hundredUnitsMark < numberOfHundredUnitsMarks; hundredUnitsMark++)
                 {
-                    worldPointOnTheLine.Y += hundredUnitDistance;
-                    worldPointUnderTheLine.Y += hundredUnitDistance;
                     devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                     devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                     geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                    HundredUnitMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, hundredUnitsNumber));
-                    hundredUnitsNumber++;
-
+                    worldPointOnTheLine.Y += hundredUnitDistance;
+                    worldPointUnderTheLine.Y += hundredUnitDistance;
                 }
             }
         }
@@ -165,7 +145,6 @@ namespace RulerControls
             int tenUnitMarkLength = 10; //длина отметки для напряжения,кратного 10В
 
             int numberOfTenUnitsMarks = (Int32)(EndOfScale - StartOfScale) / tenUnitDistance; //количество делений на шкале для заданного расстояния между ними
-            TenUnitMarks = new List<Mark>(numberOfTenUnitsMarks);
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
@@ -174,22 +153,19 @@ namespace RulerControls
             Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
             double tenMarksDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfTenUnitsMarks;
 
-            Point worldPointOnTheLine = new Point(this.actualWidth, 0);
-            Point worldPointUnderTheLine = new Point(this.actualWidth - tenUnitMarkLength, 0);
+            Point worldPointOnTheLine = new Point(this.actualWidth, StartOfScale);
+            Point worldPointUnderTheLine = new Point(this.actualWidth - tenUnitMarkLength, StartOfScale);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int tenUnitsNumber = numberOfTenUnitsMarks;
             if (tenMarksDistance > MinTenUnitMarksGapSize)
             {
                 for (int tenUnitsMark = 0; tenUnitsMark < numberOfTenUnitsMarks; tenUnitsMark++)
                 {
-                    worldPointOnTheLine.Y += tenUnitDistance;
-                    worldPointUnderTheLine.Y += tenUnitDistance;
                     devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                     devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
-                    geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                    TenUnitMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, tenUnitsNumber));
-                    tenUnitsNumber++;
+                    geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));                   
+                    worldPointOnTheLine.Y += tenUnitDistance;
+                    worldPointUnderTheLine.Y += tenUnitDistance;
 
                 }
             }
@@ -200,8 +176,6 @@ namespace RulerControls
             int unitMarkLength = 7; //длина отметки количества единиц измерения,кратного 1
 
             int numberOfUnitMarks = (Int32)(EndOfScale - StartOfScale) / oneUnitDistance; //количество делений на шкале для заданного расстояния между ними
-            UnitMarks = new List<Mark>(numberOfUnitMarks);
-
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
@@ -210,24 +184,21 @@ namespace RulerControls
             Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
             double marksDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfUnitMarks;
 
-            Point worldPointOnTheLine = new Point(this.actualWidth, 0);
-            Point worldPointUnderTheLine = new Point(this.actualWidth - unitMarkLength, 0);
+            Point worldPointOnTheLine = new Point(this.actualWidth, StartOfScale);
+            Point worldPointUnderTheLine = new Point(this.actualWidth - unitMarkLength, StartOfScale);
             Point devicePointOnTheLine = new Point(0, 0);
             Point devicePointUnderTheLine = new Point(0, 0);
-            int unitNumber = 0; //номер отметки значения вакуума в списке отметок, наращивается в цикле
 
             if (marksDistance > MinUnitMarksGapSize)
             {
                 for (int oneUnitMark = 0; oneUnitMark < numberOfUnitMarks; oneUnitMark++)
                 {
-                    worldPointOnTheLine.Y += oneUnitDistance;
-                    worldPointUnderTheLine.Y += oneUnitDistance;
+     
                     devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                     devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
-                    geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                    UnitMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, unitNumber));
-                    unitNumber++;
-
+                    geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));               
+                    worldPointOnTheLine.Y += oneUnitDistance;
+                    worldPointUnderTheLine.Y += oneUnitDistance;
                 }
             }
         }
