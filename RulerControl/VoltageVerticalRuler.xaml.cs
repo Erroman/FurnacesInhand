@@ -133,7 +133,7 @@ namespace RulerControls
             TenVoltMarks = new List<Mark>(numberOfTenVoltsMarks);
 
          
-            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
+            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, 0, this.actualHeight);
 
             Point worldPointOnTheLine = new Point(this.actualWidth, 0);
             Point worldPointUnderTheLine = new Point(this.actualWidth - tenVoltsMarkLength, 0);
@@ -142,12 +142,13 @@ namespace RulerControls
             int tenVoltsNumber = numberOfTenVoltsMarks;
             for (int tenVoltMark = 0; tenVoltMark < numberOfTenVoltsMarks; tenVoltMark++)
             {
-                worldPointOnTheLine.Y += voltageDistance;
-                worldPointUnderTheLine.Y += voltageDistance;
+      
                 devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                 devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                 geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));
-                TenVoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, tenVoltsNumber));
+                TenVoltMarks.Add(new Mark(devicePointOnTheLine, devicePointUnderTheLine, tenVoltsNumber));          
+                worldPointOnTheLine.Y += voltageDistance;
+                worldPointUnderTheLine.Y += voltageDistance;
                 tenVoltsNumber++;
 
             }

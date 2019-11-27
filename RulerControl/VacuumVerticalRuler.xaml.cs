@@ -111,17 +111,17 @@ namespace RulerControls
         }
         void AddHundredUnitMarks(GeometryGroup geometryGroup)
         {
-            int hundredUnitDistance = 100; //разность в вольтах между соседними делениями (100В).
-            int hundredUnitMarkLength = 13; //длина отметки для напряжения,кратного 100В
+            int hundredUnitDistance = 100; //разность в единицах давления между соседними делениями (100 мм).
+            int hundredUnitMarkLength = 15; //длина отметки для напряжения,кратного 100 мм
 
             int numberOfHundredUnitsMarks = (Int32)(EndOfScale - StartOfScale) / hundredUnitDistance; //количество делений на шкале для заданной разницы значений
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
-            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
+            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, 0, this.actualHeight);
             Point devicePointAtTheStartOfTheScale = WtoD(worldPointAtTheStartOfTheScale);
             Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
-            double hundredMarksDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfHundredUnitsMarks;
+            double hundredMarksDistance = Math.Abs(devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfHundredUnitsMarks;
 
             Point worldPointOnTheLine = new Point(this.actualWidth, StartOfScale);
             Point worldPointUnderTheLine = new Point(this.actualWidth - hundredUnitMarkLength, StartOfScale);
