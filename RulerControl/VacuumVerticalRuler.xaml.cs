@@ -105,6 +105,7 @@ namespace RulerControls
         }
         void AddHorizontalUnitsMarks(GeometryGroup geometryGroup)
         {
+            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, 0, this.actualHeight);
             AddHundredUnitMarks(geometryGroup);
             AddTenUnitMarks(geometryGroup);
             AddOneUnitMarks(geometryGroup);
@@ -118,7 +119,6 @@ namespace RulerControls
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
-            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, 0, this.actualHeight);
             Point devicePointAtTheStartOfTheScale = WtoD(worldPointAtTheStartOfTheScale);
             Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
             double hundredMarksDistance = Math.Abs(devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfHundredUnitsMarks;
@@ -148,10 +148,9 @@ namespace RulerControls
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
-            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
             Point devicePointAtTheStartOfTheScale = WtoD(worldPointAtTheStartOfTheScale);
             Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
-            double tenMarksDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfTenUnitsMarks;
+            double tenMarksDistance = Math.Abs(devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfTenUnitsMarks;
 
             Point worldPointOnTheLine = new Point(this.actualWidth, StartOfScale);
             Point worldPointUnderTheLine = new Point(this.actualWidth - tenUnitMarkLength, StartOfScale);
@@ -179,10 +178,9 @@ namespace RulerControls
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
-            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, this.actualHeight, 0);
             Point devicePointAtTheStartOfTheScale = WtoD(worldPointAtTheStartOfTheScale);
             Point devicePointAtTheEndtOfTheScale = WtoD(worldPointAtTheEndOfTheScale);
-            double marksDistance = (devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfUnitMarks;
+            double marksDistance = Math.Abs(devicePointAtTheEndtOfTheScale.Y - devicePointAtTheStartOfTheScale.Y) / numberOfUnitMarks;
 
             Point worldPointOnTheLine = new Point(this.actualWidth, StartOfScale);
             Point worldPointUnderTheLine = new Point(this.actualWidth - unitMarkLength, StartOfScale);
