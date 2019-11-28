@@ -115,7 +115,7 @@ namespace RulerControls
             int hundredUnitDistance = 100; //разность в единицах давления между соседними делениями (100 мм).
             int hundredUnitMarkLength = 15; //длина отметки для напряжения,кратного 100 мм
 
-            int numberOfHundredUnitsMarks = (Int32)(EndOfScale - StartOfScale) / hundredUnitDistance; //количество делений на шкале для заданной разницы значений
+            int numberOfHundredUnitsMarks = (int)Math.Ceiling((EndOfScale - StartOfScale) / hundredUnitDistance); //количество делений на шкале для заданной разницы значений
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
@@ -144,7 +144,7 @@ namespace RulerControls
             int tenUnitDistance = 10; //расстояние в вольтах между соседними делениями (10В).
             int tenUnitMarkLength = 10; //длина отметки для напряжения,кратного 10В
 
-            int numberOfTenUnitsMarks = (Int32)(EndOfScale - StartOfScale) / tenUnitDistance; //количество делений на шкале для заданного расстояния между ними
+            int numberOfTenUnitsMarks = (int)Math.Ceiling((EndOfScale - StartOfScale) / tenUnitDistance); //количество делений на шкале для заданного расстояния между ними
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
@@ -163,7 +163,7 @@ namespace RulerControls
                     devicePointOnTheLine = TransformWorldToScreen.WtoD(worldPointOnTheLine);
                     devicePointUnderTheLine = TransformWorldToScreen.WtoD(worldPointUnderTheLine);
                     geometryGroup.Children.Add(new LineGeometry(devicePointOnTheLine, devicePointUnderTheLine));                   
-                    worldPointOnTheLine.Y += tenUnitDistance;
+                    worldPointOnTheLine.Y += tenUnitDistance;   
                     worldPointUnderTheLine.Y += tenUnitDistance;
 
                 }
@@ -174,7 +174,7 @@ namespace RulerControls
             int oneUnitDistance = 1; //количество единиц измерения между соседними делениями (1).
             int unitMarkLength = 7; //длина отметки количества единиц измерения,кратного 1
 
-            int numberOfUnitMarks = (Int32)(EndOfScale - StartOfScale) / oneUnitDistance; //количество делений на шкале для заданного расстояния между ними
+            int numberOfUnitMarks = (Int32)Math.Ceiling((EndOfScale - StartOfScale) / oneUnitDistance); //количество делений на шкале для заданного расстояния между ними
 
             Point worldPointAtTheStartOfTheScale = new Point(this.actualWidth, StartOfScale);
             Point worldPointAtTheEndOfTheScale = new Point(this.actualWidth, EndOfScale);
