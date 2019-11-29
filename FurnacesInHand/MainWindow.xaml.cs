@@ -92,8 +92,8 @@ namespace FurnacesInHand
             Properties.Settings.Default.upperVacuum = vacuumScale.EndOfScale;
             Properties.Settings.Default.lowerUSolenoid = solenoidUScale.StartOfScale;
             Properties.Settings.Default.upperUSolenoid = solenoidUScale.EndOfScale;
-            Properties.Settings.Default.lowerISolenoid = solenoidUScale.StartOfScale;
-            Properties.Settings.Default.upperISolenoid = solenoidUScale.EndOfScale;
+            Properties.Settings.Default.lowerISolenoid = solenoidIScale.StartOfScale;
+            Properties.Settings.Default.upperISolenoid = solenoidIScale.EndOfScale;
 
             Properties.Settings.Default.Save();
         }
