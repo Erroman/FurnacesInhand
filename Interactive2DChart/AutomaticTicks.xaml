@@ -15,7 +15,6 @@ Title="Automatical Tick Placement" Height="400" Width="400">
         </Grid.RowDefinitions>
         <TextBlock Margin="2" x:Name="tbTitle" Grid.Column="1" Grid.Row="0"
 RenderTransformOrigin="0.5,0.5" FontSize="14" FontWeight="Bold"
-HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 TextAlignment="Center" Text="Title"/>
         <TextBlock Margin="2" x:Name="tbDate" Grid.Column="0" Grid.ColumnSpan="2"
 Grid.Row="1" RenderTransformOrigin="0.5,0.5" FontSize="10" Foreground="Blue" HorizontalAlignment="Stretch"

@@ -27,7 +27,7 @@ namespace Interactive2DChart
             cs.GridlinePattern = ChartStyle.GridlinePatternEnum.Dot;
             cs.GridlineColor = Brushes.Black;
             cs.AddChartStyle(tbTitle, tbXLabel, tbYLabel);
-            // Draw Sine-like curve:
+            //Draw Sine-like curve:
             ds.LineColor = Brushes.Blue;
             ds.LineThickness = 2;
             double dx = (cs.Xmax - cs.Xmin) / 100;

@@ -85,7 +85,7 @@ namespace Interactive2DChart
             double dx, dy;
             TextBlock tb = new TextBlock();
             double optimalXSpacing = 100;
-            double optimalYSpacing = 80;
+            double optimalYSpacing = 80; //оптимальное расстояние между соседними метками по Y
             // determine right offset:
             tb.Text = Math.Round(Xmax, 0).ToString();
             tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
@@ -104,11 +104,11 @@ namespace Interactive2DChart
                     xScale = (TextCanvas.Width - offset0 - rightOffset - 5) /
                     (Xmax - Xmin);
                 if (Ymin != Ymax)
-                    yScale = TextCanvas.Height / (Ymax - Ymin);
+                    yScale = TextCanvas.Height / (Ymax - Ymin); //коффициент Device/World по Y
                 xSpacing = optimalXSpacing / xScale;
                 xTick = OptimalSpacing(xSpacing);
-                ySpacing = optimalYSpacing / yScale;
-                yTick = OptimalSpacing(ySpacing);
+                ySpacing = optimalYSpacing / yScale; //оптимальное расстояние между соседними значениями параметра по Y
+                yTick = OptimalSpacing(ySpacing);//оптимизированное(округлённое) оптимальное расстояние между соседними значениями параметра по Y
                 xStart = (int)Math.Ceiling(Xmin / xTick);
                 xEnd = (int)Math.Floor(Xmax / xTick);
                 yStart = (int)Math.Ceiling(Ymin / yTick);
@@ -184,6 +184,7 @@ namespace Interactive2DChart
                 }
             }
             // Create horizontal gridlines and y tick marks:
+            //IsXGrid = false;
             if (IsXGrid == true)
             {
                 for (int i = yStart; i <= yEnd; i++)
