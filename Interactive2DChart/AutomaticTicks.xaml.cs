@@ -5,18 +5,15 @@ namespace Interactive2DChart
 {
     public partial class AutomaticTicks : Window
     {
-        private ChartStyle cs;
-        private DataCollection dc;
-        private DataSeries ds;
+  
         public AutomaticTicks()
         {
             InitializeComponent();
         }
         private void AddChart()
         {
-            cs = new ChartStyle();
-            dc = new DataCollection();
-            ds = new DataSeries();
+            ChartStyle cs = new ChartStyle();
+
             cs.ChartCanvas = chartCanvas;
             cs.TextCanvas = textCanvas;
             cs.Title = "Sine and Cosine Chart";
@@ -26,8 +23,10 @@ namespace Interactive2DChart
             cs.Ymax = 1.1;
             cs.GridlinePattern = ChartStyle.GridlinePatternEnum.Dot;
             cs.GridlineColor = Brushes.Black;
+            //Добавляются оси координат 
             cs.AddChartStyle(tbTitle, tbXLabel, tbYLabel);
             //Draw Sine-like curve:
+            DataSeries ds = new DataSeries();
             ds.LineColor = Brushes.Blue;
             ds.LineThickness = 2;
             double dx = (cs.Xmax - cs.Xmin) / 100;
@@ -36,6 +35,7 @@ namespace Interactive2DChart
                 double y = Math.Exp(-0.3 * Math.Abs(x)) * Math.Sin(x);
                 ds.LineSeries.Points.Add(new Point(x, y));
             }
+            DataCollection dc = new DataCollection();
             dc.DataList.Add(ds);
             // Draw Cosine-like curve:
             ds = new DataSeries();
@@ -48,6 +48,8 @@ namespace Interactive2DChart
                 ds.LineSeries.Points.Add(new Point(x, y));
             }
             dc.DataList.Add(ds);
+            //В dc содержатся линии графиков, которые нужно добавить,
+            //cs определяет область экрана(Canvas), куда добавляем линии графиков.
             dc.AddLines(cs);
         }
         private void chartGrid_SizeChanged(object sender, SizeChangedEventArgs e)

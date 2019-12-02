@@ -113,6 +113,9 @@ namespace Interactive2DChart
                 xEnd = (int)Math.Floor(Xmax / xTick);
                 yStart = (int)Math.Ceiling(Ymin / yTick);
                 yEnd = (int)Math.Floor(Ymax / yTick);
+                //Определяется величина сдвига внутреннего холста(textCanvas) по отношению к внешнему(chartCanvas)
+                //по горизонтали(leftOffset) и вертикали(bottomOffset).Горизонтальный сдвиг высчитывается, исходя из размеров 
+                //самого длинного нименования метки, вертикальный остаётся неизменным с самого начала и не расчитывается
                 for (int i = yStart; i <= yEnd; i++)
                 {
                     dy = i * yTick;
@@ -131,8 +134,9 @@ namespace Interactive2DChart
                     offset0 += 0.5;
             }
             leftOffset = offset + 5;
-            Canvas.SetLeft(ChartCanvas, leftOffset);
-            Canvas.SetBottom(ChartCanvas, bottomOffset);
+            Canvas.SetLeft(ChartCanvas, leftOffset);     //горизонтальный сдвиг
+            Canvas.SetBottom(ChartCanvas, bottomOffset); //вертикальный сдвиг 
+
             ChartCanvas.Width = TextCanvas.Width - leftOffset - rightOffset;
             ChartCanvas.Height = TextCanvas.Height - bottomOffset - size.Height / 2;
             Rectangle chartRect = new Rectangle();
@@ -158,22 +162,23 @@ namespace Interactive2DChart
                 for (int i = xStart; i <= xEnd; i++)
                 {
                     gridline = new Line();
-                    AddLinePattern();
+                    AddLinePattern();   //выбираем рисунок разметочной линии, устанавливая параметры для gridline
                     dx = i * xTick;
                     gridline.X1 = NormalizePoint(new Point(dx, Ymin)).X;
                     gridline.Y1 = NormalizePoint(new Point(dx, Ymin)).Y;
                     gridline.X2 = NormalizePoint(new Point(dx, Ymax)).X;
                     gridline.Y2 = NormalizePoint(new Point(dx, Ymax)).Y;
-                    ChartCanvas.Children.Add(gridline);
+                    ChartCanvas.Children.Add(gridline); //ставим вертикальную линию разметки на внутреннем холсте chartCanvas
                     //Evidently adding vertical tick
+                    //расставляем вертикальные деления шкалы на оси X
                     pt = NormalizePoint(new Point(dx, Ymin));
                     tick = new Line();
                     tick.Stroke = Brushes.Black;
                     tick.X1 = pt.X;
                     tick.Y1 = pt.Y;
                     tick.X2 = pt.X;
-                    tick.Y2 = pt.Y - 5;
-                    ChartCanvas.Children.Add(tick);
+                    tick.Y2 = pt.Y - 5; //величина штриха отметки деления = 5
+                    ChartCanvas.Children.Add(tick); //ставится вертикальное деление на оси X, принадлежит внутреннему холсту chartCanvas
                     tb = new TextBlock();
                     tb.Text = dx.ToString();
                     tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
@@ -190,7 +195,7 @@ namespace Interactive2DChart
                 for (int i = yStart; i <= yEnd; i++)
                 {
                     gridline = new Line();
-                    AddLinePattern();
+                    AddLinePattern();   //выбираем рисунок разметочной линии, устанавливая параметры для gridline
                     dy = i * yTick;
                     gridline.X1 = NormalizePoint(new Point(Xmin, dy)).X;
                     gridline.Y1 = NormalizePoint(new Point(Xmin, dy)).Y;
@@ -210,7 +215,7 @@ namespace Interactive2DChart
                     tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
                     size = tb.DesiredSize;
                     TextCanvas.Children.Add(tb);
-                    Canvas.SetRight(tb, ChartCanvas.Width + 10);
+                    Canvas.SetRight(tb, ChartCanvas.Width + 10);//устанавливаем наименование метки в 10 ед. влево от правого края внутреннего холста. 
                     Canvas.SetTop(tb, pt.Y);
                 }
             }
