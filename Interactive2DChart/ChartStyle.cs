@@ -84,8 +84,8 @@ namespace Interactive2DChart
             double offset = 0;
             double dx, dy;
             TextBlock tb = new TextBlock();
-            double optimalXSpacing = 100;
-            double optimalYSpacing = 80; //оптимальное расстояние между соседними метками по Y
+            double optimalXSpacing = 100;  //оптимальное расстояние между соседними метками по X в машинных единицах
+            double optimalYSpacing = 80;   //оптимальное расстояние между соседними метками по Y в машинных единицах
             // determine right offset:
             tb.Text = Math.Round(Xmax, 0).ToString();
             tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));

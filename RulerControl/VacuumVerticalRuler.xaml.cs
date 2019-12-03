@@ -32,8 +32,8 @@ namespace RulerControls
             InitializeComponent();
         }
 
-        readonly static double DefaultStartVacuum = 0;
-        readonly static double DefaultEndVacuum = 50;
+        readonly static double DefaultStartVacuum = 90;
+        readonly static double DefaultEndVacuum = 100;
         public double StartOfScale
         {
             get { return (double)GetValue(StartOfScaleProperty); }

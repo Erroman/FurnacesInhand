@@ -23,8 +23,6 @@ namespace TestRulerControl
         public MainWindow()
         {
             InitializeComponent();
-            this.StartTime.Dt = new DateTime(2019, 10, 20,5,5,5,515);
-            this.EndTime.Dt =   new DateTime(2019, 10, 22,15,15,15,715);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
