@@ -143,28 +143,71 @@
         <TextBox x:Name="SolenoidITime" Text="{Binding Dt, ConverterParameter=Time, Converter={StaticResource SolenoidIStrictConverter}, ElementName=dtCurrentTime, StringFormat=dd.MM.yy HH:mm:ss.fff}" Grid.Column="1"  HorizontalAlignment="Left" Height="35" Margin="10,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97" Grid.Row="4" Grid.RowSpan="2"/>
         <TextBlock x:Name="Updated" HorizontalAlignment="Left" Margin="40,108,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Height="28"/>
         <Button Content="Загрузка с сервера" HorizontalAlignment="Left" Margin="31,56,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="26" Click="Button_Click_1"/>
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="96,115,0,0" TextWrapping="Wrap" FontWeight="ExtraBold" Text="Напряжение дуги (В)" VerticalAlignment="Top" Height="34" Width="117" Grid.ColumnSpan="2" />
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="136,128,0,0" Grid.Row="1" TextWrapping="Wrap" FontWeight="ExtraBold" Text="Ток дуги (КА)" VerticalAlignment="Top" Width="73" Height="31" />
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="103,137,0,0" Grid.Row="2" TextWrapping="Wrap" FontWeight="ExtraBold" Text="Вакуум (мм рт.ст)" VerticalAlignment="Top" Width="112" Height="24" Grid.ColumnSpan="2" />
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="109,136,0,0" Grid.Row="3" TextWrapping="Wrap" FontWeight="ExtraBold" VerticalAlignment="Top" Height="34" Width="100" ><Run Text="Напряжение на соленоиде ("/><Run Text="В"/><Run Text=")"/></TextBlock>
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="110,143,0,0" Grid.Row="4" TextWrapping="Wrap" FontWeight="ExtraBold" VerticalAlignment="Top" Width="108"  Height="16" Grid.ColumnSpan="2"><Run Text="Ток соленоида"/><Run Text=" (А)"/></TextBlock>
-        
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="172,76,0,0" TextWrapping="Wrap" FontWeight="ExtraBold" Text="Напряжение дуги (В)" VerticalAlignment="Top" Height="34" Width="117" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" >
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90.401"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="194,76,0,0" Grid.Row="1" TextWrapping="Wrap" FontWeight="ExtraBold" Text="Сила тока дуги (КА)" VerticalAlignment="Top" Width="73" Height="31" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" >
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90.471"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="174,82,0,0" Grid.Row="2" TextWrapping="Wrap" FontWeight="ExtraBold" Text="Вакуум (мм рт.ст)" VerticalAlignment="Top" Width="112" Height="24" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5" >
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="179,73,0,0" Grid.Row="3" TextWrapping="Wrap" FontWeight="ExtraBold" VerticalAlignment="Top" Height="34" Width="100" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" >
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-89.669"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Text="Напряжение на соленоиде ("/><Run Text="В"/><Run Text=")"/></TextBlock>
+        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="173,69,0,0" Grid.Row="4" TextWrapping="Wrap" FontWeight="ExtraBold" VerticalAlignment="Top" Width="116"  Height="35" Grid.ColumnSpan="4" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90.866"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Text="Сила тока соленоида (А)"/></TextBlock>
+
         <TextBox x:Name="VoltageMax" Text="{Binding VoltageMax}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
         <TextBox x:Name="VoltageMin" Text="{Binding VoltageMin}" Grid.Column="2" Height="23" Margin="0,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <RulerControls:VoltageVerticalRuler Name="voltScale" Grid.Row="0" Grid.Column="3" StartOfScale="{Binding VoltageMin,Mode=TwoWay}" EndOfScale="{Binding VoltageMax,Mode=TwoWay}"/>
-        
+
         <TextBox x:Name="CurrentMax" Text="{Binding CurrentMax}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,1,0,0" Grid.Row="1"/>
         <TextBox x:Name="CurrentMin" Text="{Binding CurrentMin}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,153,0,0" Grid.Row="1"/>
         <RulerControls:CurrentVerticalRuler Name="currentScale" Grid.Row="1" Grid.Column="3" StartOfScale="{Binding CurrentMin,Mode=TwoWay}" EndOfScale="{Binding CurrentMax,Mode=TwoWay}"/>
-        
+
         <TextBox x:Name="VacuumMax" Text="{Binding VacuumMax}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="2"/>
         <TextBox x:Name="VacuumMin" Text="{Binding VacuumMin}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Margin="0,154,0,0" Grid.Row="2" Grid.RowSpan="2"/>
         <RulerControls:VacuumVerticalRuler Name="vacuumScale" Grid.Row="2" Grid.Column="3" StartOfScale="{Binding VacuumMin,Mode=TwoWay}" EndOfScale="{Binding VacuumMax,Mode=TwoWay}"/>
-        
+
         <TextBox x:Name="SolenoidUMax" Text="{Binding SolenoidUMax}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="3"/>
         <TextBox x:Name="SolenoidUMin" Text="{Binding SolenoidUMin}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="3" Margin="0,154,0,0" Grid.RowSpan="2"/>
-        <RulerControls:SolenoidUVerticalRuler Name="solenoidUScale" Grid.Row="3" Grid.Column="3" StartOfScale="{Binding SolenoidUMin,Mode=TwoWay}" EndOfScale="{Binding SolenoidUMax,Mode=TwoWay}"/>        
-        
+        <RulerControls:SolenoidUVerticalRuler Name="solenoidUScale" Grid.Row="3" Grid.Column="3" StartOfScale="{Binding SolenoidUMin,Mode=TwoWay}" EndOfScale="{Binding SolenoidUMax,Mode=TwoWay}"/>
+
         <TextBox x:Name="SolenoidIMax" Text="{Binding SolenoidIMax}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
         <TextBox x:Name="SolenoidIMin" Text="{Binding SolenoidIMin}" Grid.Column="2" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" Grid.Row="4" Margin="0,154,0,0" Grid.RowSpan="2"/>
         <RulerControls:SolenoidIVerticalRuler Name="solenoidIScale" Grid.Row="4" Grid.Column="3" StartOfScale="{Binding SolenoidIMin,Mode=TwoWay}" EndOfScale="{Binding SolenoidIMax,Mode=TwoWay}"/>
@@ -195,12 +238,6 @@
         </Border>
         <RulerControls:HorizontalRuler Name="timeScale" Grid.Row="5"  StartOfScale="{Binding DtFixedEdgeBegTime,Mode=OneWay}" EndOfScale="{Binding DtFixedEdgeEndTime,Mode=OneWay}" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <RangeSliderControls:RangeSlider  Grid.Row="7" x:Name="timeRangeSlider"  Minimum="0" Maximum="100" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" LowerValue="{Binding DtEdgeBegTime, ConverterParameter=LowerValue, Converter={StaticResource EdgeTimeConverterToSource}, Mode=OneWayToSource}" UpperValue="{Binding DtEdgeEndTime, ConverterParameter=UpperValue, Converter={StaticResource EdgeTimeConverterToSource}, Mode=OneWayToSource}"/>
-
-        <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Margin="10,28,0,34" Grid.Row="4" Width="15"/>
-        <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Margin="10,24,0,30" Grid.Row="3" Width="20"/>
-        <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="2" Width="20" Height="125" VerticalAlignment="Top"/>
-        <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Height="118" Margin="11,29,0,0" Grid.Row="1" VerticalAlignment="Top" Width="19"/>
-        <RangeSliderControls:RangeSliderVertical Minimum="0" UpperValue="100" Maximum="100" Grid.Column="2" HorizontalAlignment="Left" Height="119" Margin="10,28,0,0" VerticalAlignment="Top" Width="20"/>
         <TextBlock  Grid.Column="3" Margin="9,0,0,0" Grid.Row="6" TextWrapping="Wrap"  FontSize="12" VerticalAlignment="Top" Grid.ColumnSpan="2" Text="{Binding DtFixedEdgeBegTime, Mode=OneWay, StringFormat=dd.MM.yy\\&#xA;HH:mm:ss}"/>
         <TextBlock Grid.Column="4" HorizontalAlignment="Right" Margin="0,0,11,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Text="{Binding DtFixedEdgeEndTime, Mode=OneWay, StringFormat=dd.MM.yy\\&#xA;HH:mm:ss}"/>
         <TextBlock  Grid.Column="3"  Grid.Row="8" TextWrapping="Wrap"  FontSize="12" VerticalAlignment="Top" Grid.ColumnSpan="2" Text="{Binding DtEdgeBegTime, Mode=OneWay, StringFormat=dd.MM.yy\\&#xA;HH:mm:ss}"/>
