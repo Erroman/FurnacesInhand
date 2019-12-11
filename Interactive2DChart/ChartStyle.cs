@@ -107,7 +107,7 @@ namespace Interactive2DChart
                     yScale = TextCanvas.Height / (Ymax - Ymin); //коффициент Device/World по Y
                 xSpacing = optimalXSpacing / xScale;
                 xTick = OptimalSpacing(xSpacing);
-                ySpacing = optimalYSpacing / yScale; //оптимальное расстояние между соседними значениями параметра по Y
+                ySpacing = optimalYSpacing / yScale; //оптимальное расстояние между соседними значениями параметра, отображаемого штрихами, по Y
                 yTick = OptimalSpacing(ySpacing);//оптимизированное(округлённое) оптимальное расстояние между соседними значениями параметра по Y
                 xStart = (int)Math.Ceiling(Xmin / xTick);
                 xEnd = (int)Math.Floor(Xmax / xTick);
@@ -273,7 +273,7 @@ namespace Interactive2DChart
         public double OptimalSpacing(double original)
         {
             double[] da = { 1.0, 2.0, 5.0 };
-            double multiplier = Math.Pow(10, Math.Floor(Math.Log(original) / Math.Log(10)));
+            double multiplier = Math.Pow(10, Math.Floor(Math.Log(original,10)));
             double dmin = 100 * multiplier;
             double spacing = 0.0;
             double mn = 100;
