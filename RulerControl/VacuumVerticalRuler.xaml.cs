@@ -97,9 +97,11 @@ namespace RulerControls
 
         }
 
-
-        // void Dashes(double N1,double N2, double n,ref double[] dashes) - заполняем массив значениями между N1 и N2, кратными n
-
+        double[] dashes;
+         void Dashes(double N1,double N2, double n,out double[] dashes) // заполняем массив значениями между N1 и N2, кратными n
+        {
+            dashes = new double[] { 1, 2, 3 }; 
+        }
         void AddTheVerticalLineWithUnitsMarks(GeometryGroup geometryGroup)
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(actualWidth, 0), new Point(actualWidth, actualHeight)));
