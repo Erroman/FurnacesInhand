@@ -96,6 +96,10 @@ namespace RulerControls
 
 
         }
+
+
+        // void Dashes(double N1,double N2, double n,ref double[] dashes) - заполняем массив значениями между N1 и N2, кратными n
+
         void AddTheVerticalLineWithUnitsMarks(GeometryGroup geometryGroup)
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(actualWidth, 0), new Point(actualWidth, actualHeight)));
@@ -112,8 +116,8 @@ namespace RulerControls
         }
         void AddHundredUnitMarks(GeometryGroup geometryGroup)
         {
-            int hundredUnitDistance = 100; //разность в единицах давления между соседними делениями (100 мм).
-            int hundredUnitMarkLength = 15; //длина отметки для напряжения,кратного 100 мм
+            int hundredUnitDistance = 100; //разность в единицах давления между соседними делениями (100 мм рт.ст.).
+            int hundredUnitMarkLength = 15; //длина отметки для напряжения,кратного 100 мм.рт.ст.
 
             int numberOfHundredUnitsMarks = (int)Math.Ceiling((EndOfScale - StartOfScale) / hundredUnitDistance); //количество делений на шкале для заданной разницы значений
 
