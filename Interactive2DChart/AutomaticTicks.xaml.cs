@@ -19,8 +19,10 @@ namespace Interactive2DChart
             cs.Title = "Sine and Cosine Chart";
             cs.Xmin = 0;
             cs.Xmax = 7;
-            cs.Ymin = 699.99;
-            cs.Ymax = 700.01;
+            //cs.Ymin = 700.01;
+            //cs.Ymax = 702.732;
+            cs.Ymin = 0;
+            cs.Ymax = 760;
             cs.GridlinePattern = ChartStyle.GridlinePatternEnum.Dot;
             cs.GridlineColor = Brushes.Black;
             //Добавляются оси координат 

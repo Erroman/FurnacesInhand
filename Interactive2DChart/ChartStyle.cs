@@ -85,7 +85,7 @@ namespace Interactive2DChart
             double dx, dy;
             TextBlock tb = new TextBlock();
             double optimalXSpacing = 100;  //оптимальное расстояние между соседними метками по X в машинных единицах
-            double optimalYSpacing = 80;   //оптимальное расстояние между соседними метками по Y в машинных единицах
+            double optimalYSpacing = 20;   //оптимальное расстояние между соседними метками по Y в машинных единицах
             // determine right offset:
             tb.Text = Math.Round(Xmax, 0).ToString();
             tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
@@ -102,13 +102,14 @@ namespace Interactive2DChart
             {
                 if (Xmin != Xmax)
                     xScale = (TextCanvas.Width - offset0 - rightOffset - 5) /
-                    (Xmax - Xmin);
+                    (Xmax - Xmin); 
                 if (Ymin != Ymax)
-                    yScale = TextCanvas.Height / (Ymax - Ymin); //коффициент Device/World по Y
+                    yScale = TextCanvas.Height / (Ymax - Ymin); //коффициент Device/World по Y, ось Y идёт полностью вдоль на всю высоту наружного Canvas
                 xSpacing = optimalXSpacing / xScale;
                 xTick = OptimalSpacing(xSpacing);
-                ySpacing = optimalYSpacing / yScale; //оптимальное расстояние между соседними значениями параметра, отображаемого штрихами, по Y
-                yTick = OptimalSpacing(ySpacing);//оптимизированное(округлённое) оптимальное расстояние между соседними значениями параметра по Y
+                ySpacing = optimalYSpacing / yScale; //оптимальное расстояние между соседними значениями параметра World, отображаемого штрихами, по Y,
+                                                     //соответствующее заданному оптимальному для глаза расстоянию между соседними штрихами.
+                yTick = OptimalSpacing(ySpacing);//оптимизированное(определённое по некоторому алгоритму) расстояние между соседними значениями параметра по Y
                 xStart = (int)Math.Ceiling(Xmin / xTick);
                 xEnd = (int)Math.Floor(Xmax / xTick);
                 yStart = (int)Math.Ceiling(Ymin / yTick);
