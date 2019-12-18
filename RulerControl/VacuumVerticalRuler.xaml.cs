@@ -64,6 +64,7 @@ namespace RulerControls
             //Create a new geometry group for drawing the axis there
             GeometryGroup axis = new GeometryGroup();
             //And now put  a line with vacuum ticks on it in the group
+            PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, 0, this.actualHeight);
             AddTheVerticalLineWithUnitsMarks(axis);
 
             Path axis_path = new Path();
@@ -96,7 +97,11 @@ namespace RulerControls
 
 
         }
-
+        void AddHorizontalUnitsMarksWithLabels(GeometryGroup geometryGroup)
+        {
+            double optimalYSpacing = 20;   //оптимальное расстояние между соседними метками по Y в машинных единицах
+            double ySpacing = DtoW(new Point(0, optimalYSpacing)).Y; //преобразуем это расстояние в единицы измерения параметра (мм рт.ст.)
+        }
         double[] dashes;
          void Dashes(double N1,double N2, double n,out double[] dashes) // заполняем массив значениями между N1 и N2, кратными n
         {
@@ -105,13 +110,14 @@ namespace RulerControls
         void AddTheVerticalLineWithUnitsMarks(GeometryGroup geometryGroup)
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(actualWidth, 0), new Point(actualWidth, actualHeight)));
-            if (this.actualHeight != 0 & this.actualWidth != 0)
+            if (this.actualHeight != 0 & this.actualWidth != 0) 
+            { 
                 AddHorizontalUnitsMarks(geometryGroup);
-
+                AddHorizontalUnitsMarksWithLabels(geometryGroup);
+            }
         }
         void AddHorizontalUnitsMarks(GeometryGroup geometryGroup)
         {
-            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, 0, this.actualHeight);
             AddHundredUnitMarks(geometryGroup);
             AddTenUnitMarks(geometryGroup);
             AddOneUnitMarks(geometryGroup);

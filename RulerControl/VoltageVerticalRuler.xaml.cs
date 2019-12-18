@@ -100,14 +100,16 @@ namespace RulerControls
         void AddTheVerticalLineWithUnitsMarks(GeometryGroup geometryGroup)
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(actualWidth, 0), new Point(actualWidth, actualHeight)));
-            if (this.actualHeight != 0 & this.actualWidth != 0)
+            if (this.actualHeight != 0 & this.actualWidth != 0) 
+            { 
                 AddHorizontalUnitsMarks(geometryGroup);
                 AddHorizontalUnitsMarksWithLabels(geometryGroup);
-
+            }
         }
         void AddHorizontalUnitsMarksWithLabels(GeometryGroup geometryGroup)
         {
             double optimalYSpacing = 20;   //оптимальное расстояние между соседними метками по Y в машинных единицах
+            double ySpacing = WtoD(new Point(0, optimalYSpacing)).Y; //преобразуем это расстояние в единицы измерения параметра (вольты)
         }
         void AddHorizontalUnitsMarks(GeometryGroup geometryGroup)
         {
