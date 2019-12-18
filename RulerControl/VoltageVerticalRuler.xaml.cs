@@ -64,6 +64,7 @@ namespace RulerControls
             //Create a new geometry group for drawing the axis there
             GeometryGroup axis = new GeometryGroup();
             //And now put  a line with vacuum ticks on it in the group
+            PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, 0, this.actualHeight);
             AddTheVerticalLineWithUnitsMarks(axis);
 
             Path axis_path = new Path();
@@ -101,11 +102,15 @@ namespace RulerControls
             geometryGroup.Children.Add(new LineGeometry(new Point(actualWidth, 0), new Point(actualWidth, actualHeight)));
             if (this.actualHeight != 0 & this.actualWidth != 0)
                 AddHorizontalUnitsMarks(geometryGroup);
+                AddHorizontalUnitsMarksWithLabels(geometryGroup);
 
+        }
+        void AddHorizontalUnitsMarksWithLabels(GeometryGroup geometryGroup)
+        {
+            double optimalYSpacing = 20;   //оптимальное расстояние между соседними метками по Y в машинных единицах
         }
         void AddHorizontalUnitsMarks(GeometryGroup geometryGroup)
         {
-            TransformWorldToScreen.PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, 0, this.actualHeight);
             AddHundredUnitMarks(geometryGroup);
             AddTenUnitMarks(geometryGroup);
             AddOneUnitMarks(geometryGroup);
@@ -200,6 +205,7 @@ namespace RulerControls
                 }
             }
         }
+  
         // http://csharphelper.com/blog/2014/09/draw-a-graph-with-labels-wpf-c/ 
         // Position a label at the indicated point.
         private void DrawText(Canvas can, string text, Point location,
