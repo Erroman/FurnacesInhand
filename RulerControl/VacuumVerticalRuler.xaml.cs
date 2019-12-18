@@ -101,6 +101,9 @@ namespace RulerControls
         {
             double optimalYSpacing = 20;   //оптимальное расстояние между соседними метками по Y в машинных единицах
             double ySpacing = DtoW(new Point(0, optimalYSpacing)).Y; //преобразуем это расстояние в единицы измерения параметра (мм рт.ст.)
+            double yTick = OptimalSpacing(ySpacing);  //округляем до удобной величины
+            int yStart = (int)Math.Ceiling(StartOfScale / yTick);
+            int yEnd = (int)Math.Floor(EndOfScale / yTick);
         }
         double[] dashes;
          void Dashes(double N1,double N2, double n,out double[] dashes) // заполняем массив значениями между N1 и N2, кратными n
