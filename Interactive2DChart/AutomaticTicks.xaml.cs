@@ -21,7 +21,7 @@ namespace Interactive2DChart
             cs.Xmax = 7;
             //cs.Ymin = 700.01;
             //cs.Ymax = 702.732;
-            cs.Ymin = 0;
+            cs.Ymin = 101;
             cs.Ymax = 760;
             cs.GridlinePattern = ChartStyle.GridlinePatternEnum.Dot;
             cs.GridlineColor = Brushes.Black;

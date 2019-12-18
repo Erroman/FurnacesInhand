@@ -107,9 +107,9 @@ namespace Interactive2DChart
                     yScale = TextCanvas.Height / (Ymax - Ymin); //коффициент Device/World по Y, ось Y идёт полностью вдоль на всю высоту наружного Canvas
                 xSpacing = optimalXSpacing / xScale;
                 xTick = OptimalSpacing(xSpacing);
-                ySpacing = optimalYSpacing / yScale; //оптимальное расстояние между соседними значениями параметра World, отображаемого штрихами, по Y,
-                                                     //соответствующее заданному оптимальному для глаза расстоянию между соседними штрихами.
-                yTick = OptimalSpacing(ySpacing);//оптимизированное(определённое по некоторому алгоритму) расстояние между соседними значениями параметра по Y
+                ySpacing = optimalYSpacing / yScale; //желаемое расстояние между соседними значениями параметра World(мм рт.ст.), отображаемого штрихами, по Y,
+                                                     //соответствующее заданному удобному для глаза расстоянию между соседними штрихами.
+                yTick = OptimalSpacing(ySpacing);//определённое по некоторому алгоритму, округлённое расстояние между соседними значениями параметра по Y(мм рт.ст.)
                 xStart = (int)Math.Ceiling(Xmin / xTick);
                 xEnd = (int)Math.Floor(Xmax / xTick);
                 yStart = (int)Math.Ceiling(Ymin / yTick);
@@ -155,8 +155,10 @@ namespace Interactive2DChart
             yTick = OptimalSpacing(ySpacing);
             xStart = (int)Math.Ceiling(Xmin / xTick);
             xEnd = (int)Math.Floor(Xmax / xTick);
-            yStart = (int)Math.Ceiling(Ymin / yTick);
-            yEnd = (int)Math.Floor(Ymax / yTick);
+            yStart = (int)Math.Ceiling(Ymin / yTick); //количество "удобных"(оптимизированных) интервалов реального значения параметра,
+                                                      //которые надо отмерить,чтобы захватить начало шкалы
+            yEnd = (int)Math.Floor(Ymax / yTick);    //количество "удобных"(оптимизированных) интервалов реального значения параметра,
+                                                      //которые надо отмерить,чтобы захватить конец шкалы
             // Create vertical gridlines and x tick marks:
             if (IsYGrid == true)
             {
