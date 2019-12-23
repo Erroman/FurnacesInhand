@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalInput", "DigitalInpu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Line", "Line\Line.csproj", "{2101721E-0E4A-418D-A04A-735005DD76DB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixTransformation", "MatrixTransformation\MatrixTransformation\MatrixTransformation.csproj", "{B234FACE-A84B-484B-B978-36C8D3781572}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{2101721E-0E4A-418D-A04A-735005DD76DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2101721E-0E4A-418D-A04A-735005DD76DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2101721E-0E4A-418D-A04A-735005DD76DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B234FACE-A84B-484B-B978-36C8D3781572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B234FACE-A84B-484B-B978-36C8D3781572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B234FACE-A84B-484B-B978-36C8D3781572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B234FACE-A84B-484B-B978-36C8D3781572}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
