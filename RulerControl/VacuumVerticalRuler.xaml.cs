@@ -68,7 +68,7 @@ namespace RulerControls
             PrepareScaling(StartOfScale, EndOfScale, 0, this.ActualHeight);                                //преобразование масштаба без учёта сдвига шкалы
             PrepareTransformations(Xmin, Xmax, StartOfScale, EndOfScale, Xmin, Xmax, 0, this.actualHeight);//с учётом сдвига начала шкалы
             AddTheVerticalLineWithUnitsMarks(axis);
-
+            AddHorizontalUnitsMarksWithLabels(axis);
             Path axis_path = new Path();
             axis_path.StrokeThickness = 2;
             axis_path.Stroke = Brushes.Black;
@@ -106,6 +106,26 @@ namespace RulerControls
             double yTick = OptimalSpacing(ySpacing);  //округляем до удобной величины
             int yStart = (int)Math.Ceiling(StartOfScale / yTick);
             int yEnd = (int)Math.Floor(EndOfScale / yTick);
+            Point pt1;
+            Point pt2;
+            TextBlock tb;
+            Size size;
+            LineGeometry tick;
+            double dy;
+            for (int i = yStart; i <= yEnd; i++)
+            {
+                dy = i * yTick;
+                pt1 = WtoD(new Point(0, dy));
+                pt2 = new Point(pt1.X + 5, pt1.Y);
+                tick = new LineGeometry(pt1,pt2);
+                geometryGroup.Children.Add(tick);
+                tb = new TextBlock();
+                tb.Text = dy.ToString();
+                tb.TextAlignment = TextAlignment.Right;
+                tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
+                size = tb.DesiredSize;
+
+             }
         }
         double[] dashes;
          void Dashes(double N1,double N2, double n,out double[] dashes) // заполняем массив значениями между N1 и N2, кратными n
