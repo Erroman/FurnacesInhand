@@ -24,9 +24,10 @@ namespace MatrixTransformation
         public MainWindow()
         {
             InitializeComponent();
-            
-            TransformWorldToScreen.PrepareTransformations(-5,-100,0,10,5.0,1000,0,15);
-            Point pW = new Point(-1001,2);
+            const int Xmin = 0;
+            const int Xmax = 1;
+            TransformWorldToScreen.PrepareTransformations(Xmin, Xmax, 2,10, Xmin, Xmax, 10,15);
+            Point pW = new Point(-1001,5);
             Point pD = WtoD(pW);
 
             this.show.Content = $"pD.X = {pD.X} " + $"pD.Y = {pD.Y}";

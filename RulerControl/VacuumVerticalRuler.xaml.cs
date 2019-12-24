@@ -60,11 +60,13 @@ namespace RulerControls
         {
             this.actualWidth = rulerBody.ActualWidth;
             this.actualHeight = rulerBody.ActualHeight;
-
+            const int Xmin = 0;
+            const int Xmax = 1;
             //Create a new geometry group for drawing the axis there
             GeometryGroup axis = new GeometryGroup();
             //And now put  a line with vacuum ticks on it in the group
-            PrepareTransformations(0, this.actualWidth, StartOfScale, EndOfScale, 0, this.actualWidth, 0, this.actualHeight);
+            PrepareScaling(StartOfScale, EndOfScale, 0, this.ActualHeight);                                //преобразование масштаба без учёта сдвига шкалы
+            PrepareTransformations(Xmin, Xmax, StartOfScale, EndOfScale, Xmin, Xmax, 0, this.actualHeight);//с учётом сдвига начала шкалы
             AddTheVerticalLineWithUnitsMarks(axis);
 
             Path axis_path = new Path();
@@ -100,7 +102,7 @@ namespace RulerControls
         void AddHorizontalUnitsMarksWithLabels(GeometryGroup geometryGroup)
         {
             double optimalYSpacing = 20;   //оптимальное расстояние между соседними метками по Y в машинных единицах
-            double ySpacing = DtoW(new Point(0, optimalYSpacing)).Y; //преобразуем это расстояние в единицы измерения параметра (мм рт.ст.)
+            double ySpacing = DtoWScale(optimalYSpacing); //преобразуем это расстояние в единицы измерения параметра (мм рт.ст.)
             double yTick = OptimalSpacing(ySpacing);  //округляем до удобной величины
             int yStart = (int)Math.Ceiling(StartOfScale / yTick);
             int yEnd = (int)Math.Floor(EndOfScale / yTick);

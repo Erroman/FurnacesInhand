@@ -39,6 +39,17 @@ namespace RulerControls
             return DtoWMatrix.Transform(point);
         }
 
+        private static double _wmin, _wmax, _dmin, _dmax;
+        public static void PrepareScaling(double wmin, double wmax, double dmin, double dmax) 
+        {
+            _wmin = wmin;
+            _wmax = wmax;
+            _dmin = dmin;
+            _dmax = dmax;
+        }
+        public static double WtoDScale(double length) =>  length * (_dmax -_dmin)/ (_wmax - _wmin);
+        public static double DtoWScale(double length) =>  length * (_wmax - _wmin) / (_dmax - _dmin);
+        
         public static double OptimalSpacing(double original)
         {
             double[] da = { 1.0, 2.0, 5.0 };
