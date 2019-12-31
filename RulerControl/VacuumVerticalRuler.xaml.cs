@@ -68,7 +68,7 @@ namespace RulerControls
             PrepareScaling(StartOfScale, EndOfScale, 0, this.ActualHeight);                                //преобразование масштаба без учёта сдвига шкалы
             PrepareTransformations(Xmin, Xmax, StartOfScale, EndOfScale, Xmin, Xmax, 0, this.actualHeight);//с учётом сдвига начала шкалы
             AddTheVerticalLineWithUnitsMarks(axis);
-            AddHorizontalUnitsMarksWithLabels(axis);
+            //AddHorizontalUnitsMarksWithLabels(axis);
             Path axis_path = new Path();
             axis_path.StrokeThickness = 2;
             axis_path.Stroke = Brushes.Black;
@@ -115,8 +115,8 @@ namespace RulerControls
             for (int i = yStart; i <= yEnd; i++)
             {
                 dy = i * yTick;
-                pt1 = WtoD(new Point(0, dy));
-                pt2 = new Point(pt1.X + 5, pt1.Y);
+                pt1 = WtoD(new Point(actualWidth , dy));
+                pt2 = new Point(pt1.X - 5, pt1.Y);
                 tick = new LineGeometry(pt1,pt2);
                 geometryGroup.Children.Add(tick);
                 tb = new TextBlock();
