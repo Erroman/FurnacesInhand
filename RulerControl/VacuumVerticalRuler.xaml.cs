@@ -67,13 +67,14 @@ namespace RulerControls
             //And now put  a line with vacuum ticks on it in the group
             PrepareScaling(StartOfScale, EndOfScale, 0, this.ActualHeight);                                //преобразование масштаба без учёта сдвига шкалы
             PrepareTransformations(Xmin, Xmax, StartOfScale, EndOfScale, Xmin, Xmax, 0, this.actualHeight);//с учётом сдвига начала шкалы
-            AddTheVerticalLineWithUnitsMarks(axis);
-            //AddHorizontalUnitsMarksWithLabels(axis);
+            rulerBody.Children.Clear();
+            //AddTheVerticalLineWithUnitsMarks(axis);
+            AddHorizontalUnitsMarksWithLabels(axis);
             Path axis_path = new Path();
             axis_path.StrokeThickness = 2;
             axis_path.Stroke = Brushes.Black;
             axis_path.Data = axis;
-            rulerBody.Children.Clear();
+            
             rulerBody.Children.Add(axis_path);
             //Put labels:
             string tenUnitsLabel = String.Empty;
@@ -124,7 +125,9 @@ namespace RulerControls
                 tb.TextAlignment = TextAlignment.Right;
                 tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
                 size = tb.DesiredSize;
-
+                rulerBody.Children.Add(tb);
+                Canvas.SetRight(tb,10);
+                Canvas.SetTop(tb,pt1.Y);
              }
         }
         double[] dashes;
@@ -137,7 +140,7 @@ namespace RulerControls
             geometryGroup.Children.Add(new LineGeometry(new Point(actualWidth, 0), new Point(actualWidth, actualHeight)));
             if (this.actualHeight != 0 & this.actualWidth != 0) 
             { 
-                AddHorizontalUnitsMarks(geometryGroup);
+                //AddHorizontalUnitsMarks(geometryGroup);
                 AddHorizontalUnitsMarksWithLabels(geometryGroup);
             }
         }

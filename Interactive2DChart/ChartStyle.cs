@@ -181,7 +181,7 @@ namespace Interactive2DChart
                     tick.Y1 = pt.Y;
                     tick.X2 = pt.X;
                     tick.Y2 = pt.Y - 5; //величина штриха отметки деления = 5
-                    ChartCanvas.Children.Add(tick); //ставится вертикальное деление на оси X, принадлежит внутреннему холсту chartCanvas
+                    ChartCanvas.Children.Add(tick); //ставится вертикальный штрих для деления на оси X, принадлежит внутреннему холсту chartCanvas
                     tb = new TextBlock();
                     tb.Text = dx.ToString();
                     tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
@@ -212,7 +212,7 @@ namespace Interactive2DChart
                     tick.Y1 = pt.Y;
                     tick.X2 = pt.X + 5;
                     tick.Y2 = pt.Y;
-                    ChartCanvas.Children.Add(tick);
+                    ChartCanvas.Children.Add(tick);//ставится горизонтальный штрих для деления на оси Y, принадлежит внутреннему холсту chartCanvas
                     tb = new TextBlock();
                     tb.Text = dy.ToString();
                     tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
