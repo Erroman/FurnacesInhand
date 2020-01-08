@@ -114,7 +114,9 @@ namespace Interactive2DChart
                 xEnd = (int)Math.Floor(Xmax / xTick);
                 yStart = (int)Math.Ceiling(Ymin / yTick);
                 yEnd = (int)Math.Floor(Ymax / yTick);
-                //Определяется величина сдвига внутреннего холста(textCanvas) по отношению к внешнему(chartCanvas)
+                //Делается предварительная разметка вертикальной оси во внешнем холсте TextCanvas, 
+                //без проставления штрихов делений и текстовых меток, за счёт этого
+                //определяется величина сдвига внутреннего холста(ChartCanvas) по отношению к внешнему(TextCanvas)
                 //по горизонтали(leftOffset) и вертикали(bottomOffset).Горизонтальный сдвиг высчитывается, исходя из размеров 
                 //самого длинного нименования метки, вертикальный остаётся неизменным с самого начала и не расчитывается
                 for (int i = yStart; i <= yEnd; i++)
@@ -135,11 +137,12 @@ namespace Interactive2DChart
                     offset0 += 0.5;
             }
             leftOffset = offset + 5;
-            Canvas.SetLeft(ChartCanvas, leftOffset);     //горизонтальный сдвиг
-            Canvas.SetBottom(ChartCanvas, bottomOffset); //вертикальный сдвиг 
+            Canvas.SetLeft(ChartCanvas, leftOffset);     //горизонтальный сдвиг внутреннего холста
+            Canvas.SetBottom(ChartCanvas, bottomOffset); //вертикальный сдвиг внутреннего холста
 
             ChartCanvas.Width = TextCanvas.Width - leftOffset - rightOffset;
-            ChartCanvas.Height = TextCanvas.Height - bottomOffset - size.Height / 2;
+            ChartCanvas.Height = TextCanvas.Height - bottomOffset - size.Height / 2; //size.Height позиционирует метку
+            //напротив штриха по её середине, а не по верхнему краю при дальнейших расчётах её положения
             Rectangle chartRect = new Rectangle();
             chartRect.Stroke = Brushes.Black;
             chartRect.Width = ChartCanvas.Width;
@@ -186,7 +189,7 @@ namespace Interactive2DChart
                     tb.Text = dx.ToString();
                     tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
                     size = tb.DesiredSize;
-                    TextCanvas.Children.Add(tb);
+                    TextCanvas.Children.Add(tb); //добавляем метку к внешнему(!) холсту., поэтому он и текстовый
                     Canvas.SetLeft(tb, leftOffset + pt.X - size.Width / 2);
                     Canvas.SetTop(tb, pt.Y + 2 + size.Height / 2);
                 }
@@ -216,8 +219,9 @@ namespace Interactive2DChart
                     tb = new TextBlock();
                     tb.Text = dy.ToString();
                     tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
-                    size = tb.DesiredSize;
-                    TextCanvas.Children.Add(tb);
+                    //size = tb.DesiredSize; //теперь размеры метки не нужны, высота метки учтена при вертикальном сдвиге 
+                    //внутреннего холста GraphCanvas относительно внешнего TextCanvas
+                    TextCanvas.Children.Add(tb);//добавляем метку к внешнему(!) холсту., поэтому он и текстовый
                     Canvas.SetRight(tb, ChartCanvas.Width + 10);//устанавливаем наименование метки в 10 ед. влево от правого края внутреннего холста. 
                     Canvas.SetTop(tb, pt.Y);
                 }
