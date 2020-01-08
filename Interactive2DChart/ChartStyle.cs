@@ -189,7 +189,7 @@ namespace Interactive2DChart
                     tb.Text = dx.ToString();
                     tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
                     size = tb.DesiredSize;
-                    TextCanvas.Children.Add(tb); //добавляем метку к внешнему(!) холсту., поэтому он и текстовый
+                    TextCanvas.Children.Add(tb); //добавляем метку к внешнему(!) холсту, поэтому он и текстовый
                     Canvas.SetLeft(tb, leftOffset + pt.X - size.Width / 2);
                     Canvas.SetTop(tb, pt.Y + 2 + size.Height / 2);
                 }

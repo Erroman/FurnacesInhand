@@ -127,7 +127,7 @@ namespace RulerControls
                 size = tb.DesiredSize;
                 rulerBody.Children.Add(tb);
                 Canvas.SetRight(tb,10);
-                Canvas.SetTop(tb,pt1.Y);
+                Canvas.SetTop(tb,pt1.Y - size.Height/2);
              }
         }
         double[] dashes;
