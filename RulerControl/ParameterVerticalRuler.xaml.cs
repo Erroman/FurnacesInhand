@@ -10,11 +10,11 @@ namespace RulerControls
     /// <summary>
     /// Логика взаимодействия для VacuumVerticalRuler.xaml
     /// </summary>
-    public partial class VacuumVerticalRuler : UserControl
+    public partial class ParameterVerticalRuler : UserControl
     {
         private double actualWidth;
         private double actualHeight;
-        public VacuumVerticalRuler()
+        public ParameterVerticalRuler()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for StartOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartOfScaleProperty =
-            DependencyProperty.Register("StartOfScale", typeof(double), typeof(VacuumVerticalRuler), new PropertyMetadata(DefaultStartVacuum));
+            DependencyProperty.Register("StartOfScale", typeof(double), typeof(ParameterVerticalRuler), new PropertyMetadata(DefaultStartVacuum));
 
 
         public double EndOfScale
@@ -41,7 +41,7 @@ namespace RulerControls
 
         // Using a DependencyProperty as the backing store for EndOfScale.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndOfScaleProperty =
-            DependencyProperty.Register("EndOfScale", typeof(double), typeof(VacuumVerticalRuler), new PropertyMetadata(DefaultEndVacuum));
+            DependencyProperty.Register("EndOfScale", typeof(double), typeof(ParameterVerticalRuler), new PropertyMetadata(DefaultEndVacuum));
 
         public void BuildAxis()
         {
@@ -60,14 +60,14 @@ namespace RulerControls
             axis_path.StrokeThickness = 2;
             axis_path.Stroke = Brushes.Black;
             axis_path.Data = axis;
-            
+
             rulerBody.Children.Add(axis_path);
-        }        
+        }
         void AddTheVerticalLineWithUnitsMarks(GeometryGroup geometryGroup)
         {
             geometryGroup.Children.Add(new LineGeometry(new Point(actualWidth, 0), new Point(actualWidth, actualHeight)));
-            if (this.actualHeight != 0 & this.actualWidth != 0) 
-            { 
+            if (this.actualHeight != 0 & this.actualWidth != 0)
+            {
                 AddHorizontalUnitsMarksWithLabels(geometryGroup);
             }
         }
@@ -88,9 +88,9 @@ namespace RulerControls
             for (int i = yStart; i <= yEnd; i++)
             {
                 dy = i * yTick;
-                pt1 = WtoD(new Point(actualWidth , dy));
+                pt1 = WtoD(new Point(actualWidth, dy));
                 pt2 = new Point(pt1.X - 5, pt1.Y);
-                tick = new LineGeometry(pt1,pt2);
+                tick = new LineGeometry(pt1, pt2);
                 geometryGroup.Children.Add(tick);
                 tb = new TextBlock();
                 tb.Text = dy.ToString();
@@ -98,9 +98,9 @@ namespace RulerControls
                 tb.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
                 size = tb.DesiredSize;
                 rulerBody.Children.Add(tb);
-                Canvas.SetRight(tb,10);
-                Canvas.SetTop(tb,pt1.Y - size.Height/2);
-             }
+                Canvas.SetRight(tb, 10);
+                Canvas.SetTop(tb, pt1.Y - size.Height / 2);
+            }
         }
 
 
