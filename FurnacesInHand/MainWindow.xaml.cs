@@ -801,6 +801,7 @@ namespace FurnacesInHand
                 using (Process exeProcess = Process.Start(startInfo))
                 {
                     exeProcess.WaitForExit();
+                    //exeProcess.Start();
                 }
             }
             catch
@@ -821,6 +822,7 @@ namespace FurnacesInHand
                 using (Process exeProcess = Process.Start(startInfo))
                 {
                     exeProcess.WaitForExit();
+                    //exeProcess.Start();
                 }
             }
             catch
@@ -869,6 +871,7 @@ namespace FurnacesInHand
                 using (Process exeProcess = Process.Start(startInfo))
                 {
                     exeProcess.WaitForExit();
+                    //exeProcess.Start();
                 }
             }
             catch

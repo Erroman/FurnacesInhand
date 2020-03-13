@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace TestRulerControl
 {
@@ -23,6 +24,7 @@ namespace TestRulerControl
         public MainWindow()
         {
             InitializeComponent();
+            //MessageBox.Show(SynchronizationContext.Current.GetType().ToString());
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
